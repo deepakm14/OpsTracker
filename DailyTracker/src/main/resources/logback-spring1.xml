@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="WORKER_ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/jallikattu-customer.json</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${LOG_PATH}/Archived/jallikattu-customer.%d{yyyy-MM-dd}.%i.json
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 20MB and max 60days files only -->
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d %-5level [%thread] %logger{0}: %msg%n%ex</pattern>
+		</encoder>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<includeCallerInfo>true</includeCallerInfo>
+		</encoder>
+	</appender>
+	<appender name="STASH"
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>172.30.7.26:8073</destination>
+		<encoder
+			class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<mdc />
+				<context />
+				<logLevel />
+				<loggerName />
+				<pattern>
+					<pattern>
+						{
+						"serviceName": "jkcustomer-service"
+						}
+					</pattern>
+				</pattern>
+				<threadName />
+				<message />
+				<logstashMarkers />
+				<stackTrace />
+			</providers>
+		</encoder>
+	</appender>
+
+
+	<root level="INFO">
+		<appender-ref ref="WORKER_ROLLING" />
+		<appender-ref ref="STASH" />
+	</root>
+</configuration>
