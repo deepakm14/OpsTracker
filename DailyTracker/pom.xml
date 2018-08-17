@@ -7,7 +7,7 @@
 	<groupId>com.jallikattu</groupId>
 	<artifactId>jallikattu-Customer</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Jallikattu-Customer</name>
 	<description>Jallikattu Customer</description>

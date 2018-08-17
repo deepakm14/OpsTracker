@@ -188,7 +188,7 @@ public class SiteService {
 				materialDTO.setId(material.getId());
 				materialDTO.setTypeOfService(material.getTypeOfService());
 				materialDTO.setMaterialType(material.getMaterialType());
-//				materialDTO.setCommitmentDate(material.getCommitmentDate());
+				materialDTO.setCommitmentDate(material.getCommitmentDate());
 				materialDTOs.add(materialDTO);
 			}
 			for(Machines mac : machines)
@@ -246,7 +246,7 @@ public class SiteService {
 			materialDTO.setId(material.getId());
 			materialDTO.setTypeOfService(material.getTypeOfService());
 			materialDTO.setMaterialType(material.getMaterialType());
-//			materialDTO.setCommitmentDate(material.getCommitmentDate());
+			materialDTO.setCommitmentDate(material.getCommitmentDate());
 			materialDTOs.add(materialDTO);
 		}
 		for(Machines mac : machines)
@@ -304,7 +304,7 @@ public class SiteService {
 				materialDTO.setId(material.getId());
 				materialDTO.setTypeOfService(material.getTypeOfService());
 				materialDTO.setMaterialType(material.getMaterialType());
-//				materialDTO.setCommitmentDate(material.getCommitmentDate());
+				materialDTO.setCommitmentDate(material.getCommitmentDate());
 				materialDTOs.add(materialDTO);
 			}
 			for(Machines mac : machines)

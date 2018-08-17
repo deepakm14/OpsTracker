@@ -1,6 +1,5 @@
 package com.uds.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.uds.domain.Employee;
+import com.uds.domain.User;
 import com.uds.dto.EmployeeDTO;
 import com.uds.repository.EmployeeRepository;
+import com.uds.repository.UserRepository;
 import com.uds.util.MapperUtil;
 
 @Service
@@ -21,7 +22,10 @@ public class EmployeeService {
 	private final Logger log = LoggerFactory.getLogger(SiteService.class);
 	
 	@Autowired
-	EmployeeRepository employeeRepository;
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private MapperUtil<?,?> mapperUtil;
@@ -29,7 +33,12 @@ public class EmployeeService {
 	public EmployeeDTO createEmployee(EmployeeDTO employeeDTO)
 	{
 		Employee employee = mapperUtil.toEntity(employeeDTO, Employee.class);
-		employeeRepository.save(employee);
+		Employee emp = employeeRepository.save(employee);
+		User user = new User();
+		String userName = Long.toString(emp.getCode());
+		user.setUserName(userName);
+		user.setPassword("Uds12345");
+		userRepository.save(user);
 		EmployeeDTO savedEmployeeDTO = mapperUtil.toModel(employee, EmployeeDTO.class);
 		return savedEmployeeDTO;
 	}

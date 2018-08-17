@@ -1,5 +1,7 @@
 package com.uds.dto;
 
+import java.util.Date;
+
 public class MaterialDTO {
 
 	private long id;
@@ -8,7 +10,7 @@ public class MaterialDTO {
 	
 	private String materialType;
 	
-	private String commitmentDate;
+	private Date commitmentDate;
 
 	public long getId() {
 		return id;
@@ -34,11 +36,11 @@ public class MaterialDTO {
 		this.materialType = materialType;
 	}
 
-	public String getCommitmentDate() {
+	public Date getCommitmentDate() {
 		return commitmentDate;
 	}
 
-	public void setCommitmentDate(String commitmentDate) {
+	public void setCommitmentDate(Date commitmentDate) {
 		this.commitmentDate = commitmentDate;
 	}
 
