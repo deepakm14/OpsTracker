@@ -4,6 +4,8 @@ public class ManPowerDTO {
 
 	private long id;
 	
+	private String typeOfService;
+	
 	private int planned; 
 	
 	private String startTime;
@@ -16,6 +18,14 @@ public class ManPowerDTO {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getTypeOfService() {
+		return typeOfService;
+	}
+
+	public void setTypeOfService(String typeOfService) {
+		this.typeOfService = typeOfService;
 	}
 
 	public int getPlanned() {

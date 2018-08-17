@@ -36,8 +36,6 @@ public class Site implements Serializable{
 	
 	private String contractType;
 	
-	private String typeOfService;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "projectId", nullable = false)
 	private Project project;
@@ -97,14 +95,6 @@ public class Site implements Serializable{
 
 	public void setContractType(String contractType) {
 		this.contractType = contractType;
-	}
-
-	public String getTypeOfService() {
-		return typeOfService;
-	}
-
-	public void setTypeOfService(String typeOfService) {
-		this.typeOfService = typeOfService;
 	}
 
 	public long getRegionalManagerId() {

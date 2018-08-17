@@ -55,6 +55,7 @@ public class SiteService {
 		List<Machines> machines = new ArrayList<Machines>();
 		for (ManPowerDTO manDTO : manPowerDTOs) {
 			ManPower manPower = mapperUtil.toEntity(manDTO, ManPower.class);
+			manPower.setTypeOfService("ManPower");
 			manPower.setSite(site);
 			manPowers.add(manPower);
 		}
@@ -64,6 +65,7 @@ public class SiteService {
 				String string = "January 2, 2010";
 				DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
 				Date commitmentDate = format.parse(string);
+				material.setTypeOfService("Material");
 				material.setCommitmentDate(commitmentDate);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -74,6 +76,7 @@ public class SiteService {
 		}
 		for (MachinesDTO macDTO : machineDTOs) {
 			Machines machine = mapperUtil.toEntity(macDTO, Machines.class);
+			machine.setTypeOfService("Machine");
 			machine.setSite(site);
 			machines.add(machine);
 		}
@@ -97,7 +100,6 @@ public class SiteService {
 		site.setSeniorManagerId(siteDTO.getSeniorManagerId());
 		site.setAsstSeniorManagerId(siteDTO.getAsstSeniorManagerId());
 		site.setSiteInchargeId(siteDTO.getSiteInchargeId());
-		site.setTypeOfService(siteDTO.getTypeOfService());
 		List<ManPowerDTO> manPowerDTOs = siteDTO.getManPowerDTO();
 		List<MaterialDTO> materialDTOs = siteDTO.getMaterialDTO();
 		List<MachinesDTO> machineDTOs = siteDTO.getMachineDTO();
@@ -108,6 +110,7 @@ public class SiteService {
 		{
 			ManPower manPower = new ManPower();
 			manPower.setId(manDTO.getId());
+			manPower.setTypeOfService(manDTO.getTypeOfService());
 			manPower.setPlanned(manDTO.getPlanned());
 			manPower.setSite(site);
 			manPowers.add(manPower);
@@ -116,6 +119,7 @@ public class SiteService {
 		{
 			Material material = new Material();
 			material.setId(matDTO.getId());
+			material.setTypeOfService(matDTO.getTypeOfService());
 			material.setMaterialType(matDTO.getMaterialType());
 			Date date = new Date();
 			material.setCommitmentDate(date);
@@ -126,6 +130,7 @@ public class SiteService {
 		{
 			Machines machine = new Machines();
 			machine.setId(macDTO.getId());
+			machine.setTypeOfService(macDTO.getTypeOfService());
 			machine.setMachineType(macDTO.getEquipmentType());
 			machine.setSerialNo(macDTO.getSerialNo());
 			machine.setModelNo(macDTO.getModelNo());
@@ -157,7 +162,6 @@ public class SiteService {
 			siteDTO.setProjectName(site.getProject().getName());
 			siteDTO.setAddress(site.getAddress());
 			siteDTO.setContractType(site.getContractType());
-			siteDTO.setTypeOfService(site.getTypeOfService());
 			siteDTO.setRegionalManagerId(site.getRegionalManagerId());
 			siteDTO.setSeniorManagerId(site.getSeniorManagerId());
 			siteDTO.setAsstSeniorManagerId(site.getAsstSeniorManagerId());
@@ -172,6 +176,7 @@ public class SiteService {
 			{
 				ManPowerDTO manPowerDTO = new ManPowerDTO();
 				manPowerDTO.setId(manPower.getId());
+				manPowerDTO.setTypeOfService(manPower.getTypeOfService());
 				manPowerDTO.setPlanned(manPower.getPlanned());
 				manPowerDTO.setStartTime(manPower.getStartTime());
 				manPowerDTO.setEndTime(manPower.getEndTime());
@@ -181,6 +186,7 @@ public class SiteService {
 			{
 				MaterialDTO materialDTO = new MaterialDTO();
 				materialDTO.setId(material.getId());
+				materialDTO.setTypeOfService(material.getTypeOfService());
 				materialDTO.setMaterialType(material.getMaterialType());
 //				materialDTO.setCommitmentDate(material.getCommitmentDate());
 				materialDTOs.add(materialDTO);
@@ -189,6 +195,7 @@ public class SiteService {
 			{
 				MachinesDTO machineDTO = new MachinesDTO();
 				machineDTO.setId(mac.getId());
+				machineDTO.setTypeOfService(mac.getTypeOfService());
 				machineDTO.setMachineType(mac.getEquipmentType());
 				machineDTO.setSerialNo(mac.getSerialNo());
 				machineDTO.setModelNo(mac.getModelNo());
@@ -213,7 +220,6 @@ public class SiteService {
 		siteDTO.setProjectName(site.getProject().getName());
 		siteDTO.setAddress(site.getAddress());
 		siteDTO.setContractType(site.getContractType());
-		siteDTO.setTypeOfService(site.getTypeOfService());
 		siteDTO.setRegionalManagerId(site.getRegionalManagerId());
 		siteDTO.setSeniorManagerId(site.getSeniorManagerId());
 		siteDTO.setAsstSeniorManagerId(site.getAsstSeniorManagerId());
@@ -228,6 +234,7 @@ public class SiteService {
 		{
 			ManPowerDTO manPowerDTO = new ManPowerDTO();
 			manPowerDTO.setId(manPower.getId());
+			manPowerDTO.setTypeOfService(manPower.getTypeOfService());
 			manPowerDTO.setPlanned(manPower.getPlanned());
 			manPowerDTO.setStartTime(manPower.getStartTime());
 			manPowerDTO.setEndTime(manPower.getEndTime());
@@ -237,6 +244,7 @@ public class SiteService {
 		{
 			MaterialDTO materialDTO = new MaterialDTO();
 			materialDTO.setId(material.getId());
+			materialDTO.setTypeOfService(material.getTypeOfService());
 			materialDTO.setMaterialType(material.getMaterialType());
 //			materialDTO.setCommitmentDate(material.getCommitmentDate());
 			materialDTOs.add(materialDTO);
@@ -245,6 +253,7 @@ public class SiteService {
 		{
 			MachinesDTO machineDTO = new MachinesDTO();
 			machineDTO.setId(mac.getId());
+			machineDTO.setTypeOfService(mac.getTypeOfService());
 			machineDTO.setMachineType(mac.getEquipmentType());
 			machineDTO.setSerialNo(mac.getSerialNo());
 			machineDTO.setModelNo(mac.getModelNo());
@@ -269,7 +278,6 @@ public class SiteService {
 			siteDTO.setProjectName(site.getProject().getName());
 			siteDTO.setAddress(site.getAddress());
 			siteDTO.setContractType(site.getContractType());
-			siteDTO.setTypeOfService(site.getTypeOfService());
 			siteDTO.setRegionalManagerId(site.getRegionalManagerId());
 			siteDTO.setSeniorManagerId(site.getSeniorManagerId());
 			siteDTO.setAsstSeniorManagerId(site.getAsstSeniorManagerId());
@@ -283,7 +291,8 @@ public class SiteService {
 			for(ManPower manPower : manPowers)
 			{
 				ManPowerDTO manPowerDTO = new ManPowerDTO();
-				manPowerDTO.setId(manPower.getId());
+				manPowerDTO.setId(manPower.getId()); 
+				manPowerDTO.setTypeOfService(manPower.getTypeOfService());
 				manPowerDTO.setPlanned(manPower.getPlanned());
 				manPowerDTO.setStartTime(manPower.getStartTime());
 				manPowerDTO.setEndTime(manPower.getEndTime());
@@ -293,6 +302,7 @@ public class SiteService {
 			{
 				MaterialDTO materialDTO = new MaterialDTO();
 				materialDTO.setId(material.getId());
+				materialDTO.setTypeOfService(material.getTypeOfService());
 				materialDTO.setMaterialType(material.getMaterialType());
 //				materialDTO.setCommitmentDate(material.getCommitmentDate());
 				materialDTOs.add(materialDTO);
@@ -301,6 +311,7 @@ public class SiteService {
 			{
 				MachinesDTO machineDTO = new MachinesDTO();
 				machineDTO.setId(mac.getId());
+				machineDTO.setTypeOfService(mac.getTypeOfService());
 				machineDTO.setMachineType(mac.getEquipmentType());
 				machineDTO.setSerialNo(mac.getSerialNo());
 				machineDTO.setModelNo(mac.getModelNo());

@@ -21,6 +21,8 @@ public class ManPower implements Serializable{
 	@GeneratedValue(strategy =GenerationType.AUTO)
 	private long id;
 	
+	private String typeOfService;
+	
 	private int planned;
 	
 	private String startTime;
@@ -37,6 +39,14 @@ public class ManPower implements Serializable{
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getTypeOfService() {
+		return typeOfService;
+	}
+
+	public void setTypeOfService(String typeOfService) {
+		this.typeOfService = typeOfService;
 	}
 
 	public int getPlanned() {
