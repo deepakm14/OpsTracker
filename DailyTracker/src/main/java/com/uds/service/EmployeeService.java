@@ -19,7 +19,7 @@ import com.uds.util.MapperUtil;
 @Transactional
 public class EmployeeService {
 
-	private final Logger log = LoggerFactory.getLogger(SiteService.class);
+	private final Logger log = LoggerFactory.getLogger(EmployeeService.class);
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
