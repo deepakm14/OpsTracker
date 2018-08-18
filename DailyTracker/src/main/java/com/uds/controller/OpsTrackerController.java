@@ -1,4 +1,4 @@
-package com.uds.rest.controller;
+package com.uds.controller;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.lulu.customer;
+package com.uds;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
-@ComponentScan(basePackages= {"com.uds.*","com.jallikattu.*"})
+@ComponentScan(basePackages= {"com.uds.*"})
 public class CustomerApplication  {
 	
 	@Autowired

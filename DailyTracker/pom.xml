@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.jallikattu</groupId>
-	<artifactId>jallikattu-Customer</artifactId>
+	<groupId>com.uds</groupId>
+	<artifactId>OpsTracker</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>Jallikattu-Customer</name>
-	<description>Jallikattu Customer</description>
+	<name>OpsTracker</name>
+	<description>Operational Tracker</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,11 +23,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<start-class>com.lulu.customer.CustomerApplication</start-class>
+		<start-class>com.uds.CustomerApplication</start-class>
 		<drools.version>6.4.0.Final</drools.version>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<docker.image.prefix>jallikatturegistry.azurecr.io</docker.image.prefix>
-		<project.artifactId>jallikattu-customer</project.artifactId>
+		<project.artifactId>OpsTracker</project.artifactId>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -36,17 +36,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-oauth2</artifactId> 
-			</dependency> <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-security</artifactId> 
-			</dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
-			</dependency> <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> 
-			<version>2.0.0.RELEASE</version> </dependency> <dependency> <groupId>org.springframework.cloud</groupId> 
-			<artifactId>spring-cloud-starter-config</artifactId> </dependency> -->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 			<version>2.0.3.RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>2.0.3.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -62,12 +64,25 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.4.0</version>
 		</dependency>
+
 		<dependency>
-			<groupId>com.jallikattu</groupId>
-			<artifactId>jallikattu-core</artifactId>
-			<version>0.0.1</version>
-			<scope>provided</scope>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.0.8.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.11.Final</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -91,22 +106,11 @@
 			<version>1.16.20</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>3.2.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.9.5</version>
 		</dependency>
 
 		<dependency>
@@ -121,11 +125,6 @@
 			<version>1.4</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>net.logstash.logback</groupId> <artifactId>logstash-logback-encoder</artifactId> 
-			<version>4.9</version> </dependency> <dependency> <groupId>ch.qos.logback</groupId> 
-			<artifactId>logback-classic</artifactId> <version>1.2.3</version> </dependency> 
-			<dependency> <groupId>ch.qos.logback</groupId> <artifactId>logback-core</artifactId> 
-			<version>1.2.3</version> </dependency> -->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -144,21 +143,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.3.4</version>
-				<configuration>
-					<repository>${docker.image.prefix}/${project.artifactId}</repository>
-					<serverId>${docker.image.prefix}</serverId>
-					<registryUrl>https://${docker.image.prefix}</registryUrl>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.16.v20140903</version>
 			</plugin>
 		</plugins>
 	</build>
