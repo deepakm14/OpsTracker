@@ -8,12 +8,12 @@ import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 @ComponentScan(basePackages= {"com.uds.*"})
-public class CustomerApplication  {
+public class OpsTracker  {
 	
 	@Autowired
 	private Environment envVariable;
 
 	public static void main(String[] args) {
-		SpringApplication.run(CustomerApplication.class, args);
+		SpringApplication.run(OpsTracker.class, args);
 	}
 }
