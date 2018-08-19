@@ -325,4 +325,18 @@ public class SiteService {
 		}
 		return siteDTOs;
 	}
+	
+	public List<String> selectShift(long id)
+	{		
+		String shift = "";
+		List<String> shifts = new ArrayList<String>();
+		Site site = siteRepository.findOne(id);
+		List<ManPower> manPowers = site.getManPower();
+		for(ManPower manPower : manPowers)
+		{
+			shift = manPower.getStartTime() + "-" + manPower.getEndTime();
+			shifts.add(shift);
+		}
+		return shifts;
+	}
 }

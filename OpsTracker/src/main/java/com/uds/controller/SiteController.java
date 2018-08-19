@@ -72,4 +72,11 @@ public class SiteController {
 		log.debug("****Inside SiteController*****");
 		return siteService.findByProjectSite(id);
 	}
+	
+	@GetMapping("site/manpower/shift/{id}")
+	public List<String> selectShift(@PathVariable long id)
+	{
+		return siteService.selectShift(id);
+	}
+	
 }
