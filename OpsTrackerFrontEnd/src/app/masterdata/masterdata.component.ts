@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -9,6 +10,22 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./masterdata.component.css']
 })
 export class MasterdataComponent implements OnInit {
+  constructor(private http : HttpClient){}
+//Variable declation
+  public emp={};
+  
+  postEmployee()
+  {
+    console.log(this.emp);
+    this.http.post('http://localhost:8080/uds/employee', this.emp)
+      .subscribe(
+        (data:any) => { 
+          if(data.length) {
+            console.log(data);
+          }
+        }
+      )
+  }
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;

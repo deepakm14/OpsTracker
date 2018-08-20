@@ -18,6 +18,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, NativeDateAdapter, DateAdapter} from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { MasterdataComponent } from '../app/masterdata/masterdata.component';
 
 
 
@@ -31,6 +33,7 @@ import { MatNativeDateModule, NativeDateAdapter, DateAdapter} from '@angular/mat
     AppComponent,
     MyNavComponent,
     routingComponents,
+    MasterdataComponent    
 
   ],
   imports: [
@@ -54,6 +57,8 @@ import { MatNativeDateModule, NativeDateAdapter, DateAdapter} from '@angular/mat
     MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],
