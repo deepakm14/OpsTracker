@@ -1,0 +1,275 @@
+<div class="example-container">
+    <div id = "layoutContainer" 
+    fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.15%">
+    <div fxflex = "100" >
+        <div class="example-container">
+            <mat-tab-group >
+              <mat-tab label="Employee">
+                  <div class="employee-box mat-elevation-z4">
+                    <div >
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Employee Code" >
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Employee Name" >
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Designation" >
+                              </mat-form-field>
+                              <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Email" >
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Mobile Number" >
+                                  </mat-form-field>
+            
+                                  <div class="button-row">
+                                      
+                                      <button mat-raised-button color="accent">Submit</button>
+                                      
+                                      
+                                    </div>
+                    </div>
+                     
+                    </div>
+              </mat-tab>
+              <mat-tab label="Client"> <div class="client-box mat-elevation-z4">
+                  <div >
+                      <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Client Name" >
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Client Code" >
+                          </mat-form-field>
+                          
+            
+                                <div class="button-row">
+                                    
+                                    <button mat-raised-button color="accent">Add</button>
+                                    
+                                    
+                                  </div>
+                  </div>
+                   
+                  </div> </mat-tab>
+              <mat-tab label="Site">  
+                    <div id = "layoutContainer" 
+                    fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.15%">
+                    <div class="site-box mat-elevation-z4">
+                    <div fxflex = "40" >
+                            <mat-form-field class="example-full-width">
+                                    <input type="text" placeholder="Client Name" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                      <mat-option *ngFor="let option of options" [value]="option">
+                                        {{option}}
+                                      </mat-option>
+                                    </mat-autocomplete>
+                                  </mat-form-field>
+            
+                         
+                  <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Site Code" >
+                        </mat-form-field>   
+            
+                  <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Site Name" >
+                        </mat-form-field> 
+            
+                        <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Address" >
+                            </mat-form-field> 
+            
+                            <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Contact Type" >
+                                </mat-form-field> 
+                                <mat-form-field class="example-full-width">
+                                      <input type="text" placeholder="Regional manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                      <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                          {{option}}
+                                        </mat-option>
+                                      </mat-autocomplete>
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width">
+                                          <input type="text" placeholder="Senior Manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                          <mat-autocomplete #auto="matAutocomplete">
+                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                              {{option}}
+                                            </mat-option>
+                                          </mat-autocomplete>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width">
+                                              <input type="text" placeholder="Asst Senior Manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                              <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                  {{option}}
+                                                </mat-option>
+                                              </mat-autocomplete>
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                  <input type="text" placeholder="Site Incharge" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                                  <mat-autocomplete #auto="matAutocomplete">
+                                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                      {{option}}
+                                                    </mat-option>
+                                                  </mat-autocomplete>
+                                                </mat-form-field>
+                    </div>
+                    </div>
+                    
+                    <div class="accordian">
+                    <div fxflex = "40" >
+                            <mat-card >
+                                    <mat-card-header>
+                                     
+                                            <mat-card-title>Types of Service</mat-card-title>
+                                           
+                                    </mat-card-header>
+                                    <mat-divider ></mat-divider> 
+                                    <mat-card-content style="margin-top: 20px">
+                            <mat-accordion>
+                                    <mat-expansion-panel>
+                                      <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                         Manpower
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                          Enter the Manpower  Detail
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header>
+                                      <div class="row">
+                                            <mat-form-field>
+                                              <input matInput placeholder="Shift">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="row">
+                                                  <mat-form-field>
+                                                    <input matInput placeholder="Start Time">
+                                                  </mat-form-field>
+                                                </div>
+                                                <div class="row">
+                                                      <mat-form-field>
+                                                        <input matInput placeholder="End Time">
+                                                      </mat-form-field>
+                                                    </div>
+                                                    <div class="row">
+                                                          <mat-form-field>
+                                                            <input matInput placeholder="Planned">
+                                                          </mat-form-field>
+                                                        </div>
+                                                        <div class="button-row">
+                                          
+                                                              <button mat-raised-button color="accent">Add</button>
+                                                              
+                                                              
+                                                            </div>                              
+                                     
+                                    </mat-expansion-panel>
+                                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                                         (closed)="panelOpenState = false">
+                                      <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                          Material
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                          Enter the Material detail
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header>
+                                      <div class="row">
+                                      <mat-form-field class="example-full-width">
+                                            <input type="text" placeholder="Material Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                              <mat-option *ngFor="let option of options" [value]="option">
+                                                {{option}}
+                                              </mat-option>
+                                            </mat-autocomplete>
+                                          </mat-form-field>
+                                        </div>
+                                        <div class="row">
+                                                <mat-form-field>
+                                                        <input matInput [matDatepicker]="picker" placeholder="Commitment Date">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                      </mat-form-field>
+                                              </div>
+                                              <div class="button-row">
+                                          
+                                                    <button mat-raised-button color="accent">Add</button>
+                                                    
+                                                    
+                                                  </div>      
+                                    </mat-expansion-panel>
+                                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                                         (closed)="panelOpenState = false">
+                                      <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                         Machine
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                          Enter the Machine detail
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header>
+                                      <div class="row">
+                                            <mat-form-field class="example-full-width">
+                                                  <input type="text" placeholder="Machine Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                                  <mat-autocomplete #auto="matAutocomplete">
+                                                    <mat-option *ngFor="let option of options" [value]="option">
+                                                      {{option}}
+                                                    </mat-option>
+                                                  </mat-autocomplete>
+                                                </mat-form-field>
+                                              </div>
+                                              <div class="row">
+                                                      <mat-form-field>
+                                                        <input matInput placeholder="Equipment Type">
+                                                      </mat-form-field>
+                                                    </div>
+                                                    <div class="row">
+                                                            <mat-form-field>
+                                                              <input matInput placeholder="Model No">
+                                                            </mat-form-field>
+                                                          </div>
+                                                          <div class="row">
+                                                                <mat-form-field>
+                                                                  <input matInput placeholder="Serial NO">
+                                                                </mat-form-field>
+                                                              </div>
+                                                              <div class="button-row">
+                                          
+                                                                    <button mat-raised-button color="accent">Add</button>
+                                                                    
+                                                                    
+                                                                  </div>      
+                                    </mat-expansion-panel>
+                                  </mat-accordion>
+                                  </mat-card-content>
+                                </mat-card >
+                    </div>
+                    </div>
+                    
+                    </div>
+                   
+                  
+            </mat-tab>
+            <mat-tab label="Escalation"> <div class="escalation-box mat-elevation-z4">
+                    <div >
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Type of Escalation" >
+                          </mat-form-field>
+                         
+                            
+              
+                                  <div class="button-row">
+                                      
+                                      <button mat-raised-button color="accent">Add</button>
+                                      
+                                      
+                                    </div>
+                    </div>
+                     
+                    </div> </mat-tab>
+            </mat-tab-group>
+            </div>
+</div>
+</div>
+</div>
