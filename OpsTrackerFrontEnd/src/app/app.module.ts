@@ -18,6 +18,16 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, NativeDateAdapter, DateAdapter} from '@angular/material';
+import { MasterviewComponent } from './masterview/masterview.component';
+import {HttpClientModule} from '@angular/common/http';
+import {MatTableModule} from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
+import { MatSortModule } from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+
+
+
 
 
 
@@ -31,6 +41,7 @@ import { MatNativeDateModule, NativeDateAdapter, DateAdapter} from '@angular/mat
     AppComponent,
     MyNavComponent,
     routingComponents,
+    MasterviewComponent,
 
   ],
   imports: [
@@ -54,6 +65,11 @@ import { MatNativeDateModule, NativeDateAdapter, DateAdapter} from '@angular/mat
     MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
 
   ],
   providers: [],

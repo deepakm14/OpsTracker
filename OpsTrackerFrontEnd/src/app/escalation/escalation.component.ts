@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {DataService} from '../data.service';
+
 
 @Component({
   selector: 'app-escalation',
@@ -8,9 +10,13 @@ import {FormControl} from '@angular/forms';
 })
 export class EscalationComponent implements OnInit {
   myControl = new FormControl();
-  constructor() { }
+  escalation$: Object;
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getEscalation().subscribe(
+      data => this.escalation$ = data
+    );
   }
 
 }

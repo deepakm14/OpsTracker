@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Toolbarservice } from '../my-nav/my-nav.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -6,9 +8,16 @@ import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-masterdata',
   templateUrl: './masterdata.component.html',
-  styleUrls: ['./masterdata.component.css']
+  styleUrls: ['./masterdata.component.css'],
+  providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
+  visible = true;
+  constructor(private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice) {
+   // console.log(this.router.url);
+
+  }
+
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
@@ -28,6 +37,8 @@ export class MasterdataComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
