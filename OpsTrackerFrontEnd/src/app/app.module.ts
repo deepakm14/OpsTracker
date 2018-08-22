@@ -18,6 +18,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, NativeDateAdapter, DateAdapter} from '@angular/material';
+<<<<<<< HEAD
 import { MasterviewComponent } from './masterview/masterview.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatTableModule} from '@angular/material';
@@ -28,6 +29,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
+=======
+import { HttpClientModule } from '@angular/common/http';
+import { MasterdataComponent } from '../app/masterdata/masterdata.component';
+>>>>>>> 76645d2763b1fa864be9a3050c1f9ad02ec43f8d
 
 
 
@@ -41,7 +46,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppComponent,
     MyNavComponent,
     routingComponents,
+<<<<<<< HEAD
     MasterviewComponent,
+=======
+    MasterdataComponent    
+>>>>>>> 76645d2763b1fa864be9a3050c1f9ad02ec43f8d
 
   ],
   imports: [
@@ -66,10 +75,14 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,
+<<<<<<< HEAD
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
+=======
+    FormsModule
+>>>>>>> 76645d2763b1fa864be9a3050c1f9ad02ec43f8d
 
   ],
   providers: [],
