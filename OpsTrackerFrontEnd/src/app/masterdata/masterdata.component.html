@@ -36,16 +36,16 @@
               <mat-tab label="Client"> <div class="client-box mat-elevation-z4">
                   <div >
                       <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Client Name" >
+                          <input matInput placeholder="Client Name" [(ngModel)]="client.name" >
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Client Code" >
+                            <input matInput placeholder="Client Code" [(ngModel)]="client.code" >
                           </mat-form-field>
                           
             
                                 <div class="button-row">
                                     
-                                    <button mat-raised-button color="accent">Add</button>
+                                    <button mat-raised-button color="accent" (click)="postClient()" >Add</button>
                                     
                                     
                                   </div>
@@ -68,19 +68,19 @@
             
                          
                   <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Site Code" >
+                          <input matInput placeholder="Site Code" [(ngModel)]="site.code">
                         </mat-form-field>   
             
                   <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Site Name" >
+                          <input matInput placeholder="Site Name" [(ngModel)]="site.name">
                         </mat-form-field> 
             
                         <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Address" >
+                              <input matInput placeholder="Address" [(ngModel)]="site.address">
                             </mat-form-field> 
             
                             <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Contact Type" >
+                                  <input matInput placeholder="Contact Type" [(ngModel)]="site.contractType">
                                 </mat-form-field> 
                                 <mat-form-field class="example-full-width">
                                       <input type="text" placeholder="Regional manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
@@ -139,22 +139,22 @@
                                       </mat-expansion-panel-header>
                                       <div class="row">
                                             <mat-form-field>
-                                              <input matInput placeholder="Shift">
+                                              <input matInput placeholder="Shift" [(ngModel)]="manpower.shift">
                                             </mat-form-field>
                                           </div>
                                           <div class="row">
                                                   <mat-form-field>
-                                                    <input matInput placeholder="Start Time">
+                                                    <input matInput placeholder="Start Time" [(ngModel)]="manpower.startTime">
                                                   </mat-form-field>
                                                 </div>
                                                 <div class="row">
                                                       <mat-form-field>
-                                                        <input matInput placeholder="End Time">
+                                                        <input matInput placeholder="End Time" [(ngModel)]="manpower.endTime">
                                                       </mat-form-field>
                                                     </div>
                                                     <div class="row">
                                                           <mat-form-field>
-                                                            <input matInput placeholder="Planned">
+                                                            <input matInput placeholder="Planned" [(ngModel)]="manpower.planned">
                                                           </mat-form-field>
                                                         </div>
                                                         <div class="button-row">
@@ -187,7 +187,7 @@
                                         </div>
                                         <div class="row">
                                                 <mat-form-field>
-                                                        <input matInput [matDatepicker]="picker" placeholder="Commitment Date">
+                                                        <input matInput [matDatepicker]="picker" placeholder="Commitment Date" [(ngModel)]="material.commitmentDate">
                                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                                         <mat-datepicker #picker></mat-datepicker>
                                                       </mat-form-field>
@@ -226,17 +226,17 @@
                                                     </div>
                                                     <div class="row">
                                                             <mat-form-field>
-                                                              <input matInput placeholder="Model No">
+                                                              <input matInput placeholder="Model No" [(ngModel)]="machine.modelNo">
                                                             </mat-form-field>
                                                           </div>
                                                           <div class="row">
                                                                 <mat-form-field>
-                                                                  <input matInput placeholder="Serial NO">
+                                                                  <input matInput placeholder="Serial NO" [(ngModel)]="machine.serialNo">
                                                                 </mat-form-field>
                                                               </div>
                                                               <div class="button-row">
                                           
-                                                                    <button mat-raised-button color="accent">Add</button>
+                                                                    <button mat-raised-button color="accent" (click)="postSite()">Add</button>
                                                                     
                                                                     
                                                                   </div>      
@@ -254,7 +254,7 @@
             <mat-tab label="Escalation"> <div class="escalation-box mat-elevation-z4">
                     <div >
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Type of Escalation" >
+                            <input matInput placeholder="Type of Escalation">
                           </mat-form-field>
                          
                             

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,19 +32,19 @@ public class ProjectController {
 	private ProjectService projectService;
 	
 	@PostMapping("/project")
-	public ProjectDTO saveProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
+	public ResponseEntity<?> saveProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside ProjectController*****");
 		projectDTO = projectService.createProject(projectDTO);
-		return projectDTO;
+		return new ResponseEntity<>(projectDTO,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/project/update")
-	public ProjectDTO updateProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
+	public ResponseEntity<?> updateProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside ProjectController*****");
 		projectDTO = projectService.updateProject(projectDTO);
-		return projectDTO;
+		return new ResponseEntity<>(projectDTO,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/project/delete/{id}")
@@ -53,7 +55,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/project/search")
-	public List<Project> findAll()
+	public List<ProjectDTO> findAll()
 	{
 		log.debug("****Inside ProjectController*****");
 		return projectService.findAll();
@@ -66,11 +68,11 @@ public class ProjectController {
 		return projectService.findOne(id);
 	}
 	
-	@GetMapping("/project/search/{name}")
-	public List<Project> findByName(@PathVariable String name)
-	{
-		log.debug("****Inside ProjectController*****");
-		return projectService.findByName(name);
-	}
+//	@GetMapping("/project/search/{name}")
+//	public List<Project> findByName(@PathVariable String name)
+//	{
+//		log.debug("****Inside ProjectController*****");
+//		return projectService.findByName(name);
+//	}
 	
 }

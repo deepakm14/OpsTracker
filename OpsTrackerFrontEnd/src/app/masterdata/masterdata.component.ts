@@ -13,7 +13,14 @@ export class MasterdataComponent implements OnInit {
   constructor(private http : HttpClient){}
 //Variable declation
   public emp={};
-  
+  public client={};
+  public site={"manPowerDTO":[],"machineDTO":[],"materialDTO":[]};
+  public projects=[{"name":[]}];
+  public manpower={};
+  public material={};
+  public machine={};
+
+
   postEmployee()
   {
     console.log(this.emp);
@@ -26,11 +33,55 @@ export class MasterdataComponent implements OnInit {
         }
       )
   }
+
+  postClient()
+  {
+    console.log(this.client);
+    this.http.post('http://localhost:8080/uds/project', this.client)
+      .subscribe(
+        (data:any) => { 
+          if(data.length) {
+            console.log(data);
+          }
+        }
+      )
+  }
+
+  listClient()
+  {
+    this.http.get('http://localhost:8080/uds/project/search')
+    .subscribe(
+      (data:any) => {
+        this.projects = data;
+        console.log(this.projects);
+      }
+    )
+  }
+
+  postSite()
+  {
+    this.createSiteJson();
+    console.log(this.site);
+   /* this.http.post('http://localhost:8080/uds/site', this.site)
+    .subscribe(
+      (data:any) => {
+        console.log(data);
+      }
+    )*/
+  }
+
+  createSiteJson()
+  {
+    this.site.manPowerDTO.push(this.manpower);
+    this.site.machineDTO.push(this.machine);
+    this.site.materialDTO.push(this.material);
+  }
+
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
-  step = 0;
+  /*step = 0;
 
   setStep(index: number) {
     this.step = index;
@@ -42,9 +93,10 @@ export class MasterdataComponent implements OnInit {
 
   prevStep() {
     this.step--;
-  }
+  }*/
 
   ngOnInit() {
+    this.listClient();
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),

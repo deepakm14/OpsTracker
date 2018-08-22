@@ -1,5 +1,6 @@
 package com.uds.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -52,10 +53,19 @@ public class ProjectService {
 		projectRepository.delete(project);
 	}
 	
-	public List<Project> findAll()
+	public List<ProjectDTO> findAll()
 	{
 		List<Project> projects = projectRepository.findAll();
-		return projects;
+		List<ProjectDTO> projectDTOs = new ArrayList<ProjectDTO>();
+		for(Project project : projects)
+		{
+			ProjectDTO projectDTO = new ProjectDTO();
+			projectDTO.setId(project.getId());
+			projectDTO.setName(project.getName());
+			projectDTO.setProjectCode(project.getProjectCode());
+			projectDTOs.add(projectDTO);
+		}
+		return projectDTOs;
 	}
 	
 	public Project findOne(long id)
