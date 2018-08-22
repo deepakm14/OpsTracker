@@ -7,10 +7,11 @@ import {MasterdataComponent} from './masterdata/masterdata.component';
 import {ReportComponent} from './report/report.component';
 import {SiteComponent} from './site/site.component';
 import {LoginComponent} from './login/login.component';
+import {MasterviewComponent} from './masterview/masterview.component';
 
 const routes: Routes = [
 {
-  path: '',
+  path: 'masterdata',
   component : MasterdataComponent
 },
 {
@@ -26,10 +27,13 @@ const routes: Routes = [
   component : ReportComponent
 },
 {
-  path: 'login',
+  path: '',
   component : LoginComponent
+},
+{
+path: 'masterview',
+  component : MasterviewComponent
 }
-
 ];
 
 @NgModule({
@@ -40,4 +44,5 @@ const routes: Routes = [
 
 
 export class AppRoutingModule { }
-export const routingComponents = [EscalationComponent, ReportComponent, OpstrackerComponent, MasterdataComponent , LoginComponent];
+// tslint:disable-next-line:max-line-length
+export const routingComponents = [EscalationComponent, ReportComponent, OpstrackerComponent, MasterdataComponent , LoginComponent , MasterviewComponent ];

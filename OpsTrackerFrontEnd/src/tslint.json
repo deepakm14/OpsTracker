@@ -6,6 +6,7 @@
             "attribute",
             "app",
             "camelCase"
+           
         ],
         "component-selector": [
             true,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Toolbarservice } from '../my-nav/my-nav.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -7,10 +9,13 @@ import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-masterdata',
   templateUrl: './masterdata.component.html',
-  styleUrls: ['./masterdata.component.css']
+  styleUrls: ['./masterdata.component.css'],
+  providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
-  constructor(private http : HttpClient){}
+  
+  visible = true;
+  constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice){}
 //Variable declation
   public emp={};
   public client={};
@@ -97,6 +102,8 @@ export class MasterdataComponent implements OnInit {
 
   ngOnInit() {
     this.listClient();
+
+
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
