@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uds.domain.Site;
 import com.uds.dto.SiteDTO;
 import com.uds.service.SiteService;
 
@@ -30,19 +29,17 @@ public class SiteController {
 	private SiteService siteService;
 	
 	@PostMapping("/site")
-	public SiteDTO saveSite(@RequestBody SiteDTO siteDTO, HttpServletRequest request)
+	public String saveSite(@RequestBody SiteDTO siteDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside SiteController*****");
-		siteService.createSite(siteDTO);
-		return siteDTO;
+		return siteService.createSite(siteDTO);
 	}
 	
 	@PutMapping("/site/update")
-	public Site updateSite(@RequestBody SiteDTO siteDTO, HttpServletRequest request)
+	public String updateSite(@RequestBody SiteDTO siteDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside SiteController*****");
-		Site site = siteService.updateSite(siteDTO);
-		return site;
+		return siteService.updateSite(siteDTO);
 	}
 	
 	@DeleteMapping("/site/delete/{id}")

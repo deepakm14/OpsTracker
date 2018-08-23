@@ -32,19 +32,17 @@ public class ProjectController {
 	private ProjectService projectService;
 	
 	@PostMapping("/project")
-	public ResponseEntity<?> saveProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
+	public String saveProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside ProjectController*****");
-		projectDTO = projectService.createProject(projectDTO);
-		return new ResponseEntity<>(projectDTO,HttpStatus.CREATED);
+		return projectService.createProject(projectDTO);
 	}
 	
 	@PutMapping("/project/update")
-	public ResponseEntity<?> updateProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
+	public String updateProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside ProjectController*****");
-		projectDTO = projectService.updateProject(projectDTO);
-		return new ResponseEntity<>(projectDTO,HttpStatus.OK);
+		return projectService.updateProject(projectDTO);
 	}
 	
 	@DeleteMapping("/project/delete/{id}")

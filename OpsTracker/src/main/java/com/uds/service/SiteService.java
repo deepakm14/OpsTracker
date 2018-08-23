@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.uds.domain.Machines;
 import com.uds.domain.ManPower;
@@ -42,7 +41,8 @@ public class SiteService {
 	@Autowired
 	private MapperUtil<?, ?> mapperUtil;
 
-	public Site createSite(SiteDTO siteDTO) {
+	public String createSite(SiteDTO siteDTO) {
+		String message = " ";
 		log.debug("****Inside ProjectService*****");
 		Site site = mapperUtil.toEntity(siteDTO, Site.class);
 		Project project = projectRepository.findOne(siteDTO.getProjectId());
@@ -83,11 +83,25 @@ public class SiteService {
 		site.setManPower(manPowers);
 		site.setMaterial(materials);
 		site.setMachine(machines);
+		try
+		{
 		siteRepository.save(site);
-		return site;
+		message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			site = null;
+			siteDTO = null;
+		}
+		return message;
 	}
 
-	public Site updateSite(SiteDTO siteDTO) {
+	public String updateSite(SiteDTO siteDTO) {
+		String message = " ";
 		log.debug("****Inside ProjectService*****");
 		Site site = siteRepository.findOne(siteDTO.getId());
 		Project project = projectRepository.findOne(siteDTO.getId());
@@ -141,8 +155,16 @@ public class SiteService {
 		site.setManPower(manPowers);
 		site.setMaterial(materials);
 		site.setMachine(machines);
-		Site updatedSite = siteRepository.save(site);
-		return updatedSite;
+		try
+		{
+			siteRepository.save(site);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		return message;
 	}
 
 	public void deleteSite(long id) {

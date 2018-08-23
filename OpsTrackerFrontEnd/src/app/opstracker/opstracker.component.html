@@ -22,8 +22,8 @@
           <mat-form-field class="example-full-width">
               <input type="text" placeholder="Client" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of options" [value]="option">
-                  {{option}}
+                <mat-option *ngFor="let option of projects" [value]="option.name" (onSelectionChange)="setProject(option.id)">
+                  {{option.name}}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
@@ -33,10 +33,10 @@
            
             
               <mat-form-field class="example-full-width">
-                  <input type="text" placeholder="Site" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                  <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of options" [value]="option">
-                      {{option}}
+                  <input type="text" placeholder="Site" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto1">
+                  <mat-autocomplete #auto1="matAutocomplete">
+                    <mat-option *ngFor="let option of sites" [value]="option.name" (onSelectionChange)="setSite(option.id)" >
+                      {{option.name}}
                     </mat-option>
                   </mat-autocomplete>
                 </mat-form-field>
@@ -66,29 +66,29 @@
                       <div >
                         
                           <mat-form-field class="example-full-width">
-                              <input type="text" placeholder="Shift" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                              <mat-autocomplete #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of options" [value]="option">
+                              <input type="text" placeholder="Shift" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto3">
+                              <mat-autocomplete #auto3="matAutocomplete">
+                                <mat-option *ngFor="let option of shifts" [value]="option" (onSelectionChange)="setShiftDetails(option)">
                                   {{option}}
                                 </mat-option>
                               </mat-autocomplete>
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Planned" >
+                                <input matInput placeholder="Planned" [(ngModel)]="manpowertransaction.planned">
                               </mat-form-field>
                               <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Actual" >
+                                  <input matInput placeholder="Actual" [(ngModel)]="manpowertransaction.actual" (input)="setShortFall($event.target.value)">
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Shortfall" >
+                                    <input matInput placeholder="Shortfall" [(ngModel)]="manpowertransaction.shortfall">
                                   </mat-form-field>
                                   <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Total Number of Relivers" >
+                                      <input matInput placeholder="Total Number of Relivers" [(ngModel)]="manpowertransaction.totalNoOfRelievers">
                                     </mat-form-field>
               
                                     <div class="button-row">
                                         
-                                        <button mat-raised-button color="accent">Submit</button>
+                                        <button mat-raised-button color="accent" (click)="postManPowerTransaction()">Submit</button>
                                         
                                         
                                       </div>
@@ -105,8 +105,8 @@
                                 <div >
                                   
                                     <mat-form-field class="example-full-width">
-                                        <input type="text" placeholder="Material Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                                        <mat-autocomplete #auto="matAutocomplete">
+                                        <input type="text" placeholder="Material Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto4">
+                                        <mat-autocomplete #auto4="matAutocomplete">
                                           <mat-option *ngFor="let option of options" [value]="option">
                                             {{option}}
                                           </mat-option>
@@ -134,8 +134,8 @@
                                             </mat-form-field>
                                             
                                               <mat-form-field class="example-full-width">
-                                                  <input type="text" placeholder="Staus" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                                                  <mat-autocomplete #auto="matAutocomplete">
+                                                  <input type="text" placeholder="Staus" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto5">
+                                                  <mat-autocomplete #auto5="matAutocomplete">
                                                     <mat-option *ngFor="let option of options" [value]="option">
                                                       {{option}}
                                                     </mat-option>
@@ -148,7 +148,7 @@
                                                   
                                               <div class="button-row">
                                                   
-                                                  <button mat-raised-button color="accent">Submit</button>
+                                                  <button mat-raised-button color="accent" (click)="postMaterialTransaction()">Submit</button>
                                                   
                                                   
                                                 </div>
@@ -164,15 +164,20 @@
                                       <div >
                                   
                                       <mat-form-field class="example-full-width">
-                                          <input type="text" placeholder="Type of Machine" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                                          <mat-autocomplete #auto="matAutocomplete">
+                                          <input type="text" placeholder="Type of Machine" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto6">
+                                          <mat-autocomplete #auto6="matAutocomplete">
                                             <mat-option *ngFor="let option of options" [value]="option">
                                               {{option}}
                                             </mat-option>
                                           </mat-autocomplete>
                                         </mat-form-field>
-                                        <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="Equipment Type" >
+                                          <mat-form-field class="example-full-width">
+                                            <input type="text" placeholder="Equipment Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto7">
+                                            <mat-autocomplete #auto7="matAutocomplete">
+                                              <mat-option *ngFor="let option of options" [value]="option">
+                                                {{option}}
+                                              </mat-option>
+                                            </mat-autocomplete>
                                           </mat-form-field>
                                           <mat-form-field class="example-full-width">
                                               <input matInput placeholder="Model Number" >
@@ -181,8 +186,8 @@
                                                 <input matInput placeholder="Serial Number" >
                                               </mat-form-field>
                                               <mat-form-field class="example-full-width">
-                                                  <input type="text" placeholder="Status" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                                                  <mat-autocomplete #auto="matAutocomplete">
+                                                  <input type="text" placeholder="Status" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto8">
+                                                  <mat-autocomplete #auto8="matAutocomplete">
                                                     <mat-option *ngFor="let option of options" [value]="option">
                                                       {{option}}
                                                     </mat-option>
@@ -195,14 +200,14 @@
                                                     <mat-datepicker #picker6></mat-datepicker>
                                                   </mat-form-field>
                                                   <mat-form-field class="example-full-width">
-                                                      <input matInput [matDatepicker]="picker7" placeholder="Complaint Raised  Date">
+                                                      <input matInput [matDatepicker]="picker7" placeholder="Resolution Date">
                                                       <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
                                                       <mat-datepicker #picker7></mat-datepicker>
                                                     </mat-form-field>
                                                  
                                                 <div class="button-row">
                                                     
-                                                    <button mat-raised-button color="accent">Submit</button>
+                                                    <button mat-raised-button color="accent" (click)="postMachineTransaction()">Submit</button>
                                                     
                                                     
                                                   </div>

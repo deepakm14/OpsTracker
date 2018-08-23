@@ -43,8 +43,9 @@ public class OpsTrackerService {
 	@Autowired
 	private MapperUtil<?, ?> mapperUtil;
 	
-	public MaterialTracker materialTransaction(MaterialTrackerDTO materialTrackerDTO)
+	public String materialTransaction(MaterialTrackerDTO materialTrackerDTO)
 	{
+		String message = " ";
 		MaterialTracker materialTracker = mapperUtil.toEntity(materialTrackerDTO, MaterialTracker.class);
 		try
 		{
@@ -56,12 +57,21 @@ public class OpsTrackerService {
 		{
 			e.printStackTrace();
 		}
-		materialTrackerRepository.save(materialTracker);
-		return materialTracker;
+		try
+		{
+			materialTrackerRepository.save(materialTracker);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		return message;
 	}
 	
-	public MaterialTracker updateMaterialTransaction(MaterialTrackerDTO materialTrackerDTO)
+	public String updateMaterialTransaction(MaterialTrackerDTO materialTrackerDTO)
 	{
+		String message = " ";
 		MaterialTracker materialTracker = new MaterialTracker();
 		materialTracker.setId(materialTrackerDTO.getId());
 		materialTracker.setMaterialType(materialTrackerDTO.getMaterialType());
@@ -82,21 +92,40 @@ public class OpsTrackerService {
 		materialTracker.setSiteId(materialTrackerDTO.getSiteId());
 		materialTracker.setStatus(materialTrackerDTO.getStatus());
 		materialTracker.setRemarks(materialTrackerDTO.getRemarks());
-		materialTrackerRepository.save(materialTracker);
-		return materialTracker;
+		try
+		{
+			materialTrackerRepository.save(materialTracker);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		return message;
 	}
 	
-	public ManPowerTrackerDTO manPowerTransaction(ManPowerTrackerDTO manPowerTrackerDTO)
+	public String manPowerTransaction(ManPowerTrackerDTO manPowerTrackerDTO)
 	{
+		String message = " ";
 		ManPowerTracker manPowerTracker = mapperUtil.toEntity(manPowerTrackerDTO, ManPowerTracker.class);
 		Date date = new Date();
 		manPowerTracker.setCreatedDate(date);
-		manPowerTrackerRepository.save(manPowerTracker);
-		return manPowerTrackerDTO;
+		try
+		{
+			manPowerTrackerRepository.save(manPowerTracker);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		
+		return message;
 	}
 	
-	public ManPowerTracker updateManPowerTransaction(ManPowerTrackerDTO manPowerTrackerDTO)
+	public String updateManPowerTransaction(ManPowerTrackerDTO manPowerTrackerDTO)
 	{
+		String message = " ";
 		ManPowerTracker manPowerTracker = new ManPowerTracker();
 		manPowerTracker.setId(manPowerTrackerDTO.getId());
 		manPowerTracker.setActual(manPowerTrackerDTO.getActual());
@@ -117,18 +146,48 @@ public class OpsTrackerService {
 		{
 			e.printStackTrace();
 		}
-		return manPowerTracker;
+		try
+		{
+			manPowerTrackerRepository.save(manPowerTracker);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			manPowerTracker = null;
+			manPowerTrackerDTO = null;
+		}
+		
+		return message;
 	}
 	
-	public MachineTracker machineTransaction(MachineTrackerDTO machineTrackerDTO)
+	public String machineTransaction(MachineTrackerDTO machineTrackerDTO)
 	{
+		String message = " ";
 		MachineTracker machineTracker = mapperUtil.toEntity(machineTrackerDTO, MachineTracker.class);
+		try
+		{
 		machineTrackerRepository.save(machineTracker);
-		return machineTracker;
+		message = "success";
+	}
+	catch(Exception e)
+	{
+		message = "failed";
+	}
+	finally
+	{
+		machineTracker = null;
+		machineTrackerDTO = null;
+	}
+	return message;
 	}
 	
-	public MachineTracker updateMachineTransaction(MachineTrackerDTO machineTrackerDTO)
+	public String updateMachineTransaction(MachineTrackerDTO machineTrackerDTO)
 	{
+		String message = " ";
 		MachineTracker machineTracker = new MachineTracker();
 		machineTracker.setId(machineTrackerDTO.getId());
 		machineTracker.setMachineType(machineTrackerDTO.getMachineType());
@@ -146,8 +205,22 @@ public class OpsTrackerService {
 		{
 			e.printStackTrace();
 		}
-		machineTrackerRepository.save(machineTracker);
-		return machineTracker;
+		try
+		{
+			machineTrackerRepository.save(machineTracker);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			machineTracker = null;
+			machineTrackerDTO = null;
+		}
+		
+		return message;
 	}
 	
 	public List<?> search(SearchOptionDTO searchOption)

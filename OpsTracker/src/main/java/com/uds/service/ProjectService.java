@@ -26,24 +26,46 @@ public class ProjectService {
 	@Autowired
 	private MapperUtil<?,?> mapperUtil;
 	
-	public ProjectDTO createProject(ProjectDTO projectDTO)
+	public String createProject(ProjectDTO projectDTO)
 	{
+		String message = " ";
 		log.debug("****Inside ProjectService*****");
 		Project project = mapperUtil.toEntity(projectDTO, Project.class);
-		project = projectRepository.save(project);
-		ProjectDTO savedProjectDTO = mapperUtil.toModel(project, ProjectDTO.class);
-		return savedProjectDTO;
+		try
+		{
+		projectRepository.save(project);
+		message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			project = null;
+			projectDTO = null;
+		}
+		return message;
 	}
 	
-	public ProjectDTO updateProject(ProjectDTO projectDTO)
+	public String updateProject(ProjectDTO projectDTO)
 	{
+		String message = " ";
 		log.debug("****Inside ProjectService*****");
 		Project project = projectRepository.findOne(projectDTO.getId());
 		project.setId(projectDTO.getId());
 		project.setProjectCode(projectDTO.getProjectCode());
 		project.setName(projectDTO.getName());
-		ProjectDTO updatedProjectDTO = mapperUtil.toModel(project, ProjectDTO.class);
-		return updatedProjectDTO;
+		try
+		{
+		project = projectRepository.save(project);
+		message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		return message;
 	}
 	
 	public void deleteProject(long id)

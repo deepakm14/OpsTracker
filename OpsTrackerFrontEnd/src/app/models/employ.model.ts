@@ -1,4 +1,4 @@
-export interface Employ {
+export class Employ {
     id: number;
     code: string;
     designation: string;

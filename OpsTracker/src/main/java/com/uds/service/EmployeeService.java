@@ -30,8 +30,9 @@ public class EmployeeService {
 	@Autowired
 	private MapperUtil<?,?> mapperUtil;
 	
-	public EmployeeDTO createEmployee(EmployeeDTO employeeDTO)
+	public String createEmployee(EmployeeDTO employeeDTO)
 	{
+		String message = " ";
 		Employee employee = mapperUtil.toEntity(employeeDTO, Employee.class);
 		Employee emp = employeeRepository.save(employee);
 		User user = new User();
@@ -39,12 +40,26 @@ public class EmployeeService {
 		user.setUserName(userName);
 		user.setPassword("Uds12345");
 		userRepository.save(user);
-		EmployeeDTO savedEmployeeDTO = mapperUtil.toModel(employee, EmployeeDTO.class);
-		return savedEmployeeDTO;
+		try
+		{
+			mapperUtil.toModel(employee, EmployeeDTO.class);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			employee = null;
+			employeeDTO = null;
+		}
+		return message;
 	}
 	
-	public EmployeeDTO updateEmployee(EmployeeDTO employeeDTO)
+	public String updateEmployee(EmployeeDTO employeeDTO)
 	{
+		String message;
 		Employee employee = employeeRepository.findOne(employeeDTO.getId());
 		employee.setId(employeeDTO.getId());
 		employee.setCode(employeeDTO.getCode());
@@ -53,8 +68,21 @@ public class EmployeeService {
 		employee.setMob(employeeDTO.getMob());
 		employee.setMail(employeeDTO.getMail());
 		employeeRepository.save(employee);
-		EmployeeDTO updatedEmployeeDTO = mapperUtil.toModel(employee, EmployeeDTO.class);
-		return updatedEmployeeDTO;
+		try
+		{
+			mapperUtil.toModel(employee, EmployeeDTO.class);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			employee = null;
+			employeeDTO = null;
+		}
+		return message;
 	}
 	
 	public Employee findOne(long id)
@@ -63,7 +91,7 @@ public class EmployeeService {
 		return employee;
 	}
 	
-	public List<Employee> findAll()
+	public List<Employee> findAll(long pageId,int total)
 	{
 		List<Employee> employees = employeeRepository.findAll();
 		return employees;

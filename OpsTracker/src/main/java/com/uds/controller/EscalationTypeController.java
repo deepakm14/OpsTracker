@@ -25,15 +25,17 @@ public class EscalationTypeController {
 	private EscalationTypeService escaltionTypeService;
 	
 	@PostMapping("/esctype")
-	public EscalationType saveEscalationType(@RequestBody EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
-	{
-		return escaltionTypeService.saveEscalationType(escalationTypeDTO);
+	public String saveEscalationType(@RequestBody EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
+	{	
+		String message = escaltionTypeService.saveEscalationType(escalationTypeDTO);
+		return message;
 	}
 
 	@PutMapping("/esctype/update")
-	public EscalationType updateEscalationType(EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
+	public String updateEscalationType(EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
 	{
-		return escaltionTypeService.saveEscalationType(escalationTypeDTO);
+		String message = escaltionTypeService.updateEscalationType(escalationTypeDTO);
+		return message;
 	}
 	
 	@GetMapping("/esctype/{id}")

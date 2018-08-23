@@ -34,40 +34,43 @@ public class OpsTrackerController {
 	private OpsTrackerService opsTrackerService;
 	
 	@PostMapping("/opstracker/manpower")
-	public ManPowerTrackerDTO manPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
+	public String manPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside OpsTracker Controller****");
-		return opsTrackerService.manPowerTransaction(manPowerTrackerDTO);
+		
+		String message = opsTrackerService.manPowerTransaction(manPowerTrackerDTO);
+		return message;
 	}
 	
 	@PutMapping("/opstracker/manpower/update")
-	public ManPowerTracker updateManPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
+	public String updateManPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
 	{
-		return opsTrackerService.updateManPowerTransaction(manPowerTrackerDTO);
+		String message = opsTrackerService.updateManPowerTransaction(manPowerTrackerDTO);
+		return message;
 	}
 	
 	@PostMapping("/opstracker/machine")
-	public MachineTracker machineTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
+	public String machineTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside OpsTracker Controller****");
 		return opsTrackerService.machineTransaction(machineTrackerDTO);
 	}
 	
 	@PutMapping("/opstracker/machine/update")
-	public MachineTracker updateManPowerTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
+	public String updateManPowerTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
 	{
 		return opsTrackerService.updateMachineTransaction(machineTrackerDTO);
 	}
 	
 	@PostMapping("/opstracker/material")
-	public MaterialTracker materialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
+	public String materialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside OpsTracker Controller****");
 		return opsTrackerService.materialTransaction(materialTrackerDTO);
 	}
 	
 	@PutMapping("/opstracker/material/update")
-	public MaterialTracker updateMaterialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
+	public String updateMaterialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
 	{
 		return opsTrackerService.updateMaterialTransaction(materialTrackerDTO);
 	}

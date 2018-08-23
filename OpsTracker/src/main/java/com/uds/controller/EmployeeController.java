@@ -29,19 +29,19 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@PostMapping("/employee")
-	public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
+	public String saveEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside SiteController*****");
-		employeeDTO = employeeService.createEmployee(employeeDTO);
-		return employeeDTO;
+		String message = employeeService.createEmployee(employeeDTO);
+		return message;
 	}
 	
 	@PutMapping("/employee/update")
-	public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
+	public String updateEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside SiteController*****");
-		employeeDTO = employeeService.updateEmployee(employeeDTO);
-		return employeeDTO;
+		String message = employeeService.updateEmployee(employeeDTO);
+		return message;
 	}
 	
 /*	@DeleteMapping("/site/delete/{id}")
@@ -51,11 +51,12 @@ public class EmployeeController {
 		employeeService.deleteEmployee(id);
 	}*/
 	
-	@GetMapping("/employee/search")
-	public List<Employee> findAll()
+	@GetMapping("/employee/search/(pageId)")
+	public List<Employee> findAll(@PathVariable long pageId)
 	{
+		int total = 5;
 		log.debug("****Inside SiteController*****");
-		return employeeService.findAll();
+		return employeeService.findAll(pageId,total);
 	}
 	
 	@GetMapping("/employee/search/{id}")

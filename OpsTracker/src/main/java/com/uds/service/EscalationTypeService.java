@@ -21,18 +21,48 @@ public class EscalationTypeService {
 	@Autowired
 	private EscalationTypeRepository escalationTypeRepository;
 	
-	public EscalationType saveEscalationType(EscalationTypeDTO escalationTypeDTO)
+	public String saveEscalationType(EscalationTypeDTO escalationTypeDTO)
 	{
+		String message = " ";
 		EscalationType escalationType = mapperUtil.toEntity(escalationTypeDTO, EscalationType.class);
-		return escalationTypeRepository.save(escalationType);
+		try
+		{
+		 escalationTypeRepository.save(escalationType);
+		 message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			escalationType = null;
+			escalationTypeDTO = null;
+		}
+		 return message;
 	}
 	
-	public EscalationType updateEscalationType(EscalationTypeDTO escalationTypeDTO)
+	public String updateEscalationType(EscalationTypeDTO escalationTypeDTO)
 	{
+		String message = " ";
 		EscalationType escalationType = escalationTypeRepository.findOne(escalationTypeDTO.getId());
 		escalationType.setId(escalationTypeDTO.getId());
 		escalationType.setEscalationType(escalationTypeDTO.getEscalationType());
-		return escalationTypeRepository.save(escalationType);
+		try
+		{
+		escalationTypeRepository.save(escalationType);
+		 message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			escalationType = null;
+			escalationTypeDTO = null;
+		}
+		 return message;
 	}
 
 	public EscalationType selectedOne(long id)

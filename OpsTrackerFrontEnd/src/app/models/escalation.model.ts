@@ -1,4 +1,4 @@
-export interface Escalation {
+export class Escalation {
     EscalationType: string;
     description: string;
     designation: string;
