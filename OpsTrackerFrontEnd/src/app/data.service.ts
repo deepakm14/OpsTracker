@@ -5,7 +5,6 @@ import { Escalation } from './models/escalation.model';
 import { Project } from './models/project.model';
 import { Site } from './models/site.model';
 import {Observable} from 'rxjs';
-import { AngularFireList } from 'angularfire2/database';
 
 
 @Injectable({
