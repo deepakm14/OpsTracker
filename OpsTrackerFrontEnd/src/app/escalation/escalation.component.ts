@@ -11,6 +11,7 @@ import {DataService} from '../data.service';
 export class EscalationComponent implements OnInit {
   myControl = new FormControl();
   escalation$: Object;
+
   constructor(private data: DataService) { }
 
   ngOnInit() {
