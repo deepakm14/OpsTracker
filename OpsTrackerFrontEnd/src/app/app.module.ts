@@ -26,6 +26,14 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { MasterdataComponent } from '../app/masterdata/masterdata.component';
 
+import {DataSource} from '@angular/cdk/table';
+import { CdkTableModule } from '@angular/cdk/table';
+import { EmplyeeviewComponent } from './emplyeeview/emplyeeview.component';
+import { ClientviewComponent } from './clientview/clientview.component';
+import { SiteviewComponent } from './siteview/siteview.component';
+import { EscalationviewComponent } from './escalationview/escalationview.component';
+
+
 
 
 
@@ -39,7 +47,12 @@ import { MasterdataComponent } from '../app/masterdata/masterdata.component';
     MyNavComponent,
     routingComponents,
     MasterviewComponent,
-    MasterdataComponent    
+    MasterdataComponent,
+    EmplyeeviewComponent,
+    ClientviewComponent,
+    SiteviewComponent,
+    EscalationviewComponent
+  
 
   ],
   imports: [
@@ -68,7 +81,9 @@ import { MasterdataComponent } from '../app/masterdata/masterdata.component';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    HttpClientModule
 
   ],
   providers: [],

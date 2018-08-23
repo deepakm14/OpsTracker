@@ -8,6 +8,10 @@ import {ReportComponent} from './report/report.component';
 import {SiteComponent} from './site/site.component';
 import {LoginComponent} from './login/login.component';
 import {MasterviewComponent} from './masterview/masterview.component';
+import {EmplyeeviewComponent} from './emplyeeview/emplyeeview.component';
+import {ClientviewComponent} from './clientview/clientview.component';
+import {SiteviewComponent} from './siteview/siteview.component';
+import {EscalationviewComponent} from './escalationview/escalationview.component';
 
 const routes: Routes = [
 {
@@ -33,6 +37,22 @@ const routes: Routes = [
 {
 path: 'masterview',
   component : MasterviewComponent
+},
+{
+path: 'emplyeeview',
+  component : EmplyeeviewComponent
+},
+{
+path: 'clientview',
+  component : ClientviewComponent
+},
+{
+path: 'siteview',
+  component : SiteviewComponent
+},
+{
+path: 'escalationview',
+  component : EscalationviewComponent
 }
 ];
 
@@ -45,4 +65,4 @@ path: 'masterview',
 
 export class AppRoutingModule { }
 // tslint:disable-next-line:max-line-length
-export const routingComponents = [EscalationComponent, ReportComponent, OpstrackerComponent, MasterdataComponent , LoginComponent , MasterviewComponent ];
+export const routingComponents = [EscalationComponent, ReportComponent, OpstrackerComponent, MasterdataComponent , LoginComponent , MasterviewComponent, EmplyeeviewComponent, ClientviewComponent, SiteviewComponent, EscalationviewComponent ];

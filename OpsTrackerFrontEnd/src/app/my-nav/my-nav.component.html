@@ -9,7 +9,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)" >
     <mat-toolbar color="primary"><img class="logo" src="assets/uds1.jpg"></mat-toolbar>
-    <mat-nav-list >
+    <!-- <mat-nav-list >
       <a mat-list-item ><i class="material-icons color_white">description</i><span style="color: #fff;">Master Data
       <button mat-button mat-icon-button (click)="showSubmenu = !showSubmenu">
           <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}">expand_more</mat-icon>
@@ -19,12 +19,14 @@
             <mat-list-item routerLink="masterdata"><span style="color: #fff;">Add</span></mat-list-item>
            
           </div>
-    </mat-nav-list>
+    </mat-nav-list> -->
       <mat-nav-list >
+          <a mat-list-item routerLink="masterdata"><i class="material-icons color_white">description</i><span style="color: #fff;">Masterdata</span></a>
       <a mat-list-item routerLink="opstracker"><i class="material-icons color_white">library_books</i><span style="color: #fff;">OpsTracker</span></a>
       <a mat-list-item routerLink="escalation"><i class="material-icons color_white">queue</i><span style="color: #fff;">Escalation</span></a>
       <a mat-list-item routerLink="report"><i class="material-icons color_white">report</i><span style="color: #fff;">Report</span></a>
     </mat-nav-list>
+   
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar *ngIf="router.url != '/'" color="primary" >
@@ -43,3 +45,4 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
