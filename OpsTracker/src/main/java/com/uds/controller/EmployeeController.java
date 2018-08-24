@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,12 +52,11 @@ public class EmployeeController {
 		employeeService.deleteEmployee(id);
 	}*/
 	
-	@GetMapping("/employee/search/(pageId)")
-	public List<Employee> findAll(@PathVariable long pageId)
+	@GetMapping("/employee/search/{page}/{size}")
+	public Page<Employee> findAll(@PathVariable("page") int page,@PathVariable("size") int size)
 	{
-		int total = 5;
 		log.debug("****Inside SiteController*****");
-		return employeeService.findAll(pageId,total);
+		return employeeService.findAll(page,size);
 	}
 	
 	@GetMapping("/employee/search/{id}")

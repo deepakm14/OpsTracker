@@ -1,10 +1,9 @@
 package com.uds.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,9 +43,9 @@ public class EscalationTypeController {
 		return escaltionTypeService.selectedOne(id);
 	}
 	
-	@GetMapping("/esctype/search")
-	public List<EscalationType> selectAll()
+	@GetMapping("/esctype/search/{page}/{size}")
+	public Page<EscalationType> selectAll(@PathVariable("page") int page,@PathVariable("size") int size)
 	{
-		return escaltionTypeService.selectedAll();
+		return escaltionTypeService.selectedAll(page,size);
 	}
 }

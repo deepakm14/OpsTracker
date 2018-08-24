@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "site")
 public class Site implements Serializable{
@@ -30,6 +32,7 @@ public class Site implements Serializable{
 	
 	private String contractType;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "projectId", nullable = false)
 	private Project project;
@@ -42,12 +45,15 @@ public class Site implements Serializable{
 	
 	private long siteInchargeId;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "site", fetch = FetchType.LAZY)
 	private List<ManPower> manPower;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "site", fetch = FetchType.LAZY)
 	private List<Material> material;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "site", fetch = FetchType.LAZY)
 	private List<Machines> machine;
 	
