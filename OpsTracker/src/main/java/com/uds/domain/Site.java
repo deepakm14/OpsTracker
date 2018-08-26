@@ -23,7 +23,7 @@ public class Site implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO)
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private long id;
 	
 	private String name;
@@ -45,15 +45,15 @@ public class Site implements Serializable{
 	
 	private long siteInchargeId;
 	
-	@JsonIgnore
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "site", fetch = FetchType.LAZY)
 	private List<ManPower> manPower;
 
-	@JsonIgnore
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "site", fetch = FetchType.LAZY)
 	private List<Material> material;
 	
-	@JsonIgnore
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "site", fetch = FetchType.LAZY)
 	private List<Machines> machine;
 	
