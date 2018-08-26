@@ -58,6 +58,13 @@ public class SiteController {
 		return siteService.findAll(page,size);
 	}
 	
+	@GetMapping("/site/search")
+	public List<SiteDTO> selectAll()
+	{
+		log.debug("****Inside SiteController*****");
+		return siteService.selectAll();
+	}
+	
 	@GetMapping("/site/search/{id}")
 	public SiteDTO findOne(@PathVariable long id)
 	{

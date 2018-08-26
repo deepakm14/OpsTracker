@@ -15,7 +15,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/user")
+	@GetMapping("/user/{name}/{pwd}")
 	public String saveSite(@PathVariable String name, @PathVariable String pwd)
 	{
 		String status = "failed";	

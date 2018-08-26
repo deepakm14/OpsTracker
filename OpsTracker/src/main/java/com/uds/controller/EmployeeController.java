@@ -59,6 +59,13 @@ public class EmployeeController {
 		return employeeService.findAll(page,size);
 	}
 	
+	@GetMapping("/employee/searchbydesg/{desg}")
+	public List<Employee> selectAll(@PathVariable("desg") String desg)
+	{
+		log.debug("****Inside SiteController*****");
+		return employeeService.selectAll(desg);
+	}
+	
 	@GetMapping("/employee/search/{id}")
 	public Employee findOne(@PathVariable long id)
 	{

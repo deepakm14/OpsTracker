@@ -1,5 +1,7 @@
 package com.uds.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -54,6 +56,13 @@ public class ProjectController {
 	{
 		log.debug("****Inside ProjectController*****");
 		return projectService.findAll(page,size);
+	}
+	
+	@GetMapping("/project/search")
+	public List<Project> findAll()
+	{
+		log.debug("****Inside ProjectController*****");
+		return projectService.selectAll();
 	}
 	
 	@GetMapping("/project/search/{id}")

@@ -1,5 +1,7 @@
 package com.uds.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +49,11 @@ public class EscalationTypeController {
 	public Page<EscalationType> selectAll(@PathVariable("page") int page,@PathVariable("size") int size)
 	{
 		return escaltionTypeService.selectedAll(page,size);
+	}
+	
+	@GetMapping("/esctype/search")
+	public List<EscalationType> selectAll()
+	{
+		return escaltionTypeService.findAll();
 	}
 }
