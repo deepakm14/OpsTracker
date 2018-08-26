@@ -100,4 +100,10 @@ public class EmployeeService {
 		Page<Employee> employees = employeeRepository.findAll(new PageRequest(page,size));
 		return employees;
 	}
+	
+	public List<Employee> selectAll(String desg)
+	{
+		List<Employee> employees = employeeRepository.findByDesg(desg);
+		return employees;
+	}
 }

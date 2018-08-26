@@ -79,5 +79,11 @@ public class EscalationTypeService {
 		Page<EscalationType> escalationTypes = escalationTypeRepository.findAll(new PageRequest(page,size));
 		return escalationTypes;
 	}
+	
+	public List<EscalationType> findAll()
+	{
+		List<EscalationType> escalationTypes = escalationTypeRepository.findAll();
+		return escalationTypes;
+	}
 
 }

@@ -93,6 +93,11 @@ public class ProjectService {
 //		return projectDTOs;
 	}
 	
+	public List<Project> selectAll()
+	{
+		return projectRepository.findAll();
+	}
+	
 	public Project findOne(long id)
 	{
 		Project project = projectRepository.findOne(id);

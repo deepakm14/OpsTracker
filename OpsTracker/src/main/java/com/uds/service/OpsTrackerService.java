@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -192,6 +194,8 @@ public class OpsTrackerService {
 		machineTracker.setId(machineTrackerDTO.getId());
 		machineTracker.setMachineType(machineTrackerDTO.getMachineType());
 		machineTracker.setEquipmentType(machineTrackerDTO.getEquipmentType());
+		machineTracker.setModelNo(machineTrackerDTO.getModelNo());
+		machineTracker.setSerialNo(machineTrackerDTO.getSerialNo());
 		machineTracker.setStatus(machineTrackerDTO.getStatus());
 		try
 		{
@@ -221,6 +225,12 @@ public class OpsTrackerService {
 		}
 		
 		return message;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Page<ManPowerTracker> selectAllPagination(int page, int size)
+	{
+		return manPowerTrackerRepository.findAll(new PageRequest(page,size));
 	}
 	
 	public List<?> search(SearchOptionDTO searchOption)
