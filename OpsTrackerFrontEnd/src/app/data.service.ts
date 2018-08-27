@@ -33,4 +33,13 @@ export class DataService {
   getSite(id): Observable<Site> {
     return this.http.get<Site>('http://localhost:8080/uds/site/search/' + id);
   }
+
+  getemployee(pages, records): Observable<Employ[]> {
+    
+    return this.http.get<Employ[]>('http://localhost:8080//uds/employee/search/' + pages + '/' + records);
+  }
+  getemployeebyid(id): Observable<Employ> {
+    
+    return this.http.get<Employ>('http://localhost:8080//uds/employee/search/'+id);
+  }
 }

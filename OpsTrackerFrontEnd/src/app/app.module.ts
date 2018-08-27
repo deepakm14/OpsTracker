@@ -33,6 +33,16 @@ import { ClientviewComponent } from './clientview/clientview.component';
 import { SiteviewComponent } from './siteview/siteview.component';
 import { EscalationviewComponent } from './escalationview/escalationview.component';
 
+import { EmployeeupdateComponent } from './employeeupdate/employeeupdate.component';
+import { ClientupdateComponent } from './clientupdate/clientupdate.component';
+import { SiteupdateComponent } from './siteupdate/siteupdate.component';
+import { EscalationupdateComponent } from './escalationupdate/escalationupdate.component';
+
+import { MatDialogModule } from '@angular/material';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PaginationComponent } from './pagination/pagination.component';
+import {EmploydialogComponent} from './employdialog/employdialog.component';
+
 
 
 
@@ -51,8 +61,15 @@ import { EscalationviewComponent } from './escalationview/escalationview.compone
     EmplyeeviewComponent,
     ClientviewComponent,
     SiteviewComponent,
-    EscalationviewComponent
-  
+    EscalationviewComponent,
+   
+    EmployeeupdateComponent,
+    ClientupdateComponent,
+    SiteupdateComponent,
+    EscalationupdateComponent,
+    PaginationComponent,
+    EmploydialogComponent
+   
 
   ],
   imports: [
@@ -83,10 +100,18 @@ import { EscalationviewComponent } from './escalationview/escalationview.compone
     MatProgressSpinnerModule,
     FormsModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatProgressBarModule
+
 
   ],
+  entryComponents: [
+    EmploydialogComponent
+  ],
+
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

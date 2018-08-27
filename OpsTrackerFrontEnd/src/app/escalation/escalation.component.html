@@ -11,55 +11,67 @@
       <mat-card-content>
         <div>
           <mat-form-field class="example-full-width">
-              <input type="text" placeholder="Type of Escalation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let escalation of escalation$" [value]="escalation.escalationType">
-                  {{escalation.escalationType}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-           
-            
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Description" >
-              </mat-form-field>
-           
-            
-              <mat-form-field class="example-full-width">
-                  <input type="text" placeholder="Communicated Via" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto1">
-                  <mat-autocomplete #auto1="matAutocomplete">
-                    <mat-option *ngFor="let option1 of options" [value]="option">
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-             
-             
-                  <mat-form-field class="example-full-width">
-                      <input matInput [matDatepicker]="picker" placeholder="Communicated Date">
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-  
-                    <mat-form-field class="example-full-width">
-                        <input matInput [matDatepicker]="picker1" placeholder="Closure Date">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field>
-  
-                      <mat-form-field class="example-full-width">
-                          <input matInput [matDatepicker]="picker2" placeholder="Estimated Closure Date">
-                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                          <mat-datepicker #picker2></mat-datepicker>
-                        </mat-form-field>
-  
-                        <div class="button-row">
-                            
-                            <button mat-raised-button color="accent">Submit</button>
+            <input type="text" placeholder="Type of Escalation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let escalation of escalation$" [value]="escalation">
+                {{escalation.escalationType}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Description">
+          </mat-form-field>
+
+
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Communicated Via" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field> 
+
+
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Communicated Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker1" placeholder="Closure Date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker2" placeholder="Estimated Closure Date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <div class="button-row">
+
+            <button mat-raised-button color="accent">Submit</button>
+
+
+          </div>
+
+
+
+
+
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>     
+        
                     
-                        </div>
-       </div>
-       </mat-card-content>
-       </mat-card>
-      </div>
-      </div>
+                   
+                       
+  

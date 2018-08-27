@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {DataService} from '../data.service';
 
+
 @Component({
   selector: 'app-masterdata',
   templateUrl: './masterdata.component.html',
@@ -14,7 +15,75 @@ import {DataService} from '../data.service';
   providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
+
+  private fieldArray: Array<any> = [];
+  private fieldArray1: Array<any> = [];
+  private fieldArray2: Array<any> = [];
+  private newAttribute: any = {};
+  private newAttribute1: any = {};
+  private newAttribute2: any = {};
+  matadded = false;
+  manadded = false;
+  macadded = false;
+  materialtype(type){
+    console.log(type);
+  }
+
+
+  addmanFieldValue(newAttribute) {
+    this.manadded = true;
+   
+      this.fieldArray.push(this.newAttribute);
+     // console.log(this.fieldArray);
+      this.newAttribute = {};
+  }
+
+  deletemanFieldValue(index) {
+   
+      this.fieldArray.splice(index, 1);
+      if (this.fieldArray.length < 1) {
+      this.manadded = false;
+      }
+  }
+
+
+  addmatFieldValue(newAttribute1) {
+    this.matadded = true;
   
+      this.fieldArray1.push(this.newAttribute1);
+     // console.log(this.fieldArray);
+      this.newAttribute1 = {};
+  }
+
+  deletematFieldValue(index) {
+   
+      this.fieldArray1.splice(index, 1);
+      if (this.fieldArray1.length < 1) {
+      this.matadded = false;
+      }
+  }
+
+  addmacFieldValue(newAttribute2) {
+    this.macadded = true;
+   
+      this.fieldArray2.push(this.newAttribute2);
+     // console.log(this.fieldArray);
+      this.newAttribute2 = {};
+  }
+
+  deletemacFieldValue(index) {
+   
+      this.fieldArray2.splice(index, 1);
+      if (this.fieldArray2.length < 1) {
+      this.macadded = false;
+      }
+  }
+
+
+
+
+
+  isLoadingResults = false;
   visible = true;
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService){}
 //Variable declation
@@ -29,11 +98,13 @@ export class MasterdataComponent implements OnInit {
   public manpower={};
   public material={};
   public machine={};
+  public escalationtype={};
   
 
 
   postEmployee()
   {
+    
     console.log(this.emp);
     this.http.post('http://localhost:8080/uds/employee', this.emp)
       .subscribe(
@@ -47,15 +118,27 @@ export class MasterdataComponent implements OnInit {
 
   postClient()
   {
+    
+    this.isLoadingResults = true;
+    
     console.log(this.client);
     this.http.post('http://localhost:8080/uds/project', this.client)
       .subscribe(
         (data:any) => { 
           if(data.length) {
             console.log(data);
+           
           }
+          this.isLoadingResults = false;
+        },
+        error => {
+         
+        },
+        () => {
+          console.log('finished');
         }
-      )
+      );
+      
   }
 
   postSite()
@@ -67,7 +150,31 @@ export class MasterdataComponent implements OnInit {
       (data:any) => {
         console.log(data);
       }
-    )
+    );
+  }
+
+  postEscalationType()
+  {
+   
+    this.isLoadingResults = true;
+    
+    console.log(this.site);
+    this.http.post('http://localhost:8080//uds/esctype', this.escalationtype)
+    
+    .subscribe(
+      (data:any) => {
+        console.log(data);
+        
+      }, error => {
+         
+      },
+      () => {
+        console.log('finished');
+      }
+     
+    );
+  
+   
   }
 
   listClient()
@@ -81,7 +188,7 @@ export class MasterdataComponent implements OnInit {
   listEmployees()
   {
     this.data.getEmployee().subscribe(
-      data => this.employees = data
+      data => this.employees = data['content']
     );
     console.log(this.data);
   }
@@ -141,5 +248,9 @@ export class MasterdataComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }*/
+
+closeprogess(){
+  this.isLoadingResults = false;
+}
 
 }
