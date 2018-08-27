@@ -1,27 +1,21 @@
 .algnleft{
-    margin:10px 
+    margin:20px 
 }
 .div-left{
     float:right;
     padding-right:20px;
 }
-.mat-column-FileName {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 100px !important;
-    width: 100px !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  
-    -ms-word-break: break-all;
-    /* This is the dangerous one in WebKit, as it breaks things wherever */
-    word-break: break-all;
-    /* Instead use this non-standard one: */
-    word-break: break-word;
-  
-    /* Adds a hyphen where the word breaks, if supported (No Blink) */
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+.mat-cell:nth-child(2), .mat-header-cell:nth-child(2) {
+    flex: 0 0 200px;
+}
+.martop{
+    margin-top: 14px;
+}
+.spinnerabove {
+    position:absolute;
+    top:50%;
+    left:50%;
+   
+    z-index: 10;
   }
+  

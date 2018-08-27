@@ -1,19 +1,34 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
+import {  MatDialog,  MatDialogRef , MatDialogConfig , MAT_DIALOG_DATA} from '@angular/material';
+import {MatTableDataSource} from '@angular/material';
 import {MatPaginator, MatSort} from '@angular/material';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {DataService} from '../data.service';
+import { Employ } from '../models/employ.model';
+import { MatDialogModule } from '@angular/material';
+import {EmploydialogComponent} from '../employdialog/employdialog.component';
+
+
 @Component({
   selector: 'app-emplyeeview',
   templateUrl: './emplyeeview.component.html',
   styleUrls: ['./emplyeeview.component.css']
 })
+
+
 export class EmplyeeviewComponent implements OnInit {
-  displayedColumns: string[] = ['created', 'state',  'title' ];
-  //displayedColumns: string[] = [  'code', 'name', 'designation', 'mail' , 'phone'];
-  employDatabase: EmployHttpDao | null;
-  data: Employdetails[] = [];
+  dialogResult="";
+  itemsPerPage: number = 10;
+  postsPerPage: number[] = [5, 10, 25];
+id;
+  emp = new Employ();
+
+  displayedColumns: string[] = ['id','name', 'code',  'designation' , 'mail', 'mob', 'actionsColumn' ];
+  /* //displayedColumns: string[] = [  'code', 'name', 'designation', 'mail' , 'phone']; */
+
+
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -21,68 +36,89 @@ export class EmplyeeviewComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  constructor(private http: HttpClient) {
-
+  
+  page: (Observable<number>|any);
+  constructor(private http: HttpClient, private data: DataService, private dialog: MatDialog) {
 
    }
+   
+   listEmployees()
+   {
+     this.data.getemployee(0, 2).subscribe(
+       data => this.emp = data['content']
+      
+      
+     );
+     console.log(this.data);
+    
+   }
+   pageChanged(event) {
+    this.page = event.page;
+    
+    this.itemsPerPage = event.itemsPerPage;
+    this.loadEmployeeByPage(this.page, this.itemsPerPage);
+}
+loadEmployeeByPage(page: number, rows: number) {
+ 
+  this.data.getemployee(page, rows).subscribe(
+    data => this.emp = data['content']
+  
+    );
 
-  ngOnInit() {
-    this.employDatabase = new EmployHttpDao(this.http);
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+}
 
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          // tslint:disable-next-line:no-non-null-assertion
-          return this.employDatabase!.getRepoIssues(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex);
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = data.total_count;
+   // tslint:disable-next-line:member-ordering
 
-          return data.items;
-        }),
-        catchError(() => {
-          this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
-          return observableOf([]);
-        })
-      ).subscribe(data => this.data = data);
-  }
-  }
-  export interface EmpApi {
-    items: Employdetails[];
-    total_count: number;
-  }
-  /* export interface Employdetails {
-    code: number;
-    name: string;
-  designation: string;
-    mail: string;
-    phone: number;
+
+   /* openDialog() {
+    const dialogRef = this.dialog.open(DialogBodyComponent, {
+      height: '400px',
+  width: '600px'
+      
+    });
   } */
 
-  export interface Employdetails {
+  ngOnInit() {
+   
+    this.listEmployees();
+  }
+ openDialog() {
+  
+  
+    const dialogRef = this.dialog.open(EmploydialogComponent, {
+      width: '300px',
+      data:'gjkhjkhjkh'
+      
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('dialog closed:${result}');
+            this.dialogResult = result;
+          });
+  
+  }
+ 
+
+ loadEmployeeforupdate(id:number) {
+ 
+    this.data.getemployeebyid(id).subscribe(
+    data => this.emp = data,
+    error => console.log(error),
+         () => {
+     this.openDialog()
+          } 
+    );
+  
+  
+
+}
+  /* export interface Employdetails {
     created_at: string;
     number: string;
     state: string;
     title: string;
   }
+ */
 
-  export class EmployHttpDao {
-    constructor(private http: HttpClient) {}
-    getRepoIssues(sort: string, order: string, page: number): Observable<EmpApi> {
-      const href = 'https://api.github.com/search/issues';
-      const requestUrl =
-          `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
-
-      return this.http.get<EmpApi>(requestUrl);
-    }
+  
+      
   }

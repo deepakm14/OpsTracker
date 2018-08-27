@@ -1,8 +1,8 @@
 export class Employ {
     id: number;
-    code: string;
+    code: number;
     designation: string;
     name: string;
     mail: string;
-    phone: string;
+    mob: number;
 }

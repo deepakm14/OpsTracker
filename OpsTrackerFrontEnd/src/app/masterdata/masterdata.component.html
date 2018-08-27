@@ -43,6 +43,7 @@
                       <button mat-mini-fab>
                           <mat-icon aria-label="" routerLink="../clientview">remove_red_eye</mat-icon>
                         </button>
+                        <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate" ></mat-progress-bar>
                       <mat-form-field class="example-full-width">
                           <input matInput placeholder="Client Name" [(ngModel)]="client.name" >
                         </mat-form-field>
@@ -68,7 +69,7 @@
                     <div class="site-box mat-elevation-z4">
                       <div>
                           <button mat-mini-fab>
-                              <mat-icon aria-label="" routerLink="../emplyeeview">remove_red_eye</mat-icon>
+                              <mat-icon aria-label="" routerLink="../siteview">remove_red_eye</mat-icon>
                             </button>
                     <div fxflex = "40" >
                             <mat-form-field class="example-full-width">
@@ -174,11 +175,47 @@
                                                         </div>
                                                         <div class="button-row">
                                           
-                                                              <button mat-raised-button color="accent">Add</button>
+                                                              <button mat-raised-button color="accent" (click)="addmanFieldValue()">Add</button>
                                                               
                                                               
                                                             </div>                              
-                                     
+                                                            <table *ngIf="manadded"  style="margin-top:20px">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Shift</th>
+                                                                        <th>Start Time</th>
+                                                                        <th>End Time</th>
+                                                                        <th>Planned</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let field of fieldArray; let i = index">
+                                                                        <td>
+                                                                            <input [(ngModel)]="field.shift" class="form-control" type="text" name="{{field.code}}" />
+                                                                        </td>
+                                                                      
+                                                                        <td>
+                                                                            <input [(ngModel)]="field.startime" class="form-control" type="text" name="{{field.name}}" />
+                                                                        </td>
+                                                                       
+                                                                        <td>
+                                                                            <input [(ngModel)]="field.endtime" class="form-control" type="text" name="{{field.price}}" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input [(ngModel)]="field.planned" class="form-control" type="text" name="{{field.price}}" />
+                                                                        </td>
+                                                                        <td>
+                                                                            <button mat-icon-button>
+                                                                                <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="deletemanFieldValue(i)">highlight_off</mat-icon>
+                                                                              </button>
+                                                                           
+                                                                           
+                                                                        </td>
+                                                                    </tr>
+                                                                   
+                                                                </tbody>
+                                                            </table>
                                     </mat-expansion-panel>
                                     <mat-expansion-panel (opened)="panelOpenState = true"
                                                          (closed)="panelOpenState = false">
@@ -193,8 +230,8 @@
                                       <div class="row">
                                       <mat-form-field class="example-full-width">
                                             <input type="text" placeholder="Material Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                                            <mat-autocomplete #auto5="matAutocomplete">
-                                              <mat-option *ngFor="let option of options" [value]="option">
+                                            <mat-autocomplete #auto5="matAutocomplete" >
+                                              <mat-option *ngFor="let option of options" [value]="option" (click)="materialtype(option)">
                                                 {{option}}
                                               </mat-option>
                                             </mat-autocomplete>
@@ -204,15 +241,47 @@
                                                 <mat-form-field>
                                                         <input matInput [matDatepicker]="picker" placeholder="Commitment Date" [(ngModel)]="material.commitmentDate">
                                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                        <mat-datepicker #picker></mat-datepicker>
+                                                        <mat-datepicker #picker ></mat-datepicker>
                                                       </mat-form-field>
                                               </div>
                                               <div class="button-row">
                                           
-                                                    <button mat-raised-button color="accent">Add</button>
+                                                    <button mat-raised-button color="accent" (click)="addmatFieldValue()">Add</button>
                                                     
                                                     
-                                                  </div>      
+                                                  </div>  
+                                                  
+                                                  <table *ngIf="matadded"  style="margin-top:20px">
+                                                      <thead>
+                                                          <tr>
+                                                              <th>Material Type</th>
+                                                              <th>Commitment Date</th>
+                                                              <th>Action</th>
+                                                             
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                          <tr *ngFor="let field of fieldArray1; let i = index">
+                                                              <td>
+                                                                  <input [(ngModel)]="field.shift" class="form-control" type="text" name="{{field.code}}" />
+                                                              </td>
+                                                            
+                                                              <td>
+                                                                  <input [(ngModel)]="field.startime" class="form-control" type="text" name="{{field.name}}" />
+                                                              </td>
+                                                             
+                                                              
+                                                              <td>
+                                                                  <button mat-icon-button>
+                                                                      <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="deletematFieldValue(i)">highlight_off</mat-icon>
+                                                                    </button>
+                                                                 
+                                                                 
+                                                              </td>
+                                                          </tr>
+                                                         
+                                                      </tbody>
+                                                  </table>
                                     </mat-expansion-panel>
                                     <mat-expansion-panel (opened)="panelOpenState = true"
                                                          (closed)="panelOpenState = false">
@@ -251,15 +320,59 @@
                                                               </div>
                                                               <div class="button-row">
                                           
-                                                                    <button mat-raised-button color="accent" (click)="postSite()">Add</button>
+                                                                    <button mat-raised-button color="accent" (click)="addmacFieldValue()">Add</button>
                                                                     
                                                                     
-                                                                  </div>      
+                                                                  </div>    
+                                                                  
+                                                                  <table *ngIf="macadded"  style="margin-top:20px">
+                                                                      <thead>
+                                                                          <tr>
+                                                                              <th>Machine Type</th>
+                                                                              <th>Equipment Type</th>
+                                                                              <th>Model No</th>
+                                                                              <th>Serial No</th>
+                                                                              <th>Action</th>
+                                                                          </tr>
+                                                                      </thead>
+                                                                      <tbody>
+                                                                          <tr *ngFor="let field of fieldArray2; let i = index">
+                                                                              <td>
+                                                                                  <input [(ngModel)]="field.shift" class="form-control" type="text" name="{{field.code}}" />
+                                                                              </td>
+                                                                            
+                                                                              <td>
+                                                                                  <input [(ngModel)]="field.startime" class="form-control" type="text" name="{{field.name}}" />
+                                                                              </td>
+                                                                             
+                                                                              <td>
+                                                                                  <input [(ngModel)]="field.endtime" class="form-control" type="text" name="{{field.price}}" />
+                                                                              </td>
+                                                                              <td>
+                                                                                  <input [(ngModel)]="field.planned" class="form-control" type="text" name="{{field.price}}" />
+                                                                              </td>
+                                                                              <td>
+                                                                                  <button mat-icon-button>
+                                                                                      <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="deletemacFieldValue(i)">highlight_off</mat-icon>
+                                                                                    </button>
+                                                                                 
+                                                                                 
+                                                                              </td>
+                                                                          </tr>
+                                                                         
+                                                                      </tbody>
+                                                                  </table>
                                     </mat-expansion-panel>
                                   </mat-accordion>
                                   </mat-card-content>
                                 </mat-card >
                     </div>
+                    <div class="button-row">
+                                          
+                        <button mat-raised-button color="accent" (click)="addmacFieldValue()">Submit</button>
+                        
+                        
+                      </div>    
                     </div>
                     
                     </div>
@@ -271,15 +384,16 @@
                         <button mat-mini-fab>
                             <mat-icon aria-label="" routerLink="../escalationview">remove_red_eye</mat-icon>
                           </button>
+                          <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate" ></mat-progress-bar>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Type of Escalation">
+                            <input matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType">
                           </mat-form-field>
                          
                             
               
                                   <div class="button-row">
                                       
-                                      <button mat-raised-button color="accent">Add</button>
+                                      <button mat-raised-button color="accent" (click)="postEscalationType()">Add</button>
                                       
                                       
                                     </div>
@@ -290,4 +404,6 @@
             </div>
 </div>
 </div>
+
+  
 </div>
