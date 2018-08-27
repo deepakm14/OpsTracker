@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,11 +51,18 @@ public class ProjectController {
 		projectService.deleteProject(id);
 	}
 	
-	@GetMapping("/project/search")
-	public List<ProjectDTO> findAll()
+	@GetMapping("/project/search/{page}/{size}")
+	public Page<Project> findAll(@PathVariable("page") int page,@PathVariable("size") int size)
 	{
 		log.debug("****Inside ProjectController*****");
-		return projectService.findAll();
+		return projectService.findAll(page,size);
+	}
+	
+	@GetMapping("/project/search")
+	public List<Project> findAll()
+	{
+		log.debug("****Inside ProjectController*****");
+		return projectService.selectAll();
 	}
 	
 	@GetMapping("/project/search/{id}")

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "project")
 public class Project implements Serializable{
@@ -17,13 +19,14 @@ public class Project implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO)
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private long id;
 	
 	private long projectCode;
 	
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "project")  
     private Set<Site> site;
 

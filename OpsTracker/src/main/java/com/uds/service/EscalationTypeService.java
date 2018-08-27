@@ -3,6 +3,8 @@ package com.uds.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,7 +73,14 @@ public class EscalationTypeService {
 		return escalationType;
 	}
 	
-	public List<EscalationType> selectedAll()
+	@SuppressWarnings("deprecation")
+	public Page<EscalationType> selectedAll(int page, int size)
+	{
+		Page<EscalationType> escalationTypes = escalationTypeRepository.findAll(new PageRequest(page,size));
+		return escalationTypes;
+	}
+	
+	public List<EscalationType> findAll()
 	{
 		List<EscalationType> escalationTypes = escalationTypeRepository.findAll();
 		return escalationTypes;

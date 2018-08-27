@@ -10,6 +10,8 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -173,7 +175,67 @@ public class SiteService {
 		siteRepository.delete(site);
 	}
 
-	public List<SiteDTO> findAll() {
+	@SuppressWarnings("deprecation")
+	public Page<Site> findAll(int page, int size) {
+		return siteRepository.findAll(new PageRequest(page,size));
+//		List<SiteDTO> siteDTOs = new ArrayList<SiteDTO>();
+//		for (Site site : sites) {
+//			SiteDTO siteDTO = new SiteDTO();
+//			siteDTO.setId(site.getId());
+//			siteDTO.setName(site.getName());
+//			siteDTO.setProjectId(site.getProject().getId());
+//			siteDTO.setProjectName(site.getProject().getName());
+//			siteDTO.setAddress(site.getAddress());
+//			siteDTO.setContractType(site.getContractType());
+//			siteDTO.setRegionalManagerId(site.getRegionalManagerId());
+//			siteDTO.setSeniorManagerId(site.getSeniorManagerId());
+//			siteDTO.setAsstSeniorManagerId(site.getAsstSeniorManagerId());
+//			siteDTO.setSiteInchargeId(site.getSiteInchargeId());
+//			List<ManPower> manPowers = site.getManPower();
+//			List<Material> materials = site.getMaterial();
+//			List<Machines> machines = site.getMachine();
+//			List<MaterialDTO> materialDTOs = new ArrayList<MaterialDTO>();
+//			List<MachinesDTO> machineDTOs = new ArrayList<MachinesDTO>();
+//			List<ManPowerDTO> manPowerDTOs = new ArrayList<ManPowerDTO>();
+//			for(ManPower manPower : manPowers)
+//			{
+//				ManPowerDTO manPowerDTO = new ManPowerDTO();
+//				manPowerDTO.setId(manPower.getId());
+//				manPowerDTO.setTypeOfService(manPower.getTypeOfService());
+//				manPowerDTO.setPlanned(manPower.getPlanned());
+//				manPowerDTO.setStartTime(manPower.getStartTime());
+//				manPowerDTO.setEndTime(manPower.getEndTime());
+//				manPowerDTOs.add(manPowerDTO);
+//			}
+//			for(Material material : materials)
+//			{
+//				MaterialDTO materialDTO = new MaterialDTO();
+//				materialDTO.setId(material.getId());
+//				materialDTO.setTypeOfService(material.getTypeOfService());
+//				materialDTO.setMaterialType(material.getMaterialType());
+//				materialDTO.setCommitmentDate(material.getCommitmentDate());
+//				materialDTOs.add(materialDTO);
+//			}
+//			for(Machines mac : machines)
+//			{
+//				MachinesDTO machineDTO = new MachinesDTO();
+//				machineDTO.setId(mac.getId());
+//				machineDTO.setTypeOfService(mac.getTypeOfService());
+//				machineDTO.setMachineType(mac.getEquipmentType());
+//				machineDTO.setSerialNo(mac.getSerialNo());
+//				machineDTO.setModelNo(mac.getModelNo());
+//				machineDTO.setEquipmentType(mac.getEquipmentType());
+//				machineDTOs.add(machineDTO);
+//			}
+//			siteDTO.setMaterialDTO(materialDTOs);
+//			siteDTO.setMachineDTO(machineDTOs);
+//			siteDTO.setManPowerDTO(manPowerDTOs);
+//			siteDTOs.add(siteDTO);
+//		}
+//		return siteDTOs;
+	}
+	
+	public List<SiteDTO> selectAll() {
 		List<Site> sites = siteRepository.findAll();
 		List<SiteDTO> siteDTOs = new ArrayList<SiteDTO>();
 		for (Site site : sites) {
@@ -230,6 +292,7 @@ public class SiteService {
 			siteDTOs.add(siteDTO);
 		}
 		return siteDTOs;
+
 	}
 
 	public SiteDTO findOne(long id) {

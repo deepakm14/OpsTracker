@@ -113,22 +113,22 @@
                                         </mat-autocomplete>
                                       </mat-form-field>
                                       <mat-form-field class="example-full-width">
-                                          <input matInput [matDatepicker]="picker4" placeholder="Commitment Date">
+                                          <input matInput [matDatepicker]="picker4" placeholder="Commitment Date" [(ngModel)]="materialtransaction.commitmentDate">
                                           <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                                           <mat-datepicker #picker4></mat-datepicker>
                                         </mat-form-field>
                                       <mat-form-field class="example-full-width">
-                                          <input matInput [matDatepicker]="picker1" placeholder="Indent SubmissionDate">
+                                          <input matInput [matDatepicker]="picker1" placeholder="Indent SubmissionDate" [(ngModel)]="materialtransaction.indentSubmissionDate">
                                           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                           <mat-datepicker #picker1></mat-datepicker>
                                         </mat-form-field>
                                         <mat-form-field class="example-full-width">
-                                            <input matInput [matDatepicker]="picker3" placeholder="Material Supply Date">
+                                            <input matInput [matDatepicker]="picker3" placeholder="Material Supply Date" [(ngModel)]="materialtransaction.materialSupplyDate">
                                             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                             <mat-datepicker #picker3></mat-datepicker>
                                           </mat-form-field>
                                           <mat-form-field class="example-full-width">
-                                              <input matInput [matDatepicker]="picker2" placeholder="Uniform Supply  Date">
+                                              <input matInput [matDatepicker]="picker2" placeholder="Uniform Supply  Date" [(ngModel)]="materialtransaction.uniformSupplyDate">
                                               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                               <mat-datepicker #picker2></mat-datepicker>
                                             </mat-form-field>
@@ -142,7 +142,7 @@
                                                   </mat-autocomplete>
                                                 </mat-form-field>
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="Remarks" >
+                                                    <input matInput placeholder="Remarks" [(ngModel)]="materialtransaction.remarks">
                                                   </mat-form-field>
 
                                                   
@@ -200,7 +200,7 @@
                                                     <mat-datepicker #picker6></mat-datepicker>
                                                   </mat-form-field>
                                                   <mat-form-field class="example-full-width">
-                                                      <input matInput [matDatepicker]="picker7" placeholder="Resolution Date">
+                                                      <input matInput [matDatepicker]="picker7" placeholder="Resolution  Date">
                                                       <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
                                                       <mat-datepicker #picker7></mat-datepicker>
                                                     </mat-form-field>

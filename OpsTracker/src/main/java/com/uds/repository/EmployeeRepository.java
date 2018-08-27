@@ -12,7 +12,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	@Query("SELECT e FROM Employee e WHERE e.id = :id")
 	Employee findOne(@Param("id") long id);
-	
-	//@Query("SELECT e FROM Employee e limit :total offset :pageId")
-	//List<Employee> findAll(@Param("pageId") long pageId, @Param("total") int total);
+	@Query("SELECT e FROM Employee e WHERE e.designation = :desg")
+	List<Employee> findByDesg(@Param("desg") String desg);
+
 }

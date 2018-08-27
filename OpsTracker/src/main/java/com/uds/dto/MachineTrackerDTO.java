@@ -10,6 +10,10 @@ public class MachineTrackerDTO {
 	
 	private String equipmentType;
 	
+	private String modelNo;
+	
+	private String serialNo;
+		
 	private String status;
 	
 	private Date complaintRaisedDate;
@@ -38,6 +42,22 @@ public class MachineTrackerDTO {
 
 	public void setEquipmentType(String equipmentType) {
 		this.equipmentType = equipmentType;
+	}
+
+	public String getModelNo() {
+		return modelNo;
+	}
+
+	public void setModelNo(String modelNo) {
+		this.modelNo = modelNo;
+	}
+
+	public String getSerialNo() {
+		return serialNo;
+	}
+
+	public void setSerialNo(String serialNo) {
+		this.serialNo = serialNo;
 	}
 
 	public String getStatus() {

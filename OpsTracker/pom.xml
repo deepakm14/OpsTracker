@@ -11,7 +11,7 @@
 
 	<name>OpsTracker</name>
 	<description>Operational Tracker</description>
-
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -24,7 +24,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<start-class>com.uds.OpsTracker</start-class>
-		<drools.version>6.4.0.Final</drools.version>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<project.artifactId>OpsTracker</project.artifactId>
 		<java.version>1.8</java.version>
@@ -38,31 +37,21 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>2.0.3.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.0.3.RELEASE</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>5.0.7.RELEASE</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.security</groupId> -->
+		<!-- <artifactId>spring-security-core</artifactId> -->
+		<!-- <version>5.0.7.RELEASE</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-jsr310</artifactId>
-			<version>2.4.0</version>
-		</dependency>
+		
 
 		<dependency>
 			<groupId>javax.persistence</groupId>
@@ -87,11 +76,7 @@
 			<artifactId>json</artifactId>
 			<version>20160212</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -105,19 +90,10 @@
 			<version>1.16.20</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>3.2.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>
-				spring-boot-starter-tomcat
-			</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -133,17 +109,9 @@
 		</dependency>
 
 	</dependencies>
-<!--	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement> -->
+	<!-- <dependencyManagement> <dependencies> <dependency> <groupId>org.springframework.cloud</groupId> 
+		<artifactId>spring-cloud-dependencies</artifactId> <version>${spring-cloud.version}</version> 
+		<type>pom</type> <scope>import</scope> </dependency> </dependencies> </dependencyManagement> -->
 
 	<build>
 		<plugins>

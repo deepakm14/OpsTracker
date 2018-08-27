@@ -16,12 +16,16 @@ public class MachineTracker implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String machineType;
 	
 	private String equipmentType;
+	
+	private String modelNo;
+	
+	private String serialNo;
 	
 	private String status;
 	
@@ -51,6 +55,22 @@ public class MachineTracker implements Serializable{
 
 	public void setEquipmentType(String equipmentType) {
 		this.equipmentType = equipmentType;
+	}
+
+	public String getModelNo() {
+		return modelNo;
+	}
+
+	public void setModelNo(String modelNo) {
+		this.modelNo = modelNo;
+	}
+
+	public String getSerialNo() {
+		return serialNo;
+	}
+
+	public void setSerialNo(String serialNo) {
+		this.serialNo = serialNo;
 	}
 
 	public String getStatus() {

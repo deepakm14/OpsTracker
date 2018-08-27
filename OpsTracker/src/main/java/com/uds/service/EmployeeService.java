@@ -5,6 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,9 +94,16 @@ public class EmployeeService {
 		return employee;
 	}
 	
-	public List<Employee> findAll(long pageId,int total)
+	public Page<Employee> findAll(int page, int size)
 	{
-		List<Employee> employees = employeeRepository.findAll();
+		@SuppressWarnings("deprecation")
+		Page<Employee> employees = employeeRepository.findAll(new PageRequest(page,size));
+		return employees;
+	}
+	
+	public List<Employee> selectAll(String desg)
+	{
+		List<Employee> employees = employeeRepository.findByDesg(desg);
 		return employees;
 	}
 }
