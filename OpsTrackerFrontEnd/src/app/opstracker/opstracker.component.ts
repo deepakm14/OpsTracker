@@ -142,6 +142,21 @@ export class OpstrackerComponent implements OnInit {
 postMaterialTransaction()
 {
   console.log(this.materialtransaction);
+  try{
+    this.http.post('http://localhost:8080/uds/opstracker/material',this.manpowertransaction)
+    .subscribe(
+      (data:any) => { 
+        if(data.length) {
+          console.log(data);
+          console.log("done");
+        }
+      }
+    )
+  }
+  catch(Exception )
+  {
+    console.error("not done");
+  }  
 }
 
 postMachineTransaction()
