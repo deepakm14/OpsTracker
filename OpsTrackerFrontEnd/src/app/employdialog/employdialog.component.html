@@ -1,17 +1,18 @@
 <div>
+
 <mat-dialog-content>
   
   <div class="row" >
                         
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Employee Code" >
+        <input matInput placeholder="Employee Code" [(ngModel)]="data.code">
       </mat-form-field>
 
 </div>
 <div class="row" >
                         
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Employee Name" >
+    <input matInput placeholder="Employee Name" [(ngModel)]="data.name">
   </mat-form-field>
 
 </div>
@@ -19,26 +20,26 @@
 <div class="row" >
                         
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Designation" >
+    <input matInput placeholder="Designation" [(ngModel)]="data.designation">
   </mat-form-field>
 
 </div>
 <div class="row" >
                         
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Email" >
+    <input matInput placeholder="Email" [(ngModel)]="data.mail">
   </mat-form-field>
 
 </div>
 <div class="row" >
                         
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Mobile Number" >
+    <input matInput placeholder="Mobile Number" [(ngModel)]="data.mob">
   </mat-form-field>
 
 </div>
 
-  <strong>{{data}}</strong>
+ 
  
 </mat-dialog-content>
 <mat-dialog-actions>

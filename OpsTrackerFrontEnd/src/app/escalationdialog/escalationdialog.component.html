@@ -1,0 +1,29 @@
+<div>
+
+    <mat-dialog-content>
+      
+      <div class="row" >
+                            
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Escalation Type" [(ngModel)]="data.escalationType">
+          </mat-form-field>
+    
+    </div>
+    
+    
+   
+    
+     
+     
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        
+          <div class="button-row">
+                                              
+            <button mat-raised-button color="accent" (click)="postClient()" >Update</button>
+              <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
+              
+            </div>    
+    
+    </mat-dialog-actions>
+      </div>

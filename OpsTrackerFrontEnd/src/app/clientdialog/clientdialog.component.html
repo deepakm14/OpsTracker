@@ -1,0 +1,35 @@
+<div>
+
+  <mat-dialog-content>
+    
+    <div class="row" >
+                          
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Employee Name" [(ngModel)]="data.name">
+        </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Project Code" [(ngModel)]="data.projectCode">
+    </mat-form-field>
+  
+  </div>
+  
+ 
+  
+   
+   
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      
+        <div class="button-row">
+                                            
+          <button mat-raised-button color="accent" (click)="postClient()" >Update</button>
+            <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
+            
+          </div>    
+  
+  </mat-dialog-actions>
+    </div>

@@ -4,17 +4,18 @@ import { MatDialogRef } from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {DataService} from '../data.service';
+import { Employ } from '../models/employ.model';
 @Component({
   selector: 'app-employdialog',
   templateUrl: './employdialog.component.html',
   styleUrls: ['./employdialog.component.css']
 })
 export class EmploydialogComponent implements OnInit {
-
+public emp1: Employ;
   constructor(public thisdialogRef: MatDialogRef<EmploydialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-
+ 
   }
 
   onCloseConfirm() {

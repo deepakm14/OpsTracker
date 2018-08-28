@@ -3,9 +3,14 @@ import { Toolbarservice } from '../my-nav/my-nav.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs';
+
 import {map, startWith} from 'rxjs/operators';
 import {DataService} from '../data.service';
+import { Observable, of } from 'rxjs'
+
+
+
+
 
 
 @Component({
@@ -15,7 +20,14 @@ import {DataService} from '../data.service';
   providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
+ 
+  myControl1 = new FormControl();
+  Contracttype: string[] = ['Manpower', 'Lumsum', 'SLA' , 'One Time', 'Project Event' , 'PartTimers'];
+  Materialtype: string[] = ['Fixed materials', 'At Actual'];
+  Designation: string[] = ['SENIOR MANAGER', 'MANAGER' , 'ASST MANAGER'];
 
+
+ isLoadingResults = false;
   private fieldArray: Array<any> = [];
   private fieldArray1: Array<any> = [];
   private fieldArray2: Array<any> = [];
@@ -83,7 +95,7 @@ export class MasterdataComponent implements OnInit {
 
 
 
-  isLoadingResults = false;
+
   visible = true;
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService){}
 //Variable declation
@@ -105,15 +117,24 @@ export class MasterdataComponent implements OnInit {
   postEmployee()
   {
     
-    console.log(this.emp);
+   
     this.http.post('http://localhost:8080/uds/employee', this.emp)
+    
       .subscribe(
         (data:any) => { 
           if(data.length) {
             console.log(data);
+           
           }
+          this.isLoadingResults = false;
+        },
+        error => {
+         
+        },
+        () => {
+          console.log('finished');
         }
-      )
+      );
   }
 
   postClient()
@@ -143,7 +164,11 @@ export class MasterdataComponent implements OnInit {
 
   postSite()
   {
-    this.createSiteJson();
+
+    this.site.manPowerDTO.push(this.fieldArray);
+    this.site.machineDTO.push(this.fieldArray2);
+    this.site.materialDTO.push(this.fieldArray1);
+   // this.createSiteJson();
     console.log(this.site);
     this.http.post('http://localhost:8080/uds/site', this.site)
     .subscribe(

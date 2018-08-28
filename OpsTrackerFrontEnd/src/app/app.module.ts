@@ -42,6 +42,9 @@ import { MatDialogModule } from '@angular/material';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PaginationComponent } from './pagination/pagination.component';
 import {EmploydialogComponent} from './employdialog/employdialog.component';
+import { ClientdialogComponent } from './clientdialog/clientdialog.component';
+import { EscalationdialogComponent } from './escalationdialog/escalationdialog.component';
+import { EscalationmainviewComponent } from './escalationmainview/escalationmainview.component';
 
 
 
@@ -68,7 +71,10 @@ import {EmploydialogComponent} from './employdialog/employdialog.component';
     SiteupdateComponent,
     EscalationupdateComponent,
     PaginationComponent,
-    EmploydialogComponent
+    EmploydialogComponent,
+    ClientdialogComponent,
+    EscalationdialogComponent,
+    EscalationmainviewComponent
    
 
   ],
@@ -107,7 +113,7 @@ import {EmploydialogComponent} from './employdialog/employdialog.component';
 
   ],
   entryComponents: [
-    EmploydialogComponent
+    EmploydialogComponent, ClientdialogComponent,EscalationdialogComponent,
   ],
 
   providers: [],

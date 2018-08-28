@@ -1,0 +1,21 @@
+.algnleft{
+    margin:20px 
+}
+.div-left{
+    float:right;
+    padding-right:20px;
+}
+.mat-cell:nth-child(2), .mat-header-cell:nth-child(2) {
+    flex: 0 0 200px;
+}
+.martop{
+    margin-top: 14px;
+}
+.spinnerabove {
+    position:absolute;
+    top:50%;
+    left:50%;
+   
+    z-index: 10;
+  }
+  
