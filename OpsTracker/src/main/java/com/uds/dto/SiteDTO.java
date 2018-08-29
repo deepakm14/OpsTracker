@@ -24,8 +24,6 @@ public class SiteDTO {
 	
 	private long siteInchargeId;
 	
-	private String typeOfService;
-	
 	private List<ManPowerDTO> manPowerDTO;
 	
 	private List<MaterialDTO> materialDTO;
@@ -110,14 +108,6 @@ public class SiteDTO {
 
 	public void setSiteInchargeId(long siteInchargeId) {
 		this.siteInchargeId = siteInchargeId;
-	}
-
-	public String getTypeOfService() {
-		return typeOfService;
-	}
-
-	public void setTypeOfService(String typeOfService) {
-		this.typeOfService = typeOfService;
 	}
 
 	public List<ManPowerDTO> getManPowerDTO() {

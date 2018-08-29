@@ -13,13 +13,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.uds.domain.EscalationTracker;
 import com.uds.domain.MachineTracker;
 import com.uds.domain.ManPowerTracker;
 import com.uds.domain.MaterialTracker;
+import com.uds.dto.EscalationTrackerDTO;
 import com.uds.dto.MachineTrackerDTO;
 import com.uds.dto.ManPowerTrackerDTO;
 import com.uds.dto.MaterialTrackerDTO;
 import com.uds.dto.SearchOptionDTO;
+import com.uds.repository.EscalationTrackerRepository;
 import com.uds.repository.MachineTrackerRepository;
 import com.uds.repository.ManPowerTrackerRepository;
 import com.uds.repository.MaterialTrackerRepository;
@@ -31,7 +34,7 @@ import com.uds.util.MapperUtil;
 public class OpsTrackerService {
 
 	@Autowired
-	private SiteRepository siteRepository;
+	private EscalationTrackerRepository escalationTrackerRepository;
 	
 	@Autowired
 	private MaterialTrackerRepository materialTrackerRepository;
@@ -273,5 +276,65 @@ public class OpsTrackerService {
 			}
 		}
 		return null;
+	}
+
+	public String addEscalation(EscalationTrackerDTO escalationTrackerDTO) {
+		String message = " ";
+		EscalationTracker escalationTracker = mapperUtil.toEntity(escalationTrackerDTO, EscalationTracker.class);
+		try
+		{
+			escalationTrackerRepository.save(escalationTracker);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			escalationTracker = null;
+			escalationTrackerDTO = null;
+		}
+		return message;
+	}
+	
+	public String updateEscalation(EscalationTrackerDTO escalationTrackerDTO) {
+		String message = " ";
+		EscalationTracker escalationTracker = escalationTrackerRepository.findOne(escalationTrackerDTO.getId());
+		escalationTracker.setId(escalationTrackerDTO.getId());
+		escalationTracker.setTypeOfEscalation(escalationTrackerDTO.getTypeOfEscalation());
+		escalationTracker.setDescription(escalationTrackerDTO.getDescription());
+		escalationTracker.setCommunicatedVia(escalationTrackerDTO.getCommunicatedVia());
+		escalationTracker.setCommunicatedDate(escalationTrackerDTO.getCommunicatedDate());
+		escalationTracker.setEstimatedClosureDate(escalationTrackerDTO.getEstimatedClosureDate());
+		escalationTracker.setClosureDate(escalationTrackerDTO.getClosureDate());
+		try
+		{
+			escalationTrackerRepository.save(escalationTracker);
+			message = "success";
+		}
+		catch(Exception e)
+		{
+			message = "failed";
+		}
+		finally
+		{
+			escalationTracker = null;
+			escalationTrackerDTO = null;
+		}
+		return message;
+	}
+
+	public Page<EscalationTracker> selectAllEscTracker(int page, int size) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		Page<EscalationTracker> escalationTrackers = escalationTrackerRepository.findAll(new PageRequest(page, size));
+		return escalationTrackers;
+	}
+
+	public EscalationTracker selectOneEscTracker(long id) {
+		// TODO Auto-generated method stub
+		EscalationTracker escalationTracker = escalationTrackerRepository.findOne(id);
+		return escalationTracker;
 	}
 }

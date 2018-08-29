@@ -1,10 +1,13 @@
 {
-  "name": "udswebproject",
+  "name": "opstracker",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "npm run deploy",
+    "predploy": "rimraf ../OpsTracker/staticOpsTracker/src/main/resources/static && mkdirp ../OpsTracker/staticOpsTracker/src/main/resources/static",
+    "deploy": "copyfiles -f dist/** ../OpsTracker/src/main/resources/static",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
