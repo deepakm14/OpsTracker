@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
 import {DataService} from '../data.service';
 import { Observable, of } from 'rxjs'
 
@@ -24,7 +24,7 @@ export class MasterdataComponent implements OnInit {
   myControl1 = new FormControl();
   Contracttype: string[] = ['Manpower', 'Lumsum', 'SLA' , 'One Time', 'Project Event' , 'PartTimers'];
   Materialtype: string[] = ['Fixed materials', 'At Actual'];
-  Designation: string[] = ['SENIOR MANAGER', 'MANAGER' , 'ASST MANAGER'];
+  Designation: Array<any> = [{'id':'1','name':'REGIONAL MANAGER'},{'id':'2','name':'SENIOR MANAGER'},{'id':'3','name':'MANAGER'},{'id':'4','name':'ASST MANAGER'}];
 
 
  isLoadingResults = false;
@@ -100,7 +100,7 @@ export class MasterdataComponent implements OnInit {
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService){}
 //Variable declation
   myControl = new FormControl();
-  public emp={};
+  public emp={"designation":""};
   public client={};
   public site={"projectId":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
   "manPowerDTO":[],"machineDTO":[],"materialDTO":[]};
@@ -116,22 +116,41 @@ export class MasterdataComponent implements OnInit {
 
   postEmployee()
   {
-    
+    this.isLoadingResults = true;
    
     this.http.post('http://localhost:8080/uds/employee', this.emp)
-    
+    .pipe(
+      startWith({}),
+      switchMap(() => {
+       
+        
+        return 'ok';
+
+      }),
+      map(data => {
+        console.log('ggg');
+        // Flip flag to show that loading has finished.
+       
+      
+        return 'ok';
+      }),
+      catchError(() => {
+        console.log('errr');
+      
+        return 'ok';
+      })
+    )
       .subscribe(
         (data:any) => { 
           if(data.length) {
             console.log(data);
            
           }
-          this.isLoadingResults = false;
+          
         },
-        error => {
-         
-        },
+        error => console.log("Error: ", error),
         () => {
+          this.isLoadingResults = false;
           console.log('finished');
         }
       );
@@ -144,18 +163,40 @@ export class MasterdataComponent implements OnInit {
     
     console.log(this.client);
     this.http.post('http://localhost:8080/uds/project', this.client)
+    .pipe(
+      startWith({}),
+      switchMap(() => {
+       
+        
+        return 'ok';
+
+      }),
+      map(data => {
+        console.log('ggg');
+        // Flip flag to show that loading has finished.
+       
+      
+        return 'ok';
+      }),
+      catchError(() => {
+        console.log('errr');
+      
+        return 'ok';
+      })
+    )
       .subscribe(
         (data:any) => { 
           if(data.length) {
             console.log(data);
            
           }
-          this.isLoadingResults = false;
+         
         },
         error => {
          
         },
         () => {
+          this.isLoadingResults = false;
           console.log('finished');
         }
       );
@@ -170,10 +211,39 @@ export class MasterdataComponent implements OnInit {
     this.site.materialDTO = this.fieldArray1;
    // this.createSiteJson();
     console.log(this.site);
+    this.isLoadingResults = true;
     this.http.post('http://localhost:8080/uds/site', this.site)
+    .pipe(
+      startWith({}),
+      switchMap(() => {
+       
+        
+        return 'ok';
+
+      }),
+      map(data => {
+        console.log('ggg');
+        // Flip flag to show that loading has finished.
+       
+      
+        return 'ok';
+      }),
+      catchError(() => {
+        console.log('errr');
+      
+        return 'ok';
+      })
+    )
     .subscribe(
       (data:any) => {
         console.log(data);
+      } ,
+      error => {
+       
+      },
+      () => {
+        this.isLoadingResults = false;
+        console.log('finished');
       }
     );
   }
@@ -185,18 +255,39 @@ export class MasterdataComponent implements OnInit {
     
     console.log(this.site);
     this.http.post('http://localhost:8080//uds/esctype', this.escalationtype)
-    
+    .pipe(
+      startWith({}),
+      switchMap(() => {
+       
+        
+        return 'ok';
+
+      }),
+      map(data => {
+        console.log('ggg');
+        // Flip flag to show that loading has finished.
+       
+      
+        return 'ok';
+      }),
+      catchError(() => {
+        console.log('errr');
+      
+        return 'ok';
+      })
+    )
     .subscribe(
       (data:any) => {
         console.log(data);
         
-      }, error => {
-         
+      },
+      error => {
+       
       },
       () => {
+        this.isLoadingResults = false;
         console.log('finished');
       }
-     
     );
   
    
@@ -223,6 +314,12 @@ export class MasterdataComponent implements OnInit {
     this.site.manPowerDTO.push(this.manpower);
     this.site.machineDTO.push(this.machine);
     this.site.materialDTO.push(this.material);
+  }
+
+  setDesignation(id:string)
+  {
+    console.log(id);
+    this.emp.designation = id;
   }
 
   setSiteProject(id:string)
