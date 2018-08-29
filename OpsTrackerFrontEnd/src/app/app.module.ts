@@ -45,6 +45,8 @@ import {EmploydialogComponent} from './employdialog/employdialog.component';
 import { ClientdialogComponent } from './clientdialog/clientdialog.component';
 import { EscalationdialogComponent } from './escalationdialog/escalationdialog.component';
 import { EscalationmainviewComponent } from './escalationmainview/escalationmainview.component';
+import { EscalationtrackerviewComponent } from './escalationtrackerview/escalationtrackerview.component';
+import { EscalationtrackerdialogComponent } from './escalationtrackerdialog/escalationtrackerdialog.component';
 
 
 
@@ -74,7 +76,9 @@ import { EscalationmainviewComponent } from './escalationmainview/escalationmain
     EmploydialogComponent,
     ClientdialogComponent,
     EscalationdialogComponent,
-    EscalationmainviewComponent
+    EscalationmainviewComponent,
+    EscalationtrackerviewComponent,
+    EscalationtrackerdialogComponent,
    
 
   ],
@@ -108,12 +112,13 @@ import { EscalationmainviewComponent } from './escalationmainview/escalationmain
     MatTableModule,
     HttpClientModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+   
 
 
   ],
   entryComponents: [
-    EmploydialogComponent, ClientdialogComponent,EscalationdialogComponent,
+    EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,
   ],
 
   providers: [],
