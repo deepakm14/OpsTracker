@@ -123,7 +123,7 @@ export class OpstrackerComponent implements OnInit {
   {
     console.log(this.manpowertransaction);
     try{
-      this.http.post('http://localhost:8080/uds/opstracker/manpower',this.manpowertransaction)
+      this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/manpower',this.manpowertransaction)
       .subscribe(
         (data:any) => { 
           if(data.length) {
@@ -143,7 +143,7 @@ postMaterialTransaction()
 {
   console.log(this.materialtransaction);
   try{
-    this.http.post('http://localhost:8080/uds/opstracker/material',this.manpowertransaction)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material',this.manpowertransaction)
     .subscribe(
       (data:any) => { 
         if(data.length) {

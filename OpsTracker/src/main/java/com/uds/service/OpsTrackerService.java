@@ -26,7 +26,6 @@ import com.uds.repository.EscalationTrackerRepository;
 import com.uds.repository.MachineTrackerRepository;
 import com.uds.repository.ManPowerTrackerRepository;
 import com.uds.repository.MaterialTrackerRepository;
-import com.uds.repository.SiteRepository;
 import com.uds.util.MapperUtil;
 
 @Service
@@ -56,7 +55,6 @@ public class OpsTrackerService {
 		{
 		Date createdDate = new Date();
 		materialTracker.setCreatedDate(createdDate);
-		materialTracker.setSubmitDate(createdDate);
 		}
 		catch(Exception e)
 		{
@@ -200,18 +198,8 @@ public class OpsTrackerService {
 		machineTracker.setModelNo(machineTrackerDTO.getModelNo());
 		machineTracker.setSerialNo(machineTrackerDTO.getSerialNo());
 		machineTracker.setStatus(machineTrackerDTO.getStatus());
-		try
-		{
-		String string = "January 2, 2010";
-		DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-		Date createdDate = format.parse(string);
-		machineTracker.setComplaintRaisedDate(createdDate);
-		machineTracker.setResolutionDate(createdDate);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		machineTracker.setComplaintRaisedDate(machineTrackerDTO.getComplaintRaisedDate());
+		machineTracker.setResolutionDate(machineTrackerDTO.getResolutionDate());
 		try
 		{
 			machineTrackerRepository.save(machineTracker);

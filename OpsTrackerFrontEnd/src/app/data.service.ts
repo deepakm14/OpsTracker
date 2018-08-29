@@ -14,32 +14,32 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployee(): Observable<Employ[]> {
-  return this.http.get<Employ[]>('http://localhost:8080/uds/employee/search');
+  getEmployee(desg: string): Observable<Employ[]> {
+  return this.http.get<Employ[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/searchbydesg/' + desg);
   }
 
   getEscalation(): Observable<Escalation[]> {
-    return this.http.get<Escalation[]>('http://localhost:8080//uds/esctype/search');
+    return this.http.get<Escalation[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/esctype/search');
   }
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>('http://localhost:8080/uds/project/search');
+    return this.http.get<Project[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project/search');
   }
 
   getSites(): Observable<Site[]> {
-    return this.http.get<Site[]>('http://localhost:8080/uds/site/search');
+    return this.http.get<Site[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site/search');
   }
 
   getSite(id): Observable<Site> {
-    return this.http.get<Site>('http://localhost:8080/uds/site/search/' + id);
+    return this.http.get<Site>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site/search/' + id);
   }
 
   getemployee(pages, records): Observable<Employ[]> {
     
-    return this.http.get<Employ[]>('http://localhost:8080//uds/employee/search/' + pages + '/' + records);
+    return this.http.get<Employ[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/search/' + pages + '/' + records);
   }
   getemployeebyid(id): Observable<Employ> {
     
-    return this.http.get<Employ>('http://localhost:8080//uds/employee/search/'+id);
+    return this.http.get<Employ>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/search/'+id);
   }
 }

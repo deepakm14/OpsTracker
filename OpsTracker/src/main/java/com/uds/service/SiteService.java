@@ -1,11 +1,8 @@
 package com.uds.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,16 +60,7 @@ public class SiteService {
 		}
 		for (MaterialDTO matDTO : materialDTOs) {
 			Material material = mapperUtil.toEntity(matDTO, Material.class);
-			try {
-				String string = "January 2, 2010";
-				DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-				Date commitmentDate = format.parse(string);
-				material.setTypeOfService("Material");
-				material.setCommitmentDate(commitmentDate);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
+			material.setCommitmentDate(matDTO.getCommitmentDate());
 			material.setSite(site);
 			materials.add(material);
 		}
@@ -137,8 +125,7 @@ public class SiteService {
 			material.setId(matDTO.getId());
 			material.setTypeOfService(matDTO.getTypeOfService());
 			material.setMaterialType(matDTO.getMaterialType());
-			Date date = new Date();
-			material.setCommitmentDate(date);
+			material.setCommitmentDate(matDTO.getCommitmentDate());
 			material.setSite(site);
 			materials.add(material);
 		}
