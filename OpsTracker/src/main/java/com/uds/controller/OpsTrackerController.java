@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uds.domain.EscalationTracker;
 import com.uds.domain.ManPowerTracker;
+import com.uds.dto.EscalationTrackerDTO;
 import com.uds.dto.MachineTrackerDTO;
 import com.uds.dto.ManPowerTrackerDTO;
 import com.uds.dto.MaterialTrackerDTO;
@@ -81,9 +83,34 @@ public class OpsTrackerController {
 		return opsTrackerService.selectAllPagination(page,size);
 	}
 	
+	@PostMapping("/opstracker/escalation")
+	public String saveEscalation(@RequestBody EscalationTrackerDTO escalationTrackerDTO, HttpServletRequest request)
+	{
+		return opsTrackerService.addEscalation(escalationTrackerDTO);
+	}
+	
+	@PutMapping("/opstracker/escalationupdate")
+	public String updateEscalation(@RequestBody EscalationTrackerDTO escalationTrackerDTO, HttpServletRequest request)
+	{
+		return opsTrackerService.updateEscalation(escalationTrackerDTO);
+	}
+	
+	@GetMapping("/opstracker/escalation/search/{page}/{size}")
+	public Page<EscalationTracker> findAllEscTracker(@PathVariable("page") int page, @PathVariable("size") int size)
+	{
+		return opsTrackerService.selectAllEscTracker(page,size);
+	}
+	
+	@GetMapping("/opstracker/escalation/{id}")
+	public EscalationTracker findOneEscTracker(@PathVariable long id)
+	{
+		return opsTrackerService.selectOneEscTracker(id);
+	}
+	
 	@PostMapping("/opstracker/search")
 	public List<?> search(@RequestBody SearchOptionDTO searchOption)
 	{
 		return opsTrackerService.search(searchOption);
 	}
+
 }

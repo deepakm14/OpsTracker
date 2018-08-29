@@ -165,9 +165,9 @@ export class MasterdataComponent implements OnInit {
   postSite()
   {
 
-    this.site.manPowerDTO.push(this.fieldArray);
-    this.site.machineDTO.push(this.fieldArray2);
-    this.site.materialDTO.push(this.fieldArray1);
+    this.site.manPowerDTO = this.fieldArray;
+    this.site.machineDTO = this.fieldArray2;
+    this.site.materialDTO = this.fieldArray1;
    // this.createSiteJson();
     console.log(this.site);
     this.http.post('http://localhost:8080/uds/site', this.site)

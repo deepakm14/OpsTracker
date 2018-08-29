@@ -23,6 +23,8 @@ public class ManPower implements Serializable{
 	
 	private String typeOfService;
 	
+	private String shift;
+	
 	private int planned;
 	
 	private String startTime;
@@ -47,6 +49,14 @@ public class ManPower implements Serializable{
 
 	public void setTypeOfService(String typeOfService) {
 		this.typeOfService = typeOfService;
+	}
+
+	public String getShift() {
+		return shift;
+	}
+
+	public void setShift(String shift) {
+		this.shift = shift;
 	}
 
 	public int getPlanned() {
