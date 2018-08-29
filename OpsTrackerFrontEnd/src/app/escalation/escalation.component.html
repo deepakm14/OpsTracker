@@ -2,18 +2,22 @@
 
   <div>
     <mat-card>
+        <button mat-mini-fab>
+            <mat-icon aria-label="" routerLink="../EscalationtrackerComponent">remove_red_eye</mat-icon>
+          </button>
       <mat-card-header>
-
-        <mat-card-title>Escalation</mat-card-title>
+         
+        <mat-card-title></mat-card-title>
 
       </mat-card-header>
       <mat-divider></mat-divider>
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoadingResults" ></mat-progress-bar> 
       <mat-card-content>
         <div>
           <mat-form-field class="example-full-width">
             <input type="text" placeholder="Type of Escalation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let escalation of escalation$" [value]="escalation">
+              <mat-option *ngFor="let escalation of escalation$" [value]="escalation.escalationType" (click)="setEscalationtype(escalation.escalationType)" >
                 {{escalation.escalationType}}
               </mat-option>
             </mat-autocomplete>
@@ -21,42 +25,42 @@
 
 
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Description">
+            <input matInput placeholder="Description" [(ngModel)]="esc2.description">
           </mat-form-field>
 
 
           <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Communicated Via" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <input type="text" placeholder="Communicated Via" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto1">
             <mat-autocomplete #auto1="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
+              <mat-option *ngFor="let com1 of communicatedvia; let i = index" [value]="com1" (click)="setCommunicatedvia(com1)">
+                {{com1}}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field> 
 
 
           <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker" placeholder="Communicated Date">
+            <input matInput [matDatepicker]="picker" placeholder="Communicated Date" format="dd-MM-yyyy" [(ngModel)]="esc2.communicatedDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker1" placeholder="Closure Date">
+            <input matInput [matDatepicker]="picker1" placeholder="Closure Date" format="dd-MM-yyyy" [(ngModel)]="esc2.closureDate">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker2" placeholder="Estimated Closure Date">
+            <input matInput [matDatepicker]="picker2" placeholder="Estimated Closure Date" format="dd-MM-yyyy" [(ngModel)]="esc2.estimatedClosureDate">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
 
           <div class="button-row">
 
-            <button mat-raised-button color="accent">Submit</button>
-
+            <button mat-raised-button color="accent" (click)="postEscalationtracker()">Submit</button>
+ 
 
           </div>
 

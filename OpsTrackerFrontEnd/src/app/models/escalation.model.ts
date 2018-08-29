@@ -1,9 +1,9 @@
 export class Escalation {
-    EscalationType: string;
+    typeOfEscalation: string;
     description: string;
-    designation: string;
-    communicatedvia: string;
-    communicationdate: string;
-    closuredate: string;
-    estclosuredate: string;
+   
+    communicatedVia: string;
+    communicatedDate: string;
+    closureDate: string;
+    estimatedClosureDate: string;
 }

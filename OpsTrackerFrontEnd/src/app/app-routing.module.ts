@@ -12,7 +12,7 @@ import {EmplyeeviewComponent} from './emplyeeview/emplyeeview.component';
 import {ClientviewComponent} from './clientview/clientview.component';
 import {SiteviewComponent} from './siteview/siteview.component';
 import {EscalationviewComponent} from './escalationview/escalationview.component';
-
+import { EscalationtrackerviewComponent } from './escalationtrackerview/escalationtrackerview.component';
 const routes: Routes = [
 {
   path: 'masterdata',
@@ -53,7 +53,12 @@ path: 'siteview',
 {
 path: 'escalationview',
   component : EscalationviewComponent
+},
+{
+path: 'EscalationtrackerComponent',
+  component : EscalationtrackerviewComponent
 }
+
 ];
 
 @NgModule({

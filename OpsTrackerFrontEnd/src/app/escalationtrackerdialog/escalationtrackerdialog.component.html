@@ -1,0 +1,63 @@
+<div>
+
+    <mat-dialog-content>
+      
+      <div class="row" >
+                            
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Types Of Escalation" [(ngModel)]="data.typeOfEscalation">
+          </mat-form-field>
+    
+    </div>
+
+    <div class="row" >
+                            
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Description" [(ngModel)]="data.description">
+      </mat-form-field>
+    
+    </div>
+    <div class="row" >
+                            
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Communicated Via" [(ngModel)]="data.communicatedVia">
+      </mat-form-field>
+    
+    </div>
+    
+    <div class="row" >
+                            
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Communicated Date" [(ngModel)]="data.communicatedDate">
+      </mat-form-field>
+    
+    </div>
+    <div class="row" >
+                            
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Closure date" [(ngModel)]="data.closureDate">
+      </mat-form-field>
+    
+    </div>
+    <div class="row" >
+                            
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Estimated Closure Date" [(ngModel)]="data.estimatedClosureDate">
+      </mat-form-field>
+    
+    </div>
+    
+     
+     
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        
+          <div class="button-row">
+                                              
+            <button mat-raised-button color="accent" (click)="postEmployee()" >Update</button>
+              <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
+              
+            </div>    
+    
+    </mat-dialog-actions>
+      </div>
