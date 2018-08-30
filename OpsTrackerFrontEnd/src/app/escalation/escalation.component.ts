@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {DataService} from '../data.service';
-import {Escalation} from '../models/escalation.model'
+import {Escalation} from '../models/escalation.model';
 import { HttpClient } from '@angular/common/http';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';

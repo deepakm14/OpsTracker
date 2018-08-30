@@ -104,8 +104,8 @@
                              <mat-form-field class="example-full-width">
                                       <input type="text" placeholder="Contract Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto11">
                                       <mat-autocomplete #auto11="matAutocomplete">
-                                        <mat-option *ngFor="let option of Contracttype" [value]="option" >
-                                          {{option}}
+                                        <mat-option *ngFor="let cont of Contracttype" [value]="cont" (click)="setContracttype(cont)">
+                                          {{cont}}
                                         </mat-option>
                                       </mat-autocomplete>
                                     </mat-form-field>
@@ -253,7 +253,7 @@
 
                                           
                                                 <mat-form-field>
-                                                        <input matInput [matDatepicker]="picker" placeholder="Commitment Date" [(ngModel)]="newAttribute1.commitmentdate">
+                                                        <input matInput [matDatepicker]="picker"  placeholder="Commitment Date" [(ngModel)]="newAttribute1.commitmentdate ">
                                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                                         <mat-datepicker #picker ></mat-datepicker>
                                                       </mat-form-field>

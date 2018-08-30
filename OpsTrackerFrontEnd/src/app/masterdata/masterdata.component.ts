@@ -20,7 +20,7 @@ import { Observable, of } from 'rxjs'
   providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
- 
+  date;
   myControl1 = new FormControl();
   Contracttype: string[] = ['Manpower', 'Lumsum', 'SLA' , 'One Time', 'Project Event' , 'PartTimers'];
   Materialtype: string[] = ['Fixed materials', 'At Actual'];
@@ -102,8 +102,8 @@ export class MasterdataComponent implements OnInit {
   myControl = new FormControl();
   public emp={"designation":""};
   public client={};
-  public site={"projectId":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
-  "manPowerDTO":[],"machineDTO":[],"materialDTO":[]};
+  public site={"projectId":"","contractType":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
+  "manPowerDTO":[],"machineDTO":[],"materialDTO":[],};
   projects: Object;
   sites: Object;
   employees: Object;
@@ -316,6 +316,13 @@ export class MasterdataComponent implements OnInit {
     this.site.materialDTO.push(this.material);
   }
 
+
+  setContractType(id:string)
+  {
+    console.log(id);
+    this.site.contractType = id;
+  }
+
   setDesignation(id:string)
   {
     console.log(id);
@@ -355,6 +362,7 @@ export class MasterdataComponent implements OnInit {
 
  
   ngOnInit() {
+    this.date = new Date();
     this.listClient();
     this.listEmployees();
 

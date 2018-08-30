@@ -1,16 +1,18 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+
 import { HttpClient } from '@angular/common/http';
 import {DataService} from '../data.service';
 import { Site } from '../models/site.model';
 import { Project } from '../models/project.model';
 import { ManPowerTransaction } from '../models/manpowertransaction.model';
 import { ManPower } from '../models/manpower.model';
+import { Material } from '../models/material.model';
 import { MaterialTransaction } from '../models/materialtransaction.model';
 import { MachineTransaction } from '../models/machinetransaction.model';
 
+import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
 
 
 @Component({
@@ -26,7 +28,11 @@ export class OpstrackerComponent implements OnInit {
   constructor(private data: DataService, private http: HttpClient) { }
 
   myControl = new FormControl();
+  isLoadingResults = false;
   //variable declation
+  Matstatus: string[] = ['Fixed', 'Attached']
+  Mat = new MaterialTransaction();
+  Mac = new MachineTransaction();
   projects: Object;
   sites: Object;
   project = new Project();
@@ -43,6 +49,10 @@ export class OpstrackerComponent implements OnInit {
   value: number;
   id;
 
+
+  setStatus(id:string){
+    this.Mat.status=id;
+  }
   //function call
   listClients()
   {
@@ -55,7 +65,7 @@ export class OpstrackerComponent implements OnInit {
   listSites()
   {
     this.data.getSites().subscribe(
-      data => this.sites = data      
+      data => this.sites = data 
     );
     console.log(this.data);
   }
@@ -73,6 +83,7 @@ export class OpstrackerComponent implements OnInit {
      this.id = id; 
      console.log(this.project);
      this.setManPower();
+     this.Mat.siteId=id;
   }
 
   setManPower()
@@ -142,26 +153,86 @@ export class OpstrackerComponent implements OnInit {
 postMaterialTransaction()
 {
   console.log(this.materialtransaction);
-  try{
-    this.http.post('http://localhost:8080/uds/opstracker/material',this.manpowertransaction)
-    .subscribe(
-      (data:any) => { 
+  
+    this.http.post('http://localhost:8080/uds/opstracker/material',this.Mat)
+    .pipe(
+      startWith({}),
+      switchMap(() => {
+       
+        
+        return 'ok';
+
+      }),
+      map(data => {
+        console.log('ggg');
+        // Flip flag to show that loading has finished.
+       
+      
+        return 'ok';
+      }),
+      catchError(() => {
+        console.log('errr');
+      
+        return 'ok';
+      })
+    ).subscribe(
+      (data:any) =>  { 
         if(data.length) {
           console.log(data);
-          console.log("done");
+         
         }
+       
+      },
+      error => {
+       
+      },
+      () => {
+        this.isLoadingResults = false;
+        console.log('finished');
       }
-    )
-  }
-  catch(Exception )
-  {
-    console.error("not done");
-  }  
+    );
+    
 }
 
 postMachineTransaction()
 {
-  console.log(this.machinetransaction);
+  this.http.post('http://localhost:8080/uds/opstracker/machine',this.Mac)
+    .pipe(
+      startWith({}),
+      switchMap(() => {
+       
+        
+        return 'ok';
+
+      }),
+      map(data => {
+        console.log('ggg');
+        // Flip flag to show that loading has finished.
+       
+      
+        return 'ok';
+      }),
+      catchError(() => {
+        console.log('errr');
+      
+        return 'ok';
+      })
+    ).subscribe(
+      (data:any) =>  { 
+        if(data.length) {
+          console.log(data);
+         
+        }
+       
+      },
+      error => {
+       
+      },
+      () => {
+        this.isLoadingResults = false;
+        console.log('finished');
+      }
+    );
 }
   
   ngOnInit() {
