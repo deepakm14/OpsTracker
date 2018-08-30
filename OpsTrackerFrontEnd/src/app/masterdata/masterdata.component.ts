@@ -24,7 +24,7 @@ export class MasterdataComponent implements OnInit {
   myControl1 = new FormControl();
   Contracttype: string[] = ['Manpower', 'Lumsum', 'SLA' , 'One Time', 'Project Event' , 'PartTimers'];
   Materialtype: string[] = ['Fixed materials', 'At Actual'];
-  Designation: Array<any> = [{'id':'1','name':'REGIONAL MANAGER'},{'id':'2','name':'SENIOR MANAGER'},{'id':'3','name':'MANAGER'},{'id':'4','name':'ASST MANAGER'}];
+  Designation: Array<any> = [{'id':'1','name':'REGIONAL MANAGER'},{'id':'2','name':'SENIOR MANAGER'},{'id':'3','name':'SITE INCHARGE'},{'id':'4','name':'ASSISTANT SENIOR MANAGER'}];
 
 
  isLoadingResults = false;
@@ -323,7 +323,7 @@ export class MasterdataComponent implements OnInit {
 
   listASM()
   {
-    this.data.getEmployee('ASSISTENT SENIOR MANAGER').subscribe(
+    this.data.getEmployee('ASSISTANT SENIOR MANAGER').subscribe(
       data => this.asm = data
     );
     console.log(this.data);
