@@ -14,7 +14,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployee(): Observable<Employ[]> {
+  getEmployee(desg: string): Observable<Employ[]> {
   return this.http.get<Employ[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/search');
   }
 

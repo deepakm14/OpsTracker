@@ -108,6 +108,10 @@ export class MasterdataComponent implements OnInit {
   projects: Object;
   sites: Object;
   employees: Object;
+  rm: Object;
+  sm: Object;
+  asm: Object;
+  si: Object;
   public manpower={};
   public material={};
   public machine={};
@@ -328,7 +332,7 @@ export class MasterdataComponent implements OnInit {
 
   listSI()
   {
-    this.data.getEmployee().subscribe(
+    this.data.getEmployee('SITE INCHARGE').subscribe(
       data => this.employees = data['content']
     );
     console.log(this.data);
@@ -389,7 +393,10 @@ export class MasterdataComponent implements OnInit {
   ngOnInit() {
    
     this.listClient();
-    this.listEmployees();
+    this.listRM();
+    this.listSM();
+    this.listASM();
+    this.listSI();
 
    /* this.filteredOptions = this.myControl.valueChanges
       .pipe(
