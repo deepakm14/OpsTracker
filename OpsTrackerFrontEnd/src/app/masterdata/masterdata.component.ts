@@ -44,8 +44,9 @@ export class MasterdataComponent implements OnInit {
 
   addmanFieldValue(newAttribute) {
     this.manadded = true;
-   
-      this.fieldArray.push(this.newAttribute);
+   this.date=new Date();
+  
+      this.fieldArray.push(this.newAttribute );
      // console.log(this.fieldArray);
       this.newAttribute = {};
   }
@@ -107,10 +108,6 @@ export class MasterdataComponent implements OnInit {
   projects: Object;
   sites: Object;
   employees: Object;
-  rm: Array<any> = [];
-  sm: Array<any> = [];
-  asm: Array<any> = [];
-  si: Array<any> = [];
   public manpower={};
   public material={};
   public machine={};
@@ -122,7 +119,7 @@ export class MasterdataComponent implements OnInit {
   {
     this.isLoadingResults = true;
    
-    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.emp)
+    this.http.post('http://localhost:8080/uds/employee', this.emp)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -166,7 +163,7 @@ export class MasterdataComponent implements OnInit {
     this.isLoadingResults = true;
     
     console.log(this.client);
-    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project', this.client)
+    this.http.post('http://localhost:8080/uds/project', this.client)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -216,7 +213,7 @@ export class MasterdataComponent implements OnInit {
    // this.createSiteJson();
     console.log(this.site);
     this.isLoadingResults = true;
-    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site', this.site)
+    this.http.post('http://localhost:8080/uds/site', this.site)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -258,7 +255,7 @@ export class MasterdataComponent implements OnInit {
     this.isLoadingResults = true;
     
     console.log(this.site);
-    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/esctype', this.escalationtype)
+    this.http.post('http://localhost:8080//uds/esctype', this.escalationtype)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -305,34 +302,10 @@ export class MasterdataComponent implements OnInit {
     console.log(this.data);
   }
 
-  listRM()
+  listEmployees()
   {
-    this.data.getEmployee('REGIONAL MANAGER').subscribe(
-      data => this.rm = data
-    );
-    console.log(this.data);
-  }
-
-  listSM()
-  {
-    this.data.getEmployee('SENIOR MANAGER').subscribe(
-      data => this.sm = data
-    );
-    console.log(this.data);
-  }
-
-  listASM()
-  {
-    this.data.getEmployee('ASSISTENT SENIOR MANAGER').subscribe(
-      data => this.asm = data
-    );
-    console.log(this.data);
-  }
-
-  listSI()
-  {
-    this.data.getEmployee('SITE INCHARGE').subscribe(
-      data => this.si = data
+    this.data.getEmployee().subscribe(
+      data => this.employees = data['content']
     );
     console.log(this.data);
   }
@@ -344,16 +317,17 @@ export class MasterdataComponent implements OnInit {
     this.site.materialDTO.push(this.material);
   }
 
+
   setContractType(id:string)
   {
     console.log(id);
     this.site.contractType = id;
   }
 
-  setDesignation(name:string)
+  setDesignation(id:string)
   {
-    console.log(name);
-    this.emp.designation = name;
+    console.log(id);
+    this.emp.designation = id;
   }
 
   setSiteProject(id:string)
@@ -389,12 +363,9 @@ export class MasterdataComponent implements OnInit {
 
  
   ngOnInit() {
-    this.date = new Date();
+   
     this.listClient();
-    this.listRM();
-    this.listSM();
-    this.listASM();
-    this.listSI();
+    this.listEmployees();
 
    /* this.filteredOptions = this.myControl.valueChanges
       .pipe(

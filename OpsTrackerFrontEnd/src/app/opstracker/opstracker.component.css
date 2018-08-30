@@ -34,6 +34,10 @@
     height: 400px;
     width: 300px;
   }
+  .manpower-box {
+    height: 400px;
+    width: 300px;
+  }
   .client-box {
     height: 200px;
     width: 300px;
@@ -86,4 +90,5 @@
 .mt{
   margin-top: 100px;
 }
+
   

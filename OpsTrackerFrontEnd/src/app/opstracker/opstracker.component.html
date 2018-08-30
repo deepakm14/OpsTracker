@@ -62,7 +62,7 @@
               <mat-tab-group >
                
                   <mat-tab label="Manpower">
-                      <div class="employee-box mat-elevation-z4">
+                      <div class="material-box mat-elevation-z4">
                       <div >
                         
                           <mat-form-field class="example-full-width">
@@ -82,10 +82,20 @@
                                 <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Shortfall" [(ngModel)]="manpowertransaction.shortfall">
                                   </mat-form-field>
-                                  <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Total Number of Relivers" [(ngModel)]="manpowertransaction.totalNoOfRelievers">
+                                  
+                                     <p>Total No of Releivers</p>
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Continued" [(ngModel)]="manpowertransaction.totalNoOfRelievers">
                                     </mat-form-field>
-              
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Continued with OT" [(ngModel)]="manpowertransaction.totalNoOfRelievers">
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="New" [(ngModel)]="manpowertransaction.totalNoOfRelievers">
+                                    </mat-form-field>
+
+
+                                    
                                     <div class="button-row">
                                         
                                         <button mat-raised-button color="accent" (click)="postManPowerTransaction()">Submit</button>

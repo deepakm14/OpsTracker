@@ -5,6 +5,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { DataSource } from '@angular/cdk/table';
 import {HttpClient} from '@angular/common/http';
+import {Dateformat} from '../dateformat.service';
 
 
 
@@ -28,9 +29,11 @@ export class MasterviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private dateformat: Dateformat) {}
 
   ngOnInit() {
+console.log(this.dateformat.convertdate('Wed Aug 29 2018 00:00:00 GMT+0530 (India Standard Time)'));
+
     this.udsDatabase = new UdsHttpDao(this.http);
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
