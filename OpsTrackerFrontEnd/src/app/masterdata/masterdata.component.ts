@@ -344,19 +344,14 @@ export class MasterdataComponent implements OnInit {
     this.site.materialDTO.push(this.material);
   }
 
-<<<<<<< HEAD
-
   setContractType(id:string)
   {
     console.log(id);
     this.site.contractType = id;
   }
 
-  setDesignation(id:string)
   setDesignation(name:string)
   {
-    console.log(id);
-    this.emp.designation = id;
     console.log(name);
     this.emp.designation = name;
   }

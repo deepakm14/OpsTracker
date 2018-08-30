@@ -153,9 +153,8 @@ export class OpstrackerComponent implements OnInit {
 postMaterialTransaction()
 {
   console.log(this.materialtransaction);
-<<<<<<< HEAD
   
-    this.http.post('http://localhost:8080/uds/opstracker/material',this.Mat)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material',this.Mat)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -178,12 +177,6 @@ postMaterialTransaction()
       })
     ).subscribe(
       (data:any) =>  { 
-=======
-  try{
-    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material',this.manpowertransaction)
-    .subscribe(
-      (data:any) => { 
->>>>>>> 18bb8af1ff927ec139624347dd0ac01c6bbbdc82
         if(data.length) {
           console.log(data);
          
