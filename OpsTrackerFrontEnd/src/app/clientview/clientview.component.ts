@@ -101,7 +101,7 @@ export interface Client {
    constructor(private http: HttpClient) {}
   
    getRepoIssues(page: number,records:number): Observable<Client[]> {
-     const href = 'http://localhost:8080/uds/project/search/'+ page + '/' + records;
+     const href = 'http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project/search/'+ page + '/' + records;
     
  
      return this.http.get<Client[]>(href);

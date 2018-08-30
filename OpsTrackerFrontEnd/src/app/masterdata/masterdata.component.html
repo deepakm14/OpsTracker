@@ -22,7 +22,7 @@
                             <mat-form-field class="example-full-width">
                                 <input type="text" placeholder="Designation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto20">
                                 <mat-autocomplete #auto20="matAutocomplete" >
-                                  <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.id)">
+                                  <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
                                     {{des.name}}
                                   </mat-option>
                                 </mat-autocomplete>
@@ -112,7 +112,7 @@
                                 <mat-form-field class="example-full-width">
                                       <input type="text" placeholder="Regional manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto1">
                                       <mat-autocomplete #auto1="matAutocomplete">
-                                        <mat-option *ngFor="let option of employees" [value]="option.name" (click)="setSiteRM(option.id)">
+                                        <mat-option *ngFor="let option of rm" [value]="option.name" (click)="setSiteRM(option.id)">
                                           {{option.name}}
                                         </mat-option>
                                       </mat-autocomplete>
@@ -120,7 +120,7 @@
                                     <mat-form-field class="example-full-width">
                                           <input type="text" placeholder="Senior Manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto2">
                                           <mat-autocomplete #auto2="matAutocomplete">
-                                            <mat-option *ngFor="let option of employees" [value]="option.name" (click)="setSiteSM(option.id)">
+                                            <mat-option *ngFor="let option of sm" [value]="option.name" (click)="setSiteSM(option.id)">
                                               {{option.name}}
                                             </mat-option>
                                           </mat-autocomplete>
@@ -128,7 +128,7 @@
                                         <mat-form-field class="example-full-width">
                                               <input type="text" placeholder="Asst Senior Manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto3">
                                               <mat-autocomplete #auto3="matAutocomplete">
-                                                <mat-option *ngFor="let option of employees" [value]="option.name" (click)="setSiteASM(option.id)">
+                                                <mat-option *ngFor="let option of asm" [value]="option.name" (click)="setSiteASM(option.id)">
                                                   {{option.name}}
                                                 </mat-option>
                                               </mat-autocomplete>
@@ -136,7 +136,7 @@
                                             <mat-form-field class="example-full-width">
                                                   <input type="text" placeholder="Site Incharge" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto4">
                                                   <mat-autocomplete #auto4="matAutocomplete">
-                                                    <mat-option *ngFor="let option of employees" [value]="option.name" (click)="setSiteSI(option.id)">
+                                                    <mat-option *ngFor="let option of si" [value]="option.name" (click)="setSiteSI(option.id)">
                                                       {{option.name}}
                                                     </mat-option>
                                                   </mat-autocomplete>

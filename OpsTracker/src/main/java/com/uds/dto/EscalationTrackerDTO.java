@@ -1,5 +1,7 @@
 package com.uds.dto;
 
+import java.util.Date;
+
 public class EscalationTrackerDTO {
 
 	private long id;
@@ -10,11 +12,11 @@ public class EscalationTrackerDTO {
 	
 	private String communicatedVia;
 	
-	private String communicatedDate;
+	private Date communicatedDate;
 	
-	private String closureDate;
+	private Date closureDate;
 	
-	private String estimatedClosureDate;
+	private Date estimatedClosureDate;
 
 	public long getId() {
 		return id;
@@ -48,27 +50,27 @@ public class EscalationTrackerDTO {
 		this.communicatedVia = communicatedVia;
 	}
 
-	public String getCommunicatedDate() {
+	public Date getCommunicatedDate() {
 		return communicatedDate;
 	}
 
-	public void setCommunicatedDate(String communicatedDate) {
+	public void setCommunicatedDate(Date communicatedDate) {
 		this.communicatedDate = communicatedDate;
 	}
 
-	public String getClosureDate() {
+	public Date getClosureDate() {
 		return closureDate;
 	}
 
-	public void setClosureDate(String closureDate) {
+	public void setClosureDate(Date closureDate) {
 		this.closureDate = closureDate;
 	}
 
-	public String getEstimatedClosureDate() {
+	public Date getEstimatedClosureDate() {
 		return estimatedClosureDate;
 	}
 
-	public void setEstimatedClosureDate(String estimatedClosureDate) {
+	public void setEstimatedClosureDate(Date estimatedClosureDate) {
 		this.estimatedClosureDate = estimatedClosureDate;
 	}
 	

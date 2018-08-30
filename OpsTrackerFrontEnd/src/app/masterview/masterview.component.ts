@@ -88,7 +88,7 @@ export class MasterviewComponent implements OnInit {
     constructor(private http: HttpClient) {}
 
     getRepoIssues(sort: string, order: string, page: number): Observable<UdsApi> {
-      const href = 'http://localhost:8080/uds/employee/search';
+      const href = 'http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com/uds/employee/search';
       const requestUrl =
       `${href}&sort=${sort}&order=${order}&page=${page + 1}`;
 

@@ -1,8 +1,8 @@
 package com.uds.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,15 +21,17 @@ public class EscalationTracker  implements Serializable{
 	
 	private String typeOfEscalation;
 	
+	private String description;
+	
 	private String communicatedVia;
 	
-	private String communicatedDate;
+	private Date communicatedDate;
 	
-	private String closureDate;
+	private Date closureDate;
 	
-	private String estimatedClosureDate;
+	private Date estimatedClosureDate;
 	
-	private String description;
+
 
 	public long getId() {
 		return id;
@@ -47,14 +49,6 @@ public class EscalationTracker  implements Serializable{
 		this.typeOfEscalation = typeOfEscalation;
 	}
 
-//	public String getDesc() {
-//		return desc;
-//	}
-//
-//	public void setDesc(String desc) {
-//		this.desc = desc;
-//	}
-
 	public String getCommunicatedVia() {
 		return communicatedVia;
 	}
@@ -63,27 +57,27 @@ public class EscalationTracker  implements Serializable{
 		this.communicatedVia = communicatedVia;
 	}
 
-	public String getCommunicatedDate() {
+	public Date getCommunicatedDate() {
 		return communicatedDate;
 	}
 
-	public void setCommunicatedDate(String communicatedDate) {
+	public void setCommunicatedDate(Date communicatedDate) {
 		this.communicatedDate = communicatedDate;
 	}
 
-	public String getClosureDate() {
+	public Date getClosureDate() {
 		return closureDate;
 	}
 
-	public void setClosureDate(String closureDate) {
+	public void setClosureDate(Date closureDate) {
 		this.closureDate = closureDate;
 	}
 
-	public String getEstimatedClosureDate() {
+	public Date getEstimatedClosureDate() {
 		return estimatedClosureDate;
 	}
 
-	public void setEstimatedClosureDate(String estimatedClosureDate) {
+	public void setEstimatedClosureDate(Date estimatedClosureDate) {
 		this.estimatedClosureDate = estimatedClosureDate;
 	}
 
