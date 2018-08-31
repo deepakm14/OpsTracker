@@ -47,6 +47,7 @@ import { EscalationdialogComponent } from './escalationdialog/escalationdialog.c
 import { EscalationmainviewComponent } from './escalationmainview/escalationmainview.component';
 import { EscalationtrackerviewComponent } from './escalationtrackerview/escalationtrackerview.component';
 import { EscalationtrackerdialogComponent } from './escalationtrackerdialog/escalationtrackerdialog.component';
+import {ToastService} from './toast-service.service';
 
 
 
@@ -122,7 +123,7 @@ import { EscalationtrackerdialogComponent } from './escalationtrackerdialog/esca
     EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,
   ],
 
-  providers: [],
+  providers: [ToastService],
   bootstrap: [AppComponent],
   
 })

@@ -1,15 +1,16 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-
+import { Dateformat } from '../dateformat.service';
 import { HttpClient } from '@angular/common/http';
 import {DataService} from '../data.service';
 import { Site } from '../models/site.model';
 import { Project } from '../models/project.model';
 import { ManPowerTransaction } from '../models/manpowertransaction.model';
 import { ManPower } from '../models/manpower.model';
-
 import { Material } from '../models/material.model';
+import { Machine } from '../models/machine.model';
+import { MaterialDate } from '../models/materialdate.model';
 import { MaterialTransaction } from '../models/materialtransaction.model';
 import { MachineTransaction } from '../models/machinetransaction.model';
 
@@ -26,7 +27,7 @@ import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
 export class OpstrackerComponent implements OnInit {
 
   //Constructor call
-  constructor(private data: DataService, private http: HttpClient) { }
+  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat) { }
 
   myControl = new FormControl();
   isLoadingResults = false;
@@ -41,22 +42,27 @@ export class OpstrackerComponent implements OnInit {
   manpower = new ManPower();
   materials: Array<Material>;
   material = new Material();
+  machines: Array<Machine>;
+  machine = new Machine();
   manpowertransaction = new ManPowerTransaction();
   materialtransaction = new MaterialTransaction();
   machinetransaction = new MachineTransaction();
+  materialdate = new MaterialDate();
   shift: string;
   time = [];
   message: string;
   shifts = [];
   materialtypes= [];
   clearFormArray=[];
+  machinetypes= [];
+  equipmenttypes=[];
  
   value: number;
   id;
 
 
-  setStatus(id:string){
-    //this.Mat.status=id;
+  setStatus(status:string){
+    this.materialtransaction.status=status;
   }
   //function call
   listClients()
@@ -88,7 +94,8 @@ export class OpstrackerComponent implements OnInit {
      this.id = id; 
      console.log(this.project);
      this.setManPower();
-  
+     this.setMaterial();
+     this.setMachine();
   }
 
   setManPower()
@@ -101,7 +108,7 @@ export class OpstrackerComponent implements OnInit {
          this.manpowers.forEach(i =>{
          this.manpower = i;
          this.shifts.push(this.manpower.startTime + "-" + this.manpower.endTime);
-         console.log(this.shifts);
+         console.log(this.site);
          })}
      );
    }
@@ -137,7 +144,7 @@ export class OpstrackerComponent implements OnInit {
    }
 
 
-setMaterial(id){
+setMaterial(){
   this.data.getSite(this.id).subscribe(
        data => {
   
@@ -148,20 +155,21 @@ setMaterial(id){
          this.materials.forEach(i =>{
          this.material = i;
         
-         this.materialtypes.push(this.material.commitmentDate);
-        
+         this.materialtypes.push(this.material.materialType);
+         console.log(this.materialtypes);
          })}
      );
 }
 
 setCommitmentdate(Commitdate:string){
+  
   this.materials.forEach(i =>{
     this.material = new Material();
     this.material = i;
-   
-    if(Commitdate == this.material.commitmentDate){
-      this.materialtransaction.commitmentDate=this.material.commitmentDate;
-     
+    
+    if(Commitdate == this.material.materialType){
+      this.materialtransaction.commitmentDate=this.dateFormat.convertdate(this.material.commitmentDate);
+     console.log(this.materialtransaction.commitmentDate);
      
       this.materialtransaction.siteId = this.site.id;
       this.materialtransaction.projectId = this.project.id;
@@ -170,6 +178,32 @@ setCommitmentdate(Commitdate:string){
     })
  
 }
+
+setMachine(){
+  this.data.getSite(this.id).subscribe(
+       data => {
+  
+        this.machinetypes.length = 0;
+        this.equipmenttypes.length = 0;
+      
+         this.site = data;
+         this.machines = this.site.machineDTO;
+         this.machines.forEach(i =>{
+         this.machine = i;
+        
+         this.machinetypes.push(this.machine.machineType);
+         this.equipmenttypes.push(this.machine.equipmentType);
+         console.log(this.machinetypes);
+         })}
+     );
+}
+
+ 
+  
+        
+      
+         
+       
 
 
   postManPowerTransaction()
@@ -194,6 +228,10 @@ setCommitmentdate(Commitdate:string){
 
 postMaterialTransaction()
 {
+  this.materialtransaction.indentSubmissionDate=this.dateFormat.convertdate(this.materialdate.indentSubmissionDate);
+  this.materialtransaction.materialSupplyDate=this.dateFormat.convertdate(this.materialdate.materialSupplyDate);
+  this.materialtransaction.uniformSupplyDate=this.dateFormat.convertdate(this.materialdate.uniformSupplyDate);
+ 
   console.log(this.materialtransaction);
   
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material',this.materialtransaction)

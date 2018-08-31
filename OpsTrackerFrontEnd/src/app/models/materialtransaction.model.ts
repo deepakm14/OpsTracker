@@ -5,7 +5,7 @@ export class MaterialTransaction {
     indentSubmissionDate: string;
     materialSupplyDate: string;
     uniformSupplyDate: string;
-    submitDate: string;
+   
     status: string;
     remarks: string;
     projectId: number;
