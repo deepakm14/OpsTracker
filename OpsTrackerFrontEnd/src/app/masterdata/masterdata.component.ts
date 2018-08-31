@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 
 import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
 import {DataService} from '../data.service';
-import { Observable, of } from 'rxjs'
+import { Observable, of } from 'rxjs';
+import { Dateformat} from '../dateformat.service';
 
 
 
@@ -98,8 +99,10 @@ export class MasterdataComponent implements OnInit {
 
 
   visible = true;
-  constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService){}
+  constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService, private dateformat1: Dateformat){}
 //Variable declation
+
+
   myControl = new FormControl();
   public emp={"designation":""};
   public client={};
@@ -123,7 +126,7 @@ export class MasterdataComponent implements OnInit {
   {
     this.isLoadingResults = true;
    
-    this.http.post('http://localhost:8080/uds/employee', this.emp)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.emp)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -167,7 +170,7 @@ export class MasterdataComponent implements OnInit {
     this.isLoadingResults = true;
     
     console.log(this.client);
-    this.http.post('http://localhost:8080/uds/project', this.client)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project', this.client)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -217,7 +220,7 @@ export class MasterdataComponent implements OnInit {
    // this.createSiteJson();
     console.log(this.site);
     this.isLoadingResults = true;
-    this.http.post('http://localhost:8080/uds/site', this.site)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site', this.site)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -259,7 +262,7 @@ export class MasterdataComponent implements OnInit {
     this.isLoadingResults = true;
     
     console.log(this.site);
-    this.http.post('http://localhost:8080//uds/esctype', this.escalationtype)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/esctype', this.escalationtype)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -300,6 +303,7 @@ export class MasterdataComponent implements OnInit {
 
   listClient()
   {
+    
     this.data.getProjects().subscribe(
       data => this.projects = data      
     );
@@ -391,7 +395,7 @@ export class MasterdataComponent implements OnInit {
 
  
   ngOnInit() {
-   
+    console.log(this.dateformat1.convertdate('Thu Aug 30 2018 00:00:00 GMT+0530 (India Standard Time)'));
     this.listClient();
     this.listRM();
     this.listSM();

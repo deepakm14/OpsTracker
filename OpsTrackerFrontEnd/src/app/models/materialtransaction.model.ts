@@ -1,5 +1,5 @@
 export class MaterialTransaction {
-    id: number;
+   
     materialType: string;
     commitmentDate: string;
     indentSubmissionDate: string;
@@ -8,5 +8,6 @@ export class MaterialTransaction {
     submitDate: string;
     status: string;
     remarks: string;
-    siteId: string;
+    projectId: number;
+    siteId: number;
 }
