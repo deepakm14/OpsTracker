@@ -6,6 +6,7 @@ export class Site {
     id: number;
     projectId: number;
     projectName: string;
+    code: number;
     name: string;
     address: string;
     contractType: string;

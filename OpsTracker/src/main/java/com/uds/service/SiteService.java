@@ -1,7 +1,6 @@
 package com.uds.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -23,6 +22,7 @@ import com.uds.dto.MaterialDTO;
 import com.uds.dto.SiteDTO;
 import com.uds.repository.ProjectRepository;
 import com.uds.repository.SiteRepository;
+import com.uds.util.DateUtil;
 import com.uds.util.MapperUtil;
 
 @Service
@@ -31,6 +31,9 @@ public class SiteService {
 
 	private final Logger log = LoggerFactory.getLogger(SiteService.class);
 
+	@Autowired
+	private DateUtil dateUtil;
+	
 	@Autowired
 	private SiteRepository siteRepository;
 
@@ -60,7 +63,8 @@ public class SiteService {
 		}
 		for (MaterialDTO matDTO : materialDTOs) {
 			Material material = mapperUtil.toEntity(matDTO, Material.class);
-			material.setCommitmentDate(matDTO.getCommitmentDate());
+			material.setCommitmentDate(dateUtil.convertDate(matDTO.getCommitmentDate()));
+			material.setTypeOfService("Material");
 			material.setSite(site);
 			materials.add(material);
 		}

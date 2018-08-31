@@ -26,7 +26,7 @@ public class Material implements Serializable{
 	
 	private String materialType;
 	
-	private Date commitmentDate;
+	private String commitmentDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "siteId")
@@ -56,11 +56,11 @@ public class Material implements Serializable{
 		this.materialType = materialType;
 	}
 
-	public Date getCommitmentDate() {
+	public String getCommitmentDate() {
 		return commitmentDate;
 	}
 
-	public void setCommitmentDate(Date commitmentDate) {
+	public void setCommitmentDate(String commitmentDate) {
 		this.commitmentDate = commitmentDate;
 	}
 

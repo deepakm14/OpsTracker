@@ -16,6 +16,7 @@ export class DataService {
 
   getEmployee(desg: string): Observable<Employ[]> {
   return this.http.get<Employ[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/search');
+  //return this.http.get<Employ[]>('http://localhost:8080/uds/employee/search');
   }
 
   getEscalation(): Observable<Escalation[]> {
@@ -24,6 +25,7 @@ export class DataService {
 
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project/search');
+    //return this.http.get<Project[]>('http://localhost:8080/uds/project/search');
   }
 
   getSites(): Observable<Site[]> {
