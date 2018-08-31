@@ -5,6 +5,8 @@ import { Escalation } from './models/escalation.model';
 import { Project } from './models/project.model';
 import { Site } from './models/site.model';
 import {Observable} from 'rxjs';
+import { PropertyfileService } from './propertyfile.service';
+
 
 
 @Injectable({
@@ -12,11 +14,15 @@ import {Observable} from 'rxjs';
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  //reference variable for imported class
+  //env: PropertyfileService;
+
+  constructor(private http: HttpClient, private env: PropertyfileService) { }
 
   getEmployee(desg: string): Observable<Employ[]> {
-  return this.http.get<Employ[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/search');
-  //return this.http.get<Employ[]>('http://localhost:8080/uds/employee/search');
+  console.log('url'+this.env.setURL());
+    return this.http.get<Employ[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/searchbydesg/'+desg);
+  
   }
 
   getEscalation(): Observable<Escalation[]> {
@@ -25,7 +31,6 @@ export class DataService {
 
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project/search');
-    //return this.http.get<Project[]>('http://localhost:8080/uds/project/search');
   }
 
   getSites(): Observable<Site[]> {
