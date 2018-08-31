@@ -161,8 +161,6 @@ setCommitmentdate(Commitdate:string){
    
     if(Commitdate == this.material.commitmentDate){
       this.materialtransaction.commitmentDate=this.material.commitmentDate;
-     
-     
       this.materialtransaction.siteId = this.site.id;
       this.materialtransaction.projectId = this.project.id;
     }
@@ -176,7 +174,7 @@ setCommitmentdate(Commitdate:string){
   {
     console.log(this.manpowertransaction);
     try{
-      this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/manpower',this.manpowertransaction)
+      this.http.post('http://localhost:8080/uds/opstracker/manpower',this.manpowertransaction)
       .subscribe(
         (data:any) => { 
           if(data.length) {

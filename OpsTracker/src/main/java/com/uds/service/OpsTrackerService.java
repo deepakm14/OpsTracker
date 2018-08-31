@@ -129,40 +129,40 @@ public class OpsTrackerService {
 	public String updateManPowerTransaction(ManPowerTrackerDTO manPowerTrackerDTO)
 	{
 		String message = " ";
-		ManPowerTracker manPowerTracker = new ManPowerTracker();
-		manPowerTracker.setId(manPowerTrackerDTO.getId());
-		manPowerTracker.setActual(manPowerTrackerDTO.getActual());
-		manPowerTracker.setPlanned(manPowerTrackerDTO.getPlanned());
-		manPowerTracker.setTotalNoOfRelievers(manPowerTrackerDTO.getTotalNoOfRelievers());
-		manPowerTracker.setShortfall(manPowerTrackerDTO.getShortfall());
-		manPowerTracker.setShiftTime(manPowerTrackerDTO.getShiftTime());
-		manPowerTracker.setSiteId(manPowerTrackerDTO.getSiteId());
-		try
-		{
-		String string = "January 2, 2010";
-		DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-		Date createdDate = format.parse(string);
-		manPowerTracker.setCreatedDate(createdDate);
-		manPowerTracker.setSubmitDate(createdDate);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		try
-		{
-			manPowerTrackerRepository.save(manPowerTracker);
-			message = "success";
-		}
-		catch(Exception e)
-		{
-			message = "failed";
-		}
-		finally
-		{
-			manPowerTracker = null;
-			manPowerTrackerDTO = null;
-		}
+//		ManPowerTracker manPowerTracker = new ManPowerTracker();
+//		manPowerTracker.setId(manPowerTrackerDTO.getId());
+//		manPowerTracker.setActual(manPowerTrackerDTO.getActual());
+//		manPowerTracker.setPlanned(manPowerTrackerDTO.getPlanned());
+//		manPowerTracker.setTotalNoOfRelievers(manPowerTrackerDTO.getTotalNoOfRelievers());
+//		manPowerTracker.setShortfall(manPowerTrackerDTO.getShortfall());
+//		manPowerTracker.setShiftTime(manPowerTrackerDTO.getShiftTime());
+//		manPowerTracker.setSiteId(manPowerTrackerDTO.getSiteId());
+//		try
+//		{
+//		String string = "January 2, 2010";
+//		DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+//		Date createdDate = format.parse(string);
+//		manPowerTracker.setCreatedDate(createdDate);
+//		manPowerTracker.setSubmitDate(createdDate);
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		try
+//		{
+//			manPowerTrackerRepository.save(manPowerTracker);
+//			message = "success";
+//		}
+//		catch(Exception e)
+//		{
+//			message = "failed";
+//		}
+//		finally
+//		{
+//			manPowerTracker = null;
+//			manPowerTrackerDTO = null;
+//		}
 		
 		return message;
 	}
