@@ -40,7 +40,7 @@ postEscalationtracker(){
 
   this.isLoadingResults = true;
    
-  this.http.post('http://localhost:8080/uds/opstracker/escalation', this.esc2)
+  this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/escalation', this.esc2)
   .pipe(
     startWith({}),
     switchMap(() => {

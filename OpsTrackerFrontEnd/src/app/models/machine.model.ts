@@ -3,7 +3,7 @@ export class Machine {
     typeOfService: string;
     machineType: string;
     equipmentType: string;
-    modelNo: number;
+    modelNo: string;
     serialNo: string;
 
 }

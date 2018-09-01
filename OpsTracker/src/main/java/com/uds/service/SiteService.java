@@ -63,7 +63,7 @@ public class SiteService {
 		}
 		for (MaterialDTO matDTO : materialDTOs) {
 			Material material = mapperUtil.toEntity(matDTO, Material.class);
-			material.setCommitmentDate(dateUtil.convertDate(matDTO.getCommitmentDate()));
+			material.setCommitmentDate(dateUtil.convertStringToDate(matDTO.getCommitmentDate()));
 			material.setTypeOfService("Material");
 			material.setSite(site);
 			materials.add(material);

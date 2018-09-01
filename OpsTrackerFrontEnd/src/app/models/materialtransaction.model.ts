@@ -1,5 +1,5 @@
 export class MaterialTransaction {
-   
+    id: number;
     materialType: string;
     commitmentDate: string;
     indentSubmissionDate: string;
