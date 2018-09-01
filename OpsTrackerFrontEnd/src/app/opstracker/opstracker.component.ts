@@ -8,10 +8,12 @@ import { Project } from '../models/project.model';
 import { ManPowerTransaction } from '../models/manpowertransaction.model';
 import { ManPower } from '../models/manpower.model';
 import { Material } from '../models/material.model';
+import { Machine } from '../models/machine.model';
+import { MaterialDate } from '../models/materialdate.model';
 import { MaterialTransaction } from '../models/materialtransaction.model';
 import { MachineTransaction } from '../models/machinetransaction.model';
 import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
-import { Machine } from '../models/machine.model';
+import { Dateformat } from '../dateformat.service';
 
 
 @Component({
@@ -24,7 +26,7 @@ import { Machine } from '../models/machine.model';
 export class OpstrackerComponent implements OnInit {
 
   //Constructor call
-  constructor(private data: DataService, private http: HttpClient) { }
+  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat) { }
 
   myControl = new FormControl();
   isLoadingResults = false;
@@ -64,8 +66,8 @@ export class OpstrackerComponent implements OnInit {
   
 
 
-  setStatus(id:string){
-    //this.Mat.status=id;
+  setStatus(status:string){
+    this.materialtransaction.status=status;
   }
   //function call
   listClients()
@@ -151,6 +153,7 @@ export class OpstrackerComponent implements OnInit {
 
   setMaterial(){
      this.materials = this.site.materialDTO;
+     this.materialtypes.length = 0;
      this.materials.forEach(i =>{
        this.material = i;
        this.materialtypes.push(this.material.materialType);
@@ -158,17 +161,20 @@ export class OpstrackerComponent implements OnInit {
        this.setMachine();
        })
   }
-
-  setCommitmentdate(type:string){
-    this.materialtransaction.materialType = type;
-    this.materials.forEach(i =>{
-      this.material = i;   
-      console.log(type + ' ' + this.material.materialType);
-      if(this.material.materialType == type){
-        this.materialtransaction.commitmentDate=this.material.commitmentDate;
-        this.materialtransaction.siteId = this.site.id;
-        this.materialtransaction.projectId = this.project.id;
-      }
+         
+setCommitmentdate(Commitdate:string){
+  
+  this.materials.forEach(i =>{
+    this.material = new Material();
+    this.material = i;
+    
+    if(Commitdate == this.material.materialType){
+      this.materialtransaction.commitmentDate=this.dateFormat.convertdate(this.material.commitmentDate);
+     console.log(this.materialtransaction.commitmentDate);
+     
+      this.materialtransaction.siteId = this.site.id;
+      this.materialtransaction.projectId = this.project.id;
+    }
    
     })
  

@@ -11,6 +11,8 @@ import { ManPower } from '../models/manpower.model';
 import { Material } from '../models/material.model';
 import { Machine } from '../models/machine.model';
 import { Observable, of } from 'rxjs';
+import {ToastService} from '../toast-service.service';
+
 
 
 
@@ -40,7 +42,7 @@ export class MasterdataComponent implements OnInit {
   Designation: Array<any> = [{'id':'1','name':'REGIONAL MANAGER'},{'id':'2','name':'SENIOR MANAGER'},{'id':'3','name':'SITE INCHARGE'},{'id':'4','name':'ASSISTANT SENIOR MANAGER'}];
 
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService,
-    private dateFormat: Dateformat){}
+    private dateFormat: Dateformat,private toastservice:ToastService){}
 
  isLoadingResults = false;
   private fieldArray: Array<any> = [];
@@ -157,7 +159,7 @@ export class MasterdataComponent implements OnInit {
         console.log('ggg');
         // Flip flag to show that loading has finished.
        
-      
+     
         return 'ok';
       }),
       catchError(() => {
@@ -355,7 +357,8 @@ export class MasterdataComponent implements OnInit {
   listSI()
   {
     this.data.getEmployee('SITE INCHARGE').subscribe(
-      data => this.employees = data['content']
+      //data => this.employees = data['content']
+      data => this.si = data
     );
     console.log(this.data);
   }
