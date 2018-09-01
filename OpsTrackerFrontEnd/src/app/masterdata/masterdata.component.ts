@@ -159,7 +159,7 @@ export class MasterdataComponent implements OnInit {
         console.log('ggg');
         // Flip flag to show that loading has finished.
        
-      this.toastservice.Success('successfly inserted')
+     
         return 'ok';
       }),
       catchError(() => {
@@ -357,7 +357,8 @@ export class MasterdataComponent implements OnInit {
   listSI()
   {
     this.data.getEmployee('SITE INCHARGE').subscribe(
-      data => this.employees = data['content']
+      //data => this.employees = data['content']
+      data => this.si = data
     );
     console.log(this.data);
   }

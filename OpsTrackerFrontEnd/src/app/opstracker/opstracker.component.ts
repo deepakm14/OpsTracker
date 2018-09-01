@@ -197,13 +197,28 @@ setMachine(){
          })}
      );
 }
-
+setModelandSerial(equipmentype:string){
+  this.machines.forEach(i =>{
+    this.machine = new Machine();
+    this.machine = i;
+    
+    if(equipmentype == this.machine.equipmentType){
+      this.materialtransaction.commitmentDate=this.dateFormat.convertdate(this.material.commitmentDate);
+    
+     
+      this.materialtransaction.siteId = this.site.id;
+      this.materialtransaction.projectId = this.project.id;
+    }
+   
+    })
+}
  
   
         
       
          
-       
+        
+     
 
 
   postManPowerTransaction()

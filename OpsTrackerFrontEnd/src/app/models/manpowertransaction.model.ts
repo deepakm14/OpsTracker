@@ -3,7 +3,9 @@ export class ManPowerTransaction {
     planned: number;
     actual: number; 
     shortfall: number;
-    totalNoOfRelievers: number;
+    continuedWithOt: number;
+    continuedWithOutOt: number;
+    newComer: number;
     shiftTime: string;
     projectId: number;
     siteId: number;

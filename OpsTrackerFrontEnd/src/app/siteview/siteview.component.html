@@ -13,7 +13,7 @@
        -->
         
       
-          <table mat-table [dataSource]="sit" class="mat-elevation-z8"
+          <table mat-table [dataSource]="site2" class="mat-elevation-z8"
                  matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%">
             <!-- Number Column -->
             
@@ -24,57 +24,62 @@
               </ng-container>
         
     
-            <ng-container  matColumnDef="name">
+ <ng-container  matColumnDef="name">
               <th mat-header-cell  *matHeaderCellDef>Name</th>
               <td mat-cell *matCellDef="let row">{{row.name}}</td>
-            </ng-container>
+            </ng-container> 
       
             <!-- State Column -->
-            <ng-container matColumnDef="code">
+          <!--   <ng-container matColumnDef="code">
               <th mat-header-cell *matHeaderCellDef>Code</th>
               <td mat-cell *matCellDef="let row">{{row.code}}</td>
-            </ng-container>
+            </ng-container> -->
       
             <!-- Created Column -->
-            <ng-container matColumnDef="designation">
+            <ng-container matColumnDef="contractType">
               <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-                Designation
+                Contract Type
               </th>
-              <td mat-cell *matCellDef="let row">{{row.designation}}</td>
+              <td mat-cell *matCellDef="let row">{{row.contractType}}</td>
             </ng-container>
     
-            <ng-container matColumnDef="mail">
+           <!--  <ng-container matColumnDef="Contract Type">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
                   Mail
                 </th>
-                <td mat-cell *matCellDef="let row">{{row.mail}}</td>
-              </ng-container>
+                <td mat-cell *matCellDef="let row">{{row.contractType}}</td>
+              </ng-container> -->
     
-              <ng-container matColumnDef="mob">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-                    Mobile
-                  </th>
-                  <td mat-cell *matCellDef="let row">{{row.mob}}</td>
-                </ng-container>
-    
-               
-            <ng-container matColumnDef="actionsColumn">
-                <th mat-header-cell *matHeaderCellDef>Action</th>
-                <mat-cell *matCellDef="let row">
-                    <button mat-icon-button>
-                        <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog()" >update</mat-icon>
-                      </button>
-                      <button mat-icon-button>
-                          <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="openDialog()">delete</mat-icon>
-                        </button>
-                    
+             <!-- <ng-container matColumnDef="types">
+                  <th mat-header-cell *matHeaderCellDef>Action</th>
+                  <mat-cell *matCellDef="let row">
+                      <button mat-raised-button color="accent" (click)="postEscalationType()">Manpower</button>
+                      
                 </mat-cell>
+             
+              </ng-container>  -->
+              <ng-container matColumnDef="actionsColumn">
+                  <th mat-header-cell *matHeaderCellDef>Action</th>
+                  
+                  <mat-cell *matCellDef="let row">
+                      <button mat-raised-button color="accent" (click)="getmanpower(row.id)" style="margin-left:5px">Manpower</button>
+                      <button mat-raised-button color="accent" (click)="getmaterial(row.id)" style="margin-left:5px">Material</button>
+                      <button mat-raised-button color="accent" (click)="getmachine(row.id)" style="margin-left:5px">Machine</button>
+                      <button mat-icon-button>
+                          <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >update</mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="openDialog(row.id)">delete</mat-icon>
+                          </button>
+                     
+                  </mat-cell>
+             
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
        
       
-        <mat-paginator [length]="resultsLength" [pageSize]="30"  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          <mat-paginator [length]="resultsLength" [pageSize]="8"></mat-paginator>
       
     </div>

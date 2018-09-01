@@ -48,6 +48,16 @@ import { EscalationmainviewComponent } from './escalationmainview/escalationmain
 import { EscalationtrackerviewComponent } from './escalationtrackerview/escalationtrackerview.component';
 import { EscalationtrackerdialogComponent } from './escalationtrackerdialog/escalationtrackerdialog.component';
 import {ToastService} from './toast-service.service';
+import { SitedialogComponent } from './sitedialog/sitedialog.component';
+import { SitemanpowerdialogComponent } from './sitemanpowerdialog/sitemanpowerdialog.component';
+import { SitemachinedailogComponent } from './sitemachinedailog/sitemachinedailog.component';
+import { SitematerialdialogComponent } from './sitematerialdialog/sitematerialdialog.component';
+import { OpstrackerviewComponent } from './opstrackerview/opstrackerview.component';
+import { OpstrackermanpowerdialogComponent } from './opstrackermanpowerdialog/opstrackermanpowerdialog.component';
+import { OpstrackermaterialdialogComponent } from './opstrackermaterialdialog/opstrackermaterialdialog.component';
+
+import { OpstrackermachinedialogComponent } from './opstrackermachinedialog/opstrackermachinedialog.component';
+import { OpstrackermanpowerviewComponent } from './opstrackermanpowerview/opstrackermanpowerview.component';
 
 
 
@@ -81,6 +91,15 @@ import {ToastService} from './toast-service.service';
     EscalationmainviewComponent,
     EscalationtrackerviewComponent,
     EscalationtrackerdialogComponent,
+    SitedialogComponent,
+    SitemanpowerdialogComponent,
+    SitemachinedailogComponent,
+    SitematerialdialogComponent,
+    OpstrackerviewComponent,
+    OpstrackermanpowerdialogComponent,
+    OpstrackermaterialdialogComponent,
+    OpstrackermachinedialogComponent,
+    OpstrackermanpowerviewComponent,
    
 
   ],
@@ -120,7 +139,7 @@ import {ToastService} from './toast-service.service';
 
   ],
   entryComponents: [
-    EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,
+    EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,SitemachinedailogComponent,SitemanpowerdialogComponent,SitematerialdialogComponent,OpstrackermanpowerdialogComponent,OpstrackermaterialdialogComponent, OpstrackermachinedialogComponent,
   ],
 
   providers: [ToastService],

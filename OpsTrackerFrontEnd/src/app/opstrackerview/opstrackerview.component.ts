@@ -8,26 +8,25 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {DataService} from '../data.service';
 import { Employ } from '../models/employ.model';
 import { MatDialogModule } from '@angular/material';
-import {EscalationtrackerdialogComponent} from '../escalationtrackerdialog/escalationtrackerdialog.component';
-
+import {EmploydialogComponent} from '../employdialog/employdialog.component';
 
 @Component({
-  selector: 'app-escalationtrackerview',
-  templateUrl: './escalationtrackerview.component.html',
-  styleUrls: ['./escalationtrackerview.component.css']
+  selector: 'app-opstrackerview',
+  templateUrl: './opstrackerview.component.html',
+  styleUrls: ['./opstrackerview.component.css']
 })
-export class EscalationtrackerviewComponent implements OnInit {
+export class OpstrackerviewComponent implements OnInit {
   @Input() public emp1: Employ;
   dialogResult="";
   itemsPerPage: number = 10;
   postsPerPage: number[] = [5, 10, 25];
 id;
   emp:Employ[] = [];
-    esc2: Escalation[] = [];
+    emp2: Employees[] = [];
   empid=new Employ();
    exampleDatabase: ExampleHttpDao | null;
 
-  displayedColumns: string[] = ['id', 'typeOfEscalation',  'description' , 'communicatedVia', 'communicatedDate', 'closureDate', 'estimatedClosureDate' ,'actionsColumn'];
+  displayedColumns: string[] = ['id','name', 'code',  'designation' , 'mail', 'mob', 'actionsColumn' ];
   /* //displayedColumns: string[] = [  'code', 'name', 'designation', 'mail' , 'phone']; */
 
 
@@ -112,16 +111,14 @@ id;
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.esc2 = data['content']);
+      ).subscribe(data => this.emp2 = data['content']);
    // this.listEmployees();
   }
-
-
  openDialog(id:number) {
   
-  const item1 = this.esc2.find(i => i.id === id);
+  const item1 = this.emp2.find(i => i.id === id);
  
-    const dialogRef = this.dialog.open(EscalationtrackerdialogComponent, {
+    const dialogRef = this.dialog.open(EmploydialogComponent, {
       width: '300px',
       data:item1
       
@@ -134,27 +131,25 @@ id;
   }
 }
 
-export interface Escalation {
-  id: number;
-  typeOfEscalation: string;
-  description: string;
- 
-  communicatedVia: string;
-  communicatedDate: string;
-  closureDate: string;
-  estimatedClosureDate: string;
- }
- 
- /** An example database that the data source uses to retrieve data for the table. */
- export class ExampleHttpDao { 
-  
- 
-   constructor(private http: HttpClient) {}
-  
-   getRepoIssues(page: number,records:number): Observable<Escalation[]> {
-     const href = 'http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/escalation/search/'+ page + '/' + records;
-    
-     
-     return this.http.get<Escalation[]>(href);
+  export interface Employees {
+    id: number;
+       code: number;
+       designation: string;
+       name: string;
+       mail: string;
+       mob: number;
    }
- }
+   
+   /** An example database that the data source uses to retrieve data for the table. */
+   export class ExampleHttpDao { 
+    
+   
+     constructor(private http: HttpClient) {}
+    
+     getRepoIssues(page: number,records:number): Observable<Employees[]> {
+       const href = 'http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/search/'+ page + '/' + records;
+      
+   
+       return this.http.get<Employees[]>(href);
+     }
+   }
