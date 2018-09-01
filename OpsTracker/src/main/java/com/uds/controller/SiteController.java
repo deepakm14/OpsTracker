@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uds.domain.Site;
@@ -52,9 +53,9 @@ public class SiteController {
 		log.debug("****Inside SiteController*****");
 		siteService.deleteSite(id);
 	}
-	
+
 	@GetMapping("/site/search/{page}/{size}")
-	public Page<Site> findAll(@PathVariable("page") int page,@PathVariable("size") int size)
+	public List<SiteDTO> findAll(@PathVariable("page") int page,@PathVariable("size") int size)
 	{
 		log.debug("****Inside SiteController*****");
 		return siteService.findAll(page,size);
