@@ -169,7 +169,7 @@ setCommitmentdate(Commitdate:string){
     this.material = i;
     
     if(Commitdate == this.material.materialType){
-      this.materialtransaction.commitmentDate=this.dateFormat.convertdate(this.material.commitmentDate);
+      this.materialtransaction.commitmentDate=this.material.commitmentDate;
      console.log(this.materialtransaction.commitmentDate);
      
       this.materialtransaction.siteId = this.site.id;

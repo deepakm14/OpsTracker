@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uds.domain.EscalationType;
 import com.uds.dto.EscalationTypeDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.service.EscalationTypeService;
 
 @RestController
@@ -26,17 +27,15 @@ public class EscalationTypeController {
 	private EscalationTypeService escaltionTypeService;
 	
 	@PostMapping("/esctype")
-	public String saveEscalationType(@RequestBody EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
+	public StatusDTO saveEscalationType(@RequestBody EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
 	{	
-		String message = escaltionTypeService.saveEscalationType(escalationTypeDTO);
-		return message;
+		return escaltionTypeService.saveEscalationType(escalationTypeDTO);
 	}
 
 	@PutMapping("/esctype/update")
-	public String updateEscalationType(EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
+	public StatusDTO updateEscalationType(EscalationTypeDTO escalationTypeDTO, HttpServletRequest httpRequest)
 	{
-		String message = escaltionTypeService.updateEscalationType(escalationTypeDTO);
-		return message;
+		return escaltionTypeService.updateEscalationType(escalationTypeDTO);
 	}
 	
 	@GetMapping("/esctype/{id}")

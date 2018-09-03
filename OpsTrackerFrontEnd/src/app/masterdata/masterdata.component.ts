@@ -44,7 +44,7 @@ export class MasterdataComponent implements OnInit {
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService,
     private dateFormat: Dateformat,private toastservice:ToastService){}
 
- isLoadingResults = false;
+  isLoadingResults = false;
   private fieldArray: Array<any> = [];
   private fieldArray1: Array<any> = [];
   private fieldArray2: Array<any> = [];
@@ -144,8 +144,8 @@ export class MasterdataComponent implements OnInit {
 
   postEmployee()
   {
+    console.log(this.emp);
     this.isLoadingResults = true;
-   
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.emp)
     .pipe(
       startWith({}),

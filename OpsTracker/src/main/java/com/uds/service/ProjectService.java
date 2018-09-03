@@ -1,6 +1,5 @@
 package com.uds.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.uds.domain.Project;
 import com.uds.dto.ProjectDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.repository.ProjectRepository;
 import com.uds.util.MapperUtil;
 
@@ -28,31 +28,33 @@ public class ProjectService {
 	@Autowired
 	private MapperUtil<?,?> mapperUtil;
 	
-	public String createProject(ProjectDTO projectDTO)
+	public StatusDTO createProject(ProjectDTO projectDTO)
 	{
-		String message = " ";
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		log.debug("****Inside ProjectService*****");
 		Project project = mapperUtil.toEntity(projectDTO, Project.class);
 		try
 		{
 		projectRepository.save(project);
-		message = "success";
+		statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
 		finally
 		{
 			project = null;
 			projectDTO = null;
 		}
-		return message;
+		return statusDTO;
 	}
 	
-	public String updateProject(ProjectDTO projectDTO)
+	public StatusDTO updateProject(ProjectDTO projectDTO)
 	{
-		String message = " ";
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		log.debug("****Inside ProjectService*****");
 		Project project = projectRepository.findOne(projectDTO.getId());
 		project.setId(projectDTO.getId());
@@ -61,13 +63,13 @@ public class ProjectService {
 		try
 		{
 		project = projectRepository.save(project);
-		message = "success";
+		statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
-		return message;
+		return statusDTO;
 	}
 	
 	public void deleteProject(long id)

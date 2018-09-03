@@ -1,6 +1,6 @@
 package com.uds.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class SearchOptionDTO {
 

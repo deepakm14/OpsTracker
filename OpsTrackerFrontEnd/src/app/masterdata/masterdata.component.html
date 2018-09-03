@@ -41,9 +41,16 @@
 
                             </mat-form-field>
                             
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="EMail" [(ngModel)]="emp.mail" name="emp_mail" #EmpMail="ngModel" required>
+                                <mat-error *ngIf="f.submitted && !EmpMail.valid">
+                                    Employee Mail is <strong>required</strong>
+                                  </mat-error>
+                              </mat-form-field>    
 
                             <mat-form-field class="example-full-width" >
-                                <input type="text" matInput placeholder="Mobile Number"  name="emp_mobile-no" [(ngModel)]="emp.mob" #EmpMob="ngModel" required  minlength=10  maxlength=13 pattern="[0-9]{5}[-][0-9]{7}[-][0-9]{1}">
+                                <!--<input type="text" matInput placeholder="Mobile Number"  name="emp_mobile_no" [(ngModel)]="emp.mob" #EmpMob="ngModel" required  minlength=10  maxlength=13 pattern="[0-9]{5}[-][0-9]{7}[-][0-9]{1}">-->
+                                <input type="text" matInput placeholder="Mobile Number"  name="emp_mobile_no" [(ngModel)]="emp.mob" #EmpMob="ngModel" required  minlength=10  maxlength=13 >
                                 <mat-error *ngIf="f.submitted && !EmpMob.valid ">
                                     Employee Mobile Number is <strong>required</strong>
                                   </mat-error>
@@ -233,11 +240,11 @@
                                                                         </td>
                                                                       
                                                                         <td>
-                                                                            <input [(ngModel)]="field.starttime" class="form-control" type="text" name="{{field.startTime}}" />
+                                                                            <input [(ngModel)]="field.startTime" class="form-control" type="text" name="{{field.startTime}}" />
                                                                         </td>
                                                                        
                                                                         <td>
-                                                                            <input [(ngModel)]="field.endtime" class="form-control" type="text" name="{{field.endTime}}" />
+                                                                            <input [(ngModel)]="field.endTime" class="form-control" type="text" name="{{field.endTime}}" />
                                                                         </td>
                                                                         <td>
                                                                             <input [(ngModel)]="field.planned" class="form-control" type="text" name="{{field.planned}}" />

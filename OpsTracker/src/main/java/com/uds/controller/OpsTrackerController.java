@@ -22,7 +22,7 @@ import com.uds.dto.EscalationTrackerDTO;
 import com.uds.dto.MachineTrackerDTO;
 import com.uds.dto.ManPowerTrackerDTO;
 import com.uds.dto.MaterialTrackerDTO;
-import com.uds.dto.SearchOptionDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.service.OpsTrackerService;
 import com.uds.service.SiteService;
 
@@ -36,43 +36,42 @@ public class OpsTrackerController {
 	private OpsTrackerService opsTrackerService;
 	
 	@PostMapping("/opstracker/manpower")
-	public String manPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
+	public StatusDTO manPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside OpsTracker Controller****");
 		
-		String message = opsTrackerService.manPowerTransaction(manPowerTrackerDTO);
-		return message;
+		return opsTrackerService.manPowerTransaction(manPowerTrackerDTO);
+		 
 	}
 	
 	@PutMapping("/opstracker/manpower/update")
-	public String updateManPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
+	public StatusDTO updateManPowerTransaction(@RequestBody ManPowerTrackerDTO manPowerTrackerDTO, HttpServletRequest request)
 	{
-		String message = opsTrackerService.updateManPowerTransaction(manPowerTrackerDTO);
-		return message;
+		return opsTrackerService.updateManPowerTransaction(manPowerTrackerDTO);
 	}
 	
 	@PostMapping("/opstracker/machine")
-	public String machineTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
+	public StatusDTO machineTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside OpsTracker Controller****");
 		return opsTrackerService.machineTransaction(machineTrackerDTO);
 	}
 	
 	@PutMapping("/opstracker/machine/update")
-	public String updateManPowerTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
+	public StatusDTO updateManPowerTransaction(@RequestBody MachineTrackerDTO machineTrackerDTO, HttpServletRequest request)
 	{
 		return opsTrackerService.updateMachineTransaction(machineTrackerDTO);
 	}
 	
 	@PostMapping("/opstracker/material")
-	public String materialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
+	public StatusDTO materialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside OpsTracker Controller****");
 		return opsTrackerService.materialTransaction(materialTrackerDTO);
 	}
 	
 	@PutMapping("/opstracker/material/update")
-	public String updateMaterialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
+	public StatusDTO updateMaterialTransaction(@RequestBody MaterialTrackerDTO materialTrackerDTO, HttpServletRequest request)
 	{
 		return opsTrackerService.updateMaterialTransaction(materialTrackerDTO);
 	}
@@ -84,13 +83,13 @@ public class OpsTrackerController {
 	}
 	
 	@PostMapping("/opstracker/escalation")
-	public String saveEscalation(@RequestBody EscalationTrackerDTO escalationTrackerDTO, HttpServletRequest request)
+	public StatusDTO saveEscalation(@RequestBody EscalationTrackerDTO escalationTrackerDTO, HttpServletRequest request)
 	{
 		return opsTrackerService.addEscalation(escalationTrackerDTO);
 	}
 	
 	@PutMapping("/opstracker/escalationupdate")
-	public String updateEscalation(@RequestBody EscalationTrackerDTO escalationTrackerDTO, HttpServletRequest request)
+	public StatusDTO updateEscalation(@RequestBody EscalationTrackerDTO escalationTrackerDTO, HttpServletRequest request)
 	{
 		return opsTrackerService.updateEscalation(escalationTrackerDTO);
 	}
@@ -107,10 +106,10 @@ public class OpsTrackerController {
 		return opsTrackerService.selectOneEscTracker(id);
 	}
 	
-	@PostMapping("/opstracker/search")
-	public List<?> search(@RequestBody SearchOptionDTO searchOption)
+	@PostMapping("/opstracker/search/{type}/{page}/{size}")
+	public List<?> search(@PathVariable("type") String type, @PathVariable("page") int page, @PathVariable("size") int size)
 	{
-		return opsTrackerService.search(searchOption);
+		return opsTrackerService.search(type, page, size);
 	}
 
 }

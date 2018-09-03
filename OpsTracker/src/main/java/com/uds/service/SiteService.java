@@ -1,5 +1,6 @@
 package com.uds.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.uds.dto.MachinesDTO;
 import com.uds.dto.ManPowerDTO;
 import com.uds.dto.MaterialDTO;
 import com.uds.dto.SiteDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.repository.ProjectRepository;
 import com.uds.repository.SiteRepository;
 import com.uds.util.DateUtil;
@@ -43,8 +45,9 @@ public class SiteService {
 	@Autowired
 	private MapperUtil<?, ?> mapperUtil;
 
-	public String createSite(SiteDTO siteDTO) {
-		String message = " ";
+	public StatusDTO createSite(SiteDTO siteDTO) {
+		StatusDTO statusDTO = new StatusDTO();
+		//statusDTO.setStatus(" ");
 		log.debug("****Inside ProjectService*****");
 		Site site = mapperUtil.toEntity(siteDTO, Site.class);
 		Project project = projectRepository.findOne(siteDTO.getProjectId());
@@ -63,7 +66,7 @@ public class SiteService {
 		}
 		for (MaterialDTO matDTO : materialDTOs) {
 			Material material = mapperUtil.toEntity(matDTO, Material.class);
-			material.setCommitmentDate(dateUtil.convertStringToDate(matDTO.getCommitmentDate()));
+			material.setCommitmentDate(matDTO.getCommitmentDate());
 			material.setTypeOfService("Material");
 			material.setSite(site);
 			materials.add(material);
@@ -80,22 +83,23 @@ public class SiteService {
 		try
 		{
 		siteRepository.save(site);
-		message = "success";
+		statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
 		finally
 		{
 			site = null;
 			siteDTO = null;
 		}
-		return message;
+		return statusDTO;
 	}
 
-	public String updateSite(SiteDTO siteDTO) {
-		String message = " ";
+	public StatusDTO updateSite(SiteDTO siteDTO) {
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		log.debug("****Inside ProjectService*****");
 		Site site = siteRepository.findOne(siteDTO.getId());
 		Project project = projectRepository.findOne(siteDTO.getId());
@@ -151,13 +155,13 @@ public class SiteService {
 		try
 		{
 			siteRepository.save(site);
-			message = "success";
+			statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
-		return message;
+		return statusDTO;
 	}
 
 	public void deleteSite(long id) {
@@ -220,7 +224,7 @@ public class SiteService {
 				materialDTO.setId(material.getId());
 				materialDTO.setTypeOfService(material.getTypeOfService());
 				materialDTO.setMaterialType(material.getMaterialType());
-				materialDTO.setCommitmentDate(material.getCommitmentDate());
+				materialDTO.setCommitmentDate((Date)material.getCommitmentDate());
 				materialDTOs.add(materialDTO);
 			}
 			for(Machines mac : machines)
