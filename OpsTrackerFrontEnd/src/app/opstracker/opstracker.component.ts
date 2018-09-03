@@ -1,7 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-
 import { HttpClient } from '@angular/common/http';
 import {DataService} from '../data.service';
 import { Site } from '../models/site.model';
@@ -9,10 +8,12 @@ import { Project } from '../models/project.model';
 import { ManPowerTransaction } from '../models/manpowertransaction.model';
 import { ManPower } from '../models/manpower.model';
 import { Material } from '../models/material.model';
+import { Machine } from '../models/machine.model';
+import { MaterialDate } from '../models/materialdate.model';
 import { MaterialTransaction } from '../models/materialtransaction.model';
 import { MachineTransaction } from '../models/machinetransaction.model';
-
 import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
+import { Dateformat } from '../dateformat.service';
 
 
 @Component({
@@ -25,33 +26,48 @@ import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
 export class OpstrackerComponent implements OnInit {
 
   //Constructor call
-  constructor(private data: DataService, private http: HttpClient) { }
+  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat) { }
 
   myControl = new FormControl();
   isLoadingResults = false;
-  //variable declation
-  Matstatus: string[] = ['Fixed', 'Attached']
-  Mat = new MaterialTransaction();
-  Mac = new MachineTransaction();
-  projects: Object;
-  sites: Object;
+
+  //model class object creation
   project = new Project();
   site = new Site();
+  manpowertransaction= new ManPowerTransaction();
+  materialtransaction= new MaterialTransaction();
+  machinetransaction= new MachineTransaction();
+  manpower= new ManPower();
+  material= new Material();
+  machine= new Machine();
+
+  //Dropdown options declaration
+  Matstatus: string[] = ['Delayed', 'Complaint','Pending'];
+  machinestatus: string[] = ['Working','Not Working'];
+  machinetypes = [];
+  equipmenttypes = [];
+  materialtypes =[];
+
+  //variable declation
+  
+  projects: Object;
+  sites: Object;
   manpowers: Array<ManPower>;
-  manpower = new ManPower();
-  manpowertransaction = new ManPowerTransaction();
-  materialtransaction = new MaterialTransaction();
-  machinetransaction = new MachineTransaction();
+  materials: Array<Material>;
+  machines: Array<Machine>;
   shift: string;
   time = [];
   message: string;
   shifts = [];
+  
+  clearFormArray=[];
   value: number;
   id;
+  
 
 
-  setStatus(id:string){
-    this.Mat.status=id;
+  setStatus(status:string){
+    this.materialtransaction.status=status;
   }
   //function call
   listClients()
@@ -83,44 +99,48 @@ export class OpstrackerComponent implements OnInit {
      this.id = id; 
      console.log(this.project);
      this.setManPower();
-     this.Mat.siteId=id;
   }
 
   setManPower()
    {
      this.data.getSite(this.id).subscribe(
        data => {
+        this.shifts.length=0;
          this.site = data;
          this.manpowers = this.site.manPowerDTO;
          this.manpowers.forEach(i =>{
          this.manpower = i;
          this.shifts.push(this.manpower.startTime + "-" + this.manpower.endTime);
          console.log(this.shifts);
-         })}
+         })
+         this.setMaterial();
+        }
      );
    }
 
-   setShiftDetails(shift: string)
+   setShiftDetails(shift)
    {
-     console.log("shift" + shift);
-    this.time.push(shift.split('-'));
-    console.log("time" + this.time);
+     this.shift = shift;
+    console.log("shift" + shift);
+    //this.time.push(shift.split('-'));
+    //console.log("time" + this.time);
     this.manpowers.forEach(i =>{
       this.manpower = new ManPower();
       this.manpower = i;   
-      console.log(this.time[0] == this.manpower.startTime + "," +this.manpower.endTime);   
-      if(this.time[0] == this.manpower.startTime + "," +this.manpower.endTime)
+      //console.log(this.time[0] == this.manpower.startTime + "," +this.manpower.endTime);   
+      //if(this.time[0] == this.manpower.startTime + "," +this.manpower.endTime)
+      if(this.shift == this.manpower.startTime + "-" +this.manpower.endTime)
     {
-      this.manpowertransaction.planned = 0;
       this.manpowertransaction.planned = this.manpower.planned;
       this.manpowertransaction.shiftTime = shift;
       this.manpowertransaction.siteId = this.site.id;
       this.manpowertransaction.projectId = this.project.id;
     }
     })
-      this.time = [];
-      shift = " ";
-      console.log("time" + this.time);
+    console.log(this.manpowertransaction);
+    this.time = [];
+    this.shift ="";
+    console.log("time" + shift);
    }
 
    setShortFall(value: number)
@@ -130,9 +150,67 @@ export class OpstrackerComponent implements OnInit {
      this.manpowertransaction.shortfall = this.manpowertransaction.planned - this.manpowertransaction.actual;
    }
 
+
+  setMaterial(){
+     this.materials = this.site.materialDTO;
+     this.materialtypes.length = 0;
+     this.materials.forEach(i =>{
+       this.material = i;
+       this.materialtypes.push(this.material.materialType);
+       //console.log(this.materialtypes);
+       this.setMachine();
+       })
+  }
+         
+setCommitmentdate(Commitdate:string){
+  
+  this.materials.forEach(i =>{
+    this.material = new Material();
+    this.material = i;
+    
+    if(Commitdate == this.material.materialType){
+      this.materialtransaction.commitmentDate=this.dateFormat.convertdate(this.material.commitmentDate);
+     console.log(this.materialtransaction.commitmentDate);
+     
+      this.materialtransaction.siteId = this.site.id;
+      this.materialtransaction.projectId = this.project.id;
+    }
+   
+    })
+ 
+}
+
+  setMachine(){
+    this.machines = this.site.machineDTO;
+    this.machines.forEach(i =>{
+      this.machine = i;
+      console.log(this.machine);
+      this.machinetypes.push(this.machine.machineType);
+    })
+  }
+
+  setEquipment(type){
+    this.machinetransaction.machineType = type;
+    this.machines.forEach(i =>{
+      this.machine = i;
+      if(this.machine.machineType == type){
+      this.machinetransaction.equipmentType = this.machine.equipmentType;
+      this.machinetransaction.modelNo = this.machine.modelNo;
+      this.machinetransaction.serialNo = this.machine.serialNo;
+      }
+    })
+    console.log(this.machinetransaction);
+  }
+
+  setMachineStatus(status){
+    this.machinetransaction.status = status;
+  }
+
+
   postManPowerTransaction()
   {
     console.log(this.manpowertransaction);
+    console.log("hi");
     try{
       this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/manpower',this.manpowertransaction)
       .subscribe(
@@ -154,7 +232,7 @@ postMaterialTransaction()
 {
   console.log(this.materialtransaction);
   
-    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material',this.Mat)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material',this.materialtransaction)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -196,7 +274,8 @@ postMaterialTransaction()
 
 postMachineTransaction()
 {
-  this.http.post('http://localhost:8080/uds/opstracker/machine',this.Mac)
+  console.log(this.machinetransaction);
+  this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/machine',this.machinetransaction)
     .pipe(
       startWith({}),
       switchMap(() => {

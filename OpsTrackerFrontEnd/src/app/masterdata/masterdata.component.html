@@ -129,7 +129,7 @@
                              <mat-form-field class="example-full-width">
                                       <input type="text" placeholder="Contract Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto11">
                                       <mat-autocomplete #auto11="matAutocomplete">
-                                        <mat-option *ngFor="let cont of Contracttype" [value]="cont" (click)="setContracttype(cont)">
+                                        <mat-option *ngFor="let cont of Contracttype" [value]="cont" (click)="setContractType(cont)">
                                           {{cont}}
                                         </mat-option>
                                       </mat-autocomplete>
@@ -192,22 +192,22 @@
                                       </mat-expansion-panel-header>
                                       <div class="row">
                                             <mat-form-field>
-                                              <input matInput placeholder="Shift"  [(ngModel)]="newAttribute.shift" >
+                                              <input matInput placeholder="Shift"  [(ngModel)]="manpower.shift" >
                                             </mat-form-field>
                                           </div>
                                           <div class="row">
                                                   <mat-form-field>
-                                                    <input matInput placeholder="StartTime"  [(ngModel)]="newAttribute.starttime" >
+                                                    <input matInput placeholder="StartTime"  [(ngModel)]="manpower.startTime" >
                                                   </mat-form-field>
                                                 </div>
                                                 <div class="row">
                                                       <mat-form-field>
-                                                        <input matInput placeholder="EndTime"  [(ngModel)]="newAttribute.endtime" >
+                                                        <input matInput placeholder="EndTime"  [(ngModel)]="manpower.endTime" >
                                                       </mat-form-field>
                                                     </div>
                                                     <div class="row">
                                                           <mat-form-field>
-                                                            <input matInput placeholder="Planned"   [(ngModel)]="newAttribute.planned" >
+                                                            <input matInput placeholder="Planned"   [(ngModel)]="manpower.planned" >
                                                           </mat-form-field>
                                                         </div>
                                                         <div class="button-row">
@@ -233,11 +233,11 @@
                                                                         </td>
                                                                       
                                                                         <td>
-                                                                            <input [(ngModel)]="field.starttime" class="form-control" type="text" name="{{field.starttime}}" />
+                                                                            <input [(ngModel)]="field.starttime" class="form-control" type="text" name="{{field.startTime}}" />
                                                                         </td>
                                                                        
                                                                         <td>
-                                                                            <input [(ngModel)]="field.endtime" class="form-control" type="text" name="{{field.endtime}}" />
+                                                                            <input [(ngModel)]="field.endtime" class="form-control" type="text" name="{{field.endTime}}" />
                                                                         </td>
                                                                         <td>
                                                                             <input [(ngModel)]="field.planned" class="form-control" type="text" name="{{field.planned}}" />
@@ -266,9 +266,9 @@
                                       </mat-expansion-panel-header>
                                       <div class="row">
                                       <mat-form-field class="example-full-width">
-                                            <input type="text" placeholder="Material Type" aria-label="Number" matInput  [(ngModel)]="newAttribute1.materialtype" [matAutocomplete]="auto5">
+                                            <input type="text" placeholder="Material Type" aria-label="Number" matInput  [(ngModel)]="material.materialType" [matAutocomplete]="auto5">
                                             <mat-autocomplete #auto5="matAutocomplete" >
-                                              <mat-option *ngFor="let option of Materialtype" [value]="option" (click)="materialtype(option)">
+                                              <mat-option *ngFor="let option of Materialtype" [value]="option" (click)="setMaterialType(option)">
                                                 {{option}}
                                               </mat-option>
                                             </mat-autocomplete>
@@ -278,7 +278,7 @@
 
                                           
                                                 <mat-form-field>
-                                                        <input matInput [matDatepicker]="picker"  placeholder="Commitment Date" [(ngModel)]="newAttribute1.commitmentdate ">
+                                                        <input matInput [matDatepicker]="picker"  placeholder="Commitment Date" [(ngModel)]="material.commitmentDate ">
                                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                                         <mat-datepicker #picker ></mat-datepicker>
                                                       </mat-form-field>
@@ -302,11 +302,11 @@
                                                       <tbody>
                                                           <tr *ngFor="let field1 of fieldArray1; let i = index">
                                                               <td>
-                                                                  <input [(ngModel)]="field1.materialtype"  type="text" name="{{field1.materialtype}}" />
+                                                                  <input [(ngModel)]="field1.materialType"  type="text" name="{{field1.materialType}}" />
                                                               </td>
                                                             
                                                               <td>
-                                                                  <input [(ngModel)]="field1.commitmentdate"  type="text" name="{{field1.commitmentdate}}" />
+                                                                  <input [(ngModel)]="field1.commitmentDate"  type="text" name="{{field1.commitmentDate}}" />
                                                               </td>
                                                              
                                                               
@@ -333,28 +333,28 @@
                                         </mat-panel-description>
                                       </mat-expansion-panel-header>
                                       <div class="row">
-                                            <mat-form-field class="example-full-width">
-                                                  <input type="text" placeholder="Machine Type" aria-label="Number" matInput [matAutocomplete]="auto6" [(ngModel)]="newAttribute2.machinetype">
-                                                  <mat-autocomplete #auto6="matAutocomplete">
-                                                    <mat-option *ngFor="let option of options" [value]="option">
-                                                      {{option}}
-                                                    </mat-option>
-                                                  </mat-autocomplete>
+                                                <mat-form-field>
+                                                  <input matInput placeholder="Machine Type" [(ngModel)]="machine.machineType">
                                                 </mat-form-field>
                                               </div>
                                               <div class="row">
-                                                      <mat-form-field>
-                                                        <input matInput placeholder="Equipment Type" [(ngModel)]="newAttribute2.equipmenttype">
-                                                      </mat-form-field>
+                                                  <mat-form-field class="example-full-width">
+                                                      <input type="text" placeholder="Equipment Type" aria-label="Number" matInput [matAutocomplete]="auto6" [(ngModel)]="machine.equipmentType">
+                                                      <mat-autocomplete #auto6="matAutocomplete">
+                                                        <mat-option *ngFor="let option of Equipmenttype" [value]="option" (click)="setEquipmentType(option)">
+                                                          {{option}}
+                                                        </mat-option>
+                                                      </mat-autocomplete>
+                                                    </mat-form-field>
                                                     </div>
                                                     <div class="row">
                                                             <mat-form-field>
-                                                              <input matInput placeholder="Model No" [(ngModel)]="newAttribute2.modelno" >
+                                                              <input matInput placeholder="Model No" [(ngModel)]="machine.modelNo" >
                                                             </mat-form-field>
                                                           </div>
                                                           <div class="row">
                                                                 <mat-form-field>
-                                                                  <input matInput placeholder="Serial NO" [(ngModel)]="newAttribute2.serialno">
+                                                                  <input matInput placeholder="Serial NO" [(ngModel)]="machine.serialNo">
                                                                 </mat-form-field>
                                                               </div>
                                                               <div class="button-row">
@@ -377,18 +377,18 @@
                                                                       <tbody>
                                                                           <tr *ngFor="let field2 of fieldArray2; let i = index">
                                                                               <td>
-                                                                                  <input [(ngModel)]="field2.machinetype" class="form-control" type="text" name="{{field2.machinetype}}" />
+                                                                                  <input [(ngModel)]="field2.machineType" class="form-control" type="text" name="{{field2.machineType}}" />
                                                                               </td>
                                                                             
                                                                               <td>
-                                                                                  <input [(ngModel)]="field2.equipmenttype" class="form-control" type="text" name="{{field2.equipmenttype}}" />
+                                                                                  <input [(ngModel)]="field2.equipmentType" class="form-control" type="text" name="{{field2.equipmentType}}" />
                                                                               </td>
                                                                              
                                                                               <td>
-                                                                                  <input [(ngModel)]="field2.modelno" class="form-control" type="text" name="{{field2.modelno}}" />
+                                                                                  <input [(ngModel)]="field2.modelNo" class="form-control" type="text" name="{{field2.modelNo}}" />
                                                                               </td>
                                                                               <td>
-                                                                                  <input [(ngModel)]="field2.serialno" class="form-control" type="text" name="{{field2.serialno}}" />
+                                                                                  <input [(ngModel)]="field2.serialNo" class="form-control" type="text" name="{{field2.serialNo}}" />
                                                                               </td>
                                                                               <td>
                                                                                   <button mat-icon-button>

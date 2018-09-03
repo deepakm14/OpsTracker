@@ -12,11 +12,15 @@ public class ManPowerTrackerDTO {
 	
 	private int shortfall;
 	
+	private int continuedWithOt;
+	
+	private int continuedWithOutOt;
+	
+	private int newComer;
+	
 	private Date createdDate;
 	
 	private Date submitDate;
-	
-	private int totalNoOfRelievers;
 	
 	private String shiftTime;
 	
@@ -56,6 +60,22 @@ public class ManPowerTrackerDTO {
 		this.shortfall = shortfall;
 	}
 
+	public int getContinuedWithOutOt() {
+		return continuedWithOutOt;
+	}
+
+	public void setContinuedWithOutOt(int continuedWithOutOt) {
+		this.continuedWithOutOt = continuedWithOutOt;
+	}
+
+	public int getNewComer() {
+		return newComer;
+	}
+
+	public void setNewComer(int newComer) {
+		this.newComer = newComer;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -72,12 +92,12 @@ public class ManPowerTrackerDTO {
 		this.submitDate = submitDate;
 	}
 
-	public int getTotalNoOfRelievers() {
-		return totalNoOfRelievers;
+	public int getContinuedWithOt() {
+		return continuedWithOt;
 	}
 
-	public void setTotalNoOfRelievers(int totalNoOfRelievers) {
-		this.totalNoOfRelievers = totalNoOfRelievers;
+	public void setContinuedWithOt(int continuedWithOt) {
+		this.continuedWithOt = continuedWithOt;
 	}
 
 	public String getShiftTime() {

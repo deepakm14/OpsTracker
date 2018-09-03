@@ -10,7 +10,7 @@ public class MaterialDTO {
 	
 	private String materialType;
 	
-	private Date commitmentDate;
+	private String commitmentDate;
 
 	public long getId() {
 		return id;
@@ -36,11 +36,11 @@ public class MaterialDTO {
 		this.materialType = materialType;
 	}
 
-	public Date getCommitmentDate() {
+	public String getCommitmentDate() {
 		return commitmentDate;
 	}
 
-	public void setCommitmentDate(Date commitmentDate) {
+	public void setCommitmentDate(String commitmentDate) {
 		this.commitmentDate = commitmentDate;
 	}
 

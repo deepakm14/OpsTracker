@@ -5,7 +5,7 @@ import {Escalation} from '../models/escalation.model';
 import { HttpClient } from '@angular/common/http';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-
+import { Dateformat } from '../dateformat.service';
 
 @Component({
   selector: 'app-escalation',
@@ -21,7 +21,7 @@ export class EscalationComponent implements OnInit {
   esc2 = new Escalation();
   private newAttribute: any = {};
   isLoadingResults = false;
-  constructor(private data: DataService, private http: HttpClient) { }
+  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat) { }
 
 
   setEscalationtype(id:string)
@@ -38,9 +38,13 @@ export class EscalationComponent implements OnInit {
 
 postEscalationtracker(){
 
+this.esc2.communicatedDate=this.dateFormat.convertdate(this.esc2.communicatedDate);
+this.esc2.estimatedClosureDate=this.dateFormat.convertdate(this.esc2.estimatedClosureDate);
+this.esc2.closureDate=this.dateFormat.convertdate(this.esc2.closureDate);
+
   this.isLoadingResults = true;
    
-  this.http.post('http://localhost:8080/uds/opstracker/escalation', this.esc2)
+  this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/escalation', this.esc2)
   .pipe(
     startWith({}),
     switchMap(() => {

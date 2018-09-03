@@ -46,12 +46,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clientview_clientview_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./clientview/clientview.component */ "./src/app/clientview/clientview.component.ts");
 /* harmony import */ var _siteview_siteview_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./siteview/siteview.component */ "./src/app/siteview/siteview.component.ts");
 /* harmony import */ var _escalationview_escalationview_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./escalationview/escalationview.component */ "./src/app/escalationview/escalationview.component.ts");
+/* harmony import */ var _escalationtrackerview_escalationtrackerview_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./escalationtrackerview/escalationtrackerview.component */ "./src/app/escalationtrackerview/escalationtrackerview.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -104,6 +106,10 @@ var routes = [
     {
         path: 'escalationview',
         component: _escalationview_escalationview_component__WEBPACK_IMPORTED_MODULE_11__["EscalationviewComponent"]
+    },
+    {
+        path: 'EscalationtrackerComponent',
+        component: _escalationtrackerview_escalationtrackerview_component__WEBPACK_IMPORTED_MODULE_12__["EscalationtrackerviewComponent"]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -244,12 +250,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clientdialog_clientdialog_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./clientdialog/clientdialog.component */ "./src/app/clientdialog/clientdialog.component.ts");
 /* harmony import */ var _escalationdialog_escalationdialog_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./escalationdialog/escalationdialog.component */ "./src/app/escalationdialog/escalationdialog.component.ts");
 /* harmony import */ var _escalationmainview_escalationmainview_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./escalationmainview/escalationmainview.component */ "./src/app/escalationmainview/escalationmainview.component.ts");
+/* harmony import */ var _escalationtrackerview_escalationtrackerview_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./escalationtrackerview/escalationtrackerview.component */ "./src/app/escalationtrackerview/escalationtrackerview.component.ts");
+/* harmony import */ var _escalationtrackerdialog_escalationtrackerdialog_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./escalationtrackerdialog/escalationtrackerdialog.component */ "./src/app/escalationtrackerdialog/escalationtrackerdialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -314,7 +324,9 @@ var AppModule = /** @class */ (function () {
                 _employdialog_employdialog_component__WEBPACK_IMPORTED_MODULE_32__["EmploydialogComponent"],
                 _clientdialog_clientdialog_component__WEBPACK_IMPORTED_MODULE_33__["ClientdialogComponent"],
                 _escalationdialog_escalationdialog_component__WEBPACK_IMPORTED_MODULE_34__["EscalationdialogComponent"],
-                _escalationmainview_escalationmainview_component__WEBPACK_IMPORTED_MODULE_35__["EscalationmainviewComponent"]
+                _escalationmainview_escalationmainview_component__WEBPACK_IMPORTED_MODULE_35__["EscalationmainviewComponent"],
+                _escalationtrackerview_escalationtrackerview_component__WEBPACK_IMPORTED_MODULE_36__["EscalationtrackerviewComponent"],
+                _escalationtrackerdialog_escalationtrackerdialog_component__WEBPACK_IMPORTED_MODULE_37__["EscalationtrackerdialogComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -346,10 +358,10 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatTableModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClientModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatDialogModule"],
-                _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_30__["MatProgressBarModule"]
+                _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_30__["MatProgressBarModule"],
             ],
             entryComponents: [
-                _employdialog_employdialog_component__WEBPACK_IMPORTED_MODULE_32__["EmploydialogComponent"], _clientdialog_clientdialog_component__WEBPACK_IMPORTED_MODULE_33__["ClientdialogComponent"], _escalationdialog_escalationdialog_component__WEBPACK_IMPORTED_MODULE_34__["EscalationdialogComponent"],
+                _employdialog_employdialog_component__WEBPACK_IMPORTED_MODULE_32__["EmploydialogComponent"], _clientdialog_clientdialog_component__WEBPACK_IMPORTED_MODULE_33__["ClientdialogComponent"], _escalationdialog_escalationdialog_component__WEBPACK_IMPORTED_MODULE_34__["EscalationdialogComponent"], _escalationtrackerdialog_escalationtrackerdialog_component__WEBPACK_IMPORTED_MODULE_37__["EscalationtrackerdialogComponent"],
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
@@ -675,13 +687,15 @@ var DataService = /** @class */ (function () {
         this.http = http;
     }
     DataService.prototype.getEmployee = function (desg) {
-        return this.http.get('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/searchbydesg/' + desg);
+        return this.http.get('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/search');
+        //return this.http.get<Employ[]>('http://localhost:8080/uds/employee/search');
     };
     DataService.prototype.getEscalation = function () {
         return this.http.get('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/esctype/search');
     };
     DataService.prototype.getProjects = function () {
         return this.http.get('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project/search');
+        //return this.http.get<Project[]>('http://localhost:8080/uds/project/search');
     };
     DataService.prototype.getSites = function () {
         return this.http.get('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site/search');
@@ -702,6 +716,49 @@ var DataService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], DataService);
     return DataService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dateformat.service.ts":
+/*!***************************************!*\
+  !*** ./src/app/dateformat.service.ts ***!
+  \***************************************/
+/*! exports provided: Dateformat */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dateformat", function() { return Dateformat; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var Dateformat = /** @class */ (function () {
+    function Dateformat() {
+    }
+    Dateformat.prototype.convertdate = function (str) {
+        var date = new Date(str);
+        //var mnths = { 
+        //Jan:"01", Feb:"02", Mar:"03", Apr:"04", May:"05", Jun:"06",
+        //Jul:"07", Aug:"08", Sep:"09", Oct:"10", Nov:"11", Dec:"12"
+        //};
+        var mnth = ('0' + (date.getMonth() + 1)).slice(-2);
+        var day = ('0' + date.getDate()).slice(-2);
+        return [day, mnth, date.getFullYear()].join("-");
+    };
+    Dateformat = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
+    ], Dateformat);
+    return Dateformat;
 }());
 
 
@@ -1053,7 +1110,7 @@ module.exports = ".example-container {\r\n    display: flex;\r\n    flex-directi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container \">\r\n\r\n  <div>\r\n    <mat-card>\r\n      <mat-card-header>\r\n\r\n        <mat-card-title>Escalation</mat-card-title>\r\n\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-card-content>\r\n        <div>\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input type=\"text\" placeholder=\"Type of Escalation\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\r\n            <mat-autocomplete #auto=\"matAutocomplete\">\r\n              <mat-option *ngFor=\"let escalation of escalation$\" [value]=\"escalation\">\r\n                {{escalation.escalationType}}\r\n              </mat-option>\r\n            </mat-autocomplete>\r\n          </mat-form-field>\r\n\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput placeholder=\"Description\">\r\n          </mat-form-field>\r\n\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input type=\"text\" placeholder=\"Communicated Via\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\r\n            <mat-autocomplete #auto1=\"matAutocomplete\">\r\n              <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                {{option}}\r\n              </mat-option>\r\n            </mat-autocomplete>\r\n          </mat-form-field> \r\n\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput [matDatepicker]=\"picker\" placeholder=\"Communicated Date\">\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker></mat-datepicker>\r\n          </mat-form-field>\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput [matDatepicker]=\"picker1\" placeholder=\"Closure Date\">\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker1></mat-datepicker>\r\n          </mat-form-field>\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput [matDatepicker]=\"picker2\" placeholder=\"Estimated Closure Date\">\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker2></mat-datepicker>\r\n          </mat-form-field>\r\n\r\n          <div class=\"button-row\">\r\n\r\n            <button mat-raised-button color=\"accent\">Submit</button>\r\n\r\n\r\n          </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n</div>     \r\n        \r\n                    \r\n                   \r\n                       \r\n  \r\n"
+module.exports = "<div class=\"example-container \">\r\n\r\n  <div>\r\n    <mat-card>\r\n        <button mat-mini-fab>\r\n            <mat-icon aria-label=\"\" routerLink=\"../EscalationtrackerComponent\">remove_red_eye</mat-icon>\r\n          </button>\r\n      <mat-card-header>\r\n         \r\n        <mat-card-title></mat-card-title>\r\n\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-progress-bar mode=\"indeterminate\" *ngIf=\"isLoadingResults\" ></mat-progress-bar> \r\n      <mat-card-content>\r\n        <div>\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input type=\"text\" placeholder=\"Type of Escalation\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\r\n            <mat-autocomplete #auto=\"matAutocomplete\">\r\n              <mat-option *ngFor=\"let escalation of escalation$\" [value]=\"escalation.escalationType\" (click)=\"setEscalationtype(escalation.escalationType)\" >\r\n                {{escalation.escalationType}}\r\n              </mat-option>\r\n            </mat-autocomplete>\r\n          </mat-form-field>\r\n\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput placeholder=\"Description\" [(ngModel)]=\"esc2.description\">\r\n          </mat-form-field>\r\n\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input type=\"text\" placeholder=\"Communicated Via\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto1\">\r\n            <mat-autocomplete #auto1=\"matAutocomplete\">\r\n              <mat-option *ngFor=\"let com1 of communicatedvia; let i = index\" [value]=\"com1\" (click)=\"setCommunicatedvia(com1)\">\r\n                {{com1}}\r\n              </mat-option>\r\n            </mat-autocomplete>\r\n          </mat-form-field> \r\n\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput [matDatepicker]=\"picker\" placeholder=\"Communicated Date\" format=\"dd-MM-yyyy\" [(ngModel)]=\"esc2.communicatedDate\">\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker></mat-datepicker>\r\n          </mat-form-field>\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput [matDatepicker]=\"picker1\" placeholder=\"Closure Date\" format=\"dd-MM-yyyy\" [(ngModel)]=\"esc2.closureDate\">\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker1></mat-datepicker>\r\n          </mat-form-field>\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n            <input matInput [matDatepicker]=\"picker2\" placeholder=\"Estimated Closure Date\" format=\"dd-MM-yyyy\" [(ngModel)]=\"esc2.estimatedClosureDate\">\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\r\n            <mat-datepicker #picker2></mat-datepicker>\r\n          </mat-form-field>\r\n\r\n          <div class=\"button-row\">\r\n\r\n            <button mat-raised-button color=\"accent\" (click)=\"postEscalationtracker()\">Submit</button>\r\n \r\n\r\n          </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n</div>     \r\n        \r\n                    \r\n                   \r\n                       \r\n  \r\n"
 
 /***/ }),
 
@@ -1070,6 +1127,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _models_escalation_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/escalation.model */ "./src/app/models/escalation.model.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1082,11 +1142,52 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var EscalationComponent = /** @class */ (function () {
-    function EscalationComponent(data) {
+    function EscalationComponent(data, http) {
         this.data = data;
+        this.http = http;
+        this.communicatedvia = ['Phone', 'Email'];
         this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]();
+        //esc2:Escalation[] = [];
+        //public esc2={"typeOfEscalation":"","ommunicatedVia":""};
+        this.esc2 = new _models_escalation_model__WEBPACK_IMPORTED_MODULE_3__["Escalation"]();
+        this.newAttribute = {};
+        this.isLoadingResults = false;
     }
+    EscalationComponent.prototype.setEscalationtype = function (id) {
+        console.log(id);
+        this.esc2.typeOfEscalation = id;
+    };
+    EscalationComponent.prototype.setCommunicatedvia = function (id) {
+        console.log(id);
+        this.esc2.communicatedVia = id;
+    };
+    EscalationComponent.prototype.postEscalationtracker = function () {
+        var _this = this;
+        this.isLoadingResults = true;
+        this.http.post('http://localhost:8080/uds/opstracker/escalation', this.esc2)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function () {
+            return 'ok';
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+            console.log('ggg');
+            // Flip flag to show that loading has finished.
+            return 'ok';
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function () {
+            console.log('errr');
+            return 'ok';
+        }))
+            .subscribe(function (data) {
+            if (data.length) {
+                console.log(data);
+            }
+        }, function (error) { return console.log("Error: ", error); }, function () {
+            _this.isLoadingResults = false;
+            console.log('finished');
+        });
+    };
     EscalationComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.data.getEscalation().subscribe(function (data) { return _this.escalation$ = data; });
@@ -1097,7 +1198,7 @@ var EscalationComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./escalation.component.html */ "./src/app/escalation/escalation.component.html"),
             styles: [__webpack_require__(/*! ./escalation.component.css */ "./src/app/escalation/escalation.component.css")]
         }),
-        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]])
+        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
     ], EscalationComponent);
     return EscalationComponent;
 }());
@@ -1241,6 +1342,270 @@ var EscalationmainviewComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], EscalationmainviewComponent);
     return EscalationmainviewComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/escalationtrackerdialog/escalationtrackerdialog.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/escalationtrackerdialog/escalationtrackerdialog.component.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/escalationtrackerdialog/escalationtrackerdialog.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/escalationtrackerdialog/escalationtrackerdialog.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n\r\n    <mat-dialog-content>\r\n      \r\n      <div class=\"row\" >\r\n                            \r\n        <mat-form-field class=\"example-full-width\">\r\n            <input matInput placeholder=\"Types Of Escalation\" [(ngModel)]=\"data.typeOfEscalation\">\r\n          </mat-form-field>\r\n    \r\n    </div>\r\n\r\n    <div class=\"row\" >\r\n                            \r\n      <mat-form-field class=\"example-full-width\">\r\n        <input matInput placeholder=\"Description\" [(ngModel)]=\"data.description\">\r\n      </mat-form-field>\r\n    \r\n    </div>\r\n    <div class=\"row\" >\r\n                            \r\n      <mat-form-field class=\"example-full-width\">\r\n        <input matInput placeholder=\"Communicated Via\" [(ngModel)]=\"data.communicatedVia\">\r\n      </mat-form-field>\r\n    \r\n    </div>\r\n    \r\n    <div class=\"row\" >\r\n                            \r\n      <mat-form-field class=\"example-full-width\">\r\n        <input matInput placeholder=\"Communicated Date\" [(ngModel)]=\"data.communicatedDate\">\r\n      </mat-form-field>\r\n    \r\n    </div>\r\n    <div class=\"row\" >\r\n                            \r\n      <mat-form-field class=\"example-full-width\">\r\n        <input matInput placeholder=\"Closure date\" [(ngModel)]=\"data.closureDate\">\r\n      </mat-form-field>\r\n    \r\n    </div>\r\n    <div class=\"row\" >\r\n                            \r\n      <mat-form-field class=\"example-full-width\">\r\n        <input matInput placeholder=\"Estimated Closure Date\" [(ngModel)]=\"data.estimatedClosureDate\">\r\n      </mat-form-field>\r\n    \r\n    </div>\r\n    \r\n     \r\n     \r\n    </mat-dialog-content>\r\n    <mat-dialog-actions>\r\n        \r\n          <div class=\"button-row\">\r\n                                              \r\n            <button mat-raised-button color=\"accent\" (click)=\"postEmployee()\" >Update</button>\r\n              <button mat-raised-button color=\"accent\" (click)=\"onCloseCancel()\">Cancel</button>\r\n              \r\n            </div>    \r\n    \r\n    </mat-dialog-actions>\r\n      </div>"
+
+/***/ }),
+
+/***/ "./src/app/escalationtrackerdialog/escalationtrackerdialog.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/escalationtrackerdialog/escalationtrackerdialog.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: EscalationtrackerdialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EscalationtrackerdialogComponent", function() { return EscalationtrackerdialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+var EscalationtrackerdialogComponent = /** @class */ (function () {
+    function EscalationtrackerdialogComponent(thisdialogRef, data) {
+        this.thisdialogRef = thisdialogRef;
+        this.data = data;
+    }
+    EscalationtrackerdialogComponent.prototype.ngOnInit = function () {
+    };
+    EscalationtrackerdialogComponent.prototype.onCloseConfirm = function () {
+        this.thisdialogRef.close('Confirm');
+    };
+    EscalationtrackerdialogComponent.prototype.onCloseCancel = function () {
+        this.thisdialogRef.close('Cancel');
+    };
+    EscalationtrackerdialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-escalationtrackerdialog',
+            template: __webpack_require__(/*! ./escalationtrackerdialog.component.html */ "./src/app/escalationtrackerdialog/escalationtrackerdialog.component.html"),
+            styles: [__webpack_require__(/*! ./escalationtrackerdialog.component.css */ "./src/app/escalationtrackerdialog/escalationtrackerdialog.component.css")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object])
+    ], EscalationtrackerdialogComponent);
+    return EscalationtrackerdialogComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/escalationtrackerview/escalationtrackerview.component.css":
+/*!***************************************************************************!*\
+  !*** ./src/app/escalationtrackerview/escalationtrackerview.component.css ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".algnleft{\r\n    margin:20px \r\n}\r\n.div-left{\r\n    float:right;\r\n    padding-right:20px;\r\n}\r\n.mat-cell:nth-child(2), .mat-header-cell:nth-child(2) {\r\n    flex: 0 0 200px;\r\n}\r\n.martop{\r\n    margin-top: 14px;\r\n}\r\n.spinnerabove {\r\n    position:absolute;\r\n    top:50%;\r\n    left:50%;\r\n   \r\n    z-index: 10;\r\n  }\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/escalationtrackerview/escalationtrackerview.component.html":
+/*!****************************************************************************!*\
+  !*** ./src/app/escalationtrackerview/escalationtrackerview.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"algnleft\">\r\n    <div class=\"div-left\"><button mat-mini-fab>\r\n        <mat-icon aria-label=\"\" routerLink=\"../masterdata\">arrow_back</mat-icon>\r\n      </button></div>\r\n    \r\n       <div class=\"example-loading-shade spinnerabove \"\r\n             *ngIf=\"isLoadingResults || isRateLimitReached\" >\r\n          <mat-spinner *ngIf=\"isLoadingResults\"></mat-spinner>\r\n          <div class=\"example-rate-limit-reached\" *ngIf=\"isRateLimitReached\">\r\n            \r\n          </div>\r\n        </div> \r\n    \r\n        \r\n      \r\n          <table mat-table [dataSource]=\"esc2\" class=\"mat-elevation-z8\"\r\n                 matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\" style=\"width:100%\">\r\n            <!-- Number Column -->\r\n            \r\n            <!-- Title Column -->\r\n            <ng-container  matColumnDef=\"id\">\r\n                <th mat-header-cell  *matHeaderCellDef>Id</th>\r\n                <td mat-cell *matCellDef=\"let row\">{{row.id}}</td>\r\n              </ng-container>\r\n        \r\n    \r\n            <ng-container  matColumnDef=\"typeOfEscalation\">\r\n              <th mat-header-cell  *matHeaderCellDef>Types Of Escalation</th>\r\n              <td mat-cell *matCellDef=\"let row\">{{row.typeOfEscalation}}</td>\r\n            </ng-container>\r\n      \r\n            <!-- State Column -->\r\n            <ng-container matColumnDef=\"description\">\r\n              <th mat-header-cell *matHeaderCellDef>Description</th>\r\n              <td mat-cell *matCellDef=\"let row\">{{row.description}}</td>\r\n            </ng-container>\r\n      \r\n            <!-- Created Column -->\r\n            <ng-container matColumnDef=\"communicatedVia\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>\r\n               Communicated Via\r\n              </th>\r\n              <td mat-cell *matCellDef=\"let row\">{{row.communicatedVia}}</td>\r\n            </ng-container>\r\n    \r\n            <ng-container matColumnDef=\"communicatedDate\">\r\n                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>\r\n                  Communicated Date\r\n                </th>\r\n                <td mat-cell *matCellDef=\"let row\">{{row.communicatedDate}}</td>\r\n              </ng-container>\r\n    \r\n              <ng-container matColumnDef=\"closureDate\">\r\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>\r\n                    Closure Date\r\n                  </th>\r\n                  <td mat-cell *matCellDef=\"let row\">{{row.closureDate}}</td>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"estimatedClosureDate\">\r\n                    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>\r\n                      Estimated Closure Date\r\n                    </th>\r\n                    <td mat-cell *matCellDef=\"let row\">{{row.estimatedClosureDate}}</td>\r\n                  </ng-container>\r\n    \r\n               <mat-divider></mat-divider> \r\n            <ng-container matColumnDef=\"actionsColumn\">\r\n                <th mat-header-cell *matHeaderCellDef>Action</th>\r\n                \r\n                <mat-cell *matCellDef=\"let row\">\r\n                    <button mat-icon-button>\r\n                        <mat-icon matTooltip=\"Update\" aria-label=\"Example icon-button with a heart icon\" (click)=\"openDialog(row.id)\" >update</mat-icon>\r\n                      </button>\r\n                      <button mat-icon-button>\r\n                          <mat-icon aria-label=\"Example icon-button with a heart icon\"  matTooltip=\"Delete\" (click)=\"openDialog(row.id)\">delete</mat-icon>\r\n                        </button>\r\n                   \r\n                </mat-cell>\r\n            </ng-container>\r\n            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n             \r\n          </table>\r\n       <mat-paginator [length]=\"resultsLength\" [pageSize]=\"8\"></mat-paginator>\r\n      \r\n        <!--   <app-pagination [maxPages]=\"maxPages\"\r\n          [current]=\"1\"\r\n          [postsPerPage]=\"postsPerPage\"\r\n          [itemsPerPage]=\"itemsPerPage\"\r\n          (changePage)=\"pageChanged($event)\"></app-pagination> -->\r\n      \r\n    </div>"
+
+/***/ }),
+
+/***/ "./src/app/escalationtrackerview/escalationtrackerview.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/escalationtrackerview/escalationtrackerview.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: EscalationtrackerviewComponent, ExampleHttpDao */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EscalationtrackerviewComponent", function() { return EscalationtrackerviewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExampleHttpDao", function() { return ExampleHttpDao; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _models_employ_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/employ.model */ "./src/app/models/employ.model.ts");
+/* harmony import */ var _escalationtrackerdialog_escalationtrackerdialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../escalationtrackerdialog/escalationtrackerdialog.component */ "./src/app/escalationtrackerdialog/escalationtrackerdialog.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var EscalationtrackerviewComponent = /** @class */ (function () {
+    function EscalationtrackerviewComponent(http, data1, dialog) {
+        this.http = http;
+        this.data1 = data1;
+        this.dialog = dialog;
+        this.dialogResult = "";
+        this.itemsPerPage = 10;
+        this.postsPerPage = [5, 10, 25];
+        this.emp = [];
+        this.esc2 = [];
+        this.empid = new _models_employ_model__WEBPACK_IMPORTED_MODULE_6__["Employ"]();
+        this.displayedColumns = ['id', 'typeOfEscalation', 'description', 'communicatedVia', 'communicatedDate', 'closureDate', 'estimatedClosureDate', 'actionsColumn'];
+        /* //displayedColumns: string[] = [  'code', 'name', 'designation', 'mail' , 'phone']; */
+        this.resultsLength = 0;
+        this.isLoadingResults = true;
+        this.isRateLimitReached = false;
+    }
+    /*  listEmployees()
+     {
+       this.data.getemployee(0, 2).subscribe(
+         data => this.emp = data['content']
+        
+        
+       );
+       console.log(this.data);
+      
+     } */
+    /* pageChanged(event) {
+     this.page = event.page;
+     
+     this.itemsPerPage = event.itemsPerPage;
+     this.loadEmployeeByPage(this.page, this.itemsPerPage);
+ } */
+    /* loadEmployeeByPage(page: number, rows: number) {
+     
+      this.data.getemployee(page, rows).subscribe(
+        data => this.emp = data['content']
+      
+        );
+    
+    } */
+    // tslint:disable-next-line:member-ordering
+    /* openDialog() {
+    const dialogRef = this.dialog.open(DialogBodyComponent, {
+      height: '400px',
+  width: '600px'
+      
+    });
+  }  */
+    EscalationtrackerviewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.exampleDatabase = new ExampleHttpDao(this.http);
+        // If the user changes the sort order, reset back to the first page.
+        this.sort.sortChange.subscribe(function () { return _this.paginator.pageIndex = 0; });
+        Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["merge"])(this.paginator.page)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function () {
+            console.log('enter1');
+            _this.isLoadingResults = true;
+            return _this.exampleDatabase.getRepoIssues(_this.paginator.pageIndex, 8);
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) {
+            console.log('ggg');
+            // Flip flag to show that loading has finished.
+            _this.isLoadingResults = false;
+            _this.isRateLimitReached = false;
+            _this.resultsLength = data['totalElements'];
+            console.log(data['totalElements']);
+            return data;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () {
+            console.log('errr');
+            _this.isLoadingResults = false;
+            // Catch if the GitHub API has reached its rate limit. Return empty data.
+            _this.isRateLimitReached = true;
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])([]);
+        })).subscribe(function (data) { return _this.esc2 = data['content']; });
+        // this.listEmployees();
+    };
+    EscalationtrackerviewComponent.prototype.openDialog = function (id) {
+        var _this = this;
+        var item1 = this.esc2.find(function (i) { return i.id === id; });
+        var dialogRef = this.dialog.open(_escalationtrackerdialog_escalationtrackerdialog_component__WEBPACK_IMPORTED_MODULE_7__["EscalationtrackerdialogComponent"], {
+            width: '300px',
+            data: item1
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('dialog closed:${result}');
+            _this.dialogResult = result;
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _models_employ_model__WEBPACK_IMPORTED_MODULE_6__["Employ"])
+    ], EscalationtrackerviewComponent.prototype, "emp1", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"])
+    ], EscalationtrackerviewComponent.prototype, "paginator", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
+    ], EscalationtrackerviewComponent.prototype, "sort", void 0);
+    EscalationtrackerviewComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-escalationtrackerview',
+            template: __webpack_require__(/*! ./escalationtrackerview.component.html */ "./src/app/escalationtrackerview/escalationtrackerview.component.html"),
+            styles: [__webpack_require__(/*! ./escalationtrackerview.component.css */ "./src/app/escalationtrackerview/escalationtrackerview.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _data_service__WEBPACK_IMPORTED_MODULE_5__["DataService"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
+    ], EscalationtrackerviewComponent);
+    return EscalationtrackerviewComponent;
+}());
+
+/** An example database that the data source uses to retrieve data for the table. */
+var ExampleHttpDao = /** @class */ (function () {
+    function ExampleHttpDao(http) {
+        this.http = http;
+    }
+    ExampleHttpDao.prototype.getRepoIssues = function (page, records) {
+        var href = 'http://localhost:8080/uds/opstracker/escalation/search/' + page + '/' + records;
+        return this.http.get(href);
+    };
+    return ExampleHttpDao;
 }());
 
 
@@ -1549,7 +1914,7 @@ module.exports = ".example-container {\r\n    display: flex;\r\n    flex-directi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container\">\r\n    <div id = \"layoutContainer\" \r\n    fxLayout = \"row\" fxLayout.xs=\"column\" fxLayoutwrap fxLayoutGap=\"0.15%\">\r\n    <div fxflex = \"100\" >\r\n        <div class=\"example-container\">\r\n            <mat-tab-group >\r\n            \r\n              <mat-tab label=\"Employee\">\r\n               <mat-progress-bar mode=\"indeterminate\" *ngIf=\"isLoadingResults\" ></mat-progress-bar>   \r\n                  <div class=\"employee-box mat-elevation-z4\" >\r\n                    \r\n                    <div >\r\n                        <button mat-mini-fab>\r\n                            <mat-icon aria-label=\"\" routerLink=\"../emplyeeview\">remove_red_eye</mat-icon>\r\n                          </button>\r\n                        <mat-form-field class=\"example-full-width\">\r\n                            <input matInput placeholder=\"Employee Code\" [(ngModel)]=\"emp.code\">\r\n                          </mat-form-field>\r\n                          <mat-form-field class=\"example-full-width\">\r\n                              <input matInput placeholder=\"Employee Name\" [(ngModel)]=\"emp.name\">\r\n                            </mat-form-field>\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input type=\"text\" placeholder=\"Designation\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto20\">\r\n                                <mat-autocomplete #auto20=\"matAutocomplete\" >\r\n                                  <mat-option *ngFor=\"let des of Designation; let i = index\" [value]=\"des.name\" (click)=\"setDesignation(des.id)\">\r\n                                    {{des.name}}\r\n                                  </mat-option>\r\n                                </mat-autocomplete>\r\n                              </mat-form-field>\r\n                              <mat-form-field class=\"example-full-width\">\r\n                                  <input matInput placeholder=\"Email\" [(ngModel)]=\"emp.mail\">\r\n                                </mat-form-field>\r\n                                <mat-form-field class=\"example-full-width\">\r\n                                    <input matInput placeholder=\"Mobile Number\" [(ngModel)]=\"emp.mob\">\r\n                                  </mat-form-field>\r\n            \r\n                                  <div class=\"button-row\">\r\n                                      \r\n                                      <button mat-raised-button color=\"accent\" (click)=\"postEmployee()\" >Submit</button>\r\n                                      \r\n                                      \r\n                                    </div>\r\n                    </div>\r\n                     \r\n                    </div>\r\n              </mat-tab>\r\n              <mat-tab label=\"Client\"> <div class=\"client-box mat-elevation-z4\">\r\n                  <div >\r\n                      <mat-progress-bar *ngIf=\"isLoadingResults\" mode=\"indeterminate\" ></mat-progress-bar>\r\n                      <button mat-mini-fab>\r\n                          <mat-icon aria-label=\"\" routerLink=\"../clientview\">remove_red_eye</mat-icon>\r\n                        </button>\r\n                       \r\n                      <mat-form-field class=\"example-full-width\">\r\n                          <input matInput placeholder=\"Client Name\" [(ngModel)]=\"client.name\" >\r\n                        </mat-form-field>\r\n                        <mat-form-field class=\"example-full-width\">\r\n                            <input matInput placeholder=\"Client Code\" [(ngModel)]=\"client.projectCode\" >\r\n                          </mat-form-field>\r\n                          \r\n            \r\n                                <div class=\"button-row\">\r\n                                    \r\n                                    <button mat-raised-button color=\"accent\" (click)=\"postClient()\" >Add</button>\r\n                                    \r\n                                    \r\n                                  </div>\r\n                  </div>\r\n                   \r\n                  </div> </mat-tab>\r\n              <mat-tab label=\"Site\">  \r\n                  \r\n                    <div id = \"layoutContainer\" \r\n                    fxLayout = \"row\" fxLayout.xs=\"column\" fxLayoutwrap fxLayoutGap=\"0.15%\">\r\n                    \r\n                    <div class=\"site-box mat-elevation-z4\">\r\n                      <div>\r\n                          <button mat-mini-fab>\r\n                              <mat-icon aria-label=\"\" routerLink=\"../siteview\">remove_red_eye</mat-icon>\r\n                            </button>\r\n                    <div fxflex = \"40\" >\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                    <input type=\"text\" placeholder=\"Client Name\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\r\n                                    <mat-autocomplete #auto=\"matAutocomplete\">\r\n                                      <mat-option *ngFor=\"let option of projects\" [value]=\"option.name\" (click)=\"setSiteProject(option.id)\">\r\n                                        {{option.name}}\r\n                                      </mat-option>\r\n                                    </mat-autocomplete>\r\n                                  </mat-form-field>\r\n            \r\n                         \r\n                  <mat-form-field class=\"example-full-width\">\r\n                          <input matInput placeholder=\"Site Code\" [(ngModel)]=\"site.code\">\r\n                        </mat-form-field>   \r\n            \r\n                  <mat-form-field class=\"example-full-width\">\r\n                          <input matInput placeholder=\"Site Name\" [(ngModel)]=\"site.name\">\r\n                        </mat-form-field> \r\n            \r\n                        <mat-form-field class=\"example-full-width\">\r\n                              <input matInput placeholder=\"Address\" [(ngModel)]=\"site.address\">\r\n                            </mat-form-field> \r\n            \r\n                             <mat-form-field class=\"example-full-width\">\r\n                                      <input type=\"text\" placeholder=\"Contract Type\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto11\">\r\n                                      <mat-autocomplete #auto11=\"matAutocomplete\">\r\n                                        <mat-option *ngFor=\"let option of Contracttype\" [value]=\"option\" >\r\n                                          {{option}}\r\n                                        </mat-option>\r\n                                      </mat-autocomplete>\r\n                                    </mat-form-field>\r\n                                <mat-form-field class=\"example-full-width\">\r\n                                      <input type=\"text\" placeholder=\"Regional manager\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto1\">\r\n                                      <mat-autocomplete #auto1=\"matAutocomplete\">\r\n                                        <mat-option *ngFor=\"let option of rm\" [value]=\"option.name\" (click)=\"setSiteRM(option.id)\">\r\n                                          {{option.name}}\r\n                                        </mat-option>\r\n                                      </mat-autocomplete>\r\n                                    </mat-form-field>\r\n                                    <mat-form-field class=\"example-full-width\">\r\n                                          <input type=\"text\" placeholder=\"Senior Manager\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto2\">\r\n                                          <mat-autocomplete #auto2=\"matAutocomplete\">\r\n                                            <mat-option *ngFor=\"let option of sm\" [value]=\"option.name\" (click)=\"setSiteSM(option.id)\">\r\n                                              {{option.name}}\r\n                                            </mat-option>\r\n                                          </mat-autocomplete>\r\n                                        </mat-form-field>\r\n                                        <mat-form-field class=\"example-full-width\">\r\n                                              <input type=\"text\" placeholder=\"Asst Senior Manager\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto3\">\r\n                                              <mat-autocomplete #auto3=\"matAutocomplete\">\r\n                                                <mat-option *ngFor=\"let option of asm\" [value]=\"option.name\" (click)=\"setSiteASM(option.id)\">\r\n                                                  {{option.name}}\r\n                                                </mat-option>\r\n                                              </mat-autocomplete>\r\n                                            </mat-form-field>\r\n                                            <mat-form-field class=\"example-full-width\">\r\n                                                  <input type=\"text\" placeholder=\"Site Incharge\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto4\">\r\n                                                  <mat-autocomplete #auto4=\"matAutocomplete\">\r\n                                                    <mat-option *ngFor=\"let option of si\" [value]=\"option.name\" (click)=\"setSiteSI(option.id)\">\r\n                                                      {{option.name}}\r\n                                                    </mat-option>\r\n                                                  </mat-autocomplete>\r\n                                                </mat-form-field>\r\n                    </div>\r\n                  </div> \r\n                    </div>\r\n                    \r\n                    <div class=\"accordian\">\r\n                    <div fxflex = \"40\" >\r\n                            <mat-card >\r\n                                    <mat-card-header>\r\n                                     \r\n                                            <mat-card-title>Types of Service</mat-card-title>\r\n                                           \r\n                                    </mat-card-header>\r\n                                    <mat-divider ></mat-divider> \r\n                                    <mat-card-content style=\"margin-top: 20px\">\r\n                            <mat-accordion>\r\n                                    <mat-expansion-panel>\r\n                                      <mat-expansion-panel-header>\r\n                                        <mat-panel-title>\r\n                                         Manpower\r\n                                        </mat-panel-title>\r\n                                        <mat-panel-description>\r\n                                          Enter the Manpower  Detail\r\n                                        </mat-panel-description>\r\n                                      </mat-expansion-panel-header>\r\n                                      <div class=\"row\">\r\n                                            <mat-form-field>\r\n                                              <input matInput placeholder=\"Shift\"  [(ngModel)]=\"newAttribute.shift\" >\r\n                                            </mat-form-field>\r\n                                          </div>\r\n                                          <div class=\"row\">\r\n                                                  <mat-form-field>\r\n                                                    <input matInput placeholder=\"StartTime\"  [(ngModel)]=\"newAttribute.starttime\" >\r\n                                                  </mat-form-field>\r\n                                                </div>\r\n                                                <div class=\"row\">\r\n                                                      <mat-form-field>\r\n                                                        <input matInput placeholder=\"EndTime\"  [(ngModel)]=\"newAttribute.endtime\" >\r\n                                                      </mat-form-field>\r\n                                                    </div>\r\n                                                    <div class=\"row\">\r\n                                                          <mat-form-field>\r\n                                                            <input matInput placeholder=\"Planned\"   [(ngModel)]=\"newAttribute.planned\" >\r\n                                                          </mat-form-field>\r\n                                                        </div>\r\n                                                        <div class=\"button-row\">\r\n                                          \r\n                                                              <button mat-raised-button color=\"accent\" (click)=\"addmanFieldValue()\">Add</button>\r\n                                                              \r\n                                                              \r\n                                                            </div>                              \r\n                                                            <table *ngIf=\"manadded\"  style=\"margin-top:20px\">\r\n                                                                <thead>\r\n                                                                    <tr>\r\n                                                                        <th>Shift</th>\r\n                                                                        <th>Start Time</th>\r\n                                                                        <th>End Time</th>\r\n                                                                        <th>Planned</th>\r\n                                                                        <th>Action</th>\r\n                                                                    </tr>\r\n                                                                </thead>\r\n                                                                <tbody>\r\n                                                                    <tr *ngFor=\"let field of fieldArray; let i = index\">\r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.shift\" class=\"form-control\" type=\"text\" name=\"{{field.shift}}\" />\r\n                                                                        </td>\r\n                                                                      \r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.starttime\" class=\"form-control\" type=\"text\" name=\"{{field.starttime}}\" />\r\n                                                                        </td>\r\n                                                                       \r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.endtime\" class=\"form-control\" type=\"text\" name=\"{{field.endtime}}\" />\r\n                                                                        </td>\r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.planned\" class=\"form-control\" type=\"text\" name=\"{{field.planned}}\" />\r\n                                                                        </td>\r\n                                                                        <td>\r\n                                                                            <button mat-icon-button>\r\n                                                                                <mat-icon aria-label=\"Example icon-button with a heart icon\"  matTooltip=\"Delete\" (click)=\"deletemanFieldValue(i)\">highlight_off</mat-icon>\r\n                                                                              </button>\r\n                                                                           \r\n                                                                           \r\n                                                                        </td>\r\n                                                                    </tr>\r\n                                                                   \r\n                                                                </tbody>\r\n                                                            </table>\r\n                                    </mat-expansion-panel>\r\n                                    <mat-expansion-panel (opened)=\"panelOpenState = true\"\r\n                                                         (closed)=\"panelOpenState = false\">\r\n                                      <mat-expansion-panel-header>\r\n                                        <mat-panel-title>\r\n                                          Material\r\n                                        </mat-panel-title>\r\n                                        <mat-panel-description>\r\n                                          Enter the Material detail\r\n                                        </mat-panel-description>\r\n                                      </mat-expansion-panel-header>\r\n                                      <div class=\"row\">\r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                            <input type=\"text\" placeholder=\"Material Type\" aria-label=\"Number\" matInput  [(ngModel)]=\"newAttribute1.materialtype\" [matAutocomplete]=\"auto5\">\r\n                                            <mat-autocomplete #auto5=\"matAutocomplete\" >\r\n                                              <mat-option *ngFor=\"let option of Materialtype\" [value]=\"option\" (click)=\"materialtype(option)\">\r\n                                                {{option}}\r\n                                              </mat-option>\r\n                                            </mat-autocomplete>\r\n                                          </mat-form-field>\r\n                                        </div>\r\n                                        <div class=\"row\">\r\n\r\n                                          \r\n                                                <mat-form-field>\r\n                                                        <input matInput [matDatepicker]=\"picker\" placeholder=\"Commitment Date\" [(ngModel)]=\"newAttribute1.commitmentdate\">\r\n                                                        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n                                                        <mat-datepicker #picker ></mat-datepicker>\r\n                                                      </mat-form-field>\r\n                                              </div>\r\n                                              <div class=\"button-row\">\r\n                                          \r\n                                                    <button mat-raised-button color=\"accent\" (click)=\"addmatFieldValue()\">Add</button>\r\n                                                    \r\n                                                    \r\n                                                  </div>  \r\n                                                  \r\n                                                  <table *ngIf=\"matadded\"  style=\"margin-top:20px\">\r\n                                                      <thead>\r\n                                                          <tr>\r\n                                                              <th>Material Type</th>\r\n                                                              <th>Commitment Date</th>\r\n                                                              <th>Action</th>\r\n                                                             \r\n                                                          </tr>\r\n                                                      </thead>\r\n                                                      <tbody>\r\n                                                          <tr *ngFor=\"let field1 of fieldArray1; let i = index\">\r\n                                                              <td>\r\n                                                                  <input [(ngModel)]=\"field1.materialtype\"  type=\"text\" name=\"{{field1.materialtype}}\" />\r\n                                                              </td>\r\n                                                            \r\n                                                              <td>\r\n                                                                  <input [(ngModel)]=\"field1.commitmentdate\"  type=\"text\" name=\"{{field1.commitmentdate}}\" />\r\n                                                              </td>\r\n                                                             \r\n                                                              \r\n                                                              <td>\r\n                                                                  <button mat-icon-button>\r\n                                                                      <mat-icon aria-label=\"Example icon-button with a heart icon\"  matTooltip=\"Delete\" (click)=\"deletematFieldValue(i)\">highlight_off</mat-icon>\r\n                                                                    </button>\r\n                                                                 \r\n                                                                 \r\n                                                              </td>\r\n                                                          </tr>\r\n                                                         \r\n                                                      </tbody>\r\n                                                  </table>\r\n                                    </mat-expansion-panel>\r\n                                    <mat-expansion-panel (opened)=\"panelOpenState = true\"\r\n                                                         (closed)=\"panelOpenState = false\">\r\n                                      <mat-expansion-panel-header>\r\n                                        <mat-panel-title>\r\n                                         Machine\r\n                                        </mat-panel-title>\r\n                                        <mat-panel-description>\r\n                                          Enter the Machine detail\r\n                                        </mat-panel-description>\r\n                                      </mat-expansion-panel-header>\r\n                                      <div class=\"row\">\r\n                                            <mat-form-field class=\"example-full-width\">\r\n                                                  <input type=\"text\" placeholder=\"Machine Type\" aria-label=\"Number\" matInput [matAutocomplete]=\"auto6\" [(ngModel)]=\"newAttribute2.machinetype\">\r\n                                                  <mat-autocomplete #auto6=\"matAutocomplete\">\r\n                                                    <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                                      {{option}}\r\n                                                    </mat-option>\r\n                                                  </mat-autocomplete>\r\n                                                </mat-form-field>\r\n                                              </div>\r\n                                              <div class=\"row\">\r\n                                                      <mat-form-field>\r\n                                                        <input matInput placeholder=\"Equipment Type\" [(ngModel)]=\"newAttribute2.equipmenttype\">\r\n                                                      </mat-form-field>\r\n                                                    </div>\r\n                                                    <div class=\"row\">\r\n                                                            <mat-form-field>\r\n                                                              <input matInput placeholder=\"Model No\" [(ngModel)]=\"newAttribute2.modelno\" >\r\n                                                            </mat-form-field>\r\n                                                          </div>\r\n                                                          <div class=\"row\">\r\n                                                                <mat-form-field>\r\n                                                                  <input matInput placeholder=\"Serial NO\" [(ngModel)]=\"newAttribute2.serialno\">\r\n                                                                </mat-form-field>\r\n                                                              </div>\r\n                                                              <div class=\"button-row\">\r\n                                          \r\n                                                                    <button mat-raised-button color=\"accent\" (click)=\"addmacFieldValue()\">Add</button>\r\n                                                                    \r\n                                                                    \r\n                                                                  </div>    \r\n                                                                  \r\n                                                                  <table *ngIf=\"macadded\"  style=\"margin-top:20px\">\r\n                                                                      <thead>\r\n                                                                          <tr>\r\n                                                                              <th>Machine Type</th>\r\n                                                                              <th>Equipment Type</th>\r\n                                                                              <th>Model No</th>\r\n                                                                              <th>Serial No</th>\r\n                                                                              <th>Action</th>\r\n                                                                          </tr>\r\n                                                                      </thead>\r\n                                                                      <tbody>\r\n                                                                          <tr *ngFor=\"let field2 of fieldArray2; let i = index\">\r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.machinetype\" class=\"form-control\" type=\"text\" name=\"{{field2.machinetype}}\" />\r\n                                                                              </td>\r\n                                                                            \r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.equipmenttype\" class=\"form-control\" type=\"text\" name=\"{{field2.equipmenttype}}\" />\r\n                                                                              </td>\r\n                                                                             \r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.modelno\" class=\"form-control\" type=\"text\" name=\"{{field2.modelno}}\" />\r\n                                                                              </td>\r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.serialno\" class=\"form-control\" type=\"text\" name=\"{{field2.serialno}}\" />\r\n                                                                              </td>\r\n                                                                              <td>\r\n                                                                                  <button mat-icon-button>\r\n                                                                                      <mat-icon aria-label=\"Example icon-button with a heart icon\"  matTooltip=\"Delete\" (click)=\"deletemacFieldValue(i)\">highlight_off</mat-icon>\r\n                                                                                    </button>\r\n                                                                                 \r\n                                                                                 \r\n                                                                              </td>\r\n                                                                          </tr>\r\n                                                                         \r\n                                                                      </tbody>\r\n                                                                  </table>\r\n                                    </mat-expansion-panel>\r\n                                  </mat-accordion>\r\n                                  </mat-card-content>\r\n                                </mat-card >\r\n                    </div>\r\n                    <div class=\"button-row\">\r\n                                          \r\n                        <button mat-raised-button color=\"accent\" (click)=\"postSite()\">Submit</button>\r\n                        \r\n                        \r\n                      </div>    \r\n                    </div>\r\n                    \r\n                    </div>\r\n                   \r\n                  \r\n            </mat-tab>\r\n            <mat-tab label=\"Escalation\"> <div class=\"escalation-box mat-elevation-z4\">\r\n                    <div >\r\n                        <mat-progress-bar *ngIf=\"isLoadingResults\" mode=\"indeterminate\" ></mat-progress-bar>\r\n                        <button mat-mini-fab>\r\n                            <mat-icon aria-label=\"\" routerLink=\"../escalationview\">remove_red_eye</mat-icon>\r\n                          </button>\r\n                         \r\n                        <mat-form-field class=\"example-full-width\">\r\n                            <input matInput placeholder=\"Type of Escalation\" [(ngModel)]=\"escalationtype.escalationType\">\r\n                          </mat-form-field>\r\n                         \r\n                            \r\n              \r\n                                  <div class=\"button-row\">\r\n                                      \r\n                                      <button mat-raised-button color=\"accent\" (click)=\"postEscalationType()\">Add</button>\r\n                                      \r\n                                      \r\n                                    </div>\r\n                    </div>\r\n                     \r\n                    </div> </mat-tab>\r\n            </mat-tab-group>\r\n            </div>\r\n</div>\r\n</div>\r\n\r\n  \r\n</div>\r\n"
+module.exports = "<div class=\"example-container\">\r\n    <div id = \"layoutContainer\" \r\n    fxLayout = \"row\" fxLayout.xs=\"column\" fxLayoutwrap fxLayoutGap=\"0.15%\">\r\n    <div fxflex = \"100\" >\r\n        <div class=\"example-container\">\r\n            <mat-tab-group >\r\n            \r\n              <mat-tab label=\"Employee\">\r\n               <mat-progress-bar mode=\"indeterminate\" *ngIf=\"isLoadingResults\" ></mat-progress-bar>   \r\n                  <div class=\"employee-box mat-elevation-z4\" >\r\n                    \r\n                    <div >\r\n                        <button mat-mini-fab>\r\n                            <mat-icon aria-label=\"\" routerLink=\"../emplyeeview\">remove_red_eye</mat-icon>\r\n                          </button>\r\n                        <mat-form-field class=\"example-full-width\">\r\n                            <input matInput placeholder=\"Employee Code\" [(ngModel)]=\"emp.code\">\r\n                          </mat-form-field>\r\n                          <mat-form-field class=\"example-full-width\">\r\n                              <input matInput placeholder=\"Employee Name\" [(ngModel)]=\"emp.name\">\r\n                            </mat-form-field>\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input type=\"text\" placeholder=\"Designation\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto20\">\r\n                                <mat-autocomplete #auto20=\"matAutocomplete\" >\r\n                                  <mat-option *ngFor=\"let des of Designation; let i = index\" [value]=\"des.name\" (click)=\"setDesignation(des.name)\">\r\n                                    {{des.name}}\r\n                                  </mat-option>\r\n                                </mat-autocomplete>\r\n                              </mat-form-field>\r\n                              <mat-form-field class=\"example-full-width\">\r\n                                  <input matInput placeholder=\"Email\" [(ngModel)]=\"emp.mail\">\r\n                                </mat-form-field>\r\n                                <mat-form-field class=\"example-full-width\">\r\n                                    <input matInput placeholder=\"Mobile Number\" [(ngModel)]=\"emp.mob\">\r\n                                  </mat-form-field>\r\n            \r\n                                  <div class=\"button-row\">\r\n                                      \r\n                                      <button mat-raised-button color=\"accent\" (click)=\"postEmployee()\" >Submit</button>\r\n                                      \r\n                                      \r\n                                    </div>\r\n                    </div>\r\n                     \r\n                    </div>\r\n              </mat-tab>\r\n              <mat-tab label=\"Client\"> <div class=\"client-box mat-elevation-z4\">\r\n                  <div >\r\n                      <mat-progress-bar *ngIf=\"isLoadingResults\" mode=\"indeterminate\" ></mat-progress-bar>\r\n                      <button mat-mini-fab>\r\n                          <mat-icon aria-label=\"\" routerLink=\"../clientview\">remove_red_eye</mat-icon>\r\n                        </button>\r\n                       \r\n                      <mat-form-field class=\"example-full-width\">\r\n                          <input matInput placeholder=\"Client Name\" [(ngModel)]=\"client.name\" >\r\n                        </mat-form-field>\r\n                        <mat-form-field class=\"example-full-width\">\r\n                            <input matInput placeholder=\"Client Code\" [(ngModel)]=\"client.projectCode\" >\r\n                          </mat-form-field>\r\n                          \r\n            \r\n                                <div class=\"button-row\">\r\n                                    \r\n                                    <button mat-raised-button color=\"accent\" (click)=\"postClient()\" >Add</button>\r\n                                    \r\n                                    \r\n                                  </div>\r\n                  </div>\r\n                   \r\n                  </div> </mat-tab>\r\n              <mat-tab label=\"Site\">  \r\n                  \r\n                    <div id = \"layoutContainer\" \r\n                    fxLayout = \"row\" fxLayout.xs=\"column\" fxLayoutwrap fxLayoutGap=\"0.15%\">\r\n                    \r\n                    <div class=\"site-box mat-elevation-z4\">\r\n                      <div>\r\n                          <button mat-mini-fab>\r\n                              <mat-icon aria-label=\"\" routerLink=\"../siteview\">remove_red_eye</mat-icon>\r\n                            </button>\r\n                    <div fxflex = \"40\" >\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                    <input type=\"text\" placeholder=\"Client Name\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\r\n                                    <mat-autocomplete #auto=\"matAutocomplete\">\r\n                                      <mat-option *ngFor=\"let option of projects\" [value]=\"option.name\" (click)=\"setSiteProject(option.id)\">\r\n                                        {{option.name}}\r\n                                      </mat-option>\r\n                                    </mat-autocomplete>\r\n                                  </mat-form-field>\r\n            \r\n                         \r\n                  <mat-form-field class=\"example-full-width\">\r\n                          <input matInput placeholder=\"Site Code\" [(ngModel)]=\"site.code\">\r\n                        </mat-form-field>   \r\n            \r\n                  <mat-form-field class=\"example-full-width\">\r\n                          <input matInput placeholder=\"Site Name\" [(ngModel)]=\"site.name\">\r\n                        </mat-form-field> \r\n            \r\n                        <mat-form-field class=\"example-full-width\">\r\n                              <input matInput placeholder=\"Address\" [(ngModel)]=\"site.address\">\r\n                            </mat-form-field> \r\n            \r\n                             <mat-form-field class=\"example-full-width\">\r\n                                      <input type=\"text\" placeholder=\"Contract Type\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto11\">\r\n                                      <mat-autocomplete #auto11=\"matAutocomplete\">\r\n                                        <mat-option *ngFor=\"let cont of Contracttype\" [value]=\"cont\" (click)=\"setContractType(cont)\">\r\n                                          {{cont}}\r\n                                        </mat-option>\r\n                                      </mat-autocomplete>\r\n                                    </mat-form-field>\r\n                                <mat-form-field class=\"example-full-width\">\r\n                                      <input type=\"text\" placeholder=\"Regional manager\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto1\">\r\n                                      <mat-autocomplete #auto1=\"matAutocomplete\">\r\n                                        <mat-option *ngFor=\"let option of rm\" [value]=\"option.name\" (click)=\"setSiteRM(option.id)\">\r\n                                          {{option.name}}\r\n                                        </mat-option>\r\n                                      </mat-autocomplete>\r\n                                    </mat-form-field>\r\n                                    <mat-form-field class=\"example-full-width\">\r\n                                          <input type=\"text\" placeholder=\"Senior Manager\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto2\">\r\n                                          <mat-autocomplete #auto2=\"matAutocomplete\">\r\n                                            <mat-option *ngFor=\"let option of sm\" [value]=\"option.name\" (click)=\"setSiteSM(option.id)\">\r\n                                              {{option.name}}\r\n                                            </mat-option>\r\n                                          </mat-autocomplete>\r\n                                        </mat-form-field>\r\n                                        <mat-form-field class=\"example-full-width\">\r\n                                              <input type=\"text\" placeholder=\"Asst Senior Manager\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto3\">\r\n                                              <mat-autocomplete #auto3=\"matAutocomplete\">\r\n                                                <mat-option *ngFor=\"let option of asm\" [value]=\"option.name\" (click)=\"setSiteASM(option.id)\">\r\n                                                  {{option.name}}\r\n                                                </mat-option>\r\n                                              </mat-autocomplete>\r\n                                            </mat-form-field>\r\n                                            <mat-form-field class=\"example-full-width\">\r\n                                                  <input type=\"text\" placeholder=\"Site Incharge\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto4\">\r\n                                                  <mat-autocomplete #auto4=\"matAutocomplete\">\r\n                                                    <mat-option *ngFor=\"let option of si\" [value]=\"option.name\" (click)=\"setSiteSI(option.id)\">\r\n                                                      {{option.name}}\r\n                                                    </mat-option>\r\n                                                  </mat-autocomplete>\r\n                                                </mat-form-field>\r\n                    </div>\r\n                  </div> \r\n                    </div>\r\n                    \r\n                    <div class=\"accordian\">\r\n                    <div fxflex = \"40\" >\r\n                            <mat-card >\r\n                                    <mat-card-header>\r\n                                     \r\n                                            <mat-card-title>Types of Service</mat-card-title>\r\n                                           \r\n                                    </mat-card-header>\r\n                                    <mat-divider ></mat-divider> \r\n                                    <mat-card-content style=\"margin-top: 20px\">\r\n                            <mat-accordion>\r\n                                    <mat-expansion-panel>\r\n                                      <mat-expansion-panel-header>\r\n                                        <mat-panel-title>\r\n                                         Manpower\r\n                                        </mat-panel-title>\r\n                                        <mat-panel-description>\r\n                                          Enter the Manpower  Detail\r\n                                        </mat-panel-description>\r\n                                      </mat-expansion-panel-header>\r\n                                      <div class=\"row\">\r\n                                            <mat-form-field>\r\n                                              <input matInput placeholder=\"Shift\"  [(ngModel)]=\"manpower.shift\" >\r\n                                            </mat-form-field>\r\n                                          </div>\r\n                                          <div class=\"row\">\r\n                                                  <mat-form-field>\r\n                                                    <input matInput placeholder=\"StartTime\"  [(ngModel)]=\"manpower.startTime\" >\r\n                                                  </mat-form-field>\r\n                                                </div>\r\n                                                <div class=\"row\">\r\n                                                      <mat-form-field>\r\n                                                        <input matInput placeholder=\"EndTime\"  [(ngModel)]=\"manpower.endTime\" >\r\n                                                      </mat-form-field>\r\n                                                    </div>\r\n                                                    <div class=\"row\">\r\n                                                          <mat-form-field>\r\n                                                            <input matInput placeholder=\"Planned\"   [(ngModel)]=\"manpower.planned\" >\r\n                                                          </mat-form-field>\r\n                                                        </div>\r\n                                                        <div class=\"button-row\">\r\n                                          \r\n                                                              <button mat-raised-button color=\"accent\" (click)=\"addmanFieldValue()\">Add</button>\r\n                                                              \r\n                                                              \r\n                                                            </div>                              \r\n                                                            <table *ngIf=\"manadded\"  style=\"margin-top:20px\">\r\n                                                                <thead>\r\n                                                                    <tr>\r\n                                                                        <th>Shift</th>\r\n                                                                        <th>Start Time</th>\r\n                                                                        <th>End Time</th>\r\n                                                                        <th>Planned</th>\r\n                                                                        <th>Action</th>\r\n                                                                    </tr>\r\n                                                                </thead>\r\n                                                                <tbody>\r\n                                                                    <tr *ngFor=\"let field of fieldArray; let i = index\">\r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.shift\" class=\"form-control\" type=\"text\" name=\"{{field.shift}}\" />\r\n                                                                        </td>\r\n                                                                      \r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.starttime\" class=\"form-control\" type=\"text\" name=\"{{field.startTime}}\" />\r\n                                                                        </td>\r\n                                                                       \r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.endtime\" class=\"form-control\" type=\"text\" name=\"{{field.endTime}}\" />\r\n                                                                        </td>\r\n                                                                        <td>\r\n                                                                            <input [(ngModel)]=\"field.planned\" class=\"form-control\" type=\"text\" name=\"{{field.planned}}\" />\r\n                                                                        </td>\r\n                                                                        <td>\r\n                                                                            <button mat-icon-button>\r\n                                                                                <mat-icon aria-label=\"Example icon-button with a heart icon\"  matTooltip=\"Delete\" (click)=\"deletemanFieldValue(i)\">highlight_off</mat-icon>\r\n                                                                              </button>\r\n                                                                           \r\n                                                                           \r\n                                                                        </td>\r\n                                                                    </tr>\r\n                                                                   \r\n                                                                </tbody>\r\n                                                            </table>\r\n                                    </mat-expansion-panel>\r\n                                    <mat-expansion-panel (opened)=\"panelOpenState = true\"\r\n                                                         (closed)=\"panelOpenState = false\">\r\n                                      <mat-expansion-panel-header>\r\n                                        <mat-panel-title>\r\n                                          Material\r\n                                        </mat-panel-title>\r\n                                        <mat-panel-description>\r\n                                          Enter the Material detail\r\n                                        </mat-panel-description>\r\n                                      </mat-expansion-panel-header>\r\n                                      <div class=\"row\">\r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                            <input type=\"text\" placeholder=\"Material Type\" aria-label=\"Number\" matInput  [(ngModel)]=\"material.materialType\" [matAutocomplete]=\"auto5\">\r\n                                            <mat-autocomplete #auto5=\"matAutocomplete\" >\r\n                                              <mat-option *ngFor=\"let option of Materialtype\" [value]=\"option\" (click)=\"setMaterialType(option)\">\r\n                                                {{option}}\r\n                                              </mat-option>\r\n                                            </mat-autocomplete>\r\n                                          </mat-form-field>\r\n                                        </div>\r\n                                        <div class=\"row\">\r\n\r\n                                          \r\n                                                <mat-form-field>\r\n                                                        <input matInput [matDatepicker]=\"picker\"  placeholder=\"Commitment Date\" [(ngModel)]=\"material.commitmentDate \">\r\n                                                        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n                                                        <mat-datepicker #picker ></mat-datepicker>\r\n                                                      </mat-form-field>\r\n                                              </div>\r\n                                              <div class=\"button-row\">\r\n                                          \r\n                                                    <button mat-raised-button color=\"accent\" (click)=\"addmatFieldValue()\">Add</button>\r\n                                                    \r\n                                                    \r\n                                                  </div>  \r\n                                                  \r\n                                                  <table *ngIf=\"matadded\"  style=\"margin-top:20px\">\r\n                                                      <thead>\r\n                                                          <tr>\r\n                                                              <th>Material Type</th>\r\n                                                              <th>Commitment Date</th>\r\n                                                              <th>Action</th>\r\n                                                             \r\n                                                          </tr>\r\n                                                      </thead>\r\n                                                      <tbody>\r\n                                                          <tr *ngFor=\"let field1 of fieldArray1; let i = index\">\r\n                                                              <td>\r\n                                                                  <input [(ngModel)]=\"field1.materialType\"  type=\"text\" name=\"{{field1.materialType}}\" />\r\n                                                              </td>\r\n                                                            \r\n                                                              <td>\r\n                                                                  <input [(ngModel)]=\"field1.commitmentDate\"  type=\"text\" name=\"{{field1.commitmentDate}}\" />\r\n                                                              </td>\r\n                                                             \r\n                                                              \r\n                                                              <td>\r\n                                                                  <button mat-icon-button>\r\n                                                                      <mat-icon aria-label=\"Example icon-button with a heart icon\"  matTooltip=\"Delete\" (click)=\"deletematFieldValue(i)\">highlight_off</mat-icon>\r\n                                                                    </button>\r\n                                                                 \r\n                                                                 \r\n                                                              </td>\r\n                                                          </tr>\r\n                                                         \r\n                                                      </tbody>\r\n                                                  </table>\r\n                                    </mat-expansion-panel>\r\n                                    <mat-expansion-panel (opened)=\"panelOpenState = true\"\r\n                                                         (closed)=\"panelOpenState = false\">\r\n                                      <mat-expansion-panel-header>\r\n                                        <mat-panel-title>\r\n                                         Machine\r\n                                        </mat-panel-title>\r\n                                        <mat-panel-description>\r\n                                          Enter the Machine detail\r\n                                        </mat-panel-description>\r\n                                      </mat-expansion-panel-header>\r\n                                      <div class=\"row\">\r\n                                                <mat-form-field>\r\n                                                  <input matInput placeholder=\"Machine Type\" [(ngModel)]=\"machine.machineType\">\r\n                                                </mat-form-field>\r\n                                              </div>\r\n                                              <div class=\"row\">\r\n                                                  <mat-form-field class=\"example-full-width\">\r\n                                                      <input type=\"text\" placeholder=\"Equipment Type\" aria-label=\"Number\" matInput [matAutocomplete]=\"auto6\" [(ngModel)]=\"machine.equipmentType\">\r\n                                                      <mat-autocomplete #auto6=\"matAutocomplete\">\r\n                                                        <mat-option *ngFor=\"let option of Equipmenttype\" [value]=\"option\" (click)=\"setEquipmentType(option)\">\r\n                                                          {{option}}\r\n                                                        </mat-option>\r\n                                                      </mat-autocomplete>\r\n                                                    </mat-form-field>\r\n                                                    </div>\r\n                                                    <div class=\"row\">\r\n                                                            <mat-form-field>\r\n                                                              <input matInput placeholder=\"Model No\" [(ngModel)]=\"machine.modelNo\" >\r\n                                                            </mat-form-field>\r\n                                                          </div>\r\n                                                          <div class=\"row\">\r\n                                                                <mat-form-field>\r\n                                                                  <input matInput placeholder=\"Serial NO\" [(ngModel)]=\"machine.serialNo\">\r\n                                                                </mat-form-field>\r\n                                                              </div>\r\n                                                              <div class=\"button-row\">\r\n                                          \r\n                                                                    <button mat-raised-button color=\"accent\" (click)=\"addmacFieldValue()\">Add</button>\r\n                                                                    \r\n                                                                    \r\n                                                                  </div>    \r\n                                                                  \r\n                                                                  <table *ngIf=\"macadded\"  style=\"margin-top:20px\">\r\n                                                                      <thead>\r\n                                                                          <tr>\r\n                                                                              <th>Machine Type</th>\r\n                                                                              <th>Equipment Type</th>\r\n                                                                              <th>Model No</th>\r\n                                                                              <th>Serial No</th>\r\n                                                                              <th>Action</th>\r\n                                                                          </tr>\r\n                                                                      </thead>\r\n                                                                      <tbody>\r\n                                                                          <tr *ngFor=\"let field2 of fieldArray2; let i = index\">\r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.machineType\" class=\"form-control\" type=\"text\" name=\"{{field2.machineType}}\" />\r\n                                                                              </td>\r\n                                                                            \r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.equipmentType\" class=\"form-control\" type=\"text\" name=\"{{field2.equipmentType}}\" />\r\n                                                                              </td>\r\n                                                                             \r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.modelNo\" class=\"form-control\" type=\"text\" name=\"{{field2.modelNo}}\" />\r\n                                                                              </td>\r\n                                                                              <td>\r\n                                                                                  <input [(ngModel)]=\"field2.serialNo\" class=\"form-control\" type=\"text\" name=\"{{field2.serialNo}}\" />\r\n                                                                              </td>\r\n                                                                              <td>\r\n                                                                                  <button mat-icon-button>\r\n                                                                                      <mat-icon aria-label=\"Example icon-button with a heart icon\"  matTooltip=\"Delete\" (click)=\"deletemacFieldValue(i)\">highlight_off</mat-icon>\r\n                                                                                    </button>\r\n                                                                                 \r\n                                                                                 \r\n                                                                              </td>\r\n                                                                          </tr>\r\n                                                                         \r\n                                                                      </tbody>\r\n                                                                  </table>\r\n                                    </mat-expansion-panel>\r\n                                  </mat-accordion>\r\n                                  </mat-card-content>\r\n                                </mat-card >\r\n                    </div>\r\n                    <div class=\"button-row\">\r\n                                          \r\n                        <button mat-raised-button color=\"accent\" (click)=\"postSite()\">Submit</button>\r\n                        \r\n                        \r\n                      </div>    \r\n                    </div>\r\n                    \r\n                    </div>\r\n                   \r\n                  \r\n            </mat-tab>\r\n            <mat-tab label=\"Escalation\"> <div class=\"escalation-box mat-elevation-z4\">\r\n                    <div >\r\n                        <mat-progress-bar *ngIf=\"isLoadingResults\" mode=\"indeterminate\" ></mat-progress-bar>\r\n                        <button mat-mini-fab>\r\n                            <mat-icon aria-label=\"\" routerLink=\"../escalationview\">remove_red_eye</mat-icon>\r\n                          </button>\r\n                         \r\n                        <mat-form-field class=\"example-full-width\">\r\n                            <input matInput placeholder=\"Type of Escalation\" [(ngModel)]=\"escalationtype.escalationType\">\r\n                          </mat-form-field>\r\n                         \r\n                            \r\n              \r\n                                  <div class=\"button-row\">\r\n                                      \r\n                                      <button mat-raised-button color=\"accent\" (click)=\"postEscalationType()\">Add</button>\r\n                                      \r\n                                      \r\n                                    </div>\r\n                    </div>\r\n                     \r\n                    </div> </mat-tab>\r\n            </mat-tab-group>\r\n            </div>\r\n</div>\r\n</div>\r\n\r\n  \r\n</div>\r\n"
 
 /***/ }),
 
@@ -1568,8 +1933,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _dateformat_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dateformat.service */ "./src/app/dateformat.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _models_site_model__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../models/site.model */ "./src/app/models/site.model.ts");
+/* harmony import */ var _models_manpower_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../models/manpower.model */ "./src/app/models/manpower.model.ts");
+/* harmony import */ var _models_material_model__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../models/material.model */ "./src/app/models/material.model.ts");
+/* harmony import */ var _models_machine_model__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../models/machine.model */ "./src/app/models/machine.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1586,17 +1956,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
 var MasterdataComponent = /** @class */ (function () {
-    function MasterdataComponent(http, activaterouter, router, nav, data) {
+    function MasterdataComponent(http, activaterouter, router, nav, data, dateFormat) {
         this.http = http;
         this.activaterouter = activaterouter;
         this.router = router;
         this.nav = nav;
         this.data = data;
+        this.dateFormat = dateFormat;
+        //model class object creation
+        this.site = new _models_site_model__WEBPACK_IMPORTED_MODULE_8__["Site"]();
+        this.manpower = new _models_manpower_model__WEBPACK_IMPORTED_MODULE_9__["ManPower"]();
+        this.material = new _models_material_model__WEBPACK_IMPORTED_MODULE_10__["Material"]();
+        this.machine = new _models_machine_model__WEBPACK_IMPORTED_MODULE_11__["Machine"]();
         this.myControl1 = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.Equipmenttype = ['Rented', 'Amortised'];
         this.Contracttype = ['Manpower', 'Lumsum', 'SLA', 'One Time', 'Project Event', 'PartTimers'];
         this.Materialtype = ['Fixed materials', 'At Actual'];
-        this.Designation = [{ 'id': '1', 'name': 'REGIONAL MANAGER' }, { 'id': '2', 'name': 'SENIOR MANAGER' }, { 'id': '3', 'name': 'MANAGER' }, { 'id': '4', 'name': 'ASST MANAGER' }];
+        this.Designation = [{ 'id': '1', 'name': 'REGIONAL MANAGER' }, { 'id': '2', 'name': 'SENIOR MANAGER' }, { 'id': '3', 'name': 'SITE INCHARGE' }, { 'id': '4', 'name': 'ASSISTANT SENIOR MANAGER' }];
         this.isLoadingResults = false;
         this.fieldArray = [];
         this.fieldArray1 = [];
@@ -1612,25 +1994,21 @@ var MasterdataComponent = /** @class */ (function () {
         this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
         this.emp = { "designation": "" };
         this.client = {};
-        this.site = { "projectId": "", "projectName": "", "regionalManagerId": "", "seniorManagerId": "", "asstSeniorManagerId": "", "siteInchargeId": "",
-            "manPowerDTO": [], "machineDTO": [], "materialDTO": [] };
-        this.rm = [];
-        this.sm = [];
-        this.asm = [];
-        this.si = [];
-        this.manpower = {};
-        this.material = {};
-        this.machine = {};
+        //public manpower={};
+        //public material={};
+        //public machine={};
         this.escalationtype = {};
     }
-    MasterdataComponent.prototype.materialtype = function (type) {
+    MasterdataComponent.prototype.setMaterialType = function (type) {
+        this.material.materialType = type;
         console.log(type);
     };
-    MasterdataComponent.prototype.addmanFieldValue = function (newAttribute) {
+    MasterdataComponent.prototype.addmanFieldValue = function () {
         this.manadded = true;
-        this.fieldArray.push(this.newAttribute);
-        // console.log(this.fieldArray);
-        this.newAttribute = {};
+        //this.date=new Date();
+        this.fieldArray.push(this.manpower);
+        console.log(this.fieldArray);
+        this.manpower = new _models_manpower_model__WEBPACK_IMPORTED_MODULE_9__["ManPower"]();
     };
     MasterdataComponent.prototype.deletemanFieldValue = function (index) {
         this.fieldArray.splice(index, 1);
@@ -1638,11 +2016,14 @@ var MasterdataComponent = /** @class */ (function () {
             this.manadded = false;
         }
     };
-    MasterdataComponent.prototype.addmatFieldValue = function (newAttribute1) {
+    MasterdataComponent.prototype.addmatFieldValue = function () {
         this.matadded = true;
-        this.fieldArray1.push(this.newAttribute1);
-        // console.log(this.fieldArray);
-        this.newAttribute1 = {};
+        //console.log(this.material);
+        //this.material.commitmentDate = this.dateFormat.convertdate(this.material.commitmentDate);
+        console.log(this.material.commitmentDate);
+        this.fieldArray1.push(this.material);
+        //console.log(this.fieldArray1);
+        this.material = new _models_material_model__WEBPACK_IMPORTED_MODULE_10__["Material"]();
     };
     MasterdataComponent.prototype.deletematFieldValue = function (index) {
         this.fieldArray1.splice(index, 1);
@@ -1650,11 +2031,11 @@ var MasterdataComponent = /** @class */ (function () {
             this.matadded = false;
         }
     };
-    MasterdataComponent.prototype.addmacFieldValue = function (newAttribute2) {
+    MasterdataComponent.prototype.addmacFieldValue = function () {
         this.macadded = true;
-        this.fieldArray2.push(this.newAttribute2);
-        // console.log(this.fieldArray);
-        this.newAttribute2 = {};
+        this.fieldArray2.push(this.machine);
+        console.log(this.fieldArray2);
+        this.machine = new _models_machine_model__WEBPACK_IMPORTED_MODULE_11__["Machine"]();
     };
     MasterdataComponent.prototype.deletemacFieldValue = function (index) {
         this.fieldArray2.splice(index, 1);
@@ -1665,14 +2046,14 @@ var MasterdataComponent = /** @class */ (function () {
     MasterdataComponent.prototype.postEmployee = function () {
         var _this = this;
         this.isLoadingResults = true;
-        this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.emp)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function () {
+        this.http.post('http://localhost:8080/uds/employee', this.emp)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function () {
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (data) {
             console.log('ggg');
             // Flip flag to show that loading has finished.
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function () {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(function () {
             console.log('errr');
             return 'ok';
         }))
@@ -1689,14 +2070,14 @@ var MasterdataComponent = /** @class */ (function () {
         var _this = this;
         this.isLoadingResults = true;
         console.log(this.client);
-        this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project', this.client)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function () {
+        this.http.post('http://localhost:8080/uds/project', this.client)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function () {
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (data) {
             console.log('ggg');
             // Flip flag to show that loading has finished.
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function () {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(function () {
             console.log('errr');
             return 'ok';
         }))
@@ -1716,16 +2097,17 @@ var MasterdataComponent = /** @class */ (function () {
         this.site.machineDTO = this.fieldArray2;
         this.site.materialDTO = this.fieldArray1;
         // this.createSiteJson();
+        console.log("converted date" + this.site.machineDTO);
         console.log(this.site);
         this.isLoadingResults = true;
         this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site', this.site)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function () {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function () {
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (data) {
             console.log('ggg');
             // Flip flag to show that loading has finished.
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function () {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(function () {
             console.log('errr');
             return 'ok';
         }))
@@ -1741,14 +2123,14 @@ var MasterdataComponent = /** @class */ (function () {
         var _this = this;
         this.isLoadingResults = true;
         console.log(this.site);
-        this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/esctype', this.escalationtype)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function () {
+        this.http.post('http://localhost:8080//uds/esctype', this.escalationtype)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function () {
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (data) {
             console.log('ggg');
             // Flip flag to show that loading has finished.
             return 'ok';
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function () {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(function () {
             console.log('errr');
             return 'ok';
         }))
@@ -1777,18 +2159,27 @@ var MasterdataComponent = /** @class */ (function () {
     };
     MasterdataComponent.prototype.listASM = function () {
         var _this = this;
-        this.data.getEmployee('ASSISTENT SENIOR MANAGER').subscribe(function (data) { return _this.asm = data; });
+        this.data.getEmployee('ASSISTANT SENIOR MANAGER').subscribe(function (data) { return _this.asm = data; });
         console.log(this.data);
     };
     MasterdataComponent.prototype.listSI = function () {
         var _this = this;
-        this.data.getEmployee('SITE INCHARGE').subscribe(function (data) { return _this.si = data; });
+        this.data.getEmployee('SITE INCHARGE').subscribe(function (data) { return _this.employees = data['content']; });
         console.log(this.data);
     };
-    MasterdataComponent.prototype.createSiteJson = function () {
-        this.site.manPowerDTO.push(this.manpower);
-        this.site.machineDTO.push(this.machine);
-        this.site.materialDTO.push(this.material);
+    //createSiteJson()
+    //{
+    //  this.site.manPowerDTO.push(this.manpower);
+    //  this.site.machineDTO.push(this.machine);
+    //  this.site.materialDTO.push(this.material);
+    //}
+    MasterdataComponent.prototype.setEquipmentType = function (type) {
+        this.machine.equipmentType = type;
+        console.log(this.machine.equipmentType);
+    };
+    MasterdataComponent.prototype.setContractType = function (id) {
+        console.log(id);
+        this.site.contractType = id;
     };
     MasterdataComponent.prototype.setDesignation = function (id) {
         console.log(id);
@@ -1842,7 +2233,8 @@ var MasterdataComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./masterdata.component.css */ "./src/app/masterdata/masterdata.component.css")],
             providers: [_my_nav_my_nav_service__WEBPACK_IMPORTED_MODULE_1__["Toolbarservice"]]
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _my_nav_my_nav_service__WEBPACK_IMPORTED_MODULE_1__["Toolbarservice"], _data_service__WEBPACK_IMPORTED_MODULE_6__["DataService"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _my_nav_my_nav_service__WEBPACK_IMPORTED_MODULE_1__["Toolbarservice"], _data_service__WEBPACK_IMPORTED_MODULE_7__["DataService"],
+            _dateformat_service__WEBPACK_IMPORTED_MODULE_5__["Dateformat"]])
     ], MasterdataComponent);
     return MasterdataComponent;
 }());
@@ -1889,6 +2281,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _dateformat_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dateformat.service */ "./src/app/dateformat.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1903,9 +2296,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MasterviewComponent = /** @class */ (function () {
-    function MasterviewComponent(http) {
+    function MasterviewComponent(http, dateformat) {
         this.http = http;
+        this.dateformat = dateformat;
         this.displayedColumns = ['code', 'name', 'designation', 'mail', 'phone'];
         this.data = [];
         this.resultsLength = 0;
@@ -1914,6 +2309,7 @@ var MasterviewComponent = /** @class */ (function () {
     }
     MasterviewComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log(this.dateformat.convertdate('Wed Aug 29 2018 00:00:00 GMT+0530 (India Standard Time)'));
         this.udsDatabase = new UdsHttpDao(this.http);
         this.sort.sortChange.subscribe(function () { return _this.paginator.pageIndex = 0; });
         Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["merge"])(this.sort.sortChange, this.paginator.page)
@@ -1948,7 +2344,7 @@ var MasterviewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./masterview.component.html */ "./src/app/masterview/masterview.component.html"),
             styles: [__webpack_require__(/*! ./masterview.component.css */ "./src/app/masterview/masterview.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _dateformat_service__WEBPACK_IMPORTED_MODULE_5__["Dateformat"]])
     ], MasterviewComponent);
     return MasterviewComponent;
 }());
@@ -1983,6 +2379,46 @@ var Employ = /** @class */ (function () {
     function Employ() {
     }
     return Employ;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/escalation.model.ts":
+/*!********************************************!*\
+  !*** ./src/app/models/escalation.model.ts ***!
+  \********************************************/
+/*! exports provided: Escalation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Escalation", function() { return Escalation; });
+var Escalation = /** @class */ (function () {
+    function Escalation() {
+    }
+    return Escalation;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/machine.model.ts":
+/*!*****************************************!*\
+  !*** ./src/app/models/machine.model.ts ***!
+  \*****************************************/
+/*! exports provided: Machine */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Machine", function() { return Machine; });
+var Machine = /** @class */ (function () {
+    function Machine() {
+    }
+    return Machine;
 }());
 
 
@@ -2043,6 +2479,26 @@ var ManPowerTransaction = /** @class */ (function () {
     function ManPowerTransaction() {
     }
     return ManPowerTransaction;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/material.model.ts":
+/*!******************************************!*\
+  !*** ./src/app/models/material.model.ts ***!
+  \******************************************/
+/*! exports provided: Material */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Material", function() { return Material; });
+var Material = /** @class */ (function () {
+    function Material() {
+    }
+    return Material;
 }());
 
 
@@ -2240,7 +2696,7 @@ var Toolbarservice = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n  \r\n  .example-container > * {\r\n      padding-left: 20px;\r\n      padding-top: 20px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .accordian > * {\r\n    padding-left: 50px;\r\n    padding-top: 5px;\r\n \r\n}\r\n  \r\n  .example-stretched-tabs {\r\n    max-width: 800px;\r\n  }\r\n  \r\n  example-small-box, .employee-box ,.client-box , .site-box, .escalation-box, .opstracker-box , .material-box ,.machine-box{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin: 16px;\r\n    padding: 16px;\r\n    border-radius: 8px;\r\n  }\r\n  \r\n  .example-small-box {\r\n    height: 100px;\r\n    width: 100px;\r\n  }\r\n  \r\n  .employee-box {\r\n    height: 400px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .client-box {\r\n    height: 200px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .site-box {\r\n    height:650px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .escalation-box {\r\n    height: 440px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .opstracker-box {\r\n    height: 180px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .material-box {\r\n    height: 550px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .machine-box {\r\n    height: 600px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .button-row button,\r\n.button-row a {\r\n  margin-left: 90px;\r\n  margin-top: 8px\r\n}\r\n  \r\n  .site-form {\r\n  min-width: 150px;\r\n  max-width: 500px;\r\n  width: 100%;\r\n}\r\n  \r\n  .example-full-width {\r\n  width: 100%;\r\n}\r\n  \r\n  .example-headers-align .mat-expansion-panel-header-title, \r\n.example-headers-align .mat-expansion-panel-header-description {\r\n  flex-basis: 0;\r\n}\r\n  \r\n  .example-headers-align .mat-expansion-panel-header-description {\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n  \r\n  .mt{\r\n  margin-top: 100px;\r\n}\r\n  "
+module.exports = ".example-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n  \r\n  .example-container > * {\r\n      padding-left: 20px;\r\n      padding-top: 20px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .accordian > * {\r\n    padding-left: 50px;\r\n    padding-top: 5px;\r\n \r\n}\r\n  \r\n  .example-stretched-tabs {\r\n    max-width: 800px;\r\n  }\r\n  \r\n  example-small-box, .employee-box ,.client-box , .site-box, .escalation-box, .opstracker-box , .material-box ,.machine-box{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin: 16px;\r\n    padding: 16px;\r\n    border-radius: 8px;\r\n  }\r\n  \r\n  .example-small-box {\r\n    height: 100px;\r\n    width: 100px;\r\n  }\r\n  \r\n  .employee-box {\r\n    height: 400px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .manpower-box {\r\n    height: 400px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .client-box {\r\n    height: 200px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .site-box {\r\n    height:650px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .escalation-box {\r\n    height: 440px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .opstracker-box {\r\n    height: 180px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .material-box {\r\n    height: 550px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .machine-box {\r\n    height: 600px;\r\n    width: 300px;\r\n  }\r\n  \r\n  .button-row button,\r\n.button-row a {\r\n  margin-left: 90px;\r\n  margin-top: 8px\r\n}\r\n  \r\n  .site-form {\r\n  min-width: 150px;\r\n  max-width: 500px;\r\n  width: 100%;\r\n}\r\n  \r\n  .example-full-width {\r\n  width: 100%;\r\n}\r\n  \r\n  .example-headers-align .mat-expansion-panel-header-title, \r\n.example-headers-align .mat-expansion-panel-header-description {\r\n  flex-basis: 0;\r\n}\r\n  \r\n  .example-headers-align .mat-expansion-panel-header-description {\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n  \r\n  .mt{\r\n  margin-top: 100px;\r\n}\r\n\r\n  "
 
 /***/ }),
 
@@ -2251,7 +2707,7 @@ module.exports = ".example-container {\r\n    display: flex;\r\n    flex-directi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container \">\r\n    <div id = \"layoutContainer\" \r\n    fxLayout = \"row\" fxLayout.xs=\"column\" fxLayoutwrap fxLayoutGap=\"0.15%\">\r\n    \r\n    <div fxflex = \"50\" >\r\n    <div >\r\n      <mat-card >\r\n          <mat-card-header>\r\n           \r\n                  <mat-card-title>Opstracker</mat-card-title>\r\n                 \r\n          </mat-card-header>\r\n          <mat-divider ></mat-divider> \r\n          <mat-card-content>\r\n          <div >\r\n              <mat-form-field class=\"example-full-width\">\r\n                  <input matInput [matDatepicker]=\"picker\" placeholder=\"Date\">\r\n                  <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n                  <mat-datepicker #picker ></mat-datepicker>\r\n                </mat-form-field>\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n              <input type=\"text\" placeholder=\"Client\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\r\n              <mat-autocomplete #auto=\"matAutocomplete\">\r\n                <mat-option *ngFor=\"let option of projects\" [value]=\"option.name\" (onSelectionChange)=\"setProject(option.id)\">\r\n                  {{option.name}}\r\n                </mat-option>\r\n              </mat-autocomplete>\r\n            </mat-form-field>\r\n           \r\n            \r\n           \r\n           \r\n            \r\n              <mat-form-field class=\"example-full-width\">\r\n                  <input type=\"text\" placeholder=\"Site\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto1\">\r\n                  <mat-autocomplete #auto1=\"matAutocomplete\">\r\n                    <mat-option *ngFor=\"let option of sites\" [value]=\"option.name\" (onSelectionChange)=\"setSite(option.id)\" >\r\n                      {{option.name}}\r\n                    </mat-option>\r\n                  </mat-autocomplete>\r\n                </mat-form-field>\r\n             \r\n             \r\n                 \r\n  \r\n                    \r\n                      \r\n                   \r\n                   \r\n                       \r\n                        \r\n  \r\n       </div>\r\n       </mat-card-content>\r\n       </mat-card>\r\n       </div>\r\n      </div>\r\n       <div class=\"accordian\">\r\n          <div fxflex = \"50\" >\r\n             \r\n              <mat-tab-group >\r\n               \r\n                  <mat-tab label=\"Manpower\">\r\n                      <div class=\"employee-box mat-elevation-z4\">\r\n                      <div >\r\n                        \r\n                          <mat-form-field class=\"example-full-width\">\r\n                              <input type=\"text\" placeholder=\"Shift\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto3\">\r\n                              <mat-autocomplete #auto3=\"matAutocomplete\">\r\n                                <mat-option *ngFor=\"let option of shifts\" [value]=\"option\" (onSelectionChange)=\"setShiftDetails(option)\">\r\n                                  {{option}}\r\n                                </mat-option>\r\n                              </mat-autocomplete>\r\n                            </mat-form-field>\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"Planned\" [(ngModel)]=\"manpowertransaction.planned\">\r\n                              </mat-form-field>\r\n                              <mat-form-field class=\"example-full-width\">\r\n                                  <input matInput placeholder=\"Actual\" [(ngModel)]=\"manpowertransaction.actual\" (input)=\"setShortFall($event.target.value)\">\r\n                                </mat-form-field>\r\n                                <mat-form-field class=\"example-full-width\">\r\n                                    <input matInput placeholder=\"Shortfall\" [(ngModel)]=\"manpowertransaction.shortfall\">\r\n                                  </mat-form-field>\r\n                                  <mat-form-field class=\"example-full-width\">\r\n                                      <input matInput placeholder=\"Total Number of Relivers\" [(ngModel)]=\"manpowertransaction.totalNoOfRelievers\">\r\n                                    </mat-form-field>\r\n              \r\n                                    <div class=\"button-row\">\r\n                                        \r\n                                        <button mat-raised-button color=\"accent\" (click)=\"postManPowerTransaction()\">Submit</button>\r\n                                        \r\n                                        \r\n                                      </div>\r\n                      </div>\r\n                       </div>\r\n                     \r\n                    </mat-tab>\r\n                   \r\n\r\n                   \r\n                        <mat-tab label=\"Material\">\r\n\r\n                            <div class=\"material-box mat-elevation-z4\">\r\n                                <div >\r\n                                  \r\n                                    <mat-form-field class=\"example-full-width\">\r\n                                        <input type=\"text\" placeholder=\"Material Type\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto4\">\r\n                                        <mat-autocomplete #auto4=\"matAutocomplete\">\r\n                                          <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                            {{option}}\r\n                                          </mat-option>\r\n                                        </mat-autocomplete>\r\n                                      </mat-form-field>\r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                          <input matInput [matDatepicker]=\"picker4\" placeholder=\"Commitment Date\" [(ngModel)]=\"materialtransaction.commitmentDate\">\r\n                                          <mat-datepicker-toggle matSuffix [for]=\"picker4\"></mat-datepicker-toggle>\r\n                                          <mat-datepicker #picker4></mat-datepicker>\r\n                                        </mat-form-field>\r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                          <input matInput [matDatepicker]=\"picker1\" placeholder=\"Indent SubmissionDate\" [(ngModel)]=\"materialtransaction.indentSubmissionDate\">\r\n                                          <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\r\n                                          <mat-datepicker #picker1></mat-datepicker>\r\n                                        </mat-form-field>\r\n                                        <mat-form-field class=\"example-full-width\">\r\n                                            <input matInput [matDatepicker]=\"picker3\" placeholder=\"Material Supply Date\" [(ngModel)]=\"materialtransaction.materialSupplyDate\">\r\n                                            <mat-datepicker-toggle matSuffix [for]=\"picker3\"></mat-datepicker-toggle>\r\n                                            <mat-datepicker #picker3></mat-datepicker>\r\n                                          </mat-form-field>\r\n                                          <mat-form-field class=\"example-full-width\">\r\n                                              <input matInput [matDatepicker]=\"picker2\" placeholder=\"Uniform Supply  Date\" [(ngModel)]=\"materialtransaction.uniformSupplyDate\">\r\n                                              <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\r\n                                              <mat-datepicker #picker2></mat-datepicker>\r\n                                            </mat-form-field>\r\n                                            \r\n                                              <mat-form-field class=\"example-full-width\">\r\n                                                  <input type=\"text\" placeholder=\"Staus\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto5\">\r\n                                                  <mat-autocomplete #auto5=\"matAutocomplete\">\r\n                                                    <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                                      {{option}}\r\n                                                    </mat-option>\r\n                                                  </mat-autocomplete>\r\n                                                </mat-form-field>\r\n                                                <mat-form-field class=\"example-full-width\">\r\n                                                    <input matInput placeholder=\"Remarks\" [(ngModel)]=\"materialtransaction.remarks\">\r\n                                                  </mat-form-field>\r\n\r\n                                                  \r\n                                              <div class=\"button-row\">\r\n                                                  \r\n                                                  <button mat-raised-button color=\"accent\" (click)=\"postMaterialTransaction()\">Submit</button>\r\n                                                  \r\n                                                  \r\n                                                </div>\r\n                                </div>\r\n                                 </div>\r\n                          </mat-tab>\r\n                         \r\n\r\n\r\n                        \r\n                              <mat-tab label=\"Machine\">\r\n                                  <div class=\"material-box mat-elevation-z4\">\r\n                                      <div >\r\n                                  \r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                          <input type=\"text\" placeholder=\"Type of Machine\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto6\">\r\n                                          <mat-autocomplete #auto6=\"matAutocomplete\">\r\n                                            <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                              {{option}}\r\n                                            </mat-option>\r\n                                          </mat-autocomplete>\r\n                                        </mat-form-field>\r\n                                          <mat-form-field class=\"example-full-width\">\r\n                                            <input type=\"text\" placeholder=\"Equipment Type\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto7\">\r\n                                            <mat-autocomplete #auto7=\"matAutocomplete\">\r\n                                              <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                                {{option}}\r\n                                              </mat-option>\r\n                                            </mat-autocomplete>\r\n                                          </mat-form-field>\r\n                                          <mat-form-field class=\"example-full-width\">\r\n                                              <input matInput placeholder=\"Model Number\" >\r\n                                            </mat-form-field>\r\n                                            <mat-form-field class=\"example-full-width\">\r\n                                                <input matInput placeholder=\"Serial Number\" >\r\n                                              </mat-form-field>\r\n                                              <mat-form-field class=\"example-full-width\">\r\n                                                  <input type=\"text\" placeholder=\"Status\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto8\">\r\n                                                  <mat-autocomplete #auto8=\"matAutocomplete\">\r\n                                                    <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                                      {{option}}\r\n                                                    </mat-option>\r\n                                                  </mat-autocomplete>\r\n                                                </mat-form-field>\r\n                                              \r\n                                                <mat-form-field class=\"example-full-width\">\r\n                                                    <input matInput [matDatepicker]=\"picker6\" placeholder=\"Complaint Raised  Date\">\r\n                                                    <mat-datepicker-toggle matSuffix [for]=\"picker6\"></mat-datepicker-toggle>\r\n                                                    <mat-datepicker #picker6></mat-datepicker>\r\n                                                  </mat-form-field>\r\n                                                  <mat-form-field class=\"example-full-width\">\r\n                                                      <input matInput [matDatepicker]=\"picker7\" placeholder=\"Resolution  Date\">\r\n                                                      <mat-datepicker-toggle matSuffix [for]=\"picker7\"></mat-datepicker-toggle>\r\n                                                      <mat-datepicker #picker7></mat-datepicker>\r\n                                                    </mat-form-field>\r\n                                                 \r\n                                                <div class=\"button-row\">\r\n                                                    \r\n                                                    <button mat-raised-button color=\"accent\" (click)=\"postMachineTransaction()\">Submit</button>\r\n                                                    \r\n                                                    \r\n                                                  </div>\r\n                                 \r\n                                   </div>\r\n                                   </div>\r\n                                </mat-tab>\r\n                               \r\n                                </mat-tab-group>\r\n            \r\n            </div>\r\n       </div>\r\n      </div>\r\n      </div>"
+module.exports = "<div class=\"example-container \">\r\n    <div id = \"layoutContainer\" \r\n    fxLayout = \"row\" fxLayout.xs=\"column\" fxLayoutwrap fxLayoutGap=\"0.15%\">\r\n    \r\n    <div fxflex = \"50\" >\r\n    <div >\r\n      <mat-card >\r\n          <mat-card-header>\r\n           \r\n                  <mat-card-title>Opstracker</mat-card-title>\r\n                 \r\n          </mat-card-header>\r\n          <mat-divider ></mat-divider> \r\n          <mat-card-content>\r\n          <div >\r\n              <mat-form-field class=\"example-full-width\">\r\n                  <input matInput [matDatepicker]=\"picker\" placeholder=\"Date\">\r\n                  <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n                  <mat-datepicker #picker ></mat-datepicker>\r\n                </mat-form-field>\r\n\r\n          <mat-form-field class=\"example-full-width\">\r\n              <input type=\"text\" placeholder=\"Client\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\r\n              <mat-autocomplete #auto=\"matAutocomplete\">\r\n                <mat-option *ngFor=\"let option of projects\" [value]=\"option.name\" (onSelectionChange)=\"setProject(option.id)\">\r\n                  {{option.name}}\r\n                </mat-option>\r\n              </mat-autocomplete>\r\n            </mat-form-field>\r\n           \r\n            \r\n           \r\n           \r\n            \r\n              <mat-form-field class=\"example-full-width\">\r\n                  <input type=\"text\" placeholder=\"Site\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto1\">\r\n                  <mat-autocomplete #auto1=\"matAutocomplete\">\r\n                    <mat-option *ngFor=\"let option of sites\" [value]=\"option.name\" (onSelectionChange)=\"setSite(option.id)\" >\r\n                      {{option.name}}\r\n                    </mat-option>\r\n                  </mat-autocomplete>\r\n                </mat-form-field>\r\n             \r\n             \r\n                 \r\n  \r\n                    \r\n                      \r\n                   \r\n                   \r\n                       \r\n                        \r\n  \r\n       </div>\r\n       </mat-card-content>\r\n       </mat-card>\r\n       </div>\r\n      </div>\r\n       <div class=\"accordian\">\r\n          <div fxflex = \"50\" >\r\n             \r\n              <mat-tab-group >\r\n               \r\n                  <mat-tab label=\"Manpower\">\r\n                      <div class=\"material-box mat-elevation-z4\">\r\n                      <div >\r\n                        \r\n                          <mat-form-field class=\"example-full-width\">\r\n                              <input type=\"text\" placeholder=\"Shift\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto3\">\r\n                              <mat-autocomplete #auto3=\"matAutocomplete\">\r\n                                <mat-option *ngFor=\"let option of shifts\" [value]=\"option\" (onSelectionChange)=\"setShiftDetails(option)\">\r\n                                  {{option}}\r\n                                </mat-option>\r\n                              </mat-autocomplete>\r\n                            </mat-form-field>\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"Planned\" [(ngModel)]=\"manpowertransaction.planned\">\r\n                              </mat-form-field>\r\n                              <mat-form-field class=\"example-full-width\">\r\n                                  <input matInput placeholder=\"Actual\" [(ngModel)]=\"manpowertransaction.actual\" (input)=\"setShortFall($event.target.value)\">\r\n                                </mat-form-field>\r\n                                <mat-form-field class=\"example-full-width\">\r\n                                    <input matInput placeholder=\"Shortfall\" [(ngModel)]=\"manpowertransaction.shortfall\">\r\n                                  </mat-form-field>\r\n                                  \r\n                                     <p>Total No of Releivers</p>\r\n                                    <mat-form-field class=\"example-full-width\">\r\n                                      <input matInput placeholder=\"Continued\" [(ngModel)]=\"manpowertransaction.totalNoOfRelievers\">\r\n                                    </mat-form-field>\r\n                                    <mat-form-field class=\"example-full-width\">\r\n                                      <input matInput placeholder=\"Continued with OT\" [(ngModel)]=\"manpowertransaction.totalNoOfRelievers\">\r\n                                    </mat-form-field>\r\n                                    <mat-form-field class=\"example-full-width\">\r\n                                      <input matInput placeholder=\"New\" [(ngModel)]=\"manpowertransaction.totalNoOfRelievers\">\r\n                                    </mat-form-field>\r\n\r\n\r\n                                    \r\n                                    <div class=\"button-row\">\r\n                                        \r\n                                        <button mat-raised-button color=\"accent\" (click)=\"postManPowerTransaction()\">Submit</button>\r\n                                        \r\n                                        \r\n                                      </div>\r\n                      </div>\r\n                       </div>\r\n                     \r\n                    </mat-tab>\r\n                   \r\n\r\n                   \r\n                        <mat-tab label=\"Material\">\r\n\r\n                            <div class=\"material-box mat-elevation-z4\">\r\n                                <div >\r\n                                  \r\n                                    <mat-form-field class=\"example-full-width\">\r\n                                        <input type=\"text\" placeholder=\"Material Type\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto4\">\r\n                                        <mat-autocomplete #auto4=\"matAutocomplete\">\r\n                                          <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                            {{option}}\r\n                                          </mat-option>\r\n                                        </mat-autocomplete>\r\n                                      </mat-form-field>\r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                          <input matInput [matDatepicker]=\"picker4\" placeholder=\"Commitment Date\" [(ngModel)]=\"Mat.commitmentDate\">\r\n                                          <mat-datepicker-toggle matSuffix [for]=\"picker4\"></mat-datepicker-toggle>\r\n                                          <mat-datepicker #picker4></mat-datepicker>\r\n                                        </mat-form-field>\r\n\r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                          <input matInput [matDatepicker]=\"picker1\" placeholder=\"Indent SubmissionDate\" [(ngModel)]=\"Mat.indentSubmissionDate\">\r\n                                          <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\r\n                                          <mat-datepicker #picker1></mat-datepicker>\r\n                                        </mat-form-field>\r\n\r\n                                        <mat-form-field class=\"example-full-width\">\r\n                                            <input matInput [matDatepicker]=\"picker3\" placeholder=\"Material Supply Date\" [(ngModel)]=\"Mat.materialSupplyDate\">\r\n                                            <mat-datepicker-toggle matSuffix [for]=\"picker3\"></mat-datepicker-toggle>\r\n                                            <mat-datepicker #picker3></mat-datepicker>\r\n                                          </mat-form-field>\r\n                                          <mat-form-field class=\"example-full-width\">\r\n                                              <input matInput [matDatepicker]=\"picker2\" placeholder=\"Uniform Supply  Date\" [(ngModel)]=\"Mat.uniformSupplyDate\">\r\n                                              <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\r\n                                              <mat-datepicker #picker2></mat-datepicker>\r\n                                            </mat-form-field>\r\n                                            \r\n                                              <mat-form-field class=\"example-full-width\">\r\n                                                  <input type=\"text\" placeholder=\"Status\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto5\">\r\n                                                  <mat-autocomplete #auto5=\"matAutocomplete\">\r\n                                                    <mat-option *ngFor=\"let matst of Matstatus\" [value]=\"matst\" (click)=\"setStatus(matst)\">\r\n                                                      {{matst}}\r\n                                                    </mat-option>\r\n                                                  </mat-autocomplete>\r\n\r\n                                                </mat-form-field>\r\n                                                <mat-form-field class=\"example-full-width\">\r\n                                                    <input matInput placeholder=\"Remarks\" [(ngModel)]=\"Mat.remarks\">\r\n                                                  </mat-form-field>\r\n\r\n                                                  \r\n                                              <div class=\"button-row\">\r\n                                                  \r\n                                                  <button mat-raised-button color=\"accent\" (click)=\"postMaterialTransaction()\">Submit</button>\r\n                                                  \r\n                                                  \r\n                                                </div>\r\n                                </div>\r\n                                 </div>\r\n                          </mat-tab>\r\n                         \r\n\r\n\r\n                        \r\n                              <mat-tab label=\"Machine\">\r\n                                  <div class=\"material-box mat-elevation-z4\">\r\n                                      <div >\r\n                                  \r\n                                      <mat-form-field class=\"example-full-width\">\r\n                                          <input type=\"text\" placeholder=\"Type of Machine\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto6\">\r\n                                          <mat-autocomplete #auto6=\"matAutocomplete\">\r\n                                            <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                              {{option}}\r\n                                            </mat-option>\r\n                                          </mat-autocomplete>\r\n                                        </mat-form-field>\r\n                                          <mat-form-field class=\"example-full-width\">\r\n                                            <input type=\"text\" placeholder=\"Equipment Type\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto7\">\r\n                                            <mat-autocomplete #auto7=\"matAutocomplete\">\r\n                                              <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                                {{option}}\r\n                                              </mat-option>\r\n                                            </mat-autocomplete>\r\n                                          </mat-form-field>\r\n                                          <mat-form-field class=\"example-full-width\">\r\n                                              <input matInput placeholder=\"Model Number\" >\r\n                                            </mat-form-field>\r\n                                            <mat-form-field class=\"example-full-width\">\r\n                                                <input matInput placeholder=\"Serial Number\" >\r\n                                              </mat-form-field>\r\n                                              <mat-form-field class=\"example-full-width\">\r\n                                                  <input type=\"text\" placeholder=\"Status\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [matAutocomplete]=\"auto8\">\r\n                                                  <mat-autocomplete #auto8=\"matAutocomplete\">\r\n                                                    <mat-option *ngFor=\"let option of options\" [value]=\"option\">\r\n                                                      {{option}}\r\n                                                    </mat-option>\r\n                                                  </mat-autocomplete>\r\n                                                </mat-form-field>\r\n                                              \r\n                                                <mat-form-field class=\"example-full-width\">\r\n                                                    <input matInput [min]=\"minDate\" [max]=\"maxDate\" [matDatepicker]=\"picker6\" placeholder=\"Complaint Raised  Date\" >\r\n                                                    <mat-datepicker-toggle matSuffix [for]=\"picker6\"></mat-datepicker-toggle>\r\n                                                    <mat-datepicker #picker6></mat-datepicker>\r\n                                                  </mat-form-field>\r\n                                                  <mat-form-field class=\"example-full-width\">\r\n                                                      <input matInput [matDatepicker]=\"picker7\" placeholder=\"Resolution  Date\">\r\n                                                      <mat-datepicker-toggle matSuffix [for]=\"picker7\"></mat-datepicker-toggle>\r\n                                                      <mat-datepicker #picker7></mat-datepicker>\r\n                                                    </mat-form-field>\r\n                                                 \r\n                                                <div class=\"button-row\">\r\n                                                    \r\n                                                    <button mat-raised-button color=\"accent\" (click)=\"postMachineTransaction()\">Submit</button>\r\n                                                    \r\n                                                    \r\n                                                  </div>\r\n                                 \r\n                                   </div>\r\n                                   </div>\r\n                                </mat-tab>\r\n                               \r\n                                </mat-tab-group>\r\n            \r\n            </div>\r\n       </div>\r\n      </div>\r\n      </div>"
 
 /***/ }),
 
@@ -2275,6 +2731,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_manpower_model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../models/manpower.model */ "./src/app/models/manpower.model.ts");
 /* harmony import */ var _models_materialtransaction_model__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../models/materialtransaction.model */ "./src/app/models/materialtransaction.model.ts");
 /* harmony import */ var _models_machinetransaction_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../models/machinetransaction.model */ "./src/app/models/machinetransaction.model.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2294,12 +2751,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var OpstrackerComponent = /** @class */ (function () {
     //Constructor call
     function OpstrackerComponent(data, http) {
         this.data = data;
         this.http = http;
         this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]();
+        this.isLoadingResults = false;
+        //variable declation
+        this.Matstatus = ['Fixed', 'Attached'];
+        this.Mat = new _models_materialtransaction_model__WEBPACK_IMPORTED_MODULE_8__["MaterialTransaction"]();
+        this.Mac = new _models_machinetransaction_model__WEBPACK_IMPORTED_MODULE_9__["MachineTransaction"]();
         this.project = new _models_project_model__WEBPACK_IMPORTED_MODULE_5__["Project"]();
         this.site = new _models_site_model__WEBPACK_IMPORTED_MODULE_4__["Site"]();
         this.manpower = new _models_manpower_model__WEBPACK_IMPORTED_MODULE_7__["ManPower"]();
@@ -2309,6 +2772,9 @@ var OpstrackerComponent = /** @class */ (function () {
         this.time = [];
         this.shifts = [];
     }
+    OpstrackerComponent.prototype.setStatus = function (id) {
+        this.Mat.status = id;
+    };
     //function call
     OpstrackerComponent.prototype.listClients = function () {
         var _this = this;
@@ -2330,6 +2796,7 @@ var OpstrackerComponent = /** @class */ (function () {
         this.id = id;
         console.log(this.project);
         this.setManPower();
+        this.Mat.siteId = id;
     };
     OpstrackerComponent.prototype.setManPower = function () {
         var _this = this;
@@ -2385,22 +2852,49 @@ var OpstrackerComponent = /** @class */ (function () {
         }
     };
     OpstrackerComponent.prototype.postMaterialTransaction = function () {
+        var _this = this;
         console.log(this.materialtransaction);
-        try {
-            this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material', this.manpowertransaction)
-                .subscribe(function (data) {
-                if (data.length) {
-                    console.log(data);
-                    console.log("done");
-                }
-            });
-        }
-        catch (Exception) {
-            console.error("not done");
-        }
+        this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material', this.Mat)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["switchMap"])(function () {
+            return 'ok';
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["map"])(function (data) {
+            console.log('ggg');
+            // Flip flag to show that loading has finished.
+            return 'ok';
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["catchError"])(function () {
+            console.log('errr');
+            return 'ok';
+        })).subscribe(function (data) {
+            if (data.length) {
+                console.log(data);
+            }
+        }, function (error) {
+        }, function () {
+            _this.isLoadingResults = false;
+            console.log('finished');
+        });
     };
     OpstrackerComponent.prototype.postMachineTransaction = function () {
-        console.log(this.machinetransaction);
+        var _this = this;
+        this.http.post('http://localhost:8080/uds/opstracker/machine', this.Mac)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["startWith"])({}), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["switchMap"])(function () {
+            return 'ok';
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["map"])(function (data) {
+            console.log('ggg');
+            // Flip flag to show that loading has finished.
+            return 'ok';
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["catchError"])(function () {
+            console.log('errr');
+            return 'ok';
+        })).subscribe(function (data) {
+            if (data.length) {
+                console.log(data);
+            }
+        }, function (error) {
+        }, function () {
+            _this.isLoadingResults = false;
+            console.log('finished');
+        });
     };
     OpstrackerComponent.prototype.ngOnInit = function () {
         this.listClients();
