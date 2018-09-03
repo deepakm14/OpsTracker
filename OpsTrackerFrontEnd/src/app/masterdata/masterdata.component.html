@@ -13,33 +13,49 @@
                         <button mat-mini-fab>
                             <mat-icon aria-label="" routerLink="../emplyeeview">remove_red_eye</mat-icon>
                           </button>
+                      <form class="m-t" (ngSubmit)="f.form.valid && postEmployee()" #f="ngForm" novalidate >                 
+                        <mat-form-field class="example-full-width" >
+                            <input class="form-control" name="emp_code" matInput placeholder="Employee Code" [(ngModel)]="emp.code" #EmpCode="ngModel" required >
+                            <mat-error *ngIf="f.submitted && !EmpCode.valid">
+                                Employee code is <strong>required</strong>
+                              </mat-error>
+                        </mat-form-field>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Employee Code" [(ngModel)]="emp.code">
-                          </mat-form-field>
+                            <input matInput placeholder="Employee Name" [(ngModel)]="emp.name" name="emp_name" #EmpName="ngModel" required>
+                            <mat-error *ngIf="f.submitted && !EmpName.valid">
+                                Employee name is <strong>required</strong>
+                              </mat-error>
+                          </mat-form-field>    
+                        
                           <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Employee Name" [(ngModel)]="emp.name">
+                              <input type="text" placeholder="Designation" aria-label="Number" matInput name="emp_designation"  #EmpDesignation [matAutocomplete]="auto20" required>
+                              <mat-autocomplete #auto20="matAutocomplete" >
+                                <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
+                                  {{des.name}}
+                                </mat-option>
+                              </mat-autocomplete>
+
+                              <mat-error *ngIf="f.submitted && !EmpDesignation.valid ">
+                                  Employee Designation is <strong>required</strong>
+                                </mat-error>
+
                             </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <input type="text" placeholder="Designation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto20">
-                                <mat-autocomplete #auto20="matAutocomplete" >
-                                  <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
-                                    {{des.name}}
-                                  </mat-option>
-                                </mat-autocomplete>
+                            
+
+                            <mat-form-field class="example-full-width" >
+                                <input type="text" matInput placeholder="Mobile Number"  name="emp_mobile-no" [(ngModel)]="emp.mob" #EmpMob="ngModel" required  minlength=10  maxlength=13 pattern="[0-9]{5}[-][0-9]{7}[-][0-9]{1}">
+                                <mat-error *ngIf="f.submitted && !EmpMob.valid ">
+                                    Employee Mobile Number is <strong>required</strong>
+                                  </mat-error>
                               </mat-form-field>
-                              <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Email" [(ngModel)]="emp.mail">
-                                </mat-form-field>
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Mobile Number" [(ngModel)]="emp.mob">
-                                  </mat-form-field>
-            
+
                                   <div class="button-row">
                                       
-                                      <button mat-raised-button color="accent" (click)="postEmployee()" >Submit</button>
+                                      <button mat-raised-button color="accent" type="submit" >Submit</button>
                                       
                                       
                                     </div>
+                            </form>
                     </div>
                      
                     </div>
@@ -50,21 +66,29 @@
                       <button mat-mini-fab>
                           <mat-icon aria-label="" routerLink="../clientview">remove_red_eye</mat-icon>
                         </button>
-                       
+                        <form class="m-t" (ngSubmit)="f2.form.valid && postClient()" #f2="ngForm" novalidate > 
                       <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Client Name" [(ngModel)]="client.name" >
+                          <input matInput placeholder="Client Name" [(ngModel)]="client.name" name="Cli_name" #CliName="ngModel" required >
+                          <mat-error *ngIf="f2.submitted && !CliName.valid">
+                              Client name is <strong>required</strong>
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Client Code" [(ngModel)]="client.projectCode" >
+                            <input matInput placeholder="Client Code" [(ngModel)]="client.projectCode"  name="Cli_code" #Clicode="ngModel" required >
+                            <mat-error *ngIf="f2.submitted && !Clicode.valid">
+                                Client code is <strong>required</strong>
+                              </mat-error>
                           </mat-form-field>
                           
-            
+
+                          
                                 <div class="button-row">
                                     
-                                    <button mat-raised-button color="accent" (click)="postClient()" >Add</button>
+                                    <button mat-raised-button color="accent" type="submit"  >Add</button>
                                     
                                     
                                   </div>
+                                  </form>
                   </div>
                    
                   </div> </mat-tab>
@@ -79,8 +103,9 @@
                               <mat-icon aria-label="" routerLink="../siteview">remove_red_eye</mat-icon>
                             </button>
                     <div fxflex = "40" >
+                      
                             <mat-form-field class="example-full-width">
-                                    <input type="text" placeholder="Client Name" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                    <input type="text" placeholder="Client Name" aria-label="Number" matInput  [matAutocomplete]="auto">
                                     <mat-autocomplete #auto="matAutocomplete">
                                       <mat-option *ngFor="let option of projects" [value]="option.name" (click)="setSiteProject(option.id)">
                                         {{option.name}}
@@ -399,9 +424,14 @@
                         <button mat-mini-fab>
                             <mat-icon aria-label="" routerLink="../escalationview">remove_red_eye</mat-icon>
                           </button>
-                         
+
+                          <form class="m-t" (ngSubmit)="f3.form.valid && postEmployee()" #f3="ngForm" novalidate >
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType">
+                            <input matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType" name="Esc_type" #Escalation="ngModel" required>
+                            <mat-error *ngIf="f3.submitted && !escalationtype.valid">
+                                Esclation type is <strong>required</strong>
+                              </mat-error>
+                              
                           </mat-form-field>
                          
                             
@@ -412,6 +442,7 @@
                                       
                                       
                                     </div>
+                                    </form>
                     </div>
                      
                     </div> </mat-tab>
