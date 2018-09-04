@@ -1,0 +1,110 @@
+<div class="algnleft">
+  <div class="div-left"><button mat-mini-fab>
+      <mat-icon aria-label="" routerLink="../masterdata">arrow_back</mat-icon>
+    </button></div>
+  
+     <div class="example-loading-shade spinnerabove "
+           *ngIf="isLoadingResults || isRateLimitReached" >
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+          
+        </div>
+      </div> 
+  
+      
+    
+        <table mat-table [dataSource]="manpower" class="mat-elevation-z8"
+               matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%">
+          <!-- Number Column -->
+          
+          <!-- Title Column -->
+          <ng-container  matColumnDef="id">
+              <th mat-header-cell  *matHeaderCellDef>Id</th>
+              <td mat-cell *matCellDef="let row">{{row.id}}</td>
+            </ng-container>
+      
+  
+          <ng-container  matColumnDef="materialType">
+            <th mat-header-cell  *matHeaderCellDef>Material Type</th>
+            <td mat-cell *matCellDef="let row">{{row.materialType}}</td>
+          </ng-container>
+    
+          <!-- State Column -->
+          <ng-container matColumnDef="commitmentDate">
+            <th mat-header-cell *matHeaderCellDef>Commitment Date</th>
+            <td mat-cell *matCellDef="let row">{{row.commitmentDate}}</td>
+          </ng-container>
+    
+          <!-- Created Column -->
+          <ng-container matColumnDef="indentSubmissionDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              Indent Submission Date
+            </th>
+            <td mat-cell *matCellDef="let row">{{row.indentSubmissionDate}}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="materialSupplyDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Material Supply Date
+              </th>
+              <td mat-cell *matCellDef="let row">{{row.materialSupplyDate}}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="uniformSupplyDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  Uniform Supply Date
+                </th>
+                <td mat-cell *matCellDef="let row">{{row.uniformSupplyDate}}</td>
+              </ng-container>
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  Status
+                </th>
+                <td mat-cell *matCellDef="let row">{{row.status}}</td>
+              </ng-container>
+              <ng-container matColumnDef="remarks">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  Remarks
+                </th>
+                <td mat-cell *matCellDef="let row">{{row.remarks}}</td>
+              </ng-container>
+              <ng-container matColumnDef="projectId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  Project Id
+                </th>
+                <td mat-cell *matCellDef="let row">{{row.projectId}}</td>
+              </ng-container>
+              <ng-container matColumnDef="siteId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  site Id
+                </th>
+                <td mat-cell *matCellDef="let row">{{row.siteId}}</td>
+              </ng-container>
+  
+             <mat-divider></mat-divider> 
+          <ng-container matColumnDef="actionsColumn">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              
+              <mat-cell *matCellDef="let row">
+                  <button mat-icon-button>
+                      <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >update</mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="openDialog(row.id)">delete</mat-icon>
+                      </button>
+                 
+              </mat-cell>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+           
+        </table>
+     <mat-paginator [length]="resultsLength" [pageSize]="8"></mat-paginator>
+    
+      <!--   <app-pagination [maxPages]="maxPages"
+        [current]="1"
+        [postsPerPage]="postsPerPage"
+        [itemsPerPage]="itemsPerPage"
+        (changePage)="pageChanged($event)"></app-pagination> -->
+    
+  </div>

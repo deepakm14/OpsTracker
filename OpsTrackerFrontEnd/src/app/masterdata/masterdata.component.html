@@ -1,4 +1,5 @@
 <div class="example-container">
+  
     <div id = "layoutContainer" 
     fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.15%">
     <div fxflex = "100" >
@@ -11,7 +12,7 @@
                     
                     <div >
                         <button mat-mini-fab>
-                            <mat-icon aria-label="" routerLink="../emplyeeview">remove_red_eye</mat-icon>
+                            <mat-icon aria-label="" routerLink="../emplyeeview">table_chart</mat-icon>
                           </button>
                         <mat-form-field class="example-full-width">
                             <input matInput placeholder="Employee Code" [(ngModel)]="emp.code">
@@ -20,7 +21,7 @@
                               <input matInput placeholder="Employee Name" [(ngModel)]="emp.name">
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <input type="text" placeholder="Designation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto20">
+                                <input type="text" placeholder="Designation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto20" >
                                 <mat-autocomplete #auto20="matAutocomplete" >
                                   <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
                                     {{des.name}}
@@ -31,7 +32,7 @@
                                   <input matInput placeholder="Email" [(ngModel)]="emp.mail">
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Mobile Number" [(ngModel)]="emp.mob">
+                                    <input matInput placeholder="Mobile Number" [(ngModel)]="emp.mob" (keypress)="numberOnly($event)">
                                   </mat-form-field>
             
                                   <div class="button-row">
@@ -48,7 +49,7 @@
                   <div >
                       <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate" ></mat-progress-bar>
                       <button mat-mini-fab>
-                          <mat-icon aria-label="" routerLink="../clientview">remove_red_eye</mat-icon>
+                          <mat-icon aria-label="" routerLink="../clientview">table_chart</mat-icon>
                         </button>
                        
                       <mat-form-field class="example-full-width">
@@ -76,7 +77,7 @@
                     <div class="site-box mat-elevation-z4">
                       <div>
                           <button mat-mini-fab>
-                              <mat-icon aria-label="" routerLink="../siteview">remove_red_eye</mat-icon>
+                              <mat-icon aria-label="" routerLink="../siteview">table_chart</mat-icon>
                             </button>
                     <div fxflex = "40" >
                             <mat-form-field class="example-full-width">
@@ -397,7 +398,7 @@
                     <div >
                         <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate" ></mat-progress-bar>
                         <button mat-mini-fab>
-                            <mat-icon aria-label="" routerLink="../escalationview">remove_red_eye</mat-icon>
+                            <mat-icon aria-label="" routerLink="../escalationview">table_chart</mat-icon>
                           </button>
                          
                         <mat-form-field class="example-full-width">

@@ -1,3 +1,68 @@
-<p>
-  opstrackermanpowerdialog works!
-</p>
+<div>
+
+  <mat-dialog-content>
+    
+    <div class="row" >
+                          
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="shift" [(ngModel)]="data.shift">
+      </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Planned" [(ngModel)]="data.planned">
+    </mat-form-field>
+  
+  </div>
+  
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Actual" [(ngModel)]="data.actual" >
+    </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Shortfall" [(ngModel)]="data.shortfall">
+    </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Continued" [(ngModel)]="data.continuedWithOutOt">
+    </mat-form-field>
+  
+  </div>
+  
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Continued with OT" [(ngModel)]="data.continuedWithOt">
+    </mat-form-field>
+  
+  </div>
+   
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="New" [(ngModel)]="data.newComer">
+    </mat-form-field>
+  
+  </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      
+        <div class="button-row">
+                                            
+          <button mat-raised-button color="accent" (click)="postEmployee1()" >Update</button>
+            <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
+            
+          </div>    
+  
+  </mat-dialog-actions>
+    </div>

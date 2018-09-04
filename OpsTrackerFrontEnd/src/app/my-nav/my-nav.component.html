@@ -1,7 +1,7 @@
 
 <mat-sidenav-container class="sidenav-container"  >
 
-  <mat-sidenav *ngIf="router.url != '/'" style="background: #92aac7"
+  <mat-sidenav *ngIf="router.url != '/'" style="background: #283b42"
     #drawer
     class="sidenav"
     fixedInViewport="true"
@@ -41,8 +41,10 @@
       <span>Updater Service Opstracker</span>
     </mat-toolbar>
     
+    
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
+    <toaster-container [toasterconfig]="config"></toaster-container>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

@@ -13,9 +13,9 @@ import { Machine } from '../models/machine.model';
 import { MaterialDate } from '../models/materialdate.model';
 import { MaterialTransaction } from '../models/materialtransaction.model';
 import { MachineTransaction } from '../models/machinetransaction.model';
-
+import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
-
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-opstracker',
@@ -25,9 +25,10 @@ import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
 
 
 export class OpstrackerComponent implements OnInit {
-
+  private toasterService: ToasterService;
   //Constructor call
-  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat) { }
+  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat ,toasterService:ToasterService){
+    this.toasterService=toasterService; }
 
   myControl = new FormControl();
   isLoadingResults = false;
@@ -223,22 +224,36 @@ setModelandSerial(equipmentype:string){
 
   postManPowerTransaction()
   {
+    this.isLoadingResults = true;
     console.log(this.manpowertransaction);
-    try{
+   
       this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/manpower',this.manpowertransaction)
-      .subscribe(
-        (data:any) => { 
-          if(data.length) {
-            console.log(data);
-            console.log("done");
-          }
+      .subscribe(  (data:any) => { 
+        console.log(data['status']);
+        if(data['status']=='success'){
+          this.isLoadingResults = false;
+          this.toasterService.pop('success','Successfully Submitted' ,'');
+        } else {
+          this.isLoadingResults = false;
+          this.toasterService.pop('warning','Not Submitted' ,'');
         }
-      )
-    }
-    catch(Exception )
-    {
-      console.error("not done");
-    }  
+     
+      
+     },
+     (err: HttpErrorResponse) => {
+         if (err.error instanceof Error) {
+          this.isLoadingResults = false;
+         
+             console.log('An error occurred:', err.error.message);
+         } else {
+          this.toasterService.pop('warning','Not Submitted' ,'');
+          this.isLoadingResults = false;
+          
+             console.log('Backend returned status code: ', err.status);
+             console.log('Response body:', err.error);
+         }
+      }
+     );
   }
 
 postMaterialTransaction()
@@ -248,86 +263,67 @@ postMaterialTransaction()
   this.materialtransaction.uniformSupplyDate=this.dateFormat.convertdate(this.materialdate.uniformSupplyDate);
  
   console.log(this.materialtransaction);
-  
+  this.isLoadingResults = true;
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/material',this.materialtransaction)
-    .pipe(
-      startWith({}),
-      switchMap(() => {
-       
-        
-        return 'ok';
-
-      }),
-      map(data => {
-        console.log('ggg');
-        // Flip flag to show that loading has finished.
-       
-      
-        return 'ok';
-      }),
-      catchError(() => {
-        console.log('errr');
-      
-        return 'ok';
-      })
-    ).subscribe(
-      (data:any) =>  { 
-        if(data.length) {
-          console.log(data);
-         
-        }
-       
-      },
-      error => {
-       
-      },
-      () => {
+    .subscribe(  (data:any) => { 
+      console.log(data['status']);
+      if(data['status']=='success'){
         this.isLoadingResults = false;
-        console.log('finished');
+        this.toasterService.pop('success','Successfully Submitted' ,'');
+      } else {
+        this.isLoadingResults = false;
+        this.toasterService.pop('warning','Not Submitted' ,'');
       }
-    );
+   
+    
+   },
+   (err: HttpErrorResponse) => {
+       if (err.error instanceof Error) {
+        this.isLoadingResults = false;
+       
+           console.log('An error occurred:', err.error.message);
+       } else {
+        this.toasterService.pop('warning','Not Submitted' ,'');
+        this.isLoadingResults = false;
+        
+           console.log('Backend returned status code: ', err.status);
+           console.log('Response body:', err.error);
+       }
+    }
+   );
     
 }
 
 postMachineTransaction()
 {
+  this.isLoadingResults = true;
   this.http.post('http://localhost:8080/uds/opstracker/machine',this.materialtransaction)
-    .pipe(
-      startWith({}),
-      switchMap(() => {
-       
-        
-        return 'ok';
-
-      }),
-      map(data => {
-        console.log('ggg');
-        // Flip flag to show that loading has finished.
-       
+  .subscribe(  (data:any) => { 
+    console.log(data['status']);
+    if(data['status']=='success'){
+      this.isLoadingResults = false;
+      this.toasterService.pop('success','Successfully Submitted' ,'');
+    } else {
+      this.isLoadingResults = false;
+      this.toasterService.pop('warning','Not Submitted' ,'');
+    }
+ 
+  
+ },
+ (err: HttpErrorResponse) => {
+     if (err.error instanceof Error) {
+      this.isLoadingResults = false;
+     
+         console.log('An error occurred:', err.error.message);
+     } else {
+      this.toasterService.pop('warning','Not Submitted' ,'');
+      this.isLoadingResults = false;
       
-        return 'ok';
-      }),
-      catchError(() => {
-        console.log('errr');
-      
-        return 'ok';
-      })
-    ).subscribe(
-      (data:any) =>  { 
-        if(data.length) {
-          console.log(data);
-         
-        }
-       
-      },
-      error => {
-       
-      },
-      () => {
-        this.isLoadingResults = false;
-        console.log('finished');
-      }
-    );
+         console.log('Backend returned status code: ', err.status);
+         console.log('Response body:', err.error);
+     }
+  }
+ );
 }
   
   ngOnInit() {

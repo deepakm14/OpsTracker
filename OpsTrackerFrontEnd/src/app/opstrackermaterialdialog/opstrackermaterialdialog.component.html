@@ -1,3 +1,68 @@
-<p>
-  opstrackermaterialdialog works!
-</p>
+<div>
+
+  <mat-dialog-content>
+    
+    <div class="row" >
+                          
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Material Type" [(ngModel)]="data.materialType">
+      </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Commitment Date" [(ngModel)]="data.commitmentDate">
+    </mat-form-field>
+  
+  </div>
+  
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Indent Submission Date" [(ngModel)]="data.indentSubmissionDate" >
+    </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Material Supply Date" [(ngModel)]="data.materialSupplyDate">
+    </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Uniform Supply Date" [(ngModel)]="data.uniformSupplyDate">
+    </mat-form-field>
+  
+  </div>
+  
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Status" [(ngModel)]="data.status">
+    </mat-form-field>
+  
+  </div>
+   
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Remarks" [(ngModel)]="data.remarks">
+    </mat-form-field>
+  
+  </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      
+        <div class="button-row">
+                                            
+          <button mat-raised-button color="accent" (click)="postEmployee1()" >Update</button>
+            <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
+            
+          </div>    
+  
+  </mat-dialog-actions>
+    </div>

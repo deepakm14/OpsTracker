@@ -11,8 +11,8 @@ import { ManPower } from '../models/manpower.model';
 import { Material } from '../models/material.model';
 import { Machine } from '../models/machine.model';
 import { Observable, of } from 'rxjs';
-import {ToastService} from '../toast-service.service';
-
+import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -23,9 +23,12 @@ import {ToastService} from '../toast-service.service';
   selector: 'app-masterdata',
   templateUrl: './masterdata.component.html',
   styleUrls: ['./masterdata.component.css'],
+ 
   providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
+  
+  private toasterService: ToasterService;
   //model class object creation
   site = new Site();
   manpower = new ManPower();
@@ -42,7 +45,25 @@ export class MasterdataComponent implements OnInit {
   Designation: Array<any> = [{'id':'1','name':'REGIONAL MANAGER'},{'id':'2','name':'SENIOR MANAGER'},{'id':'3','name':'SITE INCHARGE'},{'id':'4','name':'ASSISTANT SENIOR MANAGER'}];
 
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService,
-    private dateFormat: Dateformat,private toastservice:ToastService){}
+    private dateFormat: Dateformat,toasterService:ToasterService){
+      this.toasterService=toasterService;
+    }
+    public config: ToasterConfig =new ToasterConfig({positionClass: 'toast-center'});
+popToast(){
+  
+  this.toasterService.pop('success','Args Title' ,'Arg Body');
+}
+
+numberOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false;
+  }
+  return true;
+
+}
+
+
 
  isLoadingResults = false;
   private fieldArray: Array<any> = [];
@@ -144,44 +165,37 @@ export class MasterdataComponent implements OnInit {
 
   postEmployee()
   {
-    this.isLoadingResults = true;
+   
+     this.isLoadingResults = true;
    
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.emp)
-    .pipe(
-      startWith({}),
-      switchMap(() => {
-       
-        
-        return 'ok';
-
-      }),
-      map(data => {
-        console.log('ggg');
-        // Flip flag to show that loading has finished.
-       
-     
-        return 'ok';
-      }),
-      catchError(() => {
-        console.log('errr');
-      
-        return 'ok';
-      })
-    )
-      .subscribe(
-        (data:any) => { 
-          if(data.length) {
-            console.log(data);
-           
-          }
-          
-        },
-        error => console.log("Error: ", error),
-        () => {
+    
+      .subscribe(  (data:any) => { 
+        console.log(data['status']);
+        if(data['status']=='success'){
           this.isLoadingResults = false;
-          console.log('finished');
+          this.toasterService.pop('success','Successfully Submitted' ,'');
+        } else {
+          this.isLoadingResults = false;
+          this.toasterService.pop('warning','Not Submitted' ,'');
         }
-      );
+     
+      
+     },
+     (err: HttpErrorResponse) => {
+         if (err.error instanceof Error) {
+          this.isLoadingResults = false;
+         
+             console.log('An error occurred:', err.error.message);
+         } else {
+          this.toasterService.pop('warning','Not Submitted' ,'');
+          this.isLoadingResults = false;
+          
+             console.log('Backend returned status code: ', err.status);
+             console.log('Response body:', err.error);
+         }
+      }
+     );
   }
 
   postClient()
@@ -191,43 +205,32 @@ export class MasterdataComponent implements OnInit {
     
     console.log(this.client);
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project', this.client)
-    .pipe(
-      startWith({}),
-      switchMap(() => {
+    .subscribe(  (data:any) => { 
+      console.log(data['status']);
+      if(data['status']=='success'){
+        this.isLoadingResults = false;
+        this.toasterService.pop('success','Successfully Submitted' ,'');
+      } else {
+        this.isLoadingResults = false;
+        this.toasterService.pop('warning','Not Submitted' ,'');
+      }
+   
+    
+   },
+   (err: HttpErrorResponse) => {
+       if (err.error instanceof Error) {
+        this.isLoadingResults = false;
        
+           console.log('An error occurred:', err.error.message);
+       } else {
+        this.toasterService.pop('warning','Not Submitted' ,'');
+        this.isLoadingResults = false;
         
-        return 'ok';
-
-      }),
-      map(data => {
-        console.log('ggg');
-        // Flip flag to show that loading has finished.
-       
-      
-        return 'ok';
-      }),
-      catchError(() => {
-        console.log('errr');
-      
-        return 'ok';
-      })
-    )
-      .subscribe(
-        (data:any) => { 
-          if(data.length) {
-            console.log(data);
-           
-          }
-         
-        },
-        error => {
-         
-        },
-        () => {
-          this.isLoadingResults = false;
-          console.log('finished');
-        }
-      );
+           console.log('Backend returned status code: ', err.status);
+           console.log('Response body:', err.error);
+       }
+    }
+   );
       
   }
 
@@ -241,39 +244,32 @@ export class MasterdataComponent implements OnInit {
     console.log(this.site);
     this.isLoadingResults = true;
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site', this.site)
-    .pipe(
-      startWith({}),
-      switchMap(() => {
-       
-        
-        return 'ok';
-
-      }),
-      map(data => {
-        console.log('ggg');
-        // Flip flag to show that loading has finished.
-       
-      
-        return 'ok';
-      }),
-      catchError(() => {
-        console.log('errr');
-      
-        return 'ok';
-      })
-    )
-    .subscribe(
-      (data:any) => {
-        console.log(data);
-      } ,
-      error => {
-       
-      },
-      () => {
+    .subscribe(  (data:any) => { 
+      console.log(data['status']);
+      if(data['status']=='success'){
         this.isLoadingResults = false;
-        console.log('finished');
+        this.toasterService.pop('success','Successfully Submitted' ,'');
+      } else {
+        this.isLoadingResults = false;
+        this.toasterService.pop('warning','Not Submitted' ,'');
       }
-    );
+   
+    
+   },
+   (err: HttpErrorResponse) => {
+       if (err.error instanceof Error) {
+        this.isLoadingResults = false;
+       
+           console.log('An error occurred:', err.error.message);
+       } else {
+        this.toasterService.pop('warning','Not Submitted' ,'');
+        this.isLoadingResults = false;
+        
+           console.log('Backend returned status code: ', err.status);
+           console.log('Response body:', err.error);
+       }
+    }
+   );
   }
 
   postEscalationType()
@@ -283,40 +279,32 @@ export class MasterdataComponent implements OnInit {
     
     console.log(this.site);
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/esctype', this.escalationtype)
-    .pipe(
-      startWith({}),
-      switchMap(() => {
-       
-        
-        return 'ok';
-
-      }),
-      map(data => {
-        console.log('ggg');
-        // Flip flag to show that loading has finished.
-       
-      
-        return 'ok';
-      }),
-      catchError(() => {
-        console.log('errr');
-      
-        return 'ok';
-      })
-    )
-    .subscribe(
-      (data:any) => {
-        console.log(data);
-        
-      },
-      error => {
-       
-      },
-      () => {
+    .subscribe(  (data:any) => { 
+      console.log(data['status']);
+      if(data['status']=='success'){
         this.isLoadingResults = false;
-        console.log('finished');
+        this.toasterService.pop('success','Successfully Submitted' ,'');
+      } else {
+        this.isLoadingResults = false;
+        this.toasterService.pop('warning','Not Submitted' ,'');
       }
-    );
+   
+    
+   },
+   (err: HttpErrorResponse) => {
+       if (err.error instanceof Error) {
+        this.isLoadingResults = false;
+       
+           console.log('An error occurred:', err.error.message);
+       } else {
+        this.toasterService.pop('warning','Not Submitted' ,'');
+        this.isLoadingResults = false;
+        
+           console.log('Backend returned status code: ', err.status);
+           console.log('Response body:', err.error);
+       }
+    }
+   );
   
    
   }
@@ -425,7 +413,7 @@ export class MasterdataComponent implements OnInit {
     this.listSM();
     this.listASM();
     this.listSI();
-
+   // this.popToast();
    /* this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),

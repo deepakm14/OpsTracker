@@ -13,6 +13,9 @@ import {ClientviewComponent} from './clientview/clientview.component';
 import {SiteviewComponent} from './siteview/siteview.component';
 import {EscalationviewComponent} from './escalationview/escalationview.component';
 import { EscalationtrackerviewComponent } from './escalationtrackerview/escalationtrackerview.component';
+import {OpsmachinetransactionComponent} from './opsmachinetransaction/opsmachinetransaction.component';
+import {OpsmaterialtransactionComponent} from './opsmaterialtransaction/opsmaterialtransaction.component';
+import {OpsmanpowertransactionComponent} from './opsmanpowertransaction/opsmanpowertransaction.component';
 const routes: Routes = [
 {
   path: 'masterdata',
@@ -57,7 +60,22 @@ path: 'escalationview',
 {
 path: 'EscalationtrackerComponent',
   component : EscalationtrackerviewComponent
-}
+},
+{
+path: 'opsmachinetransactionview',
+  component : OpsmachinetransactionComponent
+},
+{
+  path: 'opsmaterialtransactionview',
+    component : OpsmaterialtransactionComponent
+  }
+  ,
+{
+  path: 'opsmanpowertransactionview',
+    component : OpsmanpowertransactionComponent
+  },
+
+
 
 ];
 
@@ -70,4 +88,4 @@ path: 'EscalationtrackerComponent',
 
 export class AppRoutingModule { }
 // tslint:disable-next-line:max-line-length
-export const routingComponents = [EscalationComponent, ReportComponent, OpstrackerComponent, MasterdataComponent , LoginComponent , MasterviewComponent, EmplyeeviewComponent, ClientviewComponent, SiteviewComponent, EscalationviewComponent ];
+export const routingComponents = [EscalationComponent, ReportComponent, OpstrackerComponent, MasterdataComponent , LoginComponent , MasterviewComponent, EmplyeeviewComponent, ClientviewComponent, SiteviewComponent, EscalationviewComponent ,OpsmachinetransactionComponent,OpsmaterialtransactionComponent,OpsmanpowertransactionComponent ];

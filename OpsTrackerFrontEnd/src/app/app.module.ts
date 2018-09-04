@@ -58,6 +58,10 @@ import { OpstrackermaterialdialogComponent } from './opstrackermaterialdialog/op
 
 import { OpstrackermachinedialogComponent } from './opstrackermachinedialog/opstrackermachinedialog.component';
 import { OpstrackermanpowerviewComponent } from './opstrackermanpowerview/opstrackermanpowerview.component';
+import {ToasterModule,ToasterConfig} from 'angular2-toaster';
+import { OpsmanpowertransactionComponent } from './opsmanpowertransaction/opsmanpowertransaction.component';
+import { OpsmaterialtransactionComponent } from './opsmaterialtransaction/opsmaterialtransaction.component';
+import { OpsmachinetransactionComponent } from './opsmachinetransaction/opsmachinetransaction.component';
 
 
 
@@ -100,6 +104,10 @@ import { OpstrackermanpowerviewComponent } from './opstrackermanpowerview/opstra
     OpstrackermaterialdialogComponent,
     OpstrackermachinedialogComponent,
     OpstrackermanpowerviewComponent,
+    OpsmanpowertransactionComponent,
+    OpsmaterialtransactionComponent,
+    OpsmachinetransactionComponent,
+    
    
 
   ],
@@ -134,6 +142,8 @@ import { OpstrackermanpowerviewComponent } from './opstrackermanpowerview/opstra
     HttpClientModule,
     MatDialogModule,
     MatProgressBarModule,
+    ToasterModule.forRoot()
+    
    
 
 
@@ -144,6 +154,6 @@ import { OpstrackermanpowerviewComponent } from './opstrackermanpowerview/opstra
 
   providers: [ToastService],
   bootstrap: [AppComponent],
-  
+ 
 })
 export class AppModule { }

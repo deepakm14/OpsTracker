@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { Dateformat } from '../dateformat.service';
+import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-escalation',
@@ -13,6 +15,7 @@ import { Dateformat } from '../dateformat.service';
   styleUrls: ['./escalation.component.css']
 })
 export class EscalationComponent implements OnInit {
+  private toasterService: ToasterService;
   communicatedvia: string[] = ['Phone', 'Email'];
   myControl = new FormControl();
   escalation$: Object;
@@ -21,7 +24,9 @@ export class EscalationComponent implements OnInit {
   esc2 = new Escalation();
   private newAttribute: any = {};
   isLoadingResults = false;
-  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat) { }
+  constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat ,toasterService:ToasterService){
+    this.toasterService=toasterService;
+  }
 
 
   setEscalationtype(id:string)
@@ -45,41 +50,32 @@ this.esc2.closureDate=this.dateFormat.convertdate(this.esc2.closureDate);
   this.isLoadingResults = true;
    
   this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/escalation', this.esc2)
-  .pipe(
-    startWith({}),
-    switchMap(() => {
+  .subscribe(  (data:any) => { 
+    console.log(data['status']);
+    if(data['status']=='success'){
+      this.isLoadingResults = false;
+      this.toasterService.pop('success','Successfully Submitted' ,'');
+    } else {
+      this.isLoadingResults = false;
+      this.toasterService.pop('warning','Not Submitted' ,'');
+    }
+ 
+  
+ },
+ (err: HttpErrorResponse) => {
+     if (err.error instanceof Error) {
+      this.isLoadingResults = false;
      
+         console.log('An error occurred:', err.error.message);
+     } else {
+      this.toasterService.pop('warning','Not Submitted' ,'');
+      this.isLoadingResults = false;
       
-      return 'ok';
-
-    }),
-    map(data => {
-      console.log('ggg');
-      // Flip flag to show that loading has finished.
-     
-    
-      return 'ok';
-    }),
-    catchError(() => {
-      console.log('errr');
-    
-      return 'ok';
-    })
-  )
-    .subscribe(
-      (data:any) => { 
-        if(data.length) {
-          console.log(data);
-         
-        }
-        
-      },
-      error => console.log("Error: ", error),
-      () => {
-        this.isLoadingResults = false;
-        console.log('finished');
-      }
-    );
+         console.log('Backend returned status code: ', err.status);
+         console.log('Response body:', err.error);
+     }
+  }
+ );
 
   }
 

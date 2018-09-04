@@ -1,3 +1,56 @@
-<p>
-  opstrackermachinedialog works!
-</p>
+<div>
+
+  <mat-dialog-content>
+    
+    <div class="row" >
+                          
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Machine Type" [(ngModel)]="data.machineType">
+      </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Equipment Type" [(ngModel)]="data.equipmentType">
+    </mat-form-field>
+  
+  </div>
+  
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Status" [(ngModel)]="data.status" >
+    </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Complaint Raised Date" [(ngModel)]="data.complaintRaisedDate">
+    </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Resolution Date" [(ngModel)]="data.ResolutionDate">
+    </mat-form-field>
+  
+  </div>
+  
+  
+   
+ 
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      
+        <div class="button-row">
+                                            
+          <button mat-raised-button color="accent" (click)="postEmployee1()" >Update</button>
+            <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
+            
+          </div>    
+  
+  </mat-dialog-actions>
+    </div>
