@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.uds.domain.EscalationType;
 import com.uds.dto.EscalationTypeDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.repository.EscalationTypeRepository;
 import com.uds.util.MapperUtil;
 
@@ -23,48 +24,50 @@ public class EscalationTypeService {
 	@Autowired
 	private EscalationTypeRepository escalationTypeRepository;
 	
-	public String saveEscalationType(EscalationTypeDTO escalationTypeDTO)
+	public StatusDTO saveEscalationType(EscalationTypeDTO escalationTypeDTO)
 	{
-		String message = " ";
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		EscalationType escalationType = mapperUtil.toEntity(escalationTypeDTO, EscalationType.class);
 		try
 		{
 		 escalationTypeRepository.save(escalationType);
-		 message = "success";
+		 statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
 		finally
 		{
 			escalationType = null;
 			escalationTypeDTO = null;
 		}
-		 return message;
+		 return statusDTO;
 	}
 	
-	public String updateEscalationType(EscalationTypeDTO escalationTypeDTO)
+	public StatusDTO updateEscalationType(EscalationTypeDTO escalationTypeDTO)
 	{
-		String message = " ";
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		EscalationType escalationType = escalationTypeRepository.findOne(escalationTypeDTO.getId());
 		escalationType.setId(escalationTypeDTO.getId());
 		escalationType.setEscalationType(escalationTypeDTO.getEscalationType());
 		try
 		{
-		escalationTypeRepository.save(escalationType);
-		 message = "success";
+			escalationTypeRepository.save(escalationType);
+			statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
 		finally
 		{
 			escalationType = null;
 			escalationTypeDTO = null;
 		}
-		 return message;
+		 return statusDTO;
 	}
 
 	public EscalationType selectedOne(long id)

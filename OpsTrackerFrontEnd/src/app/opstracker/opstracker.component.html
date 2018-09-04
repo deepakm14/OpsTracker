@@ -122,42 +122,38 @@
                                     <mat-form-field class="example-full-width">
                                         <input type="text" placeholder="Material Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto4">
                                         <mat-autocomplete #auto4="matAutocomplete">
-                                          <mat-option *ngFor="let option of materialtypes " [value]="option" (onSelectionChange)="setCommitmentdate(option)">
+                                          <mat-option *ngFor="let option of materialtypes as index i" [value]="option" (onSelectionChange)="setCommitmentdate(option)">
                                             {{option}}
                                           </mat-option>
                                         </mat-autocomplete>
                                       </mat-form-field>
                                       <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Commitment Date" [(ngModel)]="materialtransaction.commitmentDate">
-                                      </mat-form-field>
-
-                                      <!-- <mat-form-field class="example-full-width">
                                           <input matInput [matDatepicker]="picker4" placeholder="Commitment Date" [(ngModel)]="materialtransaction.commitmentDate">
                                           <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                                           <mat-datepicker #picker4></mat-datepicker>
-                                        </mat-form-field> -->
+                                        </mat-form-field>
 
                                       <mat-form-field class="example-full-width">
-                                          <input matInput [matDatepicker]="picker1" placeholder="Indent SubmissionDate" [(ngModel)]="materialdate.indentSubmissionDate">
+                                          <input matInput [matDatepicker]="picker1" placeholder="Indent SubmissionDate" [(ngModel)]="materialtransaction.indentSubmissionDate">
                                           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                           <mat-datepicker #picker1></mat-datepicker>
                                         </mat-form-field>
 
                                         <mat-form-field class="example-full-width">
-                                            <input matInput [matDatepicker]="picker3" placeholder="Material Supply Date" [(ngModel)]="materialdate.materialSupplyDate">
+                                            <input matInput [matDatepicker]="picker3" placeholder="Material Supply Date" [(ngModel)]="materialtransaction.materialSupplyDate">
                                             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                             <mat-datepicker #picker3></mat-datepicker>
                                           </mat-form-field>
                                           <mat-form-field class="example-full-width">
-                                              <input matInput [matDatepicker]="picker2" placeholder="Uniform Supply  Date" [(ngModel)]="materialdate.uniformSupplyDate">
+                                              <input matInput [matDatepicker]="picker2" placeholder="Uniform Supply  Date" [(ngModel)]="materialtransaction.uniformSupplyDate">
                                               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                               <mat-datepicker #picker2></mat-datepicker>
                                             </mat-form-field>
                                             
                                               <mat-form-field class="example-full-width">
-                                                  <input type="text" placeholder="Status" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto5" >
+                                                  <input type="text" placeholder="Status" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto5" [(ngModel)]="materialtransaction.matst">
                                                   <mat-autocomplete #auto5="matAutocomplete">
-                                                    <mat-option *ngFor="let matst of Matstatus" [value]="matst" (click)="setStatus(matst)">
+                                                    <mat-option *ngFor="let matst of Matstatus" [value]="matst" (onSelectionChange)="setStatus(matst)">
                                                       {{matst}}
                                                     </mat-option>
                                                   </mat-autocomplete>
@@ -190,41 +186,36 @@
                                       <mat-form-field class="example-full-width">
                                           <input type="text" placeholder="Type of Machine" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto6">
                                           <mat-autocomplete #auto6="matAutocomplete">
-                                            <mat-option *ngFor="let option of options" [value]="option">
+                                            <mat-option *ngFor="let option of machinetypes" [value]="option" (onSelectionChange)="setEquipment(option)">
                                               {{option}}
                                             </mat-option>
                                           </mat-autocomplete>
                                         </mat-form-field>
                                           <mat-form-field class="example-full-width">
-                                            <input type="text" placeholder="Equipment Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto7">
-                                            <mat-autocomplete #auto7="matAutocomplete">
-                                              <mat-option *ngFor="let option of options" [value]="option">
-                                                {{option}}
-                                              </mat-option>
-                                            </mat-autocomplete>
-                                          </mat-form-field>
+                                              <input matInput placeholder="Equipment Type" [(ngModel)]="machinetransaction.equipmentType" >
+                                            </mat-form-field>
                                           <mat-form-field class="example-full-width">
-                                              <input matInput placeholder="Model Number" >
+                                              <input matInput placeholder="Model Number" [(ngModel)]="machinetransaction.modelNo">
                                             </mat-form-field>
                                             <mat-form-field class="example-full-width">
-                                                <input matInput placeholder="Serial Number" >
+                                                <input matInput placeholder="Serial Number" [(ngModel)]="machinetransaction.serialNo">
                                               </mat-form-field>
                                               <mat-form-field class="example-full-width">
                                                   <input type="text" placeholder="Status" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto8">
                                                   <mat-autocomplete #auto8="matAutocomplete">
-                                                    <mat-option *ngFor="let option of options" [value]="option">
+                                                    <mat-option *ngFor="let option of machinestatus" [value]="option" (onSelectionChange)="setMachineStatus(option)">
                                                       {{option}}
                                                     </mat-option>
                                                   </mat-autocomplete>
                                                 </mat-form-field>
                                               
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker6" placeholder="Complaint Raised  Date" >
+                                                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker6" placeholder="Complaint Raised  Date" [(ngModel)]="machinetransaction.complaintRaisedDate">
                                                     <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
                                                     <mat-datepicker #picker6></mat-datepicker>
                                                   </mat-form-field>
                                                   <mat-form-field class="example-full-width">
-                                                      <input matInput [matDatepicker]="picker7" placeholder="Resolution  Date">
+                                                      <input matInput [matDatepicker]="picker7" placeholder="Resolution  Date" [(ngModel)]="machinetransaction.ResolutionDate">
                                                       <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
                                                       <mat-datepicker #picker7></mat-datepicker>
                                                     </mat-form-field>

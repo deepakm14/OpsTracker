@@ -1,5 +1,6 @@
 package com.uds.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.uds.dto.MachinesDTO;
 import com.uds.dto.ManPowerDTO;
 import com.uds.dto.MaterialDTO;
 import com.uds.dto.SiteDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.repository.ProjectRepository;
 import com.uds.repository.SiteRepository;
 import com.uds.util.DateUtil;
@@ -43,8 +45,9 @@ public class SiteService {
 	@Autowired
 	private MapperUtil<?, ?> mapperUtil;
 
-	public String createSite(SiteDTO siteDTO) {
-		String message = " ";
+	public StatusDTO createSite(SiteDTO siteDTO) {
+		StatusDTO statusDTO = new StatusDTO();
+		//statusDTO.setStatus(" ");
 		log.debug("****Inside ProjectService*****");
 		Site site = mapperUtil.toEntity(siteDTO, Site.class);
 		Project project = projectRepository.findOne(siteDTO.getProjectId());
@@ -63,7 +66,7 @@ public class SiteService {
 		}
 		for (MaterialDTO matDTO : materialDTOs) {
 			Material material = mapperUtil.toEntity(matDTO, Material.class);
-			material.setCommitmentDate(dateUtil.convertDate(matDTO.getCommitmentDate()));
+			material.setCommitmentDate(matDTO.getCommitmentDate());
 			material.setTypeOfService("Material");
 			material.setSite(site);
 			materials.add(material);
@@ -80,22 +83,23 @@ public class SiteService {
 		try
 		{
 		siteRepository.save(site);
-		message = "success";
+		statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
 		finally
 		{
 			site = null;
 			siteDTO = null;
 		}
-		return message;
+		return statusDTO;
 	}
 
-	public String updateSite(SiteDTO siteDTO) {
-		String message = " ";
+	public StatusDTO updateSite(SiteDTO siteDTO) {
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		log.debug("****Inside ProjectService*****");
 		Site site = siteRepository.findOne(siteDTO.getId());
 		Project project = projectRepository.findOne(siteDTO.getId());
@@ -151,13 +155,13 @@ public class SiteService {
 		try
 		{
 			siteRepository.save(site);
-			message = "success";
+			statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
-		return message;
+		return statusDTO;
 	}
 
 	public void deleteSite(long id) {
@@ -167,67 +171,24 @@ public class SiteService {
 	}
 
 	@SuppressWarnings("deprecation")
-	public Page<Site> findAll(int page, int size) {
-		return siteRepository.findAll(new PageRequest(page,size));
-//		List<SiteDTO> siteDTOs = new ArrayList<SiteDTO>();
-//		for (Site site : sites) {
-//			SiteDTO siteDTO = new SiteDTO();
-//			siteDTO.setId(site.getId());
-//			siteDTO.setName(site.getName());
-//			siteDTO.setProjectId(site.getProject().getId());
-//			siteDTO.setProjectName(site.getProject().getName());
-//			siteDTO.setAddress(site.getAddress());
-//			siteDTO.setContractType(site.getContractType());
-//			siteDTO.setRegionalManagerId(site.getRegionalManagerId());
-//			siteDTO.setSeniorManagerId(site.getSeniorManagerId());
-//			siteDTO.setAsstSeniorManagerId(site.getAsstSeniorManagerId());
-//			siteDTO.setSiteInchargeId(site.getSiteInchargeId());
-//			List<ManPower> manPowers = site.getManPower();
-//			List<Material> materials = site.getMaterial();
-//			List<Machines> machines = site.getMachine();
-//			List<MaterialDTO> materialDTOs = new ArrayList<MaterialDTO>();
-//			List<MachinesDTO> machineDTOs = new ArrayList<MachinesDTO>();
-//			List<ManPowerDTO> manPowerDTOs = new ArrayList<ManPowerDTO>();
-//			for(ManPower manPower : manPowers)
-//			{
-//				ManPowerDTO manPowerDTO = new ManPowerDTO();
-//				manPowerDTO.setId(manPower.getId());
-//				manPowerDTO.setTypeOfService(manPower.getTypeOfService());
-//				manPowerDTO.setPlanned(manPower.getPlanned());
-//				manPowerDTO.setStartTime(manPower.getStartTime());
-//				manPowerDTO.setEndTime(manPower.getEndTime());
-//				manPowerDTOs.add(manPowerDTO);
-//			}
-//			for(Material material : materials)
-//			{
-//				MaterialDTO materialDTO = new MaterialDTO();
-//				materialDTO.setId(material.getId());
-//				materialDTO.setTypeOfService(material.getTypeOfService());
-//				materialDTO.setMaterialType(material.getMaterialType());
-//				materialDTO.setCommitmentDate(material.getCommitmentDate());
-//				materialDTOs.add(materialDTO);
-//			}
-//			for(Machines mac : machines)
-//			{
-//				MachinesDTO machineDTO = new MachinesDTO();
-//				machineDTO.setId(mac.getId());
-//				machineDTO.setTypeOfService(mac.getTypeOfService());
-//				machineDTO.setMachineType(mac.getEquipmentType());
-//				machineDTO.setSerialNo(mac.getSerialNo());
-//				machineDTO.setModelNo(mac.getModelNo());
-//				machineDTO.setEquipmentType(mac.getEquipmentType());
-//				machineDTOs.add(machineDTO);
-//			}
-//			siteDTO.setMaterialDTO(materialDTOs);
-//			siteDTO.setMachineDTO(machineDTOs);
-//			siteDTO.setManPowerDTO(manPowerDTOs);
-//			siteDTOs.add(siteDTO);
-//		}
-//		return siteDTOs;
+	public List<SiteDTO> findAll(int page, int size) {
+		Page<Site> sitePagination = siteRepository.findAll(new PageRequest(page,size));
+		List<Site> sites = sitePagination.getContent();
+		List<SiteDTO> siteDTOs = new ArrayList<SiteDTO>();
+		siteDTOs = convertEntityToDTO(sites);
+		return siteDTOs;
 	}
 	
 	public List<SiteDTO> selectAll() {
 		List<Site> sites = siteRepository.findAll();
+		List<SiteDTO> siteDTOs = new ArrayList<SiteDTO>();
+		siteDTOs = convertEntityToDTO(sites);
+		return siteDTOs;
+
+	}
+	
+	public List<SiteDTO> convertEntityToDTO(List<Site> sites)
+	{
 		List<SiteDTO> siteDTOs = new ArrayList<SiteDTO>();
 		for (Site site : sites) {
 			SiteDTO siteDTO = new SiteDTO();
@@ -263,7 +224,7 @@ public class SiteService {
 				materialDTO.setId(material.getId());
 				materialDTO.setTypeOfService(material.getTypeOfService());
 				materialDTO.setMaterialType(material.getMaterialType());
-				materialDTO.setCommitmentDate(material.getCommitmentDate());
+				materialDTO.setCommitmentDate((Date)material.getCommitmentDate());
 				materialDTOs.add(materialDTO);
 			}
 			for(Machines mac : machines)
@@ -282,8 +243,8 @@ public class SiteService {
 			siteDTO.setManPowerDTO(manPowerDTOs);
 			siteDTOs.add(siteDTO);
 		}
-		return siteDTOs;
 
+		return siteDTOs;
 	}
 
 	public SiteDTO findOne(long id) {

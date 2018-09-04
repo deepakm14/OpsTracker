@@ -65,7 +65,7 @@ numberOnly(event): boolean {
 
 
 
- isLoadingResults = false;
+  isLoadingResults = false;
   private fieldArray: Array<any> = [];
   private fieldArray1: Array<any> = [];
   private fieldArray2: Array<any> = [];
@@ -165,9 +165,8 @@ numberOnly(event): boolean {
 
   postEmployee()
   {
-   
-     this.isLoadingResults = true;
-   
+    console.log(this.emp);
+    this.isLoadingResults = true;
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.emp)
     
       .subscribe(  (data:any) => { 

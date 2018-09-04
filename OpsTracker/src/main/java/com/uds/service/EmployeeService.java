@@ -7,13 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.uds.domain.Employee;
 import com.uds.domain.User;
 import com.uds.dto.EmployeeDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.repository.EmployeeRepository;
 import com.uds.repository.UserRepository;
 import com.uds.util.MapperUtil;
@@ -33,36 +33,51 @@ public class EmployeeService {
 	@Autowired
 	private MapperUtil<?,?> mapperUtil;
 	
-	public String createEmployee(EmployeeDTO employeeDTO)
+	public StatusDTO createEmployee(EmployeeDTO employeeDTO)
 	{
-		String message = " ";
-		Employee employee = mapperUtil.toEntity(employeeDTO, Employee.class);
-		Employee emp = employeeRepository.save(employee);
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		User user = new User();
-		String userName = Long.toString(emp.getCode());
-		user.setUserName(userName);
-		user.setPassword("Uds12345");
-		userRepository.save(user);
+		//List<Employee> employees = searchAll();
+		//for(Employee checkDuplicate : employees)
+		//{
+		//if(employeeDTO.getCode() != checkDuplicate.getCode())
+		//{
+		Employee employee = mapperUtil.toEntity(employeeDTO, Employee.class);
+		
 		try
 		{
-			mapperUtil.toModel(employee, EmployeeDTO.class);
-			message = "success";
+			Employee emp = employeeRepository.save(employee);
+			
+			String userName = Long.toString(emp.getCode());
+			user.setUserName(userName);
+			user.setPassword("Uds12345");
+			userRepository.save(user);
+			statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
 		finally
 		{
 			employee = null;
 			employeeDTO = null;
+			user = null;
 		}
-		return message;
+		/*}
+		else
+		{
+			message = "already exist";
+		}
+		}*/
+		return statusDTO;
 	}
 	
-	public String updateEmployee(EmployeeDTO employeeDTO)
+	public StatusDTO updateEmployee(EmployeeDTO employeeDTO)
 	{
-		String message;
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
 		Employee employee = employeeRepository.findOne(employeeDTO.getId());
 		employee.setId(employeeDTO.getId());
 		employee.setCode(employeeDTO.getCode());
@@ -74,18 +89,18 @@ public class EmployeeService {
 		try
 		{
 			mapperUtil.toModel(employee, EmployeeDTO.class);
-			message = "success";
+			statusDTO.setStatus("success");
 		}
 		catch(Exception e)
 		{
-			message = "failed";
+			statusDTO.setStatus("failed");
 		}
 		finally
 		{
 			employee = null;
 			employeeDTO = null;
 		}
-		return message;
+		return statusDTO;
 	}
 	
 	public Employee findOne(long id)
@@ -104,6 +119,12 @@ public class EmployeeService {
 	public List<Employee> selectAll(String desg)
 	{
 		List<Employee> employees = employeeRepository.findByDesg(desg);
+		return employees;
+	}
+	
+	public List<Employee> searchAll()
+	{
+		List<Employee> employees = employeeRepository.findAll();
 		return employees;
 	}
 }

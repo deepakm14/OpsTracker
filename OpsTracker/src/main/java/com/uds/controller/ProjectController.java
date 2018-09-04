@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uds.domain.Project;
 import com.uds.dto.ProjectDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.service.ProjectService;
 
 @RestController
@@ -31,14 +32,14 @@ public class ProjectController {
 	private ProjectService projectService;
 	
 	@PostMapping("/project")
-	public String saveProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
+	public StatusDTO saveProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside ProjectController*****");
 		return projectService.createProject(projectDTO);
 	}
 	
 	@PutMapping("/project/update")
-	public String updateProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
+	public StatusDTO updateProject(@RequestBody ProjectDTO projectDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside ProjectController*****");
 		return projectService.updateProject(projectDTO);

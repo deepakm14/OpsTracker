@@ -1,18 +1,28 @@
 package com.uds.util;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class DateUtil {
 
-	public String convertDate(String str)
+	public String convertStringToDate(String str)
 	{
-		Date date = new Date(str);  
-	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-	    String strDate= formatter.format(date);  
-	    return strDate;
+	 return null;	
 	}
+	
+	public Date currentDate()
+	{
+		Calendar currenttime = Calendar.getInstance();
+		java.sql.Date createdDate = new Date((currenttime.getTime()).getTime());
+		return createdDate;
+	}
+	
+//	public String convertDateToString(String str)
+//	{
+//		
+//	}
 }

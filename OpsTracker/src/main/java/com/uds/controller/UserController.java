@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uds.dto.StatusDTO;
 import com.uds.service.UserService;
 
 @RestController
@@ -16,10 +17,19 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("/user/{name}/{pwd}")
-	public String saveSite(@PathVariable String name, @PathVariable String pwd)
+	public StatusDTO saveSite(@PathVariable String name, @PathVariable String pwd)
 	{
-		String status = "failed";	
-		status = userService.userLogin(name, pwd);
-		return status;
+		StatusDTO statusDTO = new StatusDTO();
+		statusDTO.setStatus(" ");
+		try
+		{
+			userService.userLogin(name, pwd);
+			statusDTO.setStatus("success");
+		}
+		catch(Exception e)
+		{
+			statusDTO.setStatus("failed");
+		}
+		return statusDTO;
 	}
 }

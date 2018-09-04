@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uds.domain.Employee;
 import com.uds.dto.EmployeeDTO;
+import com.uds.dto.StatusDTO;
 import com.uds.service.EmployeeService;
 
 @RestController
@@ -30,19 +31,17 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@PostMapping("/employee")
-	public String saveEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
+	public StatusDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside SiteController*****");
-		String message = employeeService.createEmployee(employeeDTO);
-		return message;
+		return employeeService.createEmployee(employeeDTO);
 	}
 	
 	@PutMapping("/employee/update")
-	public String updateEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
+	public StatusDTO updateEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request)
 	{
 		log.debug("****Inside SiteController*****");
-		String message = employeeService.updateEmployee(employeeDTO);
-		return message;
+		return employeeService.updateEmployee(employeeDTO);
 	}
 	
 /*	@DeleteMapping("/site/delete/{id}")

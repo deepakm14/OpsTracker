@@ -1,7 +1,7 @@
 package com.uds.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +26,7 @@ public class Material implements Serializable{
 	
 	private String materialType;
 	
-	private String commitmentDate;
+	private Date commitmentDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "siteId")
@@ -56,11 +56,11 @@ public class Material implements Serializable{
 		this.materialType = materialType;
 	}
 
-	public String getCommitmentDate() {
+	public Date getCommitmentDate() {
 		return commitmentDate;
 	}
 
-	public void setCommitmentDate(String commitmentDate) {
+	public void setCommitmentDate(Date commitmentDate) {
 		this.commitmentDate = commitmentDate;
 	}
 
