@@ -13,6 +13,7 @@ import { Machine } from '../models/machine.model';
 import { Observable, of } from 'rxjs';
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Employ } from '../models/employ.model';
 
 
 
@@ -29,7 +30,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class MasterdataComponent implements OnInit {
   
   private toasterService: ToasterService;
+
   //model class object creation
+  employee = new Employ();
   site = new Site();
   manpower = new ManPower();
   material = new Material();
@@ -43,6 +46,36 @@ export class MasterdataComponent implements OnInit {
   Contracttype: string[] = ['Manpower', 'Lumsum', 'SLA' , 'One Time', 'Project Event' , 'PartTimers'];
   Materialtype: string[] = ['Fixed materials', 'At Actual'];
   Designation: Array<any> = [{'id':'1','name':'REGIONAL MANAGER'},{'id':'2','name':'SENIOR MANAGER'},{'id':'3','name':'SITE INCHARGE'},{'id':'4','name':'ASSISTANT SENIOR MANAGER'}];
+
+
+  //Variable declation
+  myControl = new FormControl();
+  //public emp={"designation":""};
+  public client={};
+  //public site={"projectId":"","contractType":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
+  //"manPowerDTO":[],"machineDTO":[],"materialDTO":[],};
+  projects: Object;
+  sites: Object;
+  employees: Object;
+  rm: Object;
+  sm: Object;
+  asm: Object;
+  si: Object;
+  //public manpower={};
+  //public material={};
+  //public machine={};
+  public escalationtype={};
+  isLoadingResults = false;
+  private fieldArray: Array<any> = [];
+  private fieldArray1: Array<any> = [];
+  private fieldArray2: Array<any> = [];
+  private newAttribute: any = {};
+  private newAttribute1: any = {};
+  private newAttribute2: any = {};
+  matadded = false;
+  manadded = false;
+  macadded = false;
+  date1: string;
 
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService,
     private dateFormat: Dateformat,toasterService:ToasterService){
@@ -62,21 +95,6 @@ numberOnly(event): boolean {
   return true;
 
 }
-
-
-
-  isLoadingResults = false;
-  private fieldArray: Array<any> = [];
-  private fieldArray1: Array<any> = [];
-  private fieldArray2: Array<any> = [];
-  private newAttribute: any = {};
-  private newAttribute1: any = {};
-  private newAttribute2: any = {};
-  matadded = false;
-  manadded = false;
-  macadded = false;
-
-  date1: string;
 
   setMaterialType(type){
     this.material.materialType = type;
@@ -135,45 +153,23 @@ numberOnly(event): boolean {
   }
 
 
-
-
-
-
   visible = true;
   
-//Variable declation
-
-
-  myControl = new FormControl();
-  public emp={"designation":""};
-  public client={};
-  //public site={"projectId":"","contractType":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
-  //"manPowerDTO":[],"machineDTO":[],"materialDTO":[],};
-  projects: Object;
-  sites: Object;
-  employees: Object;
-  rm: Object;
-  sm: Object;
-  asm: Object;
-  si: Object;
-  //public manpower={};
-  //public material={};
-  //public machine={};
-  public escalationtype={};
-  
+ 
 
 
   postEmployee()
   {
-    console.log(this.emp);
+    console.log(this.employee);
     this.isLoadingResults = true;
-    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.emp)
+    this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee', this.employee)
     
       .subscribe(  (data:any) => { 
         console.log(data['status']);
         if(data['status']=='success'){
           this.isLoadingResults = false;
           this.toasterService.pop('success','Successfully Submitted' ,'');
+          this.employee = new Employ();
         } else {
           this.isLoadingResults = false;
           this.toasterService.pop('warning','Not Submitted' ,'');
@@ -371,7 +367,7 @@ numberOnly(event): boolean {
   setDesignation(id)
   {
     console.log(id);
-    this.emp.designation = id;
+    this.employee.designation = id;
   }
 
   setSiteProject(id)

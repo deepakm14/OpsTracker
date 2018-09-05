@@ -16,20 +16,20 @@
                           </button>
                       <form class="m-t" (ngSubmit)="f.form.valid && postEmployee()" #f="ngForm" novalidate >                 
                         <mat-form-field class="example-full-width" >
-                            <input class="form-control" name="emp_code" matInput placeholder="Employee Code" [(ngModel)]="emp.code" #EmpCode="ngModel" required >
+                            <input class="form-control" name="emp_code" matInput placeholder="Employee Code" [(ngModel)]="employee.code" #EmpCode="ngModel" required >
                             <mat-error *ngIf="f.submitted && !EmpCode.valid">
                                 Employee code is <strong>required</strong>
                               </mat-error>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Employee Name" [(ngModel)]="emp.name" name="emp_name" #EmpName="ngModel" required>
+                            <input matInput placeholder="Employee Name" [(ngModel)]="employee.name" name="emp_name" #EmpName="ngModel" required>
                             <mat-error *ngIf="f.submitted && !EmpName.valid">
                                 Employee name is <strong>required</strong>
                               </mat-error>
                           </mat-form-field>    
                         
                           <mat-form-field class="example-full-width">
-                              <input type="text" placeholder="Designation" aria-label="Number" matInput name="emp_designation"  #EmpDesignation [matAutocomplete]="auto20" required>
+                              <input type="text" matInput placeholder="Designation" aria-label="Number"  name="emp_designation"  #EmpDesignation [matAutocomplete]="auto20" required>
                               <mat-autocomplete #auto20="matAutocomplete" >
                                 <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
                                   {{des.name}}
@@ -42,19 +42,18 @@
 
                             </mat-form-field>
                             
-                            <mat-form-field class="example-full-width">
-                                <input type="text" placeholder="Designation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto20" >
-                                <mat-autocomplete #auto20="matAutocomplete" >
-                                  <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
-                                    {{des.name}}
-                                  </mat-option>
-                                </mat-autocomplete>
-                              </mat-form-field>
                               <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Email" [(ngModel)]="emp.mail">
-                                </mat-form-field>
+                                <input matInput placeholder="Email" [(ngModel)]="employee.mail" name="emp_mail" #EmpMail="ngModel" required>
+                                <mat-error *ngIf="f.submitted && !EmpMail.valid ">
+                                  Employee Mail is <strong>required</strong>
+                                </mat-error>
+                              </mat-form-field>
+
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Mobile Number" [(ngModel)]="emp.mob" (keypress)="numberOnly($event)">
+                                    <input matInput placeholder="Mobile Number" [(ngModel)]="employee.mob" name="emp_mobile_no" #EmpMob="ngModel" required minlength="10" maxlength="13" (keypress)="numberOnly($event)">
+                                    <mat-error *ngIf="f.submitted && !EmpMob.valid ">
+                                      Employee Mobile is <strong>required</strong>
+                                    </mat-error>
                                   </mat-form-field>
             
                                   <div class="button-row">
@@ -99,7 +98,8 @@
                                   </form>
                   </div>
                    
-                  </div> </mat-tab>
+                  </div> 
+                </mat-tab>
               <mat-tab label="Site">  
                   
                     <div id = "layoutContainer" 
@@ -433,7 +433,7 @@
                             <mat-icon aria-label="" routerLink="../escalationview">table_chart</mat-icon>
                           </button>
 
-                          <form class="m-t" (ngSubmit)="f3.form.valid && postEmployee()" #f3="ngForm" novalidate >
+                          <form class="m-t" (ngSubmit)="f3.form.valid && postEscalationType()" #f3="ngForm" novalidate >
                         <mat-form-field class="example-full-width">
                             <input matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType" name="Esc_type" #Escalation="ngModel" required>
                             <mat-error *ngIf="f3.submitted && !escalationtype.valid">
