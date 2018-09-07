@@ -48,7 +48,7 @@ module.exports = ".mat-elevation-z0{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rg
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\n\nhtml, body { height: 100%; }\n\nbody { margin: 0; font-family: 'Roboto', sans-serif; }\n\ni {\n    margin-right: 12px;\n  }"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\n\r\nbody { margin: 0; font-family: 'Roboto', sans-serif; background:#d1dddb}\r\n\r\ni {\r\n    margin-right: 12px;\r\n  }"
 
 /***/ }),
 
