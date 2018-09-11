@@ -4,6 +4,9 @@ export class Escalation {
    
     communicatedVia: string;
     communicatedDate: string;
+    escalatedTo: string;
+    escalatedBy: string;
+    status: string;
     closureDate: string;
     estimatedClosureDate: string;
 }

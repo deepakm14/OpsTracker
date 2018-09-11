@@ -43,7 +43,7 @@
     width: 300px;
   }
   .escalation-box {
-    height: 440px;
+    height: 550px;
     width: 300px;
   }
   .button-row button,
@@ -74,4 +74,10 @@
 .mt{
   margin-top: 100px;
 }
-  
+.spinnerabove {
+  position:absolute;
+  top:50%;
+  left:50%;
+ 
+  z-index: 10;
+}  

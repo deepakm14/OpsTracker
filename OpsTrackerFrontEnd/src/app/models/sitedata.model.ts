@@ -1,9 +1,7 @@
 import { ManPower } from "./manpower.model";
 import { Material } from "./material.model";
 import { Machine } from "./machine.model";
-
-
-export class Site {
+export class Sitedata {
     id: number;
     projectId: number;
     projectName: string;

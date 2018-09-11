@@ -27,7 +27,7 @@ id;
   empid=new Employ();
    exampleDatabase: ExampleHttpDao | null;
 
-  displayedColumns: string[] = ['id', 'typeOfEscalation',  'description' , 'communicatedVia', 'communicatedDate', 'closureDate', 'estimatedClosureDate' ,'actionsColumn'];
+  displayedColumns: string[] = ['id', 'typeOfEscalation',  'description' , 'communicatedVia', 'communicatedDate', 'escalatedTo','escalatedBy','status','closureDate', 'estimatedClosureDate' ,'actionsColumn'];
   /* //displayedColumns: string[] = [  'code', 'name', 'designation', 'mail' , 'phone']; */
 
 
@@ -141,6 +141,9 @@ export interface Escalation {
  
   communicatedVia: string;
   communicatedDate: string;
+  escalatedTo: string;
+  escalatedBy: string;
+  status: string;
   closureDate: string;
   estimatedClosureDate: string;
  }

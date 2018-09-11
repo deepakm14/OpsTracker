@@ -17,6 +17,7 @@ import { Sitemanpowerdialog } from '../models/sitemanpowerdialog.model';
 import { Sitematerialdialog } from '../models/sitematerialdialog.model';
 import {SitematerialdialogComponent} from '../sitematerialdialog/sitematerialdialog.component';
 import { SitemachinedailogComponent } from '../sitemachinedailog/sitemachinedailog.component';
+import {SitedialogComponent} from '../sitedialog/sitedialog.component';
 @Component({
   selector: 'app-siteview',
   templateUrl: './siteview.component.html',
@@ -110,8 +111,9 @@ id;
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-        //  this.resultsLength = data['totalElements'];
+          this.resultsLength = data['totalElements'];
  //console.log(data['totalElements']);
+ console.log(data);
           return data;
         }),
         catchError(() => {
@@ -121,9 +123,26 @@ id;
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.site2 = data);
+      ).subscribe(data => this.site2 = data['content']);
    // this.listEmployees();
   }
+
+
+  openDialog(id:number) {
+  
+    const item1 = this.site2.find(i => i.id === id);
+   
+      const dialogRef = this.dialog.open(SitedialogComponent, {
+        width: '300px',
+        data:item1
+        
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              console.log('dialog closed:${result}');
+              this.dialogResult = result;
+            });
+    
+    }
  getmanpower(id:number) {
   
   //const item1 = this.site2.find(i => i.id === id);

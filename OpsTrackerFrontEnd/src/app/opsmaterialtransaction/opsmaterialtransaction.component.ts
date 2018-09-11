@@ -8,7 +8,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {DataService} from '../data.service';
 import { Employ } from '../models/employ.model';
 import { MatDialogModule } from '@angular/material';
-import {EmploydialogComponent} from '../employdialog/employdialog.component';
+import { OpstrackermaterialdialogComponent } from '../opstrackermaterialdialog/opstrackermaterialdialog.component';
 
 @Component({
   selector: 'app-opsmaterialtransaction',
@@ -26,7 +26,7 @@ id;
   empid=new Employ();
    exampleDatabase: ExampleHttpDao | null;
 
-  displayedColumns: string[] = ['id','materialType', 'commitmentDate',  'indentSubmissionDate' , 'materialSupplyDate', 'uniformSupplyDate','status','remarks','projectId','siteId', 'actionsColumn' ];
+  displayedColumns: string[] = ['id','materialType', 'commitmentDate',  'indentSubmissionDate' , 'materialSupplyDate', 'uniformSupplyDate','status','remarks','submitDate','siteId', 'actionsColumn' ];
   /* //displayedColumns: string[] = [  'code', 'name', 'designation', 'mail' , 'phone']; */
 
 
@@ -101,7 +101,7 @@ id;
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data['totalElements'];
- console.log(data['totalElements']);
+ console.log(data);
           return data;
         }),
         catchError(() => {
@@ -118,7 +118,7 @@ id;
   
   const item1 = this.material.find(i => i.id === id);
  
-    const dialogRef = this.dialog.open(EmploydialogComponent, {
+    const dialogRef = this.dialog.open(OpstrackermaterialdialogComponent, {
       width: '300px',
       data:item1
       
@@ -141,7 +141,8 @@ export interface Opsmaterialtransaction {
    
     status: string;
     remarks: string;
-    projectId: number;
+   
+    submitDate: string;
     siteId: number;
  }
  

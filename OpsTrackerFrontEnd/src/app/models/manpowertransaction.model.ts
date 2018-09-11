@@ -1,5 +1,6 @@
 export class ManPowerTransaction {
     id: number;
+    submitDate: Date;
     planned: number;
     actual: number; 
     shortfall: number;

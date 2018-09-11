@@ -1,68 +1,156 @@
-<div>
+<div class="example-container ">
+    <div class="example-loading-shade spinnerabove "
+    *ngIf="isLoadingResults || isRateLimitReached" >
+ <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+ <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+   
+ </div>
+</div> 
+<div id = "layoutContainer" 
+fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.35%">
 
-  <mat-dialog-content>
-    
-    <div class="row" >
+    <div fxflex = "40" >
+        <div class="updatecontainer1" >
+            <mat-card >
+                <mat-card-header>
+                 
+                        <mat-card-title>Material</mat-card-title>
+                       
+                </mat-card-header>
+                <mat-divider ></mat-divider> 
+                <mat-card-content style="margin-top: 20px">
+     <div class="row" >
+                          
+       <mat-form-field class="example-full-width">
+                  <input  [attr.disabled]="disabled ? '' : null" matInput placeholder="Date" [(ngModel)]="currentdate" name="currentdate">
+                </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+     <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Client" aria-label="Number" matInput  [(ngModel)]="data.projectId" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of projects" [value]="option.name" (onSelectionChange)="setProject($event,option.id)">
+                  {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+  
+  </div>
+  
+  <div class="row" >
                           
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Material Type" [(ngModel)]="data.materialType">
-      </mat-form-field>
+                  <input type="text" placeholder="Site" aria-label="Number" matInput  [(ngModel)]="data.siteId" [matAutocomplete]="auto1">
+                  <mat-autocomplete #auto1="matAutocomplete">
+                    <mat-option *ngFor="let project of projectsite" [value]="project.name" (onSelectionChange)="setSite($event,project.id)" >
+                      {{project.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+  
+  </div>
+</mat-card-content>
+</mat-card>
+</div>
+</div>
+<div fxflex = "40" >
+  <div class="updatecontainer2" >
+      <mat-card >
+          <mat-card-header>
+           
+                  <mat-card-title>Material</mat-card-title>
+                 
+          </mat-card-header>
+          <mat-divider ></mat-divider> 
+          <mat-card-content style="margin-top: 20px">
+
+
+    <div class="row" >
+                       
+      <mat-form-field class="example-full-width">
+                                        <input type="text" placeholder="Material Type" aria-label="Number"  [(ngModel)]="data.materialType" matInput name="materialType" [matAutocomplete]="auto4">
+                                        <mat-autocomplete #auto4="matAutocomplete">
+                                          <mat-option *ngFor="let option of materialtypes as index i" [value]="option" (onSelectionChange)="setCommitmentdate($event,option)">
+                                            {{option}}
+                                          </mat-option>
+                                        </mat-autocomplete>
+                                      </mat-form-field>
   
   </div>
   <div class="row" >
                           
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Commitment Date" [(ngModel)]="data.commitmentDate">
-    </mat-form-field>
+                                            <input matInput placeholder="Commitment Date" [(ngModel)]="data.commitmentDate">
+                                          </mat-form-field>
   
   </div>
   
   <div class="row" >
                           
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Indent Submission Date" [(ngModel)]="data.indentSubmissionDate" >
-    </mat-form-field>
+                                          <input class="form-control" matInput [matDatepicker]="picker19" placeholder="Indent SubmissionDate" [(ngModel)]="data.indentSubmissionDate" name="indentSubmissionDate">
+                                          <mat-datepicker-toggle matSuffix [for]="picker19"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker19></mat-datepicker>
+                                        </mat-form-field>
   
   </div>
   <div class="row" >
                           
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Material Supply Date" [(ngModel)]="data.materialSupplyDate">
-    </mat-form-field>
+                                            <input class="form-control" matInput [matDatepicker]="picker3" placeholder="Material Supply Date" [(ngModel)]="data.materialSupplyDate" name="materialSupplyDate">
+                                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker3></mat-datepicker>
+                                          </mat-form-field>
   
   </div>
   <div class="row" >
                           
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Uniform Supply Date" [(ngModel)]="data.uniformSupplyDate">
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+                                              <input class="form-control" matInput [matDatepicker]="picker2" placeholder="Uniform Supply  Date" [(ngModel)]="data.uniformSupplyDate" name="uniformSupplyDate">
+                                              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                              <mat-datepicker #picker2></mat-datepicker>
+                                            </mat-form-field>
   
   </div>
   
   <div class="row" >
                           
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Status" [(ngModel)]="data.status">
-    </mat-form-field>
+                                                  <input class="form-control" type="text" placeholder="Status" aria-label="Number" matInput  [matAutocomplete]="auto5" [(ngModel)]="data.status">
+                                                  <mat-autocomplete #auto5="matAutocomplete">
+                                                    <mat-option *ngFor="let matst of Matstatus" [value]="matst" (onSelectionChange)="setStatus(matst)">
+                                                      {{matst}}
+                                                    </mat-option>
+                                                  </mat-autocomplete>
+
+                                                </mat-form-field>
   
   </div>
    
   <div class="row" >
                           
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Remarks" [(ngModel)]="data.remarks">
-    </mat-form-field>
+     <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="Remarks" [(ngModel)]="data.remarks"  #Remarks="ngModel" (input)="setRemarks($event.target.value)">
+                                                 
+                                                </mat-form-field>  
   
   </div>
-  </mat-dialog-content>
+ </mat-card-content>
+ </mat-card>
+</div>
+</div>
+</div>
+  </div>
   <mat-dialog-actions>
       
         <div class="button-row">
                                             
-          <button mat-raised-button color="accent" (click)="postEmployee1()" >Update</button>
+          <button mat-raised-button color="accent" (click)="updateMaterialTransaction()" >Update</button>
             <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
             
           </div>    
   
   </mat-dialog-actions>
-    </div>
+   

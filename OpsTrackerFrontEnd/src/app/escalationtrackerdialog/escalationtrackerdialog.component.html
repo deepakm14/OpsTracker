@@ -1,12 +1,34 @@
-<div>
+<div style="height:600px">
+  <div class="example-loading-shade spinnerabove "
+  *ngIf="isLoadingResults || isRateLimitReached" >
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+ 
+</div>
+</div> 
+<div id = "layoutContainer" 
+fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.35%">
 
-    <mat-dialog-content>
-      
+    <div fxflex = "40" >
+        <div class="updatecontainer1" >
+            <mat-card >
+                <mat-card-header>
+                 
+                        <mat-card-title>Escalation</mat-card-title>
+                       
+                </mat-card-header>
+                <mat-divider ></mat-divider> 
+                <mat-card-content style="margin-top: 20px">
       <div class="row" >
                             
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Types Of Escalation" [(ngModel)]="data.typeOfEscalation">
-          </mat-form-field>
+          <input type="text" placeholder="Type of Escalation" [(ngModel)]="data.typeOfEscalation" aria-label="Number" matInput  [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let escalation of escalation$" [value]="escalation.escalationType" (click)="setEscalationtype(escalation.escalationType)" >
+              {{escalation.escalationType}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
     
     </div>
 
@@ -17,47 +39,94 @@
       </mat-form-field>
     
     </div>
+ 
     <div class="row" >
                             
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Communicated Via" [(ngModel)]="data.communicatedVia">
-      </mat-form-field>
+    <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Communicated Via" aria-label="Number" [(ngModel)]="data.communicatedVia" matInput  [matAutocomplete]="auto20">
+            <mat-autocomplete #auto20="matAutocomplete">
+              <mat-option *ngFor="let com1 of communicatedvia; let i = index" [value]="com1" (click)="setCommunicatedvia(com1)">
+                {{com1}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field> 
     
     </div>
+  </mat-card-content>
+</mat-card>
+</div>
+</div>
+<div fxflex = "40" >
+  <div class="updatecontainer2" >
+      <mat-card >
+          <mat-card-header>
+           
+                  <mat-card-title>Escalation</mat-card-title>
+                 
+          </mat-card-header>
+          <mat-divider ></mat-divider> 
+          <mat-card-content style="margin-top: 20px">
+    <div class="row">
+<mat-form-field class="example-full-width">
+            <input matInput placeholder="Escalated To" [(ngModel)]="data.escalatedTo">
+          </mat-form-field>
+    </div>
+    <div class="row">
+     <mat-form-field class="example-full-width">
+            <input matInput placeholder="Escalated By" [(ngModel)]="data.escalatedBy">
+          </mat-form-field>
+    </div>
     
+
+    <div class="row">
+     <mat-form-field class="example-full-width">
+            <input matInput placeholder="Status" [(ngModel)]="data.status">
+          </mat-form-field>
+    </div>
+
+<div class="row">
+ <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Communicated Date" format="dd-MM-yyyy" [(ngModel)]="data.communicatedDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+</div>
+
     <div class="row" >
-                            
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Communicated Date" [(ngModel)]="data.communicatedDate">
-      </mat-form-field>
-    
+           <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker1" placeholder="Closure Date" format="dd-MM-yyyy" [(ngModel)]="data.closureDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>                   
+      
     </div>
+  
     <div class="row" >
-                            
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Closure date" [(ngModel)]="data.closureDate">
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker2" placeholder="Estimated Closure Date" format="dd-MM-yyyy" [(ngModel)]="data.estimatedClosureDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>                     
+      
     
     </div>
-    <div class="row" >
-                            
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Estimated Closure Date" [(ngModel)]="data.estimatedClosureDate">
-      </mat-form-field>
-    
-    </div>
-    
+  </mat-card-content>
+</mat-card>
+</div>
+</div>
+</div>
+ </div>
      
      
-    </mat-dialog-content>
+    
     <mat-dialog-actions>
         
           <div class="button-row">
                                               
-            <button mat-raised-button color="accent" (click)="postEmployee()" >Update</button>
+            <button mat-raised-button color="accent" (click)="updateTrackerEscalation()" >Update</button>
               <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
               
             </div>    
     
     </mat-dialog-actions>
-      </div>
+     

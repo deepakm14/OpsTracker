@@ -8,8 +8,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {DataService} from '../data.service';
 import { Employ } from '../models/employ.model';
 import { MatDialogModule } from '@angular/material';
-import {EmploydialogComponent} from '../employdialog/employdialog.component';
-
+import { OpstrackermachinedialogComponent } from '../opstrackermachinedialog/opstrackermachinedialog.component';
 
 @Component({
   selector: 'app-opsmachinetransaction',
@@ -27,7 +26,7 @@ id;
   empid=new Employ();
    exampleDatabase: ExampleHttpDao | null;
 
-  displayedColumns: string[] = ['id','machineType', 'equipmentType',  'status' , 'complaintRaisedDate', 'ResolutionDate','actionsColumn' ];
+  displayedColumns: string[] = ['id','machineType', 'equipmentType', 'modelNo','serialNo', 'status' , 'submitDate','complaintRaisedDate', 'resolutionDate','actionsColumn' ];
   /* //displayedColumns: string[] = [  'code', 'name', 'designation', 'mail' , 'phone']; */
 
 
@@ -102,7 +101,7 @@ id;
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data['totalElements'];
- console.log(data['totalElements']);
+ console.log(data);
           return data;
         }),
         catchError(() => {
@@ -119,7 +118,7 @@ id;
   
   const item1 = this.machine.find(i => i.id === id);
  
-    const dialogRef = this.dialog.open(EmploydialogComponent, {
+    const dialogRef = this.dialog.open(OpstrackermachinedialogComponent, {
       width: '300px',
       data:item1
       
@@ -136,10 +135,12 @@ export interface Opsmachinetransaction {
   id: number;
   machineType: string;
   equipmentType: string;
-  
+  modelNo : number;
+  serialNo : number;
   status: string;
+  submitDate:string;
   complaintRaisedDate: string;
-  ResolutionDate: string;
+  resolutionDate: string;
  }
  
  /** An example database that the data source uses to retrieve data for the table. */
@@ -149,7 +150,7 @@ export interface Opsmachinetransaction {
    constructor(private http: HttpClient) {}
   
    getRepoIssues(page: number,records:number): Observable<Opsmachinetransaction[]> {
-     const href = 'http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/search/manpowertransaction/'+ page + '/' + records;
+     const href = 'http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/opstracker/search/machinetransaction/'+ page + '/' + records;
     
  
      return this.http.get<Opsmachinetransaction[]>(href);

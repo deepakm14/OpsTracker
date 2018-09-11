@@ -1,4 +1,11 @@
 <div class="example-container ">
+    <div class="example-loading-shade spinnerabove "
+    *ngIf="isLoadingResults || isRateLimitReached" >
+ <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+ <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+   
+ </div>
+</div> 
     <div id = "layoutContainer" 
     fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.15%">
     
@@ -13,19 +20,26 @@
           <mat-divider ></mat-divider> 
           <mat-card-content>
           <div >
-              <mat-form-field class="example-full-width">
+             <!--  <mat-form-field class="example-full-width">
                   <input matInput [matDatepicker]="picker" placeholder="Date">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker ></mat-datepicker>
+                </mat-form-field> -->
+                <mat-form-field class="example-full-width">
+                  <input  [disabled]="true" matInput placeholder="Date" [(ngModel)]="currentdate" name="currentdate">
                 </mat-form-field>
 
+                <form name="form" (ngSubmit)="myForm.form.valid " #myForm="ngForm" novalidate > 
+
           <mat-form-field class="example-full-width">
-              <input type="text" placeholder="Client" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+              <input type="text" placeholder="Client" aria-label="Number" matInput  [matAutocomplete]="auto"  [(ngModel)]="option" #ops_client="ngModel" name="option" required>
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of projects" [value]="option.name" (onSelectionChange)="setProject(option.id)">
+                <mat-option *ngFor="let option of projects" [value]="option.name" (onSelectionChange)="setProject($event,option.id)">
                   {{option.name}}
                 </mat-option>
               </mat-autocomplete>
+              <mat-error *ngIf="ops_client.invalid">{{getops_clientErrorMessage()}}</mat-error>
+              
             </mat-form-field>
            
             
@@ -33,14 +47,15 @@
            
             
               <mat-form-field class="example-full-width">
-                  <input type="text" placeholder="Site" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto1">
+                  <input type="text" placeholder="Site" aria-label="Number" matInput  [matAutocomplete]="auto1" >
                   <mat-autocomplete #auto1="matAutocomplete">
-                    <mat-option *ngFor="let option of sites" [value]="option.name" (onSelectionChange)="setSite(option.id)" >
-                      {{option.name}}
+                    <mat-option *ngFor="let project of projectsite" [value]="project.name" (onSelectionChange)="setSite($event,project.id)" >
+                      {{project.name}}
                     </mat-option>
                   </mat-autocomplete>
+                  
                 </mat-form-field>
-             
+             </form>
              
                  
   
@@ -68,43 +83,62 @@
                           <button mat-mini-fab >
                               <mat-icon aria-label="" routerLink="../opsmanpowertransactionview">table_chart</mat-icon>
                             </button>
+
+                            <form name="form" (ngSubmit)="myForm1.form.valid && postManPowerTransaction()" #myForm1="ngForm" novalidate > 
+
                           <mat-form-field class="example-full-width">
-                              <input type="text" placeholder="Shift" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto3">
+                              <input type="text" placeholder="Shift" aria-label="Number" matInput  [matAutocomplete]="auto3" [(ngModel)]="manpowertransaction.shift" #ops_planned="ngModel" name="shift" required>
                               <mat-autocomplete #auto3="matAutocomplete">
-                                <mat-option *ngFor="let option of shifts" [value]="option" (onSelectionChange)="setShiftDetails(option)">
+                                <mat-option *ngFor="let option of shifts" [value]="option" (onSelectionChange)="setShiftDetails($event,option)">
                                   {{option}}
                                 </mat-option>
                               </mat-autocomplete>
+                              <mat-error *ngIf="ops_shift.invalid">{{getops_shiftErrorMessage()}}</mat-error>
                             </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Planned" [(ngModel)]="manpowertransaction.planned">
-                              </mat-form-field>
+
+                            <!-- <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Planned" [(ngModel)]="manpowertransaction.planned" #ops_planned="ngModel" name="planned" required>
+                                <mat-error *ngIf="ops_planned.invalid">{{getops_plannedErrorMessage()}}</mat-error>
+                              </mat-form-field> -->
+
                               <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Actual" [(ngModel)]="manpowertransaction.actual" (input)="setShortFall($event.target.value)">
+                                  <input matInput placeholder="Planned" [(ngModel)]="manpowertransaction.planned" #ops_planned="ngModel" name="planned" required>
+                                  <mat-error *ngIf="ops_planned.invalid">{{getops_plannedErrorMessage()}}</mat-error>
                                 </mat-form-field>
+
+                              <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Actual" [(ngModel)]="manpowertransaction.actual" (input)="setShortFall($event.target.value)" #ops_actual="ngModel" name="actual" required>
+                                  <mat-error *ngIf="ops_actual.invalid">{{getops_actualErrorMessage()}}</mat-error>
+                                </mat-form-field>
+
+                                <div *ngIf="actualgreater"><span style="color:red">Actual should not exceed planned</span></div>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Shortfall" [(ngModel)]="manpowertransaction.shortfall">
+                                    <input matInput placeholder="Shortfall" [(ngModel)]="manpowertransaction.shortfall" #ops_shortfall="ngModel" name="shortfall" required>
+                                    <mat-error *ngIf="ops_shortfall.invalid">{{getops_shortfallErrorMessage()}}</mat-error>
                                   </mat-form-field>
+                                
                                   
                                      <p>Total No of Releivers</p>
+                                     <div *ngIf="shortfallgreater"><span style="color:red">Shortfall should not exceed</span></div>
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Continued" [(ngModel)]="manpowertransaction.continuedWithOutOt">
+                                      <input matInput placeholder="Continued" [(ngModel)]="manpowertransaction.continuedWithOutOt" (input)="setRelievers1($event.target.value)" name="continuedWithOutOt">
                                     </mat-form-field>
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Continued with OT" [(ngModel)]="manpowertransaction.continuedWithOt">
+                                      <input matInput placeholder="Continued with OT" [(ngModel)]="manpowertransaction.continuedWithOt" (input)="setRelievers2($event.target.value)" name="continuedWithOt">
                                     </mat-form-field>
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="New" [(ngModel)]="manpowertransaction.newComer">
+                                      <input matInput placeholder="New Comer" [(ngModel)]="manpowertransaction.newComer" (input)="setRelievers3($event.target.value)" name="newComer">
                                     </mat-form-field>
 
 
                                     
                                     <div class="button-row">
                                         
-                                        <button mat-raised-button color="accent" (click)="postManPowerTransaction()">Submit</button>
+                                        <button mat-raised-button color="accent" >Submit</button>
                                         
                                         
                                       </div>
+                                      </form>
                       </div>
                        </div>
                      
@@ -119,57 +153,66 @@
                                     <button mat-mini-fab >
                                         <mat-icon aria-label="" routerLink="../opsmaterialtransactionview">table_chart</mat-icon>
                                       </button>
+                                      <form name="form" (ngSubmit)="myForm2.form.valid && postMaterialTransaction()" #myForm2="ngForm" novalidate > 
                                     <mat-form-field class="example-full-width">
-                                        <input type="text" placeholder="Material Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto4">
+                                        <input type="text" placeholder="Material Type" aria-label="Number" matInput [(ngModel)]="materialtrans.materialType" name="commitdate" [matAutocomplete]="auto4" #ops_mattype="ngModel" name="materialType" required>
                                         <mat-autocomplete #auto4="matAutocomplete">
-                                          <mat-option *ngFor="let option of materialtypes as index i" [value]="option" (onSelectionChange)="setCommitmentdate(option)">
+                                          <mat-option *ngFor="let option of materialtypes as index i" [value]="option" (onSelectionChange)="setCommitmentdate($event,option)">
                                             {{option}}
                                           </mat-option>
                                         </mat-autocomplete>
+                                        <mat-error *ngIf="ops_mattype.invalid">{{getops_mattypeErrorMessage()}}</mat-error>
                                       </mat-form-field>
-                                      <mat-form-field class="example-full-width">
-                                          <input matInput [matDatepicker]="picker4" placeholder="Commitment Date" [(ngModel)]="materialtransaction.commitmentDate">
-                                          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-                                          <mat-datepicker #picker4></mat-datepicker>
-                                        </mat-form-field>
+                                     
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Commitment Date" [(ngModel)]="commitmentDate" #ops_cdate="ngModel" name="commitmentDate" required>
+                                            <mat-error *ngIf="ops_cdate.invalid">{{getops_cdateErrorMessage()}}</mat-error>
+                                          </mat-form-field>
 
                                       <mat-form-field class="example-full-width">
-                                          <input matInput [matDatepicker]="picker1" placeholder="Indent SubmissionDate" [(ngModel)]="materialtransaction.indentSubmissionDate">
-                                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                          <mat-datepicker #picker1></mat-datepicker>
+                                          <input class="form-control" matInput [matDatepicker]="picker19" placeholder="Indent SubmissionDate" [(ngModel)]="materialtrans.indentSubmissionDate" name="indentSubmissionDate" #ops_isubdate="ngModel"  required>
+                                          <mat-datepicker-toggle matSuffix [for]="picker19"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker19></mat-datepicker>
+                                          <mat-error *ngIf="ops_isubdate.invalid">{{getops_isubdateErrorMessage()}}</mat-error>
                                         </mat-form-field>
 
                                         <mat-form-field class="example-full-width">
-                                            <input matInput [matDatepicker]="picker3" placeholder="Material Supply Date" [(ngModel)]="materialtransaction.materialSupplyDate">
+                                            <input class="form-control" matInput [matDatepicker]="picker3" placeholder="Material Supply Date" [(ngModel)]="materialtrans.materialSupplyDate" name="materialSupplyDate" #ops_msupdate="ngModel"  required>
                                             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                             <mat-datepicker #picker3></mat-datepicker>
+                                            <mat-error *ngIf="ops_msupdate.invalid">{{getops_msupdateErrorMessage()}}</mat-error>
                                           </mat-form-field>
+
                                           <mat-form-field class="example-full-width">
-                                              <input matInput [matDatepicker]="picker2" placeholder="Uniform Supply  Date" [(ngModel)]="materialtransaction.uniformSupplyDate">
+                                              <input class="form-control" matInput [matDatepicker]="picker2" placeholder="Uniform Supply  Date" [(ngModel)]="materialtrans.uniformSupplyDate" name="uniformSupplyDate" #ops_usupdate="ngModel"  required>
                                               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                               <mat-datepicker #picker2></mat-datepicker>
+                                              <mat-error *ngIf="ops_usupdate.invalid">{{getops_usupdateErrorMessage()}}</mat-error>
                                             </mat-form-field>
                                             
                                               <mat-form-field class="example-full-width">
-                                                  <input type="text" placeholder="Status" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto5" [(ngModel)]="materialtransaction.matst">
+                                                  <input class="form-control" type="text" placeholder="Status" aria-label="Number" matInput  [matAutocomplete]="auto5" [(ngModel)]="materialtrans.matst" #ops_status="ngModel" name="matst" required>
                                                   <mat-autocomplete #auto5="matAutocomplete">
                                                     <mat-option *ngFor="let matst of Matstatus" [value]="matst" (onSelectionChange)="setStatus(matst)">
                                                       {{matst}}
                                                     </mat-option>
+                                                    <mat-error *ngIf="ops_status.invalid">{{getops_statusErrorMessage()}}</mat-error>
                                                   </mat-autocomplete>
 
                                                 </mat-form-field>
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="Remarks" [(ngModel)]="materialtransaction.remarks">
-                                                  </mat-form-field>
+                                                  <input matInput placeholder="Remarks" [(ngModel)]="materialtrans.remarks"  #Remarks="ngModel" (input)="setRemarks($event.target.value)" #ops_planned="ngModel" name="planned" required>
+                                                  <mat-error *ngIf="ops_shift.invalid">{{getops_shiftErrorMessage()}}</mat-error>
+                                                </mat-form-field>    
 
                                                   
                                               <div class="button-row">
                                                   
-                                                  <button mat-raised-button color="accent" (click)="postMaterialTransaction()">Submit</button>
+                                                  <button mat-raised-button color="accent" >Submit</button>
                                                   
                                                   
                                                 </div>
+                                                </form>
                                 </div>
                                  </div>
                           </mat-tab>
@@ -183,49 +226,64 @@
                                           <button mat-mini-fab >
                                               <mat-icon aria-label="" routerLink="../opsmachinetransactionview">table_chart</mat-icon>
                                             </button>
+                                            <form name="form" (ngSubmit)="myForm3.form.valid && postMachineTransaction()" #myForm3="ngForm" novalidate > 
                                       <mat-form-field class="example-full-width">
-                                          <input type="text" placeholder="Type of Machine" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto6">
+                                          <input type="text" placeholder="Type of Machine" aria-label="Number" matInput  [matAutocomplete]="auto6" [(ngModel)]="machinetransaction.machineType" #ops_mactype="ngModel" name="machineType" required>
                                           <mat-autocomplete #auto6="matAutocomplete">
-                                            <mat-option *ngFor="let option of machinetypes" [value]="option" (onSelectionChange)="setEquipment(option)">
+                                            <mat-option *ngFor="let option of machinetypes as index i" [value]="option" (onSelectionChange)="setEquipment($event,option)">
                                               {{option}}
                                             </mat-option>
                                           </mat-autocomplete>
+                                          <mat-error *ngIf="ops_mactype.invalid">{{getops_mactypeErrorMessage()}}</mat-error>
                                         </mat-form-field>
+
+
                                           <mat-form-field class="example-full-width">
-                                              <input matInput placeholder="Equipment Type" [(ngModel)]="machinetransaction.equipmentType" >
+                                              <input matInput placeholder="Equipment Type" [(ngModel)]="machinetransaction.equipmentType" #ops_esttype="ngModel" name="equipmentType" required>
+                                              <mat-error *ngIf="ops_esttype.invalid">{{getops_esttypeErrorMessage()}}</mat-error>
                                             </mat-form-field>
+
                                           <mat-form-field class="example-full-width">
-                                              <input matInput placeholder="Model Number" [(ngModel)]="machinetransaction.modelNo">
+                                              <input matInput placeholder="Model Number" [(ngModel)]="machinetransaction.modelNo" #ops_modelno="ngModel" name="modelNo" required>
+                                              <mat-error *ngIf="ops_modelno.invalid">{{getops_modelnoErrorMessage()}}</mat-error>
                                             </mat-form-field>
+
                                             <mat-form-field class="example-full-width">
-                                                <input matInput placeholder="Serial Number" [(ngModel)]="machinetransaction.serialNo">
+                                                <input matInput placeholder="Serial Number" [(ngModel)]="machinetransaction.serialNo" #ops_serno="ngModel" name="serialNo" required>
+                                                <mat-error *ngIf="ops_serno.invalid">{{getops_sernoErrorMessage()}}</mat-error>
                                               </mat-form-field>
+
                                               <mat-form-field class="example-full-width">
-                                                  <input type="text" placeholder="Status" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto8">
+                                                  <input type="text" placeholder="Status" aria-label="Number" matInput  [matAutocomplete]="auto8" [(ngModel)]="machinetransaction.status" #ops_status1="ngModel" name="machinestatus" required>
                                                   <mat-autocomplete #auto8="matAutocomplete">
                                                     <mat-option *ngFor="let option of machinestatus" [value]="option" (onSelectionChange)="setMachineStatus(option)">
                                                       {{option}}
                                                     </mat-option>
                                                   </mat-autocomplete>
+                                                  <mat-error *ngIf="ops_status1.invalid">{{getops_status1ErrorMessage()}}</mat-error>
                                                 </mat-form-field>
                                               
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker6" placeholder="Complaint Raised  Date" [(ngModel)]="machinetransaction.complaintRaisedDate">
+                                                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker6" placeholder="Complaint Raised  Date" [(ngModel)]="machinetransaction.complaintRaisedDate" name="ops_comraidate" #ops_planned="ngModel"  required>
                                                     <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
                                                     <mat-datepicker #picker6></mat-datepicker>
+                                                    <mat-error *ngIf="ops_comraidate.invalid">{{getops_comraidateErrorMessage()}}</mat-error>
                                                   </mat-form-field>
+
                                                   <mat-form-field class="example-full-width">
-                                                      <input matInput [matDatepicker]="picker7" placeholder="Resolution  Date" [(ngModel)]="machinetransaction.ResolutionDate">
+                                                      <input matInput [matDatepicker]="picker7" placeholder="Resolution  Date" [(ngModel)]="machinetransaction.resolutionDate" name="resolutionDate" #ops_resdate="ngModel"  required>
                                                       <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
                                                       <mat-datepicker #picker7></mat-datepicker>
+                                                      <mat-error *ngIf="ops_resdate.invalid">{{getops_resdateErrorMessage()}}</mat-error>
                                                     </mat-form-field>
                                                  
                                                 <div class="button-row">
                                                     
-                                                    <button mat-raised-button color="accent" (click)="postMachineTransaction()">Submit</button>
+                                                    <button mat-raised-button color="accent" >Submit</button>
                                                     
                                                     
                                                   </div>
+                                                  </form>
                                  
                                    </div>
                                    </div>

@@ -1,3 +1,278 @@
-<p>
-  sitedialog works!
-</p>
+<div class="example-container ">
+    <div class="example-loading-shade spinnerabove "
+    *ngIf="isLoadingResults || isRateLimitReached" >
+ <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+ <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+   
+ </div>
+</div> 
+<div id = "layoutContainer" 
+fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.35%">
+
+    <div fxflex = "40" >
+        <div class="updatecontainer1" >
+            <mat-card >
+                <mat-card-header>
+                 
+                        <mat-card-title>Site</mat-card-title>
+                       
+                </mat-card-header>
+                <mat-divider ></mat-divider> 
+                <mat-card-content style="margin-top: 20px">
+                    <div class="row" >    
+          
+                        <mat-form-field class="example-full-width">
+                            <input type="text" placeholder="Client Name" aria-label="Number" matInput [(ngModel)]="data['project'].name" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                              <mat-option *ngFor="let option of projects" [value]="option.name" (click)="setSiteProject(option.id)">
+                                {{option.name}}
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+</div>
+<div class="row" >    
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Site Code" [(ngModel)]="data.code">
+      </mat-form-field>   
+  </div>
+
+  <div class="row" >    
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Site Name" [(ngModel)]="data.name">
+        </mat-form-field> 
+    </div>
+    <div class="row" >    
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Address" [(ngModel)]="data.address">
+          </mat-form-field> 
+      </div>
+      <div class="row" >    
+          <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Contract Type" aria-label="Number" matInput [(ngModel)]="data.contractType" [matAutocomplete]="auto11">
+              <mat-autocomplete #auto11="matAutocomplete">
+                <mat-option *ngFor="let cont of Contracttype" [value]="cont" (click)="setContractType(cont)">
+                  {{cont}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="row" >    
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Regional manager" aria-label="Number" matInput [(ngModel)]="data.regionalManagerId" [matAutocomplete]="auto1">
+                <mat-autocomplete #auto1="matAutocomplete">
+                  <mat-option *ngFor="let option of rm" [value]="option.name" (click)="setSiteRM(option.id)">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field> 
+          </div>
+
+          <div class="row" >    
+              <mat-form-field class="example-full-width">
+                  <input type="text" placeholder="Senior Manager" aria-label="Number" matInput [(ngModel)]="data.seniorManagerId" [matAutocomplete]="auto2">
+                  <mat-autocomplete #auto2="matAutocomplete">
+                    <mat-option *ngFor="let option of sm" [value]="option.name" (click)="setSiteSM(option.id)">
+                      {{option.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field> 
+            </div>
+
+            <div class="row" >    
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Asst Senior Manager" aria-label="Number" matInput [(ngModel)]="data. asstSeniorManagerId" [matAutocomplete]="auto3">
+                    <mat-autocomplete #auto3="matAutocomplete">
+                      <mat-option *ngFor="let option of asm" [value]="option.name" (click)="setSiteASM(option.id)">
+                        {{option.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+              </div>
+             
+                <div class="row" >    
+                    <mat-form-field class="example-full-width">
+                        <input type="text" placeholder="Site Incharge" aria-label="Number" matInput  [(ngModel)]="data.siteInchargeId" [matAutocomplete]="auto4">
+                        <mat-autocomplete #auto4="matAutocomplete">
+                          <mat-option *ngFor="let option of si" [value]="option.name" (click)="setSiteSI(option.id)">
+                            {{option.name}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                  </div>
+</mat-card-content>
+</mat-card>
+</div>
+</div>
+
+<div fxflex = "40" >
+    <div class="updatecontainer2" >
+        <mat-card >
+            <mat-card-header>
+             
+                    <mat-card-title>Site</mat-card-title>
+                   
+            </mat-card-header>
+            <mat-divider ></mat-divider> 
+            <mat-card-content style="margin-top: 20px">
+
+                <table   style="margin-top:20px">
+                    <!-- <thead>
+                        <tr>
+                            <th>Shift</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Planned</th>
+                           
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        <tr *ngFor="let field of sitemanpowerdialog; let i = index">
+                            <td style="padding-left:20px">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" placeholder="Shift" aria-label="Text" matInput  [(ngModel)]="field.shift" [matAutocomplete]="auto16">
+                                    <mat-autocomplete #auto16="matAutocomplete" >
+                                      <mat-option *ngFor="let opt of shift" [value]="opt" (click)="setShift(opt)">
+                                        {{opt}}
+                                      </mat-option>
+                                    </mat-autocomplete>
+                                  </mat-form-field>
+                               
+                            </td>
+                          
+                            <td style="padding-left:20px">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Start Time" [(ngModel)]="field.startTime">
+                                  </mat-form-field> 
+                                
+                            </td>
+                           
+                            <td style="padding-left:20px">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="End Time" [(ngModel)]="field.endTime">
+                                  </mat-form-field> 
+                               
+                            </td>
+                            <td style="padding-left:20px">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Planned" [(ngModel)]="field.planned">
+                                  </mat-form-field> 
+                                
+                            </td>
+                            
+                        </tr>
+                       
+                    </tbody>
+                </table>
+               
+                <table   style="margin-top:20px">
+                    <!-- <thead>
+                        <tr>
+                            <th>Material Type</th>
+                            <th>Commitment Date</th>
+                           
+                           
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        <tr *ngFor="let field1 of sitematerialdialog; let i = index">
+                            <td style="padding-left:20px">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" placeholder="Material Type" aria-label="Number" matInput  [(ngModel)]="field1.materialType" [matAutocomplete]="auto5">
+                                    <mat-autocomplete #auto5="matAutocomplete" >
+                                      <mat-option *ngFor="let option of Materialtype" [value]="option" (click)="setMaterialType(option)">
+                                        {{option}}
+                                      </mat-option>
+                                    </mat-autocomplete>
+                                  </mat-form-field>
+                              
+                            </td>
+                          
+                            <td style="padding-left:20px">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker"  placeholder="Commitment Date" [(ngModel)]="field1.commitmentDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker ></mat-datepicker>
+                                  </mat-form-field>
+                               
+                            </td>
+                           
+                            
+                           
+                        </tr>
+                       
+                    </tbody>
+                </table>
+
+                <table   style="margin-top:20px">
+                   <!--  <thead>
+                        <tr>
+                            <th>Machine Type</th>
+                            <th>Equipment Type</th>
+                            <th>Model No</th>
+                            <th>Serial No</th>
+                           
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        <tr *ngFor="let field2 of sitemachinedialog; let i = index">
+
+                            <td style="padding-left:20px">
+                                <mat-form-field>
+                                <input matInput placeholder="Machine Type" [(ngModel)]="field2.machineType">
+                              </mat-form-field>
+                            </td>
+                          
+                            <td style="padding-left:20px">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" placeholder="Equipment Type" aria-label="Number" matInput [matAutocomplete]="auto6" [(ngModel)]="field2.equipmentType">
+                                    <mat-autocomplete #auto6="matAutocomplete">
+                                      <mat-option *ngFor="let option of Equipmenttype" [value]="option" (click)="setEquipmentType(option)">
+                                        {{option}}
+                                      </mat-option>
+                                    </mat-autocomplete>
+                                  </mat-form-field>
+                               
+                            </td>
+                           
+                            <td style="padding-left:20px">
+                                <mat-form-field>
+                                    <input matInput placeholder="Model No" [(ngModel)]="field2.modelNo" >
+                                  </mat-form-field>
+                               
+                            </td>
+                            <td style="padding-left:20px">
+                                <mat-form-field>
+                                    <input matInput placeholder="Serial NO" [(ngModel)]="field2.serialNo">
+                                  </mat-form-field>
+                               
+                            </td>
+                           
+                        </tr>
+                       
+                    </tbody>
+                </table>
+
+
+
+
+
+
+              </mat-card-content>
+              </mat-card>
+              </div>
+              </div>
+              </div>
+              </div>
+              
+  <mat-dialog-actions>
+  <div class="button-row" >
+                                        
+      <button mat-raised-button color="accent" (click)="updateSite()" >Update</button>
+        <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
+        
+      </div>    
+
+</mat-dialog-actions>
+     
+

@@ -1,72 +1,78 @@
 <div class="example-container">
-  
+  <div class="example-loading-shade spinnerabove "
+         *ngIf="isLoadingResults || isRateLimitReached" >
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+        
+      </div>
+    </div> 
     <div id = "layoutContainer" 
     fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.15%">
     <div fxflex = "100" >
         <div class="example-container">
-            <mat-tab-group >
+            <mat-tab-group color="primary" (selectedTabChange)="onLinkClick($event)">
             
               <mat-tab label="Employee">
                <mat-progress-bar mode="indeterminate" *ngIf="isLoadingResults" ></mat-progress-bar>   
                   <div class="employee-box mat-elevation-z4" >
-                    
+                  
                     <div >
                         <button mat-mini-fab>
                             <mat-icon aria-label="" routerLink="../emplyeeview">table_chart</mat-icon>
                           </button>
-                      <form class="m-t" (ngSubmit)="f.form.valid && postEmployee()" #f="ngForm" novalidate >                 
+                        
+                          <form name="form" (ngSubmit)="myForm.form.valid && postEmployee()" #myForm="ngForm" novalidate > 
                         <mat-form-field class="example-full-width" >
-                            <input class="form-control" name="emp_code" matInput placeholder="Employee Code" [(ngModel)]="emp.code" #EmpCode="ngModel" required >
-                            <mat-error *ngIf="f.submitted && !EmpCode.valid">
-                                Employee code is <strong>required</strong>
-                              </mat-error>
+                            <input class="form-control" matInput  placeholder="Employee Code" [(ngModel)]="emp.code"  #emp_code="ngModel" name="code" (keypress)="numberOnly($event)" required>
+                           
+                              <mat-error *ngIf="emp_name.invalid">{{getCodeErrorMessage()}}</mat-error>
+                             
                         </mat-form-field>
+                       
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Employee Name" [(ngModel)]="emp.name" name="emp_name" #EmpName="ngModel" required>
-                            <mat-error *ngIf="f.submitted && !EmpName.valid">
-                                Employee name is <strong>required</strong>
-                              </mat-error>
+                            <input matInput placeholder="Employee Name" [(ngModel)]="emp.name"  #emp_name="ngModel" name="name" required>
+                            <mat-error *ngIf="emp_name.invalid">{{getNameErrorMessage()}}</mat-error>
                           </mat-form-field>    
                         
                           <mat-form-field class="example-full-width">
-                              <input type="text" placeholder="Designation" aria-label="Number" matInput name="emp_designation"  #EmpDesignation [matAutocomplete]="auto20" required>
+                              <input type="text" placeholder="Designation" aria-label="Number" [(ngModel)]="emp.designation" matInput #emp_designation="ngModel" name="designation" #EmpDesignation [matAutocomplete]="auto20" required>
                               <mat-autocomplete #auto20="matAutocomplete" >
-                                <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
+                                <mat-option *ngFor="let des of Designation" [value]="des.name" (click)="setDesignation(des.name)">
                                   {{des.name}}
                                 </mat-option>
                               </mat-autocomplete>
-
-                              <mat-error *ngIf="f.submitted && !EmpDesignation.valid ">
-                                  Employee Designation is <strong>required</strong>
-                                </mat-error>
-
+                              <mat-error *ngIf="emp_designation.invalid">{{getDesignationErrorMessage()}}</mat-error>
                             </mat-form-field>
                             
-                            <mat-form-field class="example-full-width">
-                                <input type="text" placeholder="Designation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto20" >
-                                <mat-autocomplete #auto20="matAutocomplete" >
-                                  <mat-option *ngFor="let des of Designation; let i = index" [value]="des.name" (click)="setDesignation(des.name)">
-                                    {{des.name}}
-                                  </mat-option>
-                                </mat-autocomplete>
-                              </mat-form-field>
+                           
                               <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Email" [(ngModel)]="emp.mail">
+                                  <input matInput placeholder="Email" [(ngModel)]="emp.mail" name="mail" #emp_mail="ngModel" [ngClass]="{ 'is-invalid': myForm.submitted && emp_mail.invalid }" required email>
+                                  <div *ngIf="myForm.submitted && emp_mail.invalid" class="invalid-feedback">
+                                    <div *ngIf="emp_mail.errors.required">Email is required</div>
+                                    <div *ngIf="emp_mail.errors.email">Email must be a valid email address</div>
+                                </div>
+                                  
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Mobile Number" [(ngModel)]="emp.mob" (keypress)="numberOnly($event)">
+                                    <input matInput placeholder="Mobile Number" [(ngModel)]="emp.mob" name="mob" #emp_mob="ngModel"  (keypress)="numberOnly($event)" [ngClass]="{ 'is-invalid': myForm.submitted && emp_mob.invalid }" required minlength="10" maxlength="10">
+                                    <div *ngIf="myForm.submitted && emp_mob.invalid" class="invalid-feedback">
+                                      <div *ngIf="emp_mob.errors.required">Mobile is required</div>
+                                      <div *ngIf="emp_mob.errors.minlength">Mobile must be maximum 10 digit</div>
+                                  </div>
                                   </mat-form-field>
             
                                   <div class="button-row">
                                       
-                                      <button mat-raised-button color="accent" type="submit" >Submit</button>
+                                      <button mat-raised-button color="accent"   >Submit</button>
                                       
                                       
                                     </div>
-                            </form>
+                               
+                                  </form>
                     </div>
-                     
+                    
                     </div>
+                    
               </mat-tab>
               <mat-tab label="Client"> <div class="client-box mat-elevation-z4">
                   <div >
@@ -74,29 +80,25 @@
                       <button mat-mini-fab>
                           <mat-icon aria-label="" routerLink="../clientview">table_chart</mat-icon>
                         </button>
-                        <form class="m-t" (ngSubmit)="f2.form.valid && postClient()" #f2="ngForm" novalidate > 
+                        <form name="form1" (ngSubmit)="myForm1.form.valid && postClient()" #myForm1="ngForm"  novalidate > 
                       <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Client Name" [(ngModel)]="client.name" name="Cli_name" #CliName="ngModel" required >
-                          <mat-error *ngIf="f2.submitted && !CliName.valid">
-                              Client name is <strong>required</strong>
-                            </mat-error>
+                          <input matInput placeholder="Client Name" [(ngModel)]="client.name"  name="name" #client_name="ngModel" required>
+                          <mat-error *ngIf="client_name.invalid">{{getClientnameErrorMessage()}}</mat-error>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Client Code" [(ngModel)]="client.projectCode"  name="Cli_code" #Clicode="ngModel" required >
-                            <mat-error *ngIf="f2.submitted && !Clicode.valid">
-                                Client code is <strong>required</strong>
-                              </mat-error>
+                            <input matInput placeholder="Client Code" [(ngModel)]="client.projectCode" (keypress)="numberOnly($event)" name="projectcode" #client_code="ngModel" required>
+                            <mat-error *ngIf="client_code.invalid">{{getClientCodeErrorMessage()}}</mat-error>
                           </mat-form-field>
                           
 
                           
                                 <div class="button-row">
                                     
-                                    <button mat-raised-button color="accent" type="submit"  >Add</button>
+                                    <button mat-raised-button color="accent"   >Add</button>
                                     
                                     
                                   </div>
-                                  </form>
+                          </form>       
                   </div>
                    
                   </div> </mat-tab>
@@ -199,9 +201,14 @@
                                         </mat-panel-description>
                                       </mat-expansion-panel-header>
                                       <div class="row">
-                                            <mat-form-field>
-                                              <input matInput placeholder="Shift"  [(ngModel)]="manpower.shift" >
-                                            </mat-form-field>
+                                        <mat-form-field class="example-full-width">
+                                          <input type="text" placeholder="Shift" aria-label="Text" matInput  [(ngModel)]="manpower.typeOfService" [matAutocomplete]="auto16">
+                                          <mat-autocomplete #auto16="matAutocomplete" >
+                                            <mat-option *ngFor="let opt of shift" [value]="opt" (click)="setShift(opt)">
+                                              {{opt}}
+                                            </mat-option>
+                                          </mat-autocomplete>
+                                        </mat-form-field>
                                           </div>
                                           <div class="row">
                                                   <mat-form-field>
@@ -414,18 +421,21 @@
                                   </mat-card-content>
                                 </mat-card >
                     </div>
+                    
                     <div class="button-row">
                                           
                         <button mat-raised-button color="accent" (click)="postSite()">Submit</button>
                         
                         
-                      </div>    
+                      </div>  
+                        
                     </div>
                     
                     </div>
                    
                   
             </mat-tab>
+           
             <mat-tab label="Escalation"> <div class="escalation-box mat-elevation-z4">
                     <div >
                         <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate" ></mat-progress-bar>
@@ -433,12 +443,10 @@
                             <mat-icon aria-label="" routerLink="../escalationview">table_chart</mat-icon>
                           </button>
 
-                          <form class="m-t" (ngSubmit)="f3.form.valid && postEmployee()" #f3="ngForm" novalidate >
+                          <form name="form3" (ngSubmit)="myForm3.form.valid && postEscalationType()" #myForm3="ngForm"  novalidate >  
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType" name="Esc_type" #Escalation="ngModel" required>
-                            <mat-error *ngIf="f3.submitted && !escalationtype.valid">
-                                Esclation type is <strong>required</strong>
-                              </mat-error>
+                            <input matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType" name="escalationType" #esc_type="ngModel"   required>
+                            <mat-error *ngIf="esc_type.invalid">{{getEscalationtypeErrorMessage()}}</mat-error>
                               
                           </mat-form-field>
                          
@@ -446,14 +454,16 @@
               
                                   <div class="button-row">
                                       
-                                      <button mat-raised-button color="accent" (click)="postEscalationType()">Add</button>
+                                      <button mat-raised-button color="accent" >Add</button>
                                       
                                       
                                     </div>
-                                    </form>
+                               </form>    
                     </div>
                      
-                    </div> </mat-tab>
+                    </div>
+                  
+                  </mat-tab>
             </mat-tab-group>
             </div>
 </div>

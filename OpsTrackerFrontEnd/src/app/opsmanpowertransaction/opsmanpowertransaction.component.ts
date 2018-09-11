@@ -8,7 +8,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {DataService} from '../data.service';
 import { Employ } from '../models/employ.model';
 import { MatDialogModule } from '@angular/material';
-import {EmploydialogComponent} from '../employdialog/employdialog.component';
+import {OpstrackermanpowerdialogComponent} from '../opstrackermanpowerdialog/opstrackermanpowerdialog.component';
 
 @Component({
   selector: 'app-opsmanpowertransaction',
@@ -22,7 +22,7 @@ export class OpsmanpowertransactionComponent implements OnInit {
   postsPerPage: number[] = [5, 10, 25];
 id;
   emp:Employ[] = [];
-    manpower: Opsmanpowertransaction[] = [];
+    manpower2: Opsmanpowertransaction[] = [];
   empid=new Employ();
    exampleDatabase: ExampleHttpDao | null;
 
@@ -101,7 +101,8 @@ id;
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data['totalElements'];
- console.log(data['totalElements']);
+        // this.resultsLength = 20;
+ //console.log(data['totalElements']);
           return data;
         }),
         catchError(() => {
@@ -111,14 +112,14 @@ id;
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.manpower = data['content']);
+      ).subscribe(data => this.manpower2 = data['content']);
    // this.listEmployees();
   }
  openDialog(id:number) {
   
-  const item1 = this.manpower.find(i => i.id === id);
+  const item1 = this.manpower2.find(i => i.id === id);
  
-    const dialogRef = this.dialog.open(EmploydialogComponent, {
+    const dialogRef = this.dialog.open(OpstrackermanpowerdialogComponent, {
       width: '300px',
       data:item1
       

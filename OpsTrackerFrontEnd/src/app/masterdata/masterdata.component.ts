@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { Toolbarservice } from '../my-nav/my-nav.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl} from '@angular/forms';
+import {FormControl,FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Dateformat } from '../dateformat.service';
 import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
@@ -10,10 +10,11 @@ import { Site } from '../models/site.model';
 import { ManPower } from '../models/manpower.model';
 import { Material } from '../models/material.model';
 import { Machine } from '../models/machine.model';
+
 import { Observable, of } from 'rxjs';
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { MatTabChangeEvent } from '@angular/material';
 
 
 
@@ -27,7 +28,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
-  
+ 
   private toasterService: ToasterService;
   //model class object creation
   site = new Site();
@@ -43,25 +44,15 @@ export class MasterdataComponent implements OnInit {
   Contracttype: string[] = ['Manpower', 'Lumsum', 'SLA' , 'One Time', 'Project Event' , 'PartTimers'];
   Materialtype: string[] = ['Fixed materials', 'At Actual'];
   Designation: Array<any> = [{'id':'1','name':'REGIONAL MANAGER'},{'id':'2','name':'SENIOR MANAGER'},{'id':'3','name':'SITE INCHARGE'},{'id':'4','name':'ASSISTANT SENIOR MANAGER'}];
-
+  shift: string[]=['Shift1','Shift2','Shift3','Shift4','Shift5'];
+ 
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService,
     private dateFormat: Dateformat,toasterService:ToasterService){
       this.toasterService=toasterService;
+      //this.createForm();
     }
     public config: ToasterConfig =new ToasterConfig({positionClass: 'toast-center'});
-popToast(){
-  
-  this.toasterService.pop('success','Args Title' ,'Arg Body');
-}
 
-numberOnly(event): boolean {
-  const charCode = (event.which) ? event.which : event.keyCode;
-  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-    return false;
-  }
-  return true;
-
-}
 
 
 
@@ -75,17 +66,101 @@ numberOnly(event): boolean {
   matadded = false;
   manadded = false;
   macadded = false;
+  visible = true;
+  
+  //Variable declation
+  
+  
+    myControl = new FormControl();
+    public emp={"designation":""};
+    public client={};
+    //public site={"projectId":"","contractType":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
+    //"manPowerDTO":[],"machineDTO":[],"materialDTO":[],};
+    projects: Object;
+    sites: Object;
+    employees: Object;
+    rm: Object;
+    sm: Object;
+    asm: Object;
+    si: Object;
+    //public manpower={};
+    //public material={};
+    //public machine={};
+    public escalationtype={};
 
-  date1: string;
+  emp_code = new FormControl('', [Validators.required]);
+  emp_name = new FormControl('', [Validators.required]);
+  emp_designation = new FormControl('', [Validators.required]);
+  email1 = new FormControl('', [Validators.required, Validators.email]);
+
+  emp_mob = new FormControl('', [Validators.required]);
+  client_name = new FormControl('', [Validators.required]);
+  client_code = new FormControl('', [Validators.required]);
+  esc_type = new FormControl('', [Validators.required]);
+  //emp_name = new FormControl('', [Validators.required]);
+
+  getCodeErrorMessage() {
+    return this.emp_code.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getNameErrorMessage() {
+    return this.emp_name.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getDesignationErrorMessage() {
+    return this.emp_designation.hasError('required') ? 'You must select a value' :'';      
+  }
+ 
+
+  getErrorMessage() {
+    return this.email1.hasError('required') ? 'You must enter a value' :
+        this.email1.hasError('email') ? 'Not a valid email' :
+            '';
+  }
+  getMobErrorMessage() {
+    return this.emp_mob.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getClientnameErrorMessage() {
+    return this.client_name.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getClientCodeErrorMessage() {
+    return this.client_code.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getEscalationtypeErrorMessage() {
+    return this.esc_type.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  popToast(){
+  
+    this.toasterService.pop('success','Args Title' ,'Arg Body');
+  }
+  
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  
+  }
+  
+
+
+
 
   setMaterialType(type){
     this.material.materialType = type;
     console.log(type);
   }
-
+  setShift(shift){
+    this.manpower.shift = shift;
+    console.log(shift);
+  }
 
   addmanFieldValue() {
     this.manadded = true;
+    console.log(this.manpower.endTime);
    //this.date=new Date();
       this.fieldArray.push(this.manpower);
       console.log(this.fieldArray);
@@ -105,7 +180,12 @@ numberOnly(event): boolean {
     this.matadded = true;
     //console.log(this.material);
     //this.material.commitmentDate = this.dateFormat.convertdate(this.material.commitmentDate);
-    console.log(this.material.commitmentDate);
+   // console.log(this.material.commitmentDate);
+   const dateString=this.dateFormat.convertdate(this.material.commitmentDate)
+   const newDate = new Date(dateString);
+  this.material.commitmentDate=newDate;
+
+  console.log(this.material.commitmentDate);
     this.fieldArray1.push(this.material);
     //console.log(this.fieldArray1);
     this.material = new Material();
@@ -121,6 +201,7 @@ numberOnly(event): boolean {
 
   addmacFieldValue() {
     this.macadded = true;
+    console.log(this.machine.machineType);
       this.fieldArray2.push(this.machine);
       console.log(this.fieldArray2);
       this.machine = new Machine();
@@ -139,27 +220,7 @@ numberOnly(event): boolean {
 
 
 
-  visible = true;
-  
-//Variable declation
-
-
-  myControl = new FormControl();
-  public emp={"designation":""};
-  public client={};
-  //public site={"projectId":"","contractType":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
-  //"manPowerDTO":[],"machineDTO":[],"materialDTO":[],};
-  projects: Object;
-  sites: Object;
-  employees: Object;
-  rm: Object;
-  sm: Object;
-  asm: Object;
-  si: Object;
-  //public manpower={};
-  //public material={};
-  //public machine={};
-  public escalationtype={};
+ 
   
 
 
@@ -187,11 +248,15 @@ numberOnly(event): boolean {
          
              console.log('An error occurred:', err.error.message);
          } else {
-          this.toasterService.pop('warning','Not Submitted' ,'');
+         
           this.isLoadingResults = false;
           
              console.log('Backend returned status code: ', err.status);
              console.log('Response body:', err.error);
+             console.log('Response body:', err.error['message']);
+             if(err.error['message']=='already exist'){
+              this.toasterService.pop('warning','Employee code is already exist' ,'');
+             }
          }
       }
      );
@@ -226,7 +291,8 @@ numberOnly(event): boolean {
         this.isLoadingResults = false;
         
            console.log('Backend returned status code: ', err.status);
-           console.log('Response body:', err.error);
+           console.log('Response body:', err.error['message']);
+
        }
     }
    );
@@ -239,7 +305,7 @@ numberOnly(event): boolean {
     this.site.machineDTO = this.fieldArray2;
     this.site.materialDTO = this.fieldArray1;
    // this.createSiteJson();
-    console.log("converted date" + this.site.machineDTO);  
+   // console.log("converted date" + this.site.machineDTO);  
     console.log(this.site);
     this.isLoadingResults = true;
     this.http.post('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site', this.site)
@@ -307,7 +373,19 @@ numberOnly(event): boolean {
   
    
   }
-
+  onLinkClick(event: MatTabChangeEvent) {
+    /* console.log('event => ', event);
+    console.log('index => ', event.index);
+    console.log('tab => ', event.tab); */
+  if(event.index== 2){
+    this.listClient();
+    this.listRM();
+    this.listSM();
+    this.listASM();
+    this.listSI();
+  }
+    
+  }
   listClient()
   {
     
@@ -378,6 +456,7 @@ numberOnly(event): boolean {
   {
     console.log(id);
     this.site.projectId = id;
+   
   }
 
   setSiteRM(id)

@@ -1,5 +1,11 @@
 <div class="example-container ">
-
+  <div class="example-loading-shade spinnerabove "
+  *ngIf="isLoadingResults || isRateLimitReached" >
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+ 
+</div>
+</div> 
   <div>
     <mat-card>
         <button mat-mini-fab>
@@ -11,62 +17,81 @@
 
       </mat-card-header>
       <mat-divider></mat-divider>
-      <mat-progress-bar mode="indeterminate" *ngIf="isLoadingResults" ></mat-progress-bar> 
+    
       <mat-card-content>
         <div>
+            <form name="form" (ngSubmit)="myForm.form.valid && postEscalationtracker()" #myForm="ngForm"  novalidate >  
           <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Type of Escalation" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <input type="text" placeholder="Type of Escalation" aria-label="Number" matInput  [matAutocomplete]="auto" [(ngModel)]="esc2.escalationType" name="escalationType" #esc_type="ngModel"   required>
+            
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let escalation of escalation$" [value]="escalation.escalationType" (click)="setEscalationtype(escalation.escalationType)" >
                 {{escalation.escalationType}}
               </mat-option>
             </mat-autocomplete>
+            <mat-error *ngIf="esc_type.invalid">{{getEsctypeErrorMessage()}}</mat-error>
           </mat-form-field>
 
 
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Description" [(ngModel)]="esc2.description">
+            <input matInput placeholder="Description" [(ngModel)]="esc2.description" name="description" #esc_des="ngModel"   required>
+            <mat-error *ngIf="esc_des.invalid">{{getEscdesErrorMessage()}}</mat-error>
           </mat-form-field>
 
 
           <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Communicated Via" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto1">
+            <input type="text" placeholder="Communicated Via" aria-label="Number" matInput  [matAutocomplete]="auto1" [(ngModel)]="esc2.communicatedvia" name="communicatedvia" #esc_comm="ngModel"   required>
             <mat-autocomplete #auto1="matAutocomplete">
               <mat-option *ngFor="let com1 of communicatedvia; let i = index" [value]="com1" (click)="setCommunicatedvia(com1)">
                 {{com1}}
               </mat-option>
             </mat-autocomplete>
+            <mat-error *ngIf="esc_comm.invalid">{{getEsccommErrorMessage()}}</mat-error>
           </mat-form-field> 
 
-
           <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker" placeholder="Communicated Date" format="dd-MM-yyyy" [(ngModel)]="esc2.communicatedDate">
+            <input matInput placeholder="Escalated To" [(ngModel)]="esc2.escalatedTo" name="escalatedTo" #esc_to="ngModel"   required>
+            <mat-error *ngIf="esc_to.invalid">{{getEsctoErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Escalated By" [(ngModel)]="esc2.escalatedBy" name="escalatedBy" #esc_by="ngModel"   required>
+            <mat-error *ngIf="esc_by.invalid">{{getEscbyErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Status" [(ngModel)]="esc2.status" name="status" #esc_sta="ngModel"   required>
+            <mat-error *ngIf="esc_sta.invalid">{{getEscstaErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Communicated Date" format="dd-MM-yyyy" [(ngModel)]="esc2.communicatedDate" name="communicatedDate" #esc_cdate="ngModel"   required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="esc_cdate.invalid">{{getEsccdateErrorMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker1" placeholder="Closure Date" format="dd-MM-yyyy" [(ngModel)]="esc2.closureDate">
+            <input matInput [matDatepicker]="picker1" placeholder="Closure Date" format="dd-MM-yyyy" [(ngModel)]="esc2.closureDate" name="closureDate">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
+           
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker2" placeholder="Estimated Closure Date" format="dd-MM-yyyy" [(ngModel)]="esc2.estimatedClosureDate">
+            <input matInput [matDatepicker]="picker2" placeholder="Estimated Closure Date" format="dd-MM-yyyy" [(ngModel)]="esc2.estimatedClosureDate" name="estimatedClosureDate" #esc_ecdate="ngModel"   required>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="esc_ecdate.invalid">{{getEscecdateErrorMessage()}}</mat-error>
           </mat-form-field>
 
           <div class="button-row">
 
-            <button mat-raised-button color="accent" (click)="postEscalationtracker()">Submit</button>
+            <button mat-raised-button color="accent" >Submit</button>
  
 
           </div>
 
 
 
-
+</form>
 
 
         </div>

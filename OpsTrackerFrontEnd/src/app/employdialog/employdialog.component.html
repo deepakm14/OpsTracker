@@ -1,6 +1,12 @@
-<div>
-
-<mat-dialog-content>
+<div >
+  <div class="example-loading-shade spinnerabove "
+  *ngIf="isLoadingResults || isRateLimitReached" >
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+ 
+</div>
+</div> 
+<mat-dialog-content >
   
   <div class="row" >
                         
@@ -19,9 +25,15 @@
 
 <div class="row" >
                         
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Designation" [(ngModel)]="data.designation">
-  </mat-form-field>
+    <mat-form-field class="example-full-width">
+                              <input type="text" placeholder="Designation" [(ngModel)]="data.designation" aria-label="Number" matInput name="emp_designation"  #EmpDesignation [matAutocomplete]="auto20" >
+                              <mat-autocomplete #auto20="matAutocomplete" >
+                                <mat-option *ngFor="let des of Designation" [value]="des.name" (click)="setDesignation(des.name)">
+                                  {{des.name}}
+                                </mat-option>
+                              </mat-autocomplete>
+
+                            </mat-form-field>
 
 </div>
 <div class="row" >
@@ -39,14 +51,14 @@
 
 </div>
 
- 
+
  
 </mat-dialog-content>
 <mat-dialog-actions>
     
-      <div class="button-row">
+      <div class="button-row" >
                                           
-        <button mat-raised-button color="accent" (click)="postEmployee()" >Update</button>
+        <button mat-raised-button color="accent" (click)="updateEmployee()" >Update</button>
           <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
           
         </div>    

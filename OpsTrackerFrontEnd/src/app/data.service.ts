@@ -4,6 +4,7 @@ import { Employ } from './models/employ.model';
 import { Escalation } from './models/escalation.model';
 import { Project } from './models/project.model';
 import { Site } from './models/site.model';
+import { Projectsite } from './models/projectsite.model';
 import {Observable} from 'rxjs';
 import { Opsmanpowerdialog } from './models/opsmanpowerdialog.model';
 import { Sitemanpowerdialog } from './models/sitemanpowerdialog.model';
@@ -43,6 +44,9 @@ export class DataService {
 
   getSite(id): Observable<Site> {
     return this.http.get<Site>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site/search/' + id);
+  }
+  getProjectsite(id): Observable<Projectsite> {
+    return this.http.get<Projectsite>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080//uds/site/search/projectsite/' + id);
   }
   getSitemanpower(id): Observable<Sitemanpowerdialog> {
     return this.http.get<Sitemanpowerdialog>('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/site/search/' + id);

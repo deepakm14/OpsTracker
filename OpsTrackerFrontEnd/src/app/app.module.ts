@@ -62,7 +62,7 @@ import {ToasterModule,ToasterConfig} from 'angular2-toaster';
 import { OpsmanpowertransactionComponent } from './opsmanpowertransaction/opsmanpowertransaction.component';
 import { OpsmaterialtransactionComponent } from './opsmaterialtransaction/opsmaterialtransaction.component';
 import { OpsmachinetransactionComponent } from './opsmachinetransaction/opsmachinetransaction.component';
-
+import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 
 
 
@@ -107,6 +107,7 @@ import { OpsmachinetransactionComponent } from './opsmachinetransaction/opsmachi
     OpsmanpowertransactionComponent,
     OpsmaterialtransactionComponent,
     OpsmachinetransactionComponent,
+    DeletedialogComponent,
     
    
 
@@ -149,7 +150,7 @@ import { OpsmachinetransactionComponent } from './opsmachinetransaction/opsmachi
 
   ],
   entryComponents: [
-    EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,SitemachinedailogComponent,SitemanpowerdialogComponent,SitematerialdialogComponent,OpstrackermanpowerdialogComponent,OpstrackermaterialdialogComponent, OpstrackermachinedialogComponent,
+    EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,SitemachinedailogComponent,SitemanpowerdialogComponent,SitematerialdialogComponent,OpstrackermanpowerdialogComponent,OpstrackermaterialdialogComponent, OpstrackermachinedialogComponent,SitedialogComponent,
   ],
 
   providers: [ToastService],

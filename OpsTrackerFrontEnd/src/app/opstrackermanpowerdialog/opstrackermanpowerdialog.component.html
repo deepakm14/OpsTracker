@@ -1,68 +1,138 @@
 <div>
+ <div class="example-loading-shade spinnerabove "
+    *ngIf="isLoadingResults || isRateLimitReached" >
+ <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+ <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+   
+ </div>
+</div> 
+<div id = "layoutContainer" 
+fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.35%">
 
-  <mat-dialog-content>
-    
+    <div fxflex = "40" >
+        <div class="updatecontainer1" >
+            <mat-card >
+                <mat-card-header>
+                 
+                        <mat-card-title>Manpower</mat-card-title>
+                       
+                </mat-card-header>
+                <mat-divider ></mat-divider> 
+                <mat-card-content style="margin-top: 20px">
     <div class="row" >
                           
+       <mat-form-field class="example-full-width">
+                  <input  [attr.disabled]="disabled ? '' : null" matInput placeholder="Date" [(ngModel)]="currentdate" name="currentdate">
+                </mat-form-field>
+  
+  </div>
+  <div class="row" >
+                          
+     <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Client" aria-label="Number" matInput  [(ngModel)]="data.projectId" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of projects" [value]="option.name" (onSelectionChange)="setProject($event,option.id)">
+                  {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+  
+  </div>
+  
+  <div class="row" >
+                          
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="shift" [(ngModel)]="data.shift">
-      </mat-form-field>
+                  <input type="text" placeholder="Site" aria-label="Number" matInput  [(ngModel)]="data.siteId" [matAutocomplete]="auto1">
+                  <mat-autocomplete #auto1="matAutocomplete">
+                    <mat-option *ngFor="let project of projectsite" [value]="project.name" (onSelectionChange)="setSite($event,project.id)" >
+                      {{project.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
   
+  </div>
+  </mat-card-content>
+  </mat-card>
+  </div>
+ </div>
+ <div fxflex = "40" >
+    <div class="updatecontainer2" >
+        <mat-card >
+            <mat-card-header>
+             
+                    <mat-card-title>Manpower</mat-card-title>
+                   
+            </mat-card-header>
+            <mat-divider ></mat-divider> 
+            <mat-card-content style="margin-top: 20px">
+  <div class="row" >
+                          
+    <mat-form-field class="example-full-width">
+                              <input type="text" placeholder="Shift" aria-label="Number" matInput [(ngModel)]="data.shiftTime" [matAutocomplete]="auto3">
+                              <mat-autocomplete #auto3="matAutocomplete">
+                                <mat-option *ngFor="let option of shifts" [value]="option" (onSelectionChange)="setShiftDetails($event,option)">
+                                  {{option}}
+                                </mat-option>
+                              </mat-autocomplete>
+                            </mat-form-field>
   </div>
   <div class="row" >
                           
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Planned" [(ngModel)]="data.planned">
-    </mat-form-field>
+                                <input matInput placeholder="Planned" [(ngModel)]="data.planned">
+                              </mat-form-field>
+                              </div>
+                              <div class="row" >
+                              <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Actual" [(ngModel)]="data.actual" (input)="setShortFall($event.target.value)">
+                                </mat-form-field>
+                                <div *ngIf="actualgreater"><span style="color:red">Actual should not exceed planned</span></div>
   
   </div>
   
   <div class="row" >
                           
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Actual" [(ngModel)]="data.actual" >
-    </mat-form-field>
-  
-  </div>
-  <div class="row" >
-                          
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Shortfall" [(ngModel)]="data.shortfall">
-    </mat-form-field>
-  
-  </div>
-  <div class="row" >
-                          
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Continued" [(ngModel)]="data.continuedWithOutOt">
-    </mat-form-field>
-  
-  </div>
-  
-  <div class="row" >
-                          
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Continued with OT" [(ngModel)]="data.continuedWithOt">
-    </mat-form-field>
+   <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Shortfall" [(ngModel)]="data.shortfall">
+                                  </mat-form-field>
   
   </div>
    
   <div class="row" >
                           
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="New" [(ngModel)]="data.newComer">
-    </mat-form-field>
+    <p>Total No of Releivers</p>
+                                     <div *ngIf="shortfallgreater"><span style="color:red">Shortfall should not exceed</span></div>
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Continued" [(ngModel)]="data.continuedWithOutOt" (input)="setRelievers1($event.target.value)">
+                                    </mat-form-field>
   
   </div>
-  </mat-dialog-content>
-  <mat-dialog-actions>
+
+  <div class="row" >
+ <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Continued with OT" [(ngModel)]="data.continuedWithOt" (input)="setRelievers2($event.target.value)">
+                                    </mat-form-field>
+
+  </div>
+  <div class="row" >
+ <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="New Comer" [(ngModel)]="data.newComer" (input)="setRelievers3($event.target.value)">
+                                    </mat-form-field>
+  </div>
+ </mat-card-content>
+ </mat-card>
+  </div>
+  </div>
+</div>
+    </div>
+
+    <mat-dialog-actions>
       
         <div class="button-row">
                                             
-          <button mat-raised-button color="accent" (click)="postEmployee1()" >Update</button>
+          <button mat-raised-button color="accent" (click)="updateManPowerTransaction()" >Update</button>
             <button mat-raised-button color="accent" (click)="onCloseCancel()">Cancel</button>
             
           </div>    
   
   </mat-dialog-actions>
-    </div>

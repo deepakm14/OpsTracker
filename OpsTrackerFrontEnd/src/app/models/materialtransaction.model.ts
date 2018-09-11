@@ -9,5 +9,6 @@ export class MaterialTransaction {
     status: string;
     remarks: string;
     projectId: number;
+    submitDate: Date;
     siteId: number;
 }

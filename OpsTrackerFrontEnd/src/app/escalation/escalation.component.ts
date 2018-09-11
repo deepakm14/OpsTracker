@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {DataService} from '../data.service';
 import {Escalation} from '../models/escalation.model';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +19,9 @@ export class EscalationComponent implements OnInit {
   communicatedvia: string[] = ['Phone', 'Email'];
   myControl = new FormControl();
   escalation$: Object;
+  private communicatedate:string;
+  private closuredate:string;
+  private estclosuredate:string;
   //esc2:Escalation[] = [];
   //public esc2={"typeOfEscalation":"","ommunicatedVia":""};
   esc2 = new Escalation();
@@ -26,6 +29,41 @@ export class EscalationComponent implements OnInit {
   isLoadingResults = false;
   constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat ,toasterService:ToasterService){
     this.toasterService=toasterService;
+  }
+  esc_type = new FormControl('', [Validators.required]);
+  esc_des = new FormControl('', [Validators.required]);
+  esc_comm = new FormControl('', [Validators.required]);
+  esc_to = new FormControl('', [Validators.required]);
+  esc_by = new FormControl('', [Validators.required]);
+  esc_sta = new FormControl('', [Validators.required]);
+  esc_cdate = new FormControl('', [Validators.required]);
+  esc_ecdate = new FormControl('', [Validators.required]);
+
+  getEsctypeErrorMessage() {
+    return this.esc_type.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getEscdesErrorMessage() {
+    return this.esc_des.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getEsccommErrorMessage() {
+    return this.esc_comm.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getEsctoErrorMessage() {
+    return this.esc_to.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getEscbyErrorMessage() {
+    return this.esc_by.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getEscstaErrorMessage() {
+    return this.esc_sta.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getEsccdateErrorMessage() {
+    return this.esc_cdate.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getEscecdateErrorMessage() {
+    return this.esc_ecdate.hasError('required') ? 'You must enter a value' :'';      
   }
 
 
@@ -43,9 +81,12 @@ export class EscalationComponent implements OnInit {
 
 postEscalationtracker(){
 
-this.esc2.communicatedDate=this.dateFormat.convertdate(this.esc2.communicatedDate);
-this.esc2.estimatedClosureDate=this.dateFormat.convertdate(this.esc2.estimatedClosureDate);
-this.esc2.closureDate=this.dateFormat.convertdate(this.esc2.closureDate);
+/* this.communicatedate=this.dateFormat.convertdate(this.esc2.communicatedDate);
+this.estclosuredate=this.dateFormat.convertdate(this.esc2.estimatedClosureDate);
+this.closuredate=this.dateFormat.convertdate(this.esc2.closureDate);
+this.esc2.communicatedDate=this.communicatedate;
+this.esc2.estimatedClosureDate=this.estclosuredate;
+this.esc2.closureDate=this.closuredate; */
 
   this.isLoadingResults = true;
    
