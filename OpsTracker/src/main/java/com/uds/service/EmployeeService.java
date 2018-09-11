@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -38,13 +39,7 @@ public class EmployeeService {
 		StatusDTO statusDTO = new StatusDTO();
 		statusDTO.setStatus(" ");
 		User user = new User();
-		//List<Employee> employees = searchAll();
-		//for(Employee checkDuplicate : employees)
-		//{
-		//if(employeeDTO.getCode() != checkDuplicate.getCode())
-		//{
 		Employee employee = mapperUtil.toEntity(employeeDTO, Employee.class);
-		
 		try
 		{
 			Employee emp = employeeRepository.save(employee);
@@ -54,6 +49,10 @@ public class EmployeeService {
 			user.setPassword("Uds12345");
 			userRepository.save(user);
 			statusDTO.setStatus("success");
+		}
+		catch(DataIntegrityViolationException d)
+		{
+			statusDTO.setStatus(("already exist"));
 		}
 		catch(Exception e)
 		{
@@ -65,12 +64,6 @@ public class EmployeeService {
 			employeeDTO = null;
 			user = null;
 		}
-		/*}
-		else
-		{
-			message = "already exist";
-		}
-		}*/
 		return statusDTO;
 	}
 	
@@ -85,9 +78,9 @@ public class EmployeeService {
 		employee.setDesignation(employeeDTO.getDesignation());
 		employee.setMob(employeeDTO.getMob());
 		employee.setMail(employeeDTO.getMail());
-		employeeRepository.save(employee);
 		try
 		{
+			employeeRepository.save(employee);
 			mapperUtil.toModel(employee, EmployeeDTO.class);
 			statusDTO.setStatus("success");
 		}
