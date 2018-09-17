@@ -7,6 +7,7 @@ import {DataService} from '../data.service';
 
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-sitedelete',
@@ -16,7 +17,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class SitedeleteComponent implements OnInit {
   private toasterService: ToasterService;
   isLoadingResults = false;
-    constructor(public thisdialogRef: MatDialogRef<SitedeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService) {
+    constructor(public thisdialogRef: MatDialogRef<SitedeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService,private router: Router) {
       this.toasterService=toasterService;
      }
 
@@ -33,6 +34,7 @@ export class SitedeleteComponent implements OnInit {
           this.isLoadingResults = false;
           this.thisdialogRef.close();
           this.toasterService.pop('success','Successfully Deleted' ,'');
+          this.router.navigate(['/masterdata']);
         } else {
           this.isLoadingResults = false;
           this.thisdialogRef.close();

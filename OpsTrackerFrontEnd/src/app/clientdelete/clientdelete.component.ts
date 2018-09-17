@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {DataService} from '../data.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,7 +18,7 @@ export class ClientdeleteComponent implements OnInit {
   private toasterService: ToasterService;
   clientarray:any[];
   isLoadingResults = false;
-    constructor(public thisdialogRef: MatDialogRef<ClientdeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService) {
+    constructor(public thisdialogRef: MatDialogRef<ClientdeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService,private router: Router) {
       this.toasterService=toasterService;
      }
   ngOnInit() {
@@ -36,6 +37,7 @@ export class ClientdeleteComponent implements OnInit {
         //  console.log(this.data);
           this.thisdialogRef.close();
           this.toasterService.pop('success','Successfully Deleted' ,'');
+          this.router.navigate(['/masterdata']);
         } else {
           this.isLoadingResults = false;
           this.thisdialogRef.close();

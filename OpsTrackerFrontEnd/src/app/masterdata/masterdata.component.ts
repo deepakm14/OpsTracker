@@ -440,6 +440,7 @@ export class MasterdataComponent implements OnInit {
     this.site.manPowerDTO = this.fieldArray;
     this.site.machineDTO = this.fieldArray2;
     this.site.materialDTO = this.fieldArray1;
+    
    // this.createSiteJson();
    // console.log("converted date" + this.site.machineDTO);  
     console.log(this.site);
@@ -449,8 +450,9 @@ export class MasterdataComponent implements OnInit {
       console.log(data['status']);
       if(data['status']=='success'){
         this.isLoadingResults = false;
-        this.sitefrm.reset();
+       
         this.toasterService.pop('success','Successfully Submitted' ,'');
+        this.sitefrm.reset();
       } else {
         this.isLoadingResults = false;
         this.toasterService.pop('warning','Not Submitted' ,'');
@@ -471,7 +473,7 @@ export class MasterdataComponent implements OnInit {
            console.log('Response body:', err.error);
        }
     }
-   );
+   ); 
   }
 
   postEscalationType()

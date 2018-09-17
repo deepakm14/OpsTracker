@@ -7,6 +7,7 @@ import {DataService} from '../data.service';
 
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-employeedelete',
@@ -17,7 +18,7 @@ export class EmployeedeleteComponent implements OnInit {
 
   private toasterService: ToasterService;
 isLoadingResults = false;
-  constructor(public thisdialogRef: MatDialogRef<EmployeedeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService) {
+  constructor(public thisdialogRef: MatDialogRef<EmployeedeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService,private router: Router) {
     this.toasterService=toasterService;
    }
 
@@ -35,6 +36,7 @@ isLoadingResults = false;
           this.isLoadingResults = false;
           this.thisdialogRef.close();
           this.toasterService.pop('success','Successfully Deleted' ,'');
+          this.router.navigate(['/masterdata']);
         } else {
           this.isLoadingResults = false;
           this.thisdialogRef.close();
