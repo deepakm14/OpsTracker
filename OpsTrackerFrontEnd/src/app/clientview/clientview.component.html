@@ -14,7 +14,7 @@
         
       
           <table mat-table [dataSource]="client2" class="mat-elevation-z8"
-                 matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%">
+                 matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%;margin-bottom: 11px ">
             <!-- Number Column -->
             
             <!-- Title Column -->
@@ -43,13 +43,14 @@
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 
                 <mat-cell *matCellDef="let row">
+                    <div class="inner-div">
                     <button mat-icon-button>
-                        <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >update</mat-icon>
+                        <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >edit</mat-icon>
                       </button>
                       <button mat-icon-button>
-                          <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="openDialog(row.id)">delete</mat-icon>
+                          <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="openDeleteDialog(row.id)">delete</mat-icon>
                         </button>
-                   
+                   </div>
                 </mat-cell>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

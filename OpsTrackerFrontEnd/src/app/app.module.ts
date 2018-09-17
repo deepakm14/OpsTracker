@@ -63,6 +63,10 @@ import { OpsmanpowertransactionComponent } from './opsmanpowertransaction/opsman
 import { OpsmaterialtransactionComponent } from './opsmaterialtransaction/opsmaterialtransaction.component';
 import { OpsmachinetransactionComponent } from './opsmachinetransaction/opsmachinetransaction.component';
 import { DeletedialogComponent } from './deletedialog/deletedialog.component';
+import { EmployeedeleteComponent } from './employeedelete/employeedelete.component';
+import { ClientdeleteComponent } from './clientdelete/clientdelete.component';
+import { SitedeleteComponent } from './sitedelete/sitedelete.component';
+import { EscalationdeleteComponent } from './escalationdelete/escalationdelete.component';
 
 
 
@@ -108,6 +112,10 @@ import { DeletedialogComponent } from './deletedialog/deletedialog.component';
     OpsmaterialtransactionComponent,
     OpsmachinetransactionComponent,
     DeletedialogComponent,
+    EmployeedeleteComponent,
+    ClientdeleteComponent,
+    SitedeleteComponent,
+    EscalationdeleteComponent,
     
    
 
@@ -150,7 +158,7 @@ import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 
   ],
   entryComponents: [
-    EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,SitemachinedailogComponent,SitemanpowerdialogComponent,SitematerialdialogComponent,OpstrackermanpowerdialogComponent,OpstrackermaterialdialogComponent, OpstrackermachinedialogComponent,SitedialogComponent,
+    EmploydialogComponent, ClientdialogComponent, EscalationdialogComponent, EscalationtrackerdialogComponent,SitemachinedailogComponent,SitemanpowerdialogComponent,SitematerialdialogComponent,OpstrackermanpowerdialogComponent,OpstrackermaterialdialogComponent, OpstrackermachinedialogComponent,SitedialogComponent,EmployeedeleteComponent,ClientdeleteComponent,SitedeleteComponent,EscalationdeleteComponent,
   ],
 
   providers: [ToastService],

@@ -3,7 +3,7 @@ import { Sitematerialdialog } from "./sitematerialdialog.model";
 import { Sitemachinedialog } from "./sitemachinedialog.model";
 
 
-export class Siteupdate {
+export class Sitedate {
     id: number;
     projectId: number;
     projectName: string;

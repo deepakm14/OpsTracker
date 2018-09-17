@@ -5,9 +5,7 @@
     float:right;
     padding-right:20px;
 }
-.mat-cell:nth-child(2), .mat-header-cell:nth-child(2) {
-    flex: 0 0 200px;
-}
+
 .martop{
     margin-top: 14px;
 }
@@ -18,4 +16,28 @@
    
     z-index: 10;
   }
-  
+  table {
+    width: 100%;
+  }
+  .mat-header-cell {    text-align: center;    }
+  .mat-cell {    text-align: center;    }
+
+  .inner-div
+  {
+    margin: auto;
+   
+   
+  }
+  .mat-row  {
+    flex-wrap:nowrap;
+}
+
+.mat-table {
+  overflow: auto;
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+   
+   
+  }

@@ -18,4 +18,28 @@
    
     z-index: 10;
   }
-  
+  table {
+    width: 100%;
+  }
+  .mat-header-cell {    text-align: center;    }
+  .mat-cell {    text-align: center;    }
+
+  .inner-div
+  {
+    margin: auto;
+   
+   
+  }
+  .mat-row  {
+    flex-wrap:nowrap;
+}
+
+.mat-table {
+  overflow: auto;
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+   
+   
+  }

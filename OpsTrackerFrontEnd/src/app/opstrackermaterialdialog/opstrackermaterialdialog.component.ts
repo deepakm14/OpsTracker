@@ -183,9 +183,11 @@ updateMaterialTransaction()
       console.log(data['status']);
       if(data['status']=='success'){
         this.isLoadingResults = false;
+        this.thisdialogRef.close();
         this.toasterService.pop('success','Successfully Submitted' ,'');
       } else {
         this.isLoadingResults = false;
+        this.thisdialogRef.close();
         this.toasterService.pop('warning','Not Submitted' ,'');
       }
    

@@ -18,20 +18,25 @@
                   
                     <div >
                         <button mat-mini-fab>
-                            <mat-icon aria-label="" routerLink="../emplyeeview">table_chart</mat-icon>
+                            <mat-icon aria-label="" routerLink="../emplyeeview">remove_red_eye</mat-icon>
                           </button>
                         
-                          <form name="form" (ngSubmit)="myForm.form.valid && postEmployee()" #myForm="ngForm" novalidate > 
-                        <mat-form-field class="example-full-width" >
-                            <input class="form-control" matInput  placeholder="Employee Code" [(ngModel)]="emp.code"  #emp_code="ngModel" name="code" (keypress)="numberOnly($event)" required>
+                          <form name="form" (ngSubmit)="myForm.form.valid && postEmployee();myForm.reset()" #myForm="ngForm" novalidate > 
+                        <mat-form-field class="example-full-width" hintLabel="Max 8 Digit" >
+                            <input  #input maxlength="8" class="form-control" matInput  placeholder="Employee Code" [(ngModel)]="emp.code"  #emp_code="ngModel" name="code" (keypress)="numberOnly($event)" required>
                            
                               <mat-error *ngIf="emp_name.invalid">{{getCodeErrorMessage()}}</mat-error>
-                             
+                              <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
                         </mat-form-field>
                        
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Employee Name" [(ngModel)]="emp.name"  #emp_name="ngModel" name="name" required>
-                            <mat-error *ngIf="emp_name.invalid">{{getNameErrorMessage()}}</mat-error>
+                        <mat-form-field class="example-full-width" hintLabel="Max 40 Character">
+                            <input #input1 maxlength="40" matInput placeholder="Employee Name" [(ngModel)]="emp.name"  #emp_name="ngModel" name="name" required pattern='^[a-zA-Z0-9_]*$'>
+                          
+                            <mat-hint align="end">{{input1.value?.length || 0}}/40</mat-hint>
+                            <div *ngIf="myForm.submitted && emp_name.invalid" class="invalid-feedback">
+                                <div *ngIf="emp_name.errors.required">Employee Name is required</div>
+                                <div *ngIf="emp_name.errors.pattern">Special Character is not allowed</div>
+                            </div>
                           </mat-form-field>    
                         
                           <mat-form-field class="example-full-width">
@@ -47,14 +52,17 @@
                            
                               <mat-form-field class="example-full-width">
                                   <input matInput placeholder="Email" [(ngModel)]="emp.mail" name="mail" #emp_mail="ngModel" [ngClass]="{ 'is-invalid': myForm.submitted && emp_mail.invalid }" required email>
+                                 
                                   <div *ngIf="myForm.submitted && emp_mail.invalid" class="invalid-feedback">
                                     <div *ngIf="emp_mail.errors.required">Email is required</div>
                                     <div *ngIf="emp_mail.errors.email">Email must be a valid email address</div>
+
                                 </div>
                                   
                                 </mat-form-field>
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Mobile Number" [(ngModel)]="emp.mob" name="mob" #emp_mob="ngModel"  (keypress)="numberOnly($event)" [ngClass]="{ 'is-invalid': myForm.submitted && emp_mob.invalid }" required minlength="10" maxlength="10">
+                                <mat-form-field class="example-full-width" hintLabel="Max 10 Digit">
+                                    <input #input3 maxlength="10" matInput placeholder="Mobile Number" [(ngModel)]="emp.mob" name="mob" #emp_mob="ngModel"  (keypress)="numberOnly($event)" [ngClass]="{ 'is-invalid': myForm.submitted && emp_mob.invalid }" required minlength="10" maxlength="10">
+                                    <mat-hint align="end">{{input3.value?.length || 0}}/10</mat-hint>
                                     <div *ngIf="myForm.submitted && emp_mob.invalid" class="invalid-feedback">
                                       <div *ngIf="emp_mob.errors.required">Mobile is required</div>
                                       <div *ngIf="emp_mob.errors.minlength">Mobile must be maximum 10 digit</div>
@@ -78,16 +86,19 @@
                   <div >
                       <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate" ></mat-progress-bar>
                       <button mat-mini-fab>
-                          <mat-icon aria-label="" routerLink="../clientview">table_chart</mat-icon>
+                          <mat-icon aria-label="" routerLink="../clientview">remove_red_eye</mat-icon>
                         </button>
                         <form name="form1" (ngSubmit)="myForm1.form.valid && postClient()" #myForm1="ngForm"  novalidate > 
-                      <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Client Name" [(ngModel)]="client.name"  name="name" #client_name="ngModel" required>
+                      <mat-form-field class="example-full-width" hintLabel="Max 80 Character">
+                          <input  #input4 maxlength="80" matInput placeholder="Client Name" [(ngModel)]="client.name"  name="name" #client_name="ngModel" required>
+                         
                           <mat-error *ngIf="client_name.invalid">{{getClientnameErrorMessage()}}</mat-error>
+                          <mat-hint align="end">{{input4.value?.length || 0}}/80</mat-hint>
                         </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Client Code" [(ngModel)]="client.projectCode" (keypress)="numberOnly($event)" name="projectcode" #client_code="ngModel" required>
+                        <mat-form-field class="example-full-width" hintLabel="Max 10 Digit">
+                            <input #input5 maxlength="10" matInput placeholder="Client Code" [(ngModel)]="client.projectCode" (keypress)="numberOnly($event)" name="projectcode" #client_code="ngModel" required>
                             <mat-error *ngIf="client_code.invalid">{{getClientCodeErrorMessage()}}</mat-error>
+                            <mat-hint align="end">{{input5.value?.length || 0}}/10</mat-hint>
                           </mat-form-field>
                           
 
@@ -111,72 +122,96 @@
                     <div class="site-box mat-elevation-z4">
                       <div>
                           <button mat-mini-fab>
-                              <mat-icon aria-label="" routerLink="../siteview">table_chart</mat-icon>
+                              <mat-icon aria-label="" routerLink="../siteview">remove_red_eye</mat-icon>
                             </button>
                     <div fxflex = "40" >
-                      
+                      <form name="form2" (ngSubmit)="myForm2.form.valid && postSite()" #myForm2="ngForm"  novalidate > 
                             <mat-form-field class="example-full-width">
-                                    <input type="text" placeholder="Client Name" aria-label="Number" matInput  [matAutocomplete]="auto">
+                               
+                                    <input type="text" placeholder="Client Name" aria-label="Number" [(ngModel)]="project.name"  matInput #projects_name="ngModel" name="name" [matAutocomplete]="auto"  required>
                                     <mat-autocomplete #auto="matAutocomplete">
                                       <mat-option *ngFor="let option of projects" [value]="option.name" (click)="setSiteProject(option.id)">
                                         {{option.name}}
                                       </mat-option>
                                     </mat-autocomplete>
+                                    <mat-error *ngIf="projects_name.invalid">{{getSiteprojectnameErrorMessage()}}</mat-error>
                                   </mat-form-field>
             
                          
-                  <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Site Code" [(ngModel)]="site.code">
+                  <mat-form-field class="example-full-width" hintLabel="Max 10 Digit">
+                 
+                          <input #input6 maxlength="10" matInput placeholder="Site Code" (keypress)="numberOnly($event)" [(ngModel)]="site.code" name="code" #site_code="ngModel" required>
+                          <mat-error *ngIf="site_code.invalid">{{getSitecodeErrorMessage()}}</mat-error>
+                          <mat-hint align="end">{{input6.value?.length || 0}}/10</mat-hint>
                         </mat-form-field>   
             
-                  <mat-form-field class="example-full-width">
-                          <input matInput placeholder="Site Name" [(ngModel)]="site.name">
+                  <mat-form-field class="example-full-width" hintLabel="Max 80 Character">
+                          <input #input7 maxlength="80" matInput placeholder="Site Name" [(ngModel)]="site.name" name="name1" #site_name="ngModel" required>
+                          <mat-error *ngIf="site_name.invalid">{{getSitenameErrorMessage()}}</mat-error>
+                          <mat-hint align="end">{{input7.value?.length || 0}}/80</mat-hint>
                         </mat-form-field> 
             
-                        <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Address" [(ngModel)]="site.address">
+                        <mat-form-field class="example-full-width" hintLabel="Max 250 Character">
+                              <textarea  #input8 maxlength="250" matInput placeholder="Address" [(ngModel)]="site.address" name="address" #site_address="ngModel" required></textarea>
+                              <mat-error *ngIf="site_address.invalid">{{getSitaddressErrorMessage()}}</mat-error>
+                              <mat-hint align="end">{{input8.value?.length || 0}}/250</mat-hint>
                             </mat-form-field> 
             
                              <mat-form-field class="example-full-width">
-                                      <input type="text" placeholder="Contract Type" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto11">
+                                      <input type="text" placeholder="Contract Type" aria-label="Number" matInput  [matAutocomplete]="auto11" [(ngModel)]="site.contractType" name="contractType" #site_contracttype="ngModel" required>
                                       <mat-autocomplete #auto11="matAutocomplete">
                                         <mat-option *ngFor="let cont of Contracttype" [value]="cont" (click)="setContractType(cont)">
                                           {{cont}}
                                         </mat-option>
                                       </mat-autocomplete>
+                                      <mat-error *ngIf="site_contracttype.invalid">{{getSitcontracttypeErrorMessage()}}</mat-error>
                                     </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                      <input type="text" placeholder="Regional manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto1">
+                                      <input type="text" placeholder="Regional manager" aria-label="Number" matInput  [matAutocomplete]="auto1" [(ngModel)]="option1" name="regionalManagerId" #site_Rm="ngModel" required>
                                       <mat-autocomplete #auto1="matAutocomplete">
                                         <mat-option *ngFor="let option of rm" [value]="option.name" (click)="setSiteRM(option.id)">
                                           {{option.name}}
                                         </mat-option>
                                       </mat-autocomplete>
+                                      <mat-error *ngIf="site_Rm.invalid">{{getSitRmErrorMessage()}}</mat-error>
                                     </mat-form-field>
                                     <mat-form-field class="example-full-width">
-                                          <input type="text" placeholder="Senior Manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto2">
+                                          <input type="text" placeholder="Senior Manager" aria-label="Number" matInput  [matAutocomplete]="auto2" [(ngModel)]="option2" name="seniorManagerId" #site_Sm="ngModel" required>
                                           <mat-autocomplete #auto2="matAutocomplete">
                                             <mat-option *ngFor="let option of sm" [value]="option.name" (click)="setSiteSM(option.id)">
                                               {{option.name}}
                                             </mat-option>
                                           </mat-autocomplete>
+                                          <mat-error *ngIf="site_Sm.invalid">{{getSitSmErrorMessage()}}</mat-error>
                                         </mat-form-field>
                                         <mat-form-field class="example-full-width">
-                                              <input type="text" placeholder="Asst Senior Manager" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto3">
+                                              <input type="text" placeholder="Asst Senior Manager" aria-label="Number" matInput  [matAutocomplete]="auto3" [(ngModel)]="option3" name="asstSeniorManagerId" #site_Asm="ngModel" required>
                                               <mat-autocomplete #auto3="matAutocomplete">
                                                 <mat-option *ngFor="let option of asm" [value]="option.name" (click)="setSiteASM(option.id)">
                                                   {{option.name}}
                                                 </mat-option>
                                               </mat-autocomplete>
+                                              <mat-error *ngIf="site_Asm.invalid">{{getSitAsmErrorMessage()}}</mat-error>
                                             </mat-form-field>
                                             <mat-form-field class="example-full-width">
-                                                  <input type="text" placeholder="Site Incharge" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto4">
+                                                  <input type="text" placeholder="Site Incharge" aria-label="Number" matInput  [matAutocomplete]="auto4" [(ngModel)]="option4" name="siteInchargeId" #site_Si="ngModel" required>
                                                   <mat-autocomplete #auto4="matAutocomplete">
                                                     <mat-option *ngFor="let option of si" [value]="option.name" (click)="setSiteSI(option.id)">
                                                       {{option.name}}
                                                     </mat-option>
                                                   </mat-autocomplete>
+                                                  <mat-error *ngIf="site_Si.invalid">{{getSitSiErrorMessage()}}</mat-error>
                                                 </mat-form-field>
+
+                                                 
+                                                  <div class="button-row" style="margin-top:10px">
+                                                                        
+                                                      <button mat-raised-button color="accent" >Submit</button>
+                                                      
+                                                      
+                                                    </div>  
+                                                  
+                                              </form>
                     </div>
                   </div> 
                     </div>
@@ -201,37 +236,44 @@
                                           Enter the Manpower  Detail
                                         </mat-panel-description>
                                       </mat-expansion-panel-header>
+                                      <form name="form5" (ngSubmit)="myForm5.form.valid && addmanFieldValue()" #myForm5="ngForm"  novalidate > 
                                       <div class="row">
+                                         
                                         <mat-form-field class="example-full-width">
-                                          <input type="text" placeholder="Shift" aria-label="Text" matInput  [(ngModel)]="manpower.typeOfService" [matAutocomplete]="auto16">
+                                          <input type="text" placeholder="Shift" aria-label="Text" matInput  [(ngModel)]="manpower.typeOfService" name="typeOfService" [matAutocomplete]="auto16"  #manp_shift="ngModel" required>
                                           <mat-autocomplete #auto16="matAutocomplete" >
                                             <mat-option *ngFor="let opt of shift" [value]="opt" (click)="setShift(opt)">
                                               {{opt}}
                                             </mat-option>
                                           </mat-autocomplete>
+                                          <mat-error *ngIf="manp_shift.invalid">{{getManpowershiftErrorMessage()}}</mat-error>
                                         </mat-form-field>
                                           </div>
                                           <div class="row">
                                                   <mat-form-field>
-                                                    <input matInput placeholder="StartTime"  [(ngModel)]="manpower.startTime" >
+                                                    <input  type="number" step="0.01" min="0" matInput placeholder="StartTime"  [(ngModel)]="manpower.startTime" name="startTime"  #manp_startTime="ngModel" required>
+                                                    <mat-error *ngIf="manp_startTime.invalid">{{getManpowerstartTimeErrorMessage()}}</mat-error>
                                                   </mat-form-field>
                                                 </div>
                                                 <div class="row">
                                                       <mat-form-field>
-                                                        <input matInput placeholder="EndTime"  [(ngModel)]="manpower.endTime" >
+                                                        <input type="number" step="0.01" min="0" matInput placeholder="EndTime"  [(ngModel)]="manpower.endTime" name="endTime"  #manp_endTime="ngModel" required>
+                                                        <mat-error *ngIf="manp_endTime.invalid">{{getManpowerendTimeErrorMessage()}}</mat-error>
                                                       </mat-form-field>
                                                     </div>
                                                     <div class="row">
                                                           <mat-form-field>
-                                                            <input matInput placeholder="Planned"   [(ngModel)]="manpower.planned" >
+                                                            <input type="number" step="0.01" min="0" matInput placeholder="Planned"   [(ngModel)]="manpower.planned" name="planned"  #manp_planned="ngModel" required>
+                                                            <mat-error *ngIf="manp_planned.invalid">{{getManpowerplannedErrorMessage()}}</mat-error>
                                                           </mat-form-field>
                                                         </div>
                                                         <div class="button-row">
                                           
-                                                              <button mat-raised-button color="accent" (click)="addmanFieldValue()">Add</button>
+                                                              <button mat-raised-button color="accent" >Add</button>
                                                               
                                                               
-                                                            </div>                              
+                                                            </div>  
+                                                            </form>                            
                                                             <table *ngIf="manadded"  style="margin-top:20px">
                                                                 <thead>
                                                                     <tr>
@@ -280,32 +322,35 @@
                                           Enter the Material detail
                                         </mat-panel-description>
                                       </mat-expansion-panel-header>
+                                      <form name="form6" (ngSubmit)="myForm6.form.valid && addmatFieldValue()" #myForm6="ngForm"  novalidate > 
                                       <div class="row">
                                       <mat-form-field class="example-full-width">
-                                            <input type="text" placeholder="Material Type" aria-label="Number" matInput  [(ngModel)]="material.materialType" [matAutocomplete]="auto5">
+                                            <input type="text" placeholder="Material Type" aria-label="Number" matInput  [(ngModel)]="material.materialType" name="materialType" #mat_materialType="ngModel" [matAutocomplete]="auto5" required>
                                             <mat-autocomplete #auto5="matAutocomplete" >
                                               <mat-option *ngFor="let option of Materialtype" [value]="option" (click)="setMaterialType(option)">
                                                 {{option}}
                                               </mat-option>
                                             </mat-autocomplete>
+                                            <mat-error *ngIf="mat_materialType.invalid">{{getMaterialtypeErrorMessage()}}</mat-error>
                                           </mat-form-field>
                                         </div>
                                         <div class="row">
 
                                           
                                                 <mat-form-field>
-                                                        <input matInput [matDatepicker]="picker"  placeholder="Commitment Date" [(ngModel)]="material.commitmentDate ">
+                                                        <input matInput [matDatepicker]="picker"  placeholder="Commitment Date" [(ngModel)]="material.commitmentDate " name="commitmentDate" #mat_commitmentDate="ngModel"required>
                                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                                         <mat-datepicker #picker ></mat-datepicker>
+                                                        <mat-error *ngIf="mat_commitmentDate.invalid">{{getMaterialcommitdateErrorMessage()}}</mat-error>
                                                       </mat-form-field>
                                               </div>
                                               <div class="button-row">
                                           
-                                                    <button mat-raised-button color="accent" (click)="addmatFieldValue()">Add</button>
+                                                    <button mat-raised-button color="accent" >Add</button>
                                                     
                                                     
                                                   </div>  
-                                                  
+                                                  </form>
                                                   <table *ngIf="matadded"  style="margin-top:20px">
                                                       <thead>
                                                           <tr>
@@ -348,38 +393,45 @@
                                           Enter the Machine detail
                                         </mat-panel-description>
                                       </mat-expansion-panel-header>
+                                      <form name="form7" (ngSubmit)="myForm7.form.valid && addmacFieldValue()" #myForm7="ngForm"  novalidate > 
                                       <div class="row">
                                                 <mat-form-field>
-                                                  <input matInput placeholder="Machine Type" [(ngModel)]="machine.machineType">
+                                                  <input matInput placeholder="Machine Type" [(ngModel)]="machine.machineType" name="machineType" #mac_machineType="ngModel" required>
+                                                  <mat-error *ngIf="mac_machineType.invalid">{{getMacmachinetypeErrorMessage()}}</mat-error>
                                                 </mat-form-field>
                                               </div>
                                               <div class="row">
                                                   <mat-form-field class="example-full-width">
-                                                      <input type="text" placeholder="Equipment Type" aria-label="Number" matInput [matAutocomplete]="auto6" [(ngModel)]="machine.equipmentType">
+                                                      <input type="text" placeholder="Equipment Type" aria-label="Number" matInput [matAutocomplete]="auto6" [(ngModel)]="machine.equipmentType" name="equipmentType" #mac_equipmentType="ngModel" required>
                                                       <mat-autocomplete #auto6="matAutocomplete">
                                                         <mat-option *ngFor="let option of Equipmenttype" [value]="option" (click)="setEquipmentType(option)">
                                                           {{option}}
                                                         </mat-option>
                                                       </mat-autocomplete>
+                                                      <mat-error *ngIf="mac_equipmentType.invalid">{{getMacequipmentTypeErrorMessage()}}</mat-error>
                                                     </mat-form-field>
                                                     </div>
                                                     <div class="row">
                                                             <mat-form-field>
-                                                              <input matInput placeholder="Model No" [(ngModel)]="machine.modelNo" >
+                                                              <input matInput placeholder="Model No" [(ngModel)]="machine.modelNo" name="modelNo" #mac_modelNo="ngModel" required>
+                                                               <mat-error *ngIf="mac_modelNo.invalid">{{getMacmodelNoErrorMessage()}}</mat-error>
                                                             </mat-form-field>
+                                                           
                                                           </div>
                                                           <div class="row">
                                                                 <mat-form-field>
-                                                                  <input matInput placeholder="Serial NO" [(ngModel)]="machine.serialNo">
+                                                                  <input matInput placeholder="Serial NO" [(ngModel)]="machine.serialNo" name="serialNo" #mac_serialNo="ngModel" required>
+                                                                  <mat-error *ngIf="mac_serialNo.invalid">{{getMacserialNoErrorMessage()}}</mat-error>
                                                                 </mat-form-field>
+                                                               
                                                               </div>
                                                               <div class="button-row">
                                           
-                                                                    <button mat-raised-button color="accent" (click)="addmacFieldValue()">Add</button>
+                                                                    <button mat-raised-button color="accent" >Add</button>
                                                                     
                                                                     
                                                                   </div>    
-                                                                  
+                                                                  </form>
                                                                   <table *ngIf="macadded"  style="margin-top:20px">
                                                                       <thead>
                                                                           <tr>
@@ -422,14 +474,7 @@
                                   </mat-card-content>
                                 </mat-card >
                     </div>
-                    
-                    <div class="button-row">
-                                          
-                        <button mat-raised-button color="accent" (click)="postSite()">Submit</button>
-                        
-                        
-                      </div>  
-                        
+                   
                     </div>
                     
                     </div>
@@ -441,12 +486,13 @@
                     <div >
                         <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate" ></mat-progress-bar>
                         <button mat-mini-fab>
-                            <mat-icon aria-label="" routerLink="../escalationview">table_chart</mat-icon>
+                            <mat-icon aria-label="" routerLink="../escalationview">remove_red_eye</mat-icon>
                           </button>
 
                           <form name="form3" (ngSubmit)="myForm3.form.valid && postEscalationType()" #myForm3="ngForm"  novalidate >  
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType" name="escalationType" #esc_type="ngModel"   required>
+                        <mat-form-field class="example-full-width" hintLabel="Max 40 Character">
+                            <input #input8 maxlength="40" matInput placeholder="Type of Escalation" [(ngModel)]="escalationtype.escalationType" name="escalationType" #esc_type="ngModel"   required>
+                            <mat-hint align="end">{{input8.value?.length || 0}}/40</mat-hint>
                             <mat-error *ngIf="esc_type.invalid">{{getEscalationtypeErrorMessage()}}</mat-error>
                               
                           </mat-form-field>

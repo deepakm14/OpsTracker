@@ -22,7 +22,7 @@ fxLayout = "row" fxLayout.xs="column" fxLayoutwrap fxLayoutGap="0.35%">
                     <div class="row" >    
           
                         <mat-form-field class="example-full-width">
-                            <input type="text" placeholder="Client Name" aria-label="Number" matInput [(ngModel)]="data['project'].name" [matAutocomplete]="auto">
+                            <input type="text" placeholder="Client Name" aria-label="Number" matInput [(ngModel)]="data['project'].name" [matAutocomplete]="auto" #site_name="ngModel" >
                             <mat-autocomplete #auto="matAutocomplete">
                               <mat-option *ngFor="let option of projects" [value]="option.name" (click)="setSiteProject(option.id)">
                                 {{option.name}}

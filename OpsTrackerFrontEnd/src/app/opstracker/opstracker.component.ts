@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl,NgForm, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {DataService} from '../data.service';
@@ -18,6 +18,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Dateformat } from '../dateformat.service';
 import { Projectsite } from '../models/projectsite.model';
 import { MatOptionSelectionChange } from '@angular/material';
+import { ViewChild,ElementRef,Renderer} from '@angular/core';
 
 @Component({
   selector: 'app-opstracker',
@@ -27,6 +28,9 @@ import { MatOptionSelectionChange } from '@angular/material';
 
 
 export class OpstrackerComponent implements OnInit {
+  @ViewChild('myForm1') public opstracfrm: NgForm;
+  @ViewChild('myForm2') public opstracmatfrm: NgForm;
+  @ViewChild('myForm2') public opstracmacfrm: NgForm;
   private toasterService: ToasterService;
   //Constructor call
   constructor(private data: DataService, private http: HttpClient,private dateFormat: Dateformat ,toasterService:ToasterService){
@@ -407,6 +411,7 @@ this.commitmentDate=this.material.commitmentDate;
         console.log(data['status']);
         if(data['status']=='success'){
           this.isLoadingResults = false;
+          this.opstracfrm.reset();
           this.toasterService.pop('success','Successfully Submitted' ,'');
         } else {
           this.isLoadingResults = false;
@@ -443,6 +448,7 @@ postMaterialTransaction()
       console.log(data['status']);
       if(data['status']=='success'){
         this.isLoadingResults = false;
+        this.opstracmatfrm.reset();
         this.toasterService.pop('success','Successfully Submitted' ,'');
       } else {
         this.isLoadingResults = false;
@@ -479,6 +485,7 @@ postMachineTransaction()
     console.log(data);
     if(data['status']=='success'){
       this.isLoadingResults = false;
+      this.opstracmacfrm.reset();
       this.toasterService.pop('success','Successfully Submitted' ,'');
     } else {
       this.isLoadingResults = false;

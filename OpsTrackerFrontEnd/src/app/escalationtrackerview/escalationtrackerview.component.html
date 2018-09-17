@@ -14,7 +14,7 @@
         
       
           <table mat-table [dataSource]="esc2" class="mat-elevation-z8"
-                 matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%">
+                 matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%;margin-bottom: 11px">
             <!-- Number Column -->
             
             <!-- Title Column -->
@@ -37,32 +37,32 @@
       
             <!-- Created Column -->
             <ng-container matColumnDef="communicatedVia">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              <th mat-header-cell *matHeaderCellDef >
                Communicated Via
               </th>
               <td mat-cell *matCellDef="let row">{{row.communicatedVia}}</td>
             </ng-container>
     
             <ng-container matColumnDef="communicatedDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   Communicated Date
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.communicatedDate}}</td>
               </ng-container>
               <ng-container matColumnDef="escalatedTo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   Escalated To
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.escalatedTo}}</td>
               </ng-container>
               <ng-container matColumnDef="escalatedBy">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   Escalated By
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.escalatedBy}}</td>
               </ng-container>
               <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   Status
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.status}}</td>
@@ -70,14 +70,14 @@
 
               
               <ng-container matColumnDef="closureDate">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  <th mat-header-cell *matHeaderCellDef >
                     Closure Date
                   </th>
                   <td mat-cell *matCellDef="let row">{{row.closureDate}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="estimatedClosureDate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                    <th mat-header-cell *matHeaderCellDef >
                       Estimated Closure Date
                     </th>
                     <td mat-cell *matCellDef="let row">{{row.estimatedClosureDate}}</td>
@@ -88,13 +88,14 @@
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 
                 <mat-cell *matCellDef="let row">
+                    <div class="inner-div">
                     <button mat-icon-button>
-                        <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >update</mat-icon>
+                        <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >edit</mat-icon>
                       </button>
-                      <button mat-icon-button>
+                     <!--  <button mat-icon-button>
                           <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="openDialog(row.id)">delete</mat-icon>
-                        </button>
-                   
+                        </button> -->
+                   </div>
                 </mat-cell>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -16,14 +16,16 @@ import { Sitemanpowerdialog } from '../models/sitemanpowerdialog.model';
 import { Sitematerialdialog } from '../models/sitematerialdialog.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Sitedata } from '../models/sitedata.model';
+import { ViewChild,ElementRef,Renderer} from '@angular/core';
 @Component({
   selector: 'app-sitedialog',
   templateUrl: './sitedialog.component.html',
   styleUrls: ['./sitedialog.component.css']
 })
 export class SitedialogComponent implements OnInit {
+  @ViewChild('site_name') clnameinput: ElementRef;
   private toasterService: ToasterService;
-  constructor(public thisdialogRef: MatDialogRef<SitedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private data1: DataService, private http: HttpClient,toasterService:ToasterService) {
+  constructor(public thisdialogRef: MatDialogRef<SitedialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private data1: DataService, private http: HttpClient,toasterService:ToasterService,private renderer: Renderer) {
     this.toasterService=toasterService;
    }
    Materialtype: string[] = ['Fixed materials', 'At Actual'];
@@ -123,7 +125,7 @@ id;
   }
   listClient()
   {
-    
+   // this.clnameinput.nativeElement.clearFocus();
     this.data1.getProjects().subscribe(
       data => this.projects = data
     );
@@ -133,6 +135,8 @@ id;
     
     this.getmachine(this.id); 
     console.log(this.data);
+   
+   // this.renderer.invokeElementMethod(this.clnameinput.nativeElement, 'blur');
   }
 
   listRM()
@@ -271,9 +275,11 @@ id;
                 console.log(data['status']);
                 if(data['status']=='success'){
                   this.isLoadingResults = false;
+                  this.thisdialogRef.close();
                   this.toasterService.pop('success','Successfully Submitted' ,'');
                 } else {
                   this.isLoadingResults = false;
+                  this.thisdialogRef.close();
                   this.toasterService.pop('warning','Not Submitted' ,'');
                 }
              

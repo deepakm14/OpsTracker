@@ -14,7 +14,7 @@
       
     
         <table mat-table [dataSource]="manpower2" class="mat-elevation-z8"
-               matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%">
+               matSort matSortActive="id" matSortDisableClear matSortDirection="asc" style="width:100%;margin-bottom: 11px">
           <!-- Number Column -->
           
           <!-- Title Column -->
@@ -37,45 +37,45 @@
     
           <!-- Created Column -->
           <ng-container matColumnDef="shortfall">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+            <th mat-header-cell *matHeaderCellDef >
               Short Fall
             </th>
             <td mat-cell *matCellDef="let row">{{row.shortfall}}</td>
           </ng-container>
   
           <ng-container matColumnDef="continuedWithOt">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              <th mat-header-cell *matHeaderCellDef >
                 Continued with OT
               </th>
               <td mat-cell *matCellDef="let row">{{row.continuedWithOt}}</td>
             </ng-container>
   
             <ng-container matColumnDef="continuedWithOutOt">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   Continued Without OT
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.continuedWithOutOt}}</td>
               </ng-container>
               <ng-container matColumnDef="newComer">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   New Comer
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.newComer}}</td>
               </ng-container>
               <ng-container matColumnDef="shiftTime">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   Shift Time
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.shiftTime}}</td>
               </ng-container>
               <ng-container matColumnDef="projectId">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   Project Id
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.projectId}}</td>
               </ng-container>
               <ng-container matColumnDef="siteId">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <th mat-header-cell *matHeaderCellDef >
                   site Id
                 </th>
                 <td mat-cell *matCellDef="let row">{{row.siteId}}</td>
@@ -86,13 +86,14 @@
               <th mat-header-cell *matHeaderCellDef>Action</th>
               
               <mat-cell *matCellDef="let row">
+                  <div class="inner-div">
                   <button mat-icon-button>
-                      <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >update</mat-icon>
+                      <mat-icon matTooltip="Update" aria-label="Example icon-button with a heart icon" (click)="openDialog(row.id)" >edit</mat-icon>
                     </button>
-                    <button mat-icon-button>
+                    <!-- <button mat-icon-button>
                         <mat-icon aria-label="Example icon-button with a heart icon"  matTooltip="Delete" (click)="openDialog(row.id)">delete</mat-icon>
-                      </button>
-                 
+                      </button> -->
+                 </div>
               </mat-cell>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -72,9 +72,11 @@ export class EscalationtrackerdialogComponent implements OnInit {
            .subscribe(  (data:any) => { 
              if(data['status']=='success'){
                this.isLoadingResults = false;
+               this.thisdialogRef.close();
                this.toasterService.pop('success','Successfully Updated' ,'');
              } else {
                this.isLoadingResults = false;
+               this.thisdialogRef.close();
                this.toasterService.pop('warning','Not Submitted' ,'');
              }
           

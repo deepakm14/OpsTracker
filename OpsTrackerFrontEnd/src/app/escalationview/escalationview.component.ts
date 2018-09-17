@@ -8,6 +8,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {DataService} from '../data.service';
 import {EscalationdialogComponent} from '../escalationdialog/escalationdialog.component';
+import { EscalationdeleteComponent } from '../escalationdelete/escalationdelete.component';
 
 @Component({
   selector: 'app-escalationview',
@@ -85,6 +86,22 @@ console.log(data['totalElements']);
             });
     
     }
+    openDeleteDialog(id:number) {
+  
+      const item1 = id;
+     
+        const dialogRef = this.dialog.open(EscalationdeleteComponent, {
+          width: '300px',
+          data:item1
+          
+              });
+              dialogRef.afterClosed().subscribe(result => {
+                console.log('dialog closed:${result}');
+                this.dialogResult = result;
+              });
+      
+      }
+    
 }
 
 export interface Escalation {

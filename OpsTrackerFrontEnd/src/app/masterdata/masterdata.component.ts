@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { Toolbarservice } from '../my-nav/my-nav.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl,FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormControl,NgForm,FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Dateformat } from '../dateformat.service';
 import {map, startWith ,switchMap,catchError} from 'rxjs/operators';
@@ -10,12 +10,14 @@ import { Site } from '../models/site.model';
 import { ManPower } from '../models/manpower.model';
 import { Material } from '../models/material.model';
 import { Machine } from '../models/machine.model';
+import { Client } from '../models/client.model';
+import { Project } from '../models/project.model';
 
 import { Observable, of } from 'rxjs';
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatTabChangeEvent } from '@angular/material';
-
+import { ViewChild,ElementRef,Renderer} from '@angular/core';
 
 
 
@@ -28,7 +30,13 @@ import { MatTabChangeEvent } from '@angular/material';
   providers: [Toolbarservice]
 })
 export class MasterdataComponent implements OnInit {
+  @ViewChild('client_name') clnameinput: ElementRef;
  
+
+  @ViewChild('myForm1') public clientfrm: NgForm;
+  @ViewChild('myForm') public employfrm: NgForm;
+  @ViewChild('myForm2') public sitefrm: NgForm;
+  @ViewChild('myForm3') public escalfrm: NgForm;
   private toasterService: ToasterService;
   //model class object creation
   site = new Site();
@@ -47,7 +55,7 @@ export class MasterdataComponent implements OnInit {
   shift: string[]=['Shift1','Shift2','Shift3','Shift4','Shift5'];
  
   constructor(private http: HttpClient, private activaterouter: ActivatedRoute, private router: Router, public nav: Toolbarservice, private data: DataService,
-    private dateFormat: Dateformat,toasterService:ToasterService){
+    private dateFormat: Dateformat,toasterService:ToasterService,private renderer: Renderer){
       this.toasterService=toasterService;
       //this.createForm();
     }
@@ -73,10 +81,13 @@ export class MasterdataComponent implements OnInit {
   
     myControl = new FormControl();
     public emp={"designation":""};
-    public client={};
+    client = new Client();
+
+   // public client={};
     //public site={"projectId":"","contractType":"","projectName":"","regionalManagerId":"","seniorManagerId":"","asstSeniorManagerId":"","siteInchargeId":"",
     //"manPowerDTO":[],"machineDTO":[],"materialDTO":[],};
     projects: Object;
+   project=new Project();
     sites: Object;
     employees: Object;
     rm: Object;
@@ -89,7 +100,7 @@ export class MasterdataComponent implements OnInit {
     public escalationtype={};
 
   emp_code = new FormControl('', [Validators.required]);
-  emp_name = new FormControl('', [Validators.required]);
+  emp_name = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')]);
   emp_designation = new FormControl('', [Validators.required]);
   email1 = new FormControl('', [Validators.required, Validators.email]);
 
@@ -97,13 +108,40 @@ export class MasterdataComponent implements OnInit {
   client_name = new FormControl('', [Validators.required]);
   client_code = new FormControl('', [Validators.required]);
   esc_type = new FormControl('', [Validators.required]);
+  //siteClient_Name = new FormControl('', [Validators.required]);
+
+
+  projects_name = new FormControl('', [Validators.required]);
+  site_code = new FormControl('', [Validators.required]);
+  site_name = new FormControl('', [Validators.required]);
+  site_address = new FormControl('', [Validators.required]);
+  site_contracttype = new FormControl('', [Validators.required]);
+  site_Rm = new FormControl('', [Validators.required]);
+  site_Sm = new FormControl('', [Validators.required]);
+  site_Asm = new FormControl('', [Validators.required]);
+  site_Si = new FormControl('', [Validators.required]);
+
+
+  manp_shift = new FormControl('', [Validators.required]);
+  manp_startTime = new FormControl('', [Validators.required]);
+  manp_endTime = new FormControl('', [Validators.required]);
+  manp_planned = new FormControl('', [Validators.required]);
+
+  mat_materialType = new FormControl('', [Validators.required]);
+  mat_commitmentDate = new FormControl('', [Validators.required]);
+
+  mac_machineType = new FormControl('', [Validators.required]);
+  mac_equipmentType = new FormControl('', [Validators.required]);
+  mac_modelNo = new FormControl('', [Validators.required]);
+  mac_serialNo = new FormControl('', [Validators.required]);
   //emp_name = new FormControl('', [Validators.required]);
 
   getCodeErrorMessage() {
     return this.emp_code.hasError('required') ? 'You must enter a value' :'';      
   }
   getNameErrorMessage() {
-    return this.emp_name.hasError('required') ? 'You must enter a value' :'';      
+    return this.emp_name.hasError('required') ? 'You must enter a value' : 
+    this.emp_name.hasError('pattern') ? 'Special character is not allowed' : '';      
   }
 
   getDesignationErrorMessage() {
@@ -130,6 +168,89 @@ export class MasterdataComponent implements OnInit {
   getEscalationtypeErrorMessage() {
     return this.esc_type.hasError('required') ? 'You must enter a value' :'';      
   }
+
+  getSiteprojectnameErrorMessage() {
+    return this.projects_name.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+
+  getSitecodeErrorMessage() {
+    return this.site_code.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getSitenameErrorMessage() {
+    return this.site_name.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getSitaddressErrorMessage() {
+    return this.site_address.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getSitcontracttypeErrorMessage() {
+    return this.site_contracttype.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getSitRmErrorMessage() {
+    return this.site_Rm.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getSitSmErrorMessage() {
+    return this.site_Sm.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getSitAsmErrorMessage() {
+    return this.site_Asm.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getSitSiErrorMessage() {
+    return this.site_Si.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getManpowershiftErrorMessage() {
+    return this.manp_shift.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getManpowerstartTimeErrorMessage() {
+    return this.manp_startTime.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getManpowerendTimeErrorMessage() {
+    return this.manp_endTime.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getManpowerplannedErrorMessage() {
+    return this.manp_planned.hasError('required') ? 'You must enter a value' :'';      
+  }
+  getMaterialtypeErrorMessage() {
+    return this.mat_materialType.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getMaterialcommitdateErrorMessage() {
+    return this.mat_commitmentDate.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  
+
+  getMacmachinetypeErrorMessage() {
+    return this.mac_equipmentType.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getMacequipmentTypeErrorMessage() {
+    return this.mac_modelNo.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getMacmodelNoErrorMessage() {
+    return this.mac_serialNo.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+  getMacserialNoErrorMessage() {
+    return this.mat_commitmentDate.hasError('required') ? 'You must enter a value' :'';      
+  }
+
+
+
+
+
 
   popToast(){
   
@@ -181,9 +302,12 @@ export class MasterdataComponent implements OnInit {
     //console.log(this.material);
     //this.material.commitmentDate = this.dateFormat.convertdate(this.material.commitmentDate);
    // console.log(this.material.commitmentDate);
-   const dateString=this.dateFormat.convertdate(this.material.commitmentDate)
-   const newDate = new Date(dateString);
-  this.material.commitmentDate=newDate;
+   //const dateString=this.dateFormat.convertdate(this.material.commitmentDate)
+   //console.log(dateString);
+  // const newDate = new Date(dateString);
+  // console.log(newDate);
+
+  //this.material.commitmentDate=newDate;
 
   console.log(this.material.commitmentDate);
     this.fieldArray1.push(this.material);
@@ -234,10 +358,12 @@ export class MasterdataComponent implements OnInit {
         console.log(data['status']);
         if(data['status']=='success'){
           this.isLoadingResults = false;
+          this.employfrm.reset();
           this.toasterService.pop('success','Successfully Submitted' ,'');
         } else {
           this.isLoadingResults = false;
           this.toasterService.pop('warning','Not Submitted' ,'');
+          
         }
      
       
@@ -273,6 +399,16 @@ export class MasterdataComponent implements OnInit {
       console.log(data['status']);
       if(data['status']=='success'){
         this.isLoadingResults = false;
+       
+      // this.client_name.updateValueAndValidity();
+      this.clientfrm.reset();
+     // this.client.name='';
+    // this.client_name.clearValidators();
+    //  this.client_name.updateValueAndValidity();
+    
+      
+    // this.renderer.invokeElementMethod(this.clnameinput.nativeElement, 'blur');
+    
         this.toasterService.pop('success','Successfully Submitted' ,'');
       } else {
         this.isLoadingResults = false;
@@ -313,6 +449,7 @@ export class MasterdataComponent implements OnInit {
       console.log(data['status']);
       if(data['status']=='success'){
         this.isLoadingResults = false;
+        this.sitefrm.reset();
         this.toasterService.pop('success','Successfully Submitted' ,'');
       } else {
         this.isLoadingResults = false;
@@ -348,6 +485,7 @@ export class MasterdataComponent implements OnInit {
       console.log(data['status']);
       if(data['status']=='success'){
         this.isLoadingResults = false;
+        this.escalfrm.reset();
         this.toasterService.pop('success','Successfully Submitted' ,'');
       } else {
         this.isLoadingResults = false;

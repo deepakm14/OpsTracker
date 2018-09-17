@@ -81,7 +81,7 @@
                          
                       <div >
                           <button mat-mini-fab >
-                              <mat-icon aria-label="" routerLink="../opsmanpowertransactionview">table_chart</mat-icon>
+                              <mat-icon aria-label="" routerLink="../opsmanpowertransactionview">remove_red_eye</mat-icon>
                             </button>
 
                             <form name="form" (ngSubmit)="myForm1.form.valid && postManPowerTransaction()" #myForm1="ngForm" novalidate > 
@@ -107,7 +107,7 @@
                                 </mat-form-field>
 
                               <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Actual" [(ngModel)]="manpowertransaction.actual" (input)="setShortFall($event.target.value)" #ops_actual="ngModel" name="actual" required>
+                                  <input matInput placeholder="Actual" [(ngModel)]="manpowertransaction.actual" (keypress)="numberOnly($event)" (input)="setShortFall($event.target.value)" #ops_actual="ngModel" name="actual" required>
                                   <mat-error *ngIf="ops_actual.invalid">{{getops_actualErrorMessage()}}</mat-error>
                                 </mat-form-field>
 
@@ -151,7 +151,7 @@
                             <div class="material-box mat-elevation-z4">
                                 <div >
                                     <button mat-mini-fab >
-                                        <mat-icon aria-label="" routerLink="../opsmaterialtransactionview">table_chart</mat-icon>
+                                        <mat-icon aria-label="" routerLink="../opsmaterialtransactionview">remove_red_eye</mat-icon>
                                       </button>
                                       <form name="form" (ngSubmit)="myForm2.form.valid && postMaterialTransaction()" #myForm2="ngForm" novalidate > 
                                     <mat-form-field class="example-full-width">
@@ -224,7 +224,7 @@
                                   <div class="material-box mat-elevation-z4">
                                       <div >
                                           <button mat-mini-fab >
-                                              <mat-icon aria-label="" routerLink="../opsmachinetransactionview">table_chart</mat-icon>
+                                              <mat-icon aria-label="" routerLink="../opsmachinetransactionview">remove_red_eye</mat-icon>
                                             </button>
                                             <form name="form" (ngSubmit)="myForm3.form.valid && postMachineTransaction()" #myForm3="ngForm" novalidate > 
                                       <mat-form-field class="example-full-width">

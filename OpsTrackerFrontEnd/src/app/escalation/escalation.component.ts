@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl,NgForm, Validators} from '@angular/forms';
 import {DataService} from '../data.service';
 import {Escalation} from '../models/escalation.model';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { Dateformat } from '../dateformat.service';
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ViewChild,ElementRef,Renderer} from '@angular/core';
 
 @Component({
   selector: 'app-escalation',
@@ -15,6 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./escalation.component.css']
 })
 export class EscalationComponent implements OnInit {
+  @ViewChild('myForm') public mainescalfrm: NgForm;
   private toasterService: ToasterService;
   communicatedvia: string[] = ['Phone', 'Email'];
   myControl = new FormControl();
@@ -95,6 +97,7 @@ this.esc2.closureDate=this.closuredate; */
     console.log(data['status']);
     if(data['status']=='success'){
       this.isLoadingResults = false;
+      this.mainescalfrm.reset();
       this.toasterService.pop('success','Successfully Submitted' ,'');
     } else {
       this.isLoadingResults = false;

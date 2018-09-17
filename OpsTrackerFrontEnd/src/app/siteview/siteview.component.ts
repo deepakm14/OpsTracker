@@ -18,6 +18,7 @@ import { Sitematerialdialog } from '../models/sitematerialdialog.model';
 import {SitematerialdialogComponent} from '../sitematerialdialog/sitematerialdialog.component';
 import { SitemachinedailogComponent } from '../sitemachinedailog/sitemachinedailog.component';
 import {SitedialogComponent} from '../sitedialog/sitedialog.component';
+import { SitedeleteComponent } from '../sitedelete/sitedelete.component';
 @Component({
   selector: 'app-siteview',
   templateUrl: './siteview.component.html',
@@ -143,6 +144,24 @@ id;
             });
     
     }
+
+
+
+    openSiteDelete(id:number) {
+  
+      const item1 = id;
+     
+        const dialogRef = this.dialog.open(SitedeleteComponent, {
+          width: '300px',
+          data:item1
+          
+              });
+              dialogRef.afterClosed().subscribe(result => {
+                console.log('dialog closed:${result}');
+                this.dialogResult = result;
+              });
+      
+      }
  getmanpower(id:number) {
   
   //const item1 = this.site2.find(i => i.id === id);

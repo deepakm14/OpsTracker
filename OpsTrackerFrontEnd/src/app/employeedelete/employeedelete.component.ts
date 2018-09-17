@@ -4,42 +4,41 @@ import { MatDialogRef } from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {DataService} from '../data.service';
-import { Client } from '../models/client.model';
+
 import {ToasterModule,ToasterService,ToasterConfig} from 'angular2-toaster';
 import { HttpErrorResponse } from '@angular/common/http';
+
 @Component({
-  selector: 'app-clientdialog',
-  templateUrl: './clientdialog.component.html',
-  styleUrls: ['./clientdialog.component.css']
+  selector: 'app-employeedelete',
+  templateUrl: './employeedelete.component.html',
+  styleUrls: ['./employeedelete.component.css']
 })
-export class ClientdialogComponent implements OnInit {
+export class EmployeedeleteComponent implements OnInit {
 
   private toasterService: ToasterService;
 isLoadingResults = false;
-  constructor(public thisdialogRef: MatDialogRef<ClientdialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService) {
+  constructor(public thisdialogRef: MatDialogRef<EmployeedeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,toasterService:ToasterService) {
     this.toasterService=toasterService;
    }
 
   ngOnInit() {
-    this.thisdialogRef.updateSize('27%', '33%');
+    this.thisdialogRef.updateSize('21%', '20%');
   }
 
-  updateClient()
-  {
-    //console.log(this.emp);
-    
+  deleteEmployee(){
     this.isLoadingResults = true;
-    this.http.put('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/project/update', this.data)
+    console.log(this.data);
+    this.http.delete('http://ec2-13-233-19-198.ap-south-1.compute.amazonaws.com:8080/uds/employee/delete/'+ this.data)
     
       .subscribe(  (data:any) => { 
         if(data['status']=='success'){
           this.isLoadingResults = false;
           this.thisdialogRef.close();
-          this.toasterService.pop('success','Successfully Updated' ,'');
+          this.toasterService.pop('success','Successfully Deleted' ,'');
         } else {
           this.isLoadingResults = false;
           this.thisdialogRef.close();
-          this.toasterService.pop('warning','Not Submitted' ,'');
+          this.toasterService.pop('warning','Not Deleted' ,'');
         }
      
       
@@ -59,7 +58,8 @@ isLoadingResults = false;
             
          }
       }
-     );
+     );  
+
   }
   onCloseConfirm() {
     this.thisdialogRef.close('Confirm');

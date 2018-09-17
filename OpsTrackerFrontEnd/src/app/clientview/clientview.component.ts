@@ -8,6 +8,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {DataService} from '../data.service';
 import {ClientdialogComponent} from '../clientdialog/clientdialog.component';
+import { ClientdeleteComponent } from '../clientdelete/clientdelete.component';
 
 @Component({
   selector: 'app-clientview',
@@ -85,6 +86,22 @@ console.log(data['totalElements']);
             });
     
     }
+
+    openDeleteDialog(id:number) {
+  
+      const item1 = this.client2.find(i => i.id === id);
+     
+        const dialogRef = this.dialog.open(ClientdeleteComponent, {
+          width: '300px',
+          data:item1
+          
+              });
+              dialogRef.afterClosed().subscribe(result => {
+                console.log('dialog closed:${result}');
+                this.dialogResult = result;
+              });
+      
+      }
 }
 export interface Client {
   id: number;

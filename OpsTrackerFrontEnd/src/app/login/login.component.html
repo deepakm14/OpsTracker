@@ -1,3 +1,15 @@
+<div class="example-loading-shade spinnerabove "
+*ngIf="isLoadingResults || isRateLimitReached" >
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+
+</div>
+</div> 
+
+
+
+
+
 <div class="content" >
   <div >
     <mat-card style="background-color:#d1dddb">
@@ -9,20 +21,26 @@
         <mat-divider ></mat-divider> 
         <mat-card-content>
         <div style="margin-top:10px">
-           
+          <form name="form1" (ngSubmit)="myForm1.form.valid && onlogin()" #myForm1="ngForm"  novalidate >  
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username"  required >
+            <input matInput placeholder="Username" [(ngModel)]="login.userName"  name="userName" #user_name="ngModel" required >
+            <mat-error *ngIf="user_name.invalid">{{getUsernameErrorMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput type="password" placeholder="Password"  required>
+            <input matInput type="password" placeholder="Password" [(ngModel)]="login.passWord"  name="passWord" #pass_ward="ngModel" required>
+            <mat-error *ngIf="pass_ward.invalid">{{getPasswordErrorMessage()}}</mat-error>
           </mat-form-field>
           <div class="button-row">
                                         
-            <button mat-raised-button color="accent" (click)="onButtonclick()">Login</button>
+            <button mat-raised-button color="accent">Login</button>
             
             
           </div>
+          <div *ngIf="loginfailure">
+            <p>Username or Password is incorrect</p>
+          </div>
+          </form>
          
         
          

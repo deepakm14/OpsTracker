@@ -9,7 +9,7 @@ import {DataService} from '../data.service';
 import { Employ } from '../models/employ.model';
 import { MatDialogModule } from '@angular/material';
 import {EmploydialogComponent} from '../employdialog/employdialog.component';
-
+import { EmployeedeleteComponent } from '../employeedelete/employeedelete.component';
 
 @Component({
   selector: 'app-emplyeeview',
@@ -132,7 +132,21 @@ id;
           });
   
   }
- 
+  openDeleteDialog(id:number) {
+  
+    const item1 = id;
+   
+      const dialogRef = this.dialog.open(EmployeedeleteComponent, {
+        width: '300px',
+        data:item1
+        
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              console.log('dialog closed:${result}');
+              this.dialogResult = result;
+            });
+    
+    }
 
  /* loadEmployeeforupdate(id:number) {
  
